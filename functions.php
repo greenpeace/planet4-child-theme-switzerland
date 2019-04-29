@@ -23,6 +23,7 @@ add_filter( 'allowed_block_types', 'p4_child_theme_gpch_whitelist_blocks', 10, 2
 function p4_child_theme_gpch_whitelist_blocks( $allowed_blocks, $post ) {
 	$allowed_blocks_general = array(
 		'core/paragraph',
+		'core/heading',
 		'core/image',
 		//'core/gallery', // functionality replaced by P4 galleries
 		'core/list',
