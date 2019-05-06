@@ -9,6 +9,12 @@ function enqueue_child_styles() {
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $css_creation );
 }
 
+/*
+ * Includes
+ */
+
+// Custom Post Types: Jobs & Archive
+require_once('includes/custom-post-types.php');
 
 add_filter( 'allowed_block_types', 'p4_child_theme_gpch_whitelist_blocks', 10, 2 );
 
