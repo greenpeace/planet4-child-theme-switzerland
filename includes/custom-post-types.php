@@ -2,7 +2,9 @@
 
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_job' ) ) {
-	// Register Custom Post Type for Job
+	/**
+	 * Register Custom Post Type for Job
+	 */
 	function p4_child_theme_gpch_custom_post_job() {
 
 		$labels       = array(
@@ -78,7 +80,9 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_job' ) ) {
 
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_archived_post' ) ) {
-	// Register Custom Post Type for Archived Post
+	/**
+	 * Register Custom Post Type for Archived Post
+	 */
 	function p4_child_theme_gpch_custom_post_archived_post() {
 
 		$labels       = array(
