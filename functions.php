@@ -16,6 +16,11 @@ function enqueue_child_styles() {
 // Custom Post Types: Jobs & Archive
 require_once('includes/custom-post-types.php');
 
+// Roles, Usergroups & Capabilities
+require_once('includes/user-roles.php');
+
+
+
 add_filter( 'allowed_block_types', 'p4_child_theme_gpch_whitelist_blocks', 10, 2 );
 
 /**
