@@ -1,0 +1,61 @@
+h2 {
+	color: $color_gray_dark;
+}
+
+h3 {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+h2 + h3 {
+	margin-top: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.page-header-title {
+	font-size: 8rem;
+	line-height: .8;
+	color: $color_forest_1;
+	text-transform: uppercase;
+}
+
+/* Forest */
+.theme-forest {
+	h2 {
+		color: $color_forest_1;
+	}
+
+	h2:after {
+		content: "";
+		display: block;
+		top: 0;
+		left: -80px;
+		height: 2px;
+		width: 160px;
+		position: relative;
+		background-color: $color_forest_3;
+	}
+}
+
+/* Climate */
+.theme-climate {
+	h2 {
+		color: $color_climate_1;
+	}
+}
+
+/* Flotte */
+
+/* Arctic */
+
+/* Landwirtschaft */
+
+/* Ocean */
+
+
+
+
+
+
+
+

@@ -16,12 +16,20 @@ Text Domain: planet4-child-theme-switzerland
 # General Imports
 --------------------------------------------------------------*/
 
-@import "variables";
+@import "variables/colors";
 @import "mixins";
 @import "vendor/includemedia";
+
 
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
 @import "color-palettes";
 @import "layout/layout";
+@import "typography";
+
+
+/*--------------------------------------------------------------
+# Blocks
+--------------------------------------------------------------*/
+@import "blocks/list";

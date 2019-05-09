@@ -1,0 +1,56 @@
+/* All themes */
+ul.style-1 {
+	list-style: square;
+	padding: 1em 0 1em 4em;
+
+	li,
+	li a {
+		font-weight: 700;
+		font-size: 1.2rem;
+	}
+}
+
+ul.style-2 {
+	list-style: square;
+	padding: 1em 0 1em 4em;
+
+	li,
+	li a {
+		font-weight: 700;
+		font-size: 1.2rem;
+	}
+}
+
+/* Forest */
+.theme-forest {
+	ul.style-1 {
+		background-color: $color_forest_2;
+
+		li,
+		li a {
+			color: $color_forest_3;
+		}
+	}
+
+	ul.style-2 {
+		background-color: $color_forest_3;
+
+		li,
+		li a {
+			color: #fff;
+		}
+	}
+}
+
+
+/* Climate */
+.theme-climate {
+	ul.style-1 {
+		background-color: $color_climate_2;
+
+		li,
+		li a {
+			color: $color_climate_3;
+		}
+	}
+}
