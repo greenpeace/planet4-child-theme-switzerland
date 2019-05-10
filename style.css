@@ -320,4 +320,8 @@ body.tag-wald h2.is-style-underline:after {
 body.tag-klima h2.is-style-underline:after {
   background-color: #cccccc; }
 
+.wp-block-image figcaption {
+  font-weight: 700;
+  text-align: left; }
+
 /*# sourceMappingURL=style.css.map */
