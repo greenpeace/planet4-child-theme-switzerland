@@ -1,16 +1,93 @@
-body.brown-bg {
+body {
 	font-family: Roboto, sans-serif;
+}
+
+body.brown-bg {
+
 	background-color: $color_white;
 }
 
-.top-page-tags {
-	a {
-		margin-bottom: 0;
-	}
+/* Remove the Planet4 style header styles */
+.page-template-evergreen .page-header .page-header-background {
+	opacity: 1;
+}
+
+.skewed-overlay,
+.page-template-evergreen .skewed-overlay {
+	display: none
+}
+
+.page-header-background {
+	position: static;
+}
+
+.white-bg .page-header-background::after,
+.brown-bg .page-header-background::after {
+	display: none;
 }
 
 .page-header {
-	padding: 80px 0 60px;
+	padding: 0
+}
+
+/* Now style our header */
+.page-header-background {
+	margin-top: 60px;
+	height: 70vh;
+	max-height: 380px;
+	overflow: hidden;
+}
+
+.container {
+	.page-header-content {
+		position: absolute;
+		top: 120px;
+		right: 60px;
+		padding: .6em 1em;
+
+		background-color: $color_standard_2;
+		color: #fff;
+
+		font-family: Roboto, sans-serif;
+		font-size: 1.2rem;
+		font-weight: 700;
+		line-height: 1.4;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.page-header-subtitle {
+		margin-top: -1rem;
+		margin-bottom: 0;
+
+		color: $color_standard_3;
+		font-size: 1.6rem;
+		line-height: 1;
+		font-weight: 700;
+	}
+
+	.page-header-btn {
+		position: absolute;
+		bottom: 11rem;
+		right: 20px;
+	}
+
+	.top-page-tags {
+		display: none;
+	}
+}
+
+.container > .page-header-title {
+	margin-top: 1rem;
 }
 
 
+.page-header .container > :not(.row) {
+	max-width: 400px;
+}
+
+.page-template {
+	margin-top: 4rem;
+}
