@@ -82,6 +82,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4block-social-facebook-page',
 			// 'acf/p4block-social-oembed', // removed, functionality covered by standard Gutenberg blocks
 			'acf/p4block-split-two-columns',
+			'acf/p4-gpch-block-form-progress-bar',
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
@@ -106,4 +107,24 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 
 		return $allowed_blocks;
 	}
+}
+
+if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks_gutenberg_scripts' ) ) {
+	/**
+	 * Add a script to Gutenberg to control element styles
+	 *
+	 * @see https://www.billerickson.net/block-styles-in-gutenberg/
+	 */
+	function p4_child_theme_gpch_whitelist_blocks_gutenberg_scripts() {
+
+		wp_enqueue_script(
+			'be-editor',
+			get_stylesheet_directory_uri() . '/admin/js/editor.js',
+			array( 'wp-blocks', 'wp-dom' ),
+			filemtime( get_stylesheet_directory() . '/admin/js/editor.js' ),
+			true
+		);
+	}
+
+	add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_whitelist_blocks_gutenberg_scripts' );
 }
