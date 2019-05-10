@@ -47,3 +47,19 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 
 	return $classes;
 }
+
+/*
+ * Add custom styles to Gutenberg editor
+ */
+
+function p4_child_theme_gpch_setup() {
+	// Add support for editor styles.
+	add_theme_support( 'editor-styles' );
+
+	// Enqueue editor styles.
+	add_editor_style( 'admin/css/editor-style.css' );
+}
+
+add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
+
+
