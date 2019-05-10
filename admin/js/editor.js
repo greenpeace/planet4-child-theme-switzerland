@@ -42,13 +42,13 @@ wp.domReady( () => {
 	} );
 
 	wp.blocks.registerBlockStyle( 'core/list', {
-		name: 'accent-1',
-		label: 'Colorful 1',
+		name: 'accent-links',
+		label: 'Navigation List',
 	} );
 
 	wp.blocks.registerBlockStyle( 'core/list', {
-		name: 'accent-2',
-		label: 'Colorful 2',
+		name: 'accent-info',
+		label: 'Info List',
 	} );
 
 	// core/separator

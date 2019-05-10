@@ -205,43 +205,61 @@ body.brown-bg {
 # Blocks
 --------------------------------------------------------------*/
 /* All themes */
-ul.is-style-accent-1 {
-  list-style: square;
-  padding: 1em 0 1em 4em;
+ul.is-style-accent-links {
+  display: inline-block;
+  padding: 1em 8em 1em 2em;
+  list-style: none;
   background-color: #94bca6; }
-ul.is-style-accent-1 li, ul.is-style-accent-1 li a {
-  color: #d06283;
+ul.is-style-accent-links li, ul.is-style-accent-links li a {
+  color: #333333;
   font-weight: 700;
   font-size: 1.2rem; }
+ul.is-style-accent-links li:before {
+  content: "\27A5";
+  margin-right: .5em;
+  color: #d06283; }
 
-ul.is-style-accent-2 {
-  list-style: square;
-  padding: 1em 0 1em 4em;
-  background-color: #d06283; }
-ul.is-style-accent-2 li, ul.is-style-accent-2 li a {
+ul.is-style-accent-info {
+  display: inline-block;
+  padding: 1em 8em 1em 2em;
+  list-style: none;
+  background-color: #94bca6; }
+ul.is-style-accent-info li, ul.is-style-accent-info li a {
   font-weight: 700;
   font-size: 1.2rem;
-  color: #fff; }
-
-/* Forest */
-body.tag-wald ul.is-style-accent-1 {
-  background-color: #94bca6; }
-body.tag-wald ul.is-style-accent-1 li, body.tag-wald ul.is-style-accent-1 li a {
+  color: #26774e; }
+ul.is-style-accent-info li:before {
+  content: "\261b";
+  margin-right: .5em;
   color: #d06283; }
-body.tag-wald ul.is-style-accent-2 {
-  background-color: #d06283; }
-body.tag-wald ul.is-style-accent-2 li, body.tag-wald ul.is-style-accent-2 li a {
-  color: #fff; }
 
 /* Forest */
-body.tag-klima ul.is-style-accent-1 {
+body.tag-wald ul.is-style-accent-links {
+  background-color: #94bca6; }
+body.tag-wald ul.is-style-accent-links li, body.tag-wald ul.is-style-accent-links li a {
+  color: #333333; }
+body.tag-wald ul.is-style-accent-links li:before {
+  color: #d06283; }
+body.tag-wald ul.is-style-accent-info {
+  background-color: #94bca6; }
+body.tag-wald ul.is-style-accent-info li, body.tag-wald ul.is-style-accent-info li a {
+  color: #26774e; }
+body.tag-wald ul.is-style-accent-info li:before {
+  color: #d06283; }
+
+/* Forest */
+body.tag-klima ul.is-style-accent-links {
   background-color: #eaccbb; }
-body.tag-klima ul.is-style-accent-1 li, body.tag-klima ul.is-style-accent-1 li a {
+body.tag-klima ul.is-style-accent-links li, body.tag-klima ul.is-style-accent-links li a {
+  color: #333333; }
+body.tag-klima ul.is-style-accent-links li:before {
   color: #cccccc; }
-body.tag-klima ul.is-style-accent-2 {
-  background-color: #cccccc; }
-body.tag-klima ul.is-style-accent-2 li, body.tag-klima ul.is-style-accent-2 li a {
-  color: #fff; }
+body.tag-klima ul.is-style-accent-info {
+  background-color: #eaccbb; }
+body.tag-klima ul.is-style-accent-info li, body.tag-klima ul.is-style-accent-info li a {
+  color: #cd1719; }
+body.tag-klima ul.is-style-accent-info li:before {
+  color: #cccccc; }
 
 hr.wp-block-separator {
   height: 2px;
