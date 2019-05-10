@@ -17,6 +17,23 @@ wp.domReady( () => {
 		label: 'Block',
 	} );
 
+	// core/paragraph
+	wp.blocks.registerBlockStyle( 'core/paragraph', {
+		name: 'default',
+		label: 'Default',
+		isDefault: true,
+	} );
+
+	wp.blocks.registerBlockStyle( 'core/paragraph', {
+		name: 'accent-1',
+		label: 'Colorful 1',
+	} );
+
+	wp.blocks.registerBlockStyle( 'core/paragraph', {
+		name: 'accent-2',
+		label: 'Colorful 2',
+	} );
+
 	// core/list
 	wp.blocks.registerBlockStyle( 'core/list', {
 		name: 'default',

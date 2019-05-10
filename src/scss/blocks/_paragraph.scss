@@ -1,0 +1,48 @@
+/* All themes */
+p.is-style-accent-1 {
+	list-style: square;
+	padding: 1em 4em 1em 4em;
+	background-color: $color_standard_2;
+
+	color: $color_standard_3;
+	font-weight: 700;
+	font-size: 1.2rem;
+
+}
+
+p.is-style-accent-2 {
+	list-style: square;
+	padding: 1em 4em 1em 4em;
+	background-color: $color_standard_3;
+	$color: #fff;
+
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+/* Forest */
+body.tag-wald {
+	p.is-style-accent-1 {
+		background-color: $color_forest_2;
+		color: $color_forest_3;
+	}
+
+	p.is-style-accent-2 {
+		background-color: $color_forest_3;
+		color: #fff;
+	}
+}
+
+
+/* Forest */
+body.tag-klima {
+	p.is-style-accent-1 {
+		background-color: $color_climate_2;
+		color: $color_climate_3;
+	}
+
+	p.is-style-accent-2 {
+		background-color: $color_climate_3;
+		color: #fff;
+	}
+}

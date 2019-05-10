@@ -194,6 +194,9 @@ body.brown-bg {
 .page-header {
   padding: 80px 0 60px; }
 
+.page-template > p {
+  max-width: 600px; }
+
 /* Flotte */
 /* Arctic */
 /* Landwirtschaft */
@@ -204,17 +207,21 @@ body.brown-bg {
 /* All themes */
 ul.is-style-accent-1 {
   list-style: square;
-  padding: 1em 0 1em 4em; }
+  padding: 1em 0 1em 4em;
+  background-color: #94bca6; }
 ul.is-style-accent-1 li, ul.is-style-accent-1 li a {
+  color: #d06283;
   font-weight: 700;
   font-size: 1.2rem; }
 
 ul.is-style-accent-2 {
   list-style: square;
-  padding: 1em 0 1em 4em; }
+  padding: 1em 0 1em 4em;
+  background-color: #d06283; }
 ul.is-style-accent-2 li, ul.is-style-accent-2 li a {
   font-weight: 700;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  color: #fff; }
 
 /* Forest */
 body.tag-wald ul.is-style-accent-1 {
@@ -281,6 +288,10 @@ h2 + h3 {
   margin-top: -1.5rem;
   margin-bottom: 1.5rem; }
 
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700; }
+
 .page-header-title {
   font-size: 8rem;
   line-height: .8;
@@ -341,5 +352,37 @@ body.tag-klima h3 {
 .wp-block-image figcaption {
   font-weight: 700;
   text-align: left; }
+
+/* All themes */
+p.is-style-accent-1 {
+  list-style: square;
+  padding: 1em 4em 1em 4em;
+  background-color: #94bca6;
+  color: #d06283;
+  font-weight: 700;
+  font-size: 1.2rem; }
+
+p.is-style-accent-2 {
+  list-style: square;
+  padding: 1em 4em 1em 4em;
+  background-color: #d06283;
+  font-weight: 700;
+  font-size: 1.2rem; }
+
+/* Forest */
+body.tag-wald p.is-style-accent-1 {
+  background-color: #94bca6;
+  color: #d06283; }
+body.tag-wald p.is-style-accent-2 {
+  background-color: #d06283;
+  color: #fff; }
+
+/* Forest */
+body.tag-klima p.is-style-accent-1 {
+  background-color: #eaccbb;
+  color: #cccccc; }
+body.tag-klima p.is-style-accent-2 {
+  background-color: #cccccc;
+  color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
