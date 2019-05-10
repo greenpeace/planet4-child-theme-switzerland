@@ -1,5 +1,6 @@
 h2 {
 	color: $color_gray_dark;
+	margin-top: 3rem;
 }
 
 h3 {
@@ -20,7 +21,7 @@ h2 + h3 {
 }
 
 /* Forest */
-.theme-forest {
+body.tag-wald {
 	h2 {
 		color: $color_forest_1;
 	}
@@ -38,7 +39,7 @@ h2 + h3 {
 }
 
 /* Climate */
-.theme-climate {
+body.tag-klima {
 	h2 {
 		color: $color_climate_1;
 	}
