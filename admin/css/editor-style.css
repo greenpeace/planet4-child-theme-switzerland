@@ -195,15 +195,6 @@ h2 + h3 {
 /* Forest */
 body.tag-wald h2 {
   color: #26774e; }
-body.tag-wald h2:after {
-  content: "";
-  display: block;
-  top: 0;
-  left: -80px;
-  height: 2px;
-  width: 160px;
-  position: relative;
-  background-color: #d06283; }
 
 /* Climate */
 body.tag-klima h2 {
@@ -283,6 +274,31 @@ body.tag-klima hr.wp-block-separator {
   background-color: #eaccbb; }
 body.tag-klima hr.wp-block-separator:after {
   background: #eaccbb; }
+
+h2.is-style-underline:after {
+  content: "";
+  display: block;
+  top: 0;
+  left: -80px;
+  height: 2px;
+  width: 160px;
+  position: relative;
+  background-color: #d06283; }
+
+h2.is-style-block {
+  display: inline-block;
+  position: relative;
+  left: -80px;
+  padding: .4rem 160px .4rem 80px;
+  background-color: #94bca6; }
+
+/* Forest */
+body.tag-wald h2.is-style-underline:after {
+  background-color: #d06283; }
+
+/* Climate */
+body.tag-klima h2.is-style-underline:after {
+  background-color: #cccccc; }
 
 /*--------------------------------------------------------------
 # Editor (Gutenberg) specific

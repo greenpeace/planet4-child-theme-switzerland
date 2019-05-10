@@ -1,0 +1,32 @@
+h2.is-style-underline:after {
+    content: "";
+    display: block;
+    top: 0;
+    left: -80px;
+    height: 2px;
+    width: 160px;
+    position: relative;
+    background-color: $color_standard_3;
+}
+
+h2.is-style-block {
+    display: inline-block;
+    position: relative;
+    left: -80px;
+    padding: .4rem 160px .4rem 80px;
+    background-color: $color_standard_2;
+}
+
+/* Forest */
+body.tag-wald {
+    h2.is-style-underline:after {
+        background-color: $color_forest_3;
+    }
+}
+
+/* Climate */
+body.tag-klima {
+    h2.is-style-underline:after {
+        background-color: $color_climate_3;
+    }
+}

@@ -25,17 +25,6 @@ body.tag-wald {
 	h2 {
 		color: $color_forest_1;
 	}
-
-	h2:after {
-		content: "";
-		display: block;
-		top: 0;
-		left: -80px;
-		height: 2px;
-		width: 160px;
-		position: relative;
-		background-color: $color_forest_3;
-	}
 }
 
 /* Climate */

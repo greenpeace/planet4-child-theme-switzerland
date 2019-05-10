@@ -195,7 +195,8 @@ body.brown-bg {
   padding: 80px 0 60px; }
 
 h2 {
-  color: #333333; }
+  color: #333333;
+  margin-top: 3rem; }
 
 h3 {
   font-size: 1.5rem;
@@ -208,25 +209,16 @@ h2 + h3 {
 .page-header-title {
   font-size: 8rem;
   line-height: .8;
-  color: #266712;
+  color: #26774e;
   text-transform: uppercase; }
 
 /* Forest */
-.theme-forest h2 {
-  color: #266712; }
-.theme-forest h2:after {
-  content: "";
-  display: block;
-  top: 0;
-  left: -80px;
-  height: 2px;
-  width: 160px;
-  position: relative;
-  background-color: #d26883; }
+body.tag-wald h2 {
+  color: #26774e; }
 
 /* Climate */
-.theme-climate h2 {
-  color: #dc1831; }
+body.tag-klima h2 {
+  color: #cd1719; }
 
 /* Flotte */
 /* Arctic */
@@ -236,34 +228,96 @@ h2 + h3 {
 # Blocks
 --------------------------------------------------------------*/
 /* All themes */
-ul.style-1 {
+ul.is-style-accent-1 {
   list-style: square;
   padding: 1em 0 1em 4em; }
-ul.style-1 li, ul.style-1 li a {
+ul.is-style-accent-1 li, ul.is-style-accent-1 li a {
   font-weight: 700;
   font-size: 1.2rem; }
 
-ul.style-2 {
+ul.is-style-accent-2 {
   list-style: square;
   padding: 1em 0 1em 4em; }
-ul.style-2 li, ul.style-2 li a {
+ul.is-style-accent-2 li, ul.is-style-accent-2 li a {
   font-weight: 700;
   font-size: 1.2rem; }
 
 /* Forest */
-.theme-forest ul.style-1 {
-  background-color: #8eb386; }
-.theme-forest ul.style-1 li, .theme-forest ul.style-1 li a {
-  color: #d26883; }
-.theme-forest ul.style-2 {
-  background-color: #d26883; }
-.theme-forest ul.style-2 li, .theme-forest ul.style-2 li a {
+body.tag-wald ul.is-style-accent-1 {
+  background-color: #94bca6; }
+body.tag-wald ul.is-style-accent-1 li, body.tag-wald ul.is-style-accent-1 li a {
+  color: #d06283; }
+body.tag-wald ul.is-style-accent-2 {
+  background-color: #d06283; }
+body.tag-wald ul.is-style-accent-2 li, body.tag-wald ul.is-style-accent-2 li a {
   color: #fff; }
 
+/* Forest */
+body.tag-klima ul.is-style-accent-1 {
+  background-color: #eaccbb; }
+body.tag-klima ul.is-style-accent-1 li, body.tag-klima ul.is-style-accent-1 li a {
+  color: #cccccc; }
+body.tag-klima ul.is-style-accent-2 {
+  background-color: #cccccc; }
+body.tag-klima ul.is-style-accent-2 li, body.tag-klima ul.is-style-accent-2 li a {
+  color: #fff; }
+
+hr.wp-block-separator {
+  height: 2px;
+  width: 160px;
+  margin: 2rem auto;
+  border: none;
+  background-color: #94bca6; }
+
+hr.wp-block-separator:after {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: -11px;
+  width: 100%;
+  height: 1px;
+  background: #94bca6; }
+
+hr.wp-block-separator.is-style-block {
+  width: 100%;
+  height: 20px; }
+
+hr.wp-block-separator.is-style-block:after {
+  display: none; }
+
+body.tag-wald hr.wp-block-separator {
+  background-color: #94bca6; }
+body.tag-wald hr.wp-block-separator:after {
+  background: #94bca6; }
+
+body.tag-klima hr.wp-block-separator {
+  background-color: #eaccbb; }
+body.tag-klima hr.wp-block-separator:after {
+  background: #eaccbb; }
+
+h2.is-style-underline:after {
+  content: "";
+  display: block;
+  top: 0;
+  left: -80px;
+  height: 2px;
+  width: 160px;
+  position: relative;
+  background-color: #d06283; }
+
+h2.is-style-block {
+  display: inline-block;
+  position: relative;
+  left: -80px;
+  padding: .4rem 160px .4rem 80px;
+  background-color: #94bca6; }
+
+/* Forest */
+body.tag-wald h2.is-style-underline:after {
+  background-color: #d06283; }
+
 /* Climate */
-.theme-climate ul.style-1 {
-  background-color: #dc968e; }
-.theme-climate ul.style-1 li, .theme-climate ul.style-1 li a {
-  color: #dbdcd6; }
+body.tag-klima h2.is-style-underline:after {
+  background-color: #cccccc; }
 
 /*# sourceMappingURL=style.css.map */
