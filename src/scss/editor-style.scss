@@ -1,0 +1,34 @@
+/*!
+	Gutenberg Stylesheet for GPCH Child Theme
+*/
+
+/*--------------------------------------------------------------
+# General Imports
+--------------------------------------------------------------*/
+
+@import "variables/colors";
+@import "mixins";
+@import "vendor/includemedia";
+
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "color-palettes";
+@import "typography";
+
+
+/*--------------------------------------------------------------
+# Blocks
+--------------------------------------------------------------*/
+@import "blocks/list";
+@import "blocks/separator";
+@import "blocks/heading";
+@import "blocks/image";
+@import "blocks/paragraph";
+
+
+/*--------------------------------------------------------------
+# Editor (Gutenberg) specific
+--------------------------------------------------------------*/
+@import "editor/editor";

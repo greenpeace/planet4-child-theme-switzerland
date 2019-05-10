@@ -1,0 +1,99 @@
+/* All themes */
+ul.is-style-accent-links {
+	display: inline-block;
+	padding: 1em 8em 1em 2em;
+	list-style: none;
+	background-color: $color_standard_2;
+
+	li,
+	li a {
+		color: $color_gray_dark;
+		font-weight: 700;
+		font-size: 1.2rem;
+	}
+
+	li:before {
+		content: "\27A5";
+		margin-right: .5em;
+		color: $color_standard_3;
+	}
+}
+
+ul.is-style-accent-info {
+	display: inline-block;
+	padding: 1em 8em 1em 2em;
+	list-style: none;;
+	background-color: $color_standard_2;
+
+	li,
+	li a {
+		font-weight: 700;
+		font-size: 1.2rem;
+		color: $color_standard_1;
+	}
+
+	li:before {
+		content: "\261b";
+		margin-right: .5em;
+		color: $color_standard_3;
+	}
+}
+
+/* Forest */
+body.tag-wald {
+	ul.is-style-accent-links {
+		background-color: $color_forest_2;
+
+		li,
+		li a {
+			color: $color_gray_dark;
+		}
+
+		li:before {
+			color: $color_forest_3;
+		}
+	}
+
+	ul.is-style-accent-info {
+		background-color: $color_forest_2;
+
+		li,
+		li a {
+			color: $color_forest_1;
+		}
+
+		li:before {
+			color: $color_forest_3;
+		}
+	}
+}
+
+
+/* Forest */
+body.tag-klima {
+	ul.is-style-accent-links {
+		background-color: $color_climate_2;
+
+		li,
+		li a {
+			color: $color_gray_dark;
+		}
+
+		li:before {
+			color: $color_climate_3;
+		}
+	}
+
+	ul.is-style-accent-info {
+		background-color: $color_climate_2;
+
+		li,
+		li a {
+			color: $color_climate_1;
+		}
+
+		li:before {
+			color: $color_climate_3;
+		}
+	}
+}
