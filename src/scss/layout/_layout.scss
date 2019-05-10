@@ -3,8 +3,35 @@ body {
 }
 
 body.brown-bg {
-
 	background-color: $color_white;
+}
+
+.top-navigation {
+	background-color: rgba(255, 255, 255, .9);
+
+	a {
+		color: $color_gray_dark;
+	}
+
+	a:hover {
+		color: $color_standard_3;
+	}
+}
+
+.navbar-dropdown {
+	.nav-link {
+		font-weight: bold;
+	}
+
+	.nav-link:active,
+	.nav-link:focus,
+	.nav-link:hover {
+		border-color: $color_standard_3;
+	}
+}
+
+.country-dropdown-toggle {
+	display: none;
 }
 
 /* Remove the Planet4 style header styles */

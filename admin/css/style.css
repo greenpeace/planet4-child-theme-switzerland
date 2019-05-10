@@ -190,6 +190,21 @@ body {
 body.brown-bg {
   background-color: #ffffff; }
 
+.top-navigation {
+  background-color: rgba(255, 255, 255, 0.9); }
+.top-navigation a {
+  color: #333333; }
+.top-navigation a:hover {
+  color: #d06283; }
+
+.navbar-dropdown .nav-link {
+  font-weight: bold; }
+.navbar-dropdown .nav-link:active, .navbar-dropdown .nav-link:focus, .navbar-dropdown .nav-link:hover {
+  border-color: #d06283; }
+
+.country-dropdown-toggle {
+  display: none; }
+
 /* Remove the Planet4 style header styles */
 .page-template-evergreen .page-header .page-header-background {
   opacity: 1; }
