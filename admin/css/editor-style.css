@@ -174,32 +174,6 @@
 .has-gp-traditional-yellow-5-background-color {
   background-color: #fff6cc; }
 
-h2 {
-  color: #333333;
-  margin-top: 3rem; }
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 700; }
-
-h2 + h3 {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem; }
-
-.page-header-title {
-  font-size: 8rem;
-  line-height: .8;
-  color: #26774e;
-  text-transform: uppercase; }
-
-/* Forest */
-body.tag-wald h2 {
-  color: #26774e; }
-
-/* Climate */
-body.tag-klima h2 {
-  color: #cd1719; }
-
 /* Flotte */
 /* Arctic */
 /* Landwirtschaft */
@@ -275,30 +249,74 @@ body.tag-klima hr.wp-block-separator {
 body.tag-klima hr.wp-block-separator:after {
   background: #eaccbb; }
 
-h2.is-style-underline:after {
+h2 {
+  color: #26774e;
+  margin-top: 3rem; }
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700; }
+
+h2 + h3 {
+  margin-top: -1.5rem;
+  margin-bottom: 1.5rem; }
+
+.page-header-title {
+  font-size: 8rem;
+  line-height: .8;
+  color: #26774e;
+  text-transform: uppercase; }
+
+/* Forest */
+body.tag-wald h2 {
+  color: #26774e; }
+
+/* Climate */
+body.tag-klima h2 {
+  color: #cd1719; }
+
+h2.is-style-underline:after, h3.is-style-underline:after {
   content: "";
   display: block;
-  top: 0;
+  position: relative;
+  top: .8rem;
   left: -80px;
   height: 2px;
   width: 160px;
-  position: relative;
+  margin-bottom: 3rem;
   background-color: #d06283; }
 
-h2.is-style-block {
+h3.is-style-underline:after {
+  background-color: #94bca6; }
+
+h2.is-style-block, h3.is-style-block {
   display: inline-block;
   position: relative;
   left: -80px;
   padding: .4rem 160px .4rem 80px;
   background-color: #94bca6; }
 
+h3 {
+  color: #d06283; }
+
+h2 + h3 {
+  margin-top: -2rem; }
+
 /* Forest */
-body.tag-wald h2.is-style-underline:after {
-  background-color: #d06283; }
+body.tag-wald h3.is-style-underline:after {
+  background-color: #94bca6; }
+body.tag-wald h2.is-style-block, body.tag-wald h3.is-style-block {
+  background-color: #94bca6; }
+body.tag-wald h3 {
+  color: #d06283; }
 
 /* Climate */
-body.tag-klima h2.is-style-underline:after {
-  background-color: #cccccc; }
+body.tag-klima h3.is-style-underline:after {
+  background-color: #eaccbb; }
+body.tag-klima h2.is-style-block, body.tag-klima h3.is-style-block {
+  background-color: #eaccbb; }
+body.tag-klima h3 {
+  color: #cccccc; }
 
 .wp-block-image figcaption {
   font-weight: 700;

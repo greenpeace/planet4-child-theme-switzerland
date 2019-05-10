@@ -1,37 +1,6 @@
-h2 {
-	color: $color_gray_dark;
-	margin-top: 3rem;
-}
 
-h3 {
-	font-size: 1.5rem;
-	font-weight: 700;
-}
-
-h2 + h3 {
-	margin-top: 1rem;
-	margin-bottom: 1.5rem;
-}
-
-.page-header-title {
-	font-size: 8rem;
-	line-height: .8;
-	color: $color_forest_1;
-	text-transform: uppercase;
-}
-
-/* Forest */
-body.tag-wald {
-	h2 {
-		color: $color_forest_1;
-	}
-}
-
-/* Climate */
-body.tag-klima {
-	h2 {
-		color: $color_climate_1;
-	}
+.page-template > p {
+	max-width: 600px;
 }
 
 /* Flotte */
