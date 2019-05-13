@@ -21,11 +21,13 @@
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
-@import "blocks/list";
-@import "blocks/separator";
-@import "blocks/heading";
-@import "blocks/image";
-@import "blocks/paragraph";
+@import "blocks/core-list";
+@import "blocks/core-separator";
+@import "blocks/core-heading";
+@import "blocks/core-image";
+@import "blocks/core-paragraph";
+@import "blocks/core-button";
+@import "blocks/p4-article-list";
 
 
 /*--------------------------------------------------------------
