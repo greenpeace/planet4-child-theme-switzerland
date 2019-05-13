@@ -105,10 +105,11 @@ body.brown-bg {
 		bottom: 11rem;
 		right: 20px;
 	}
+}
 
-	.top-page-tags {
-		display: none;
-	}
+/* Dont' display tags on pages */
+body.page .top-page-tags {
+	display: none;
 }
 
 .container > .page-header-title {
