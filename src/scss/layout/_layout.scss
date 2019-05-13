@@ -54,7 +54,8 @@ body.brown-bg {
 }
 
 .page-header {
-	padding: 0
+	padding: 0;
+	margin-bottom: 4rem;
 }
 
 /* Now style our header */
@@ -119,8 +120,4 @@ body.page .top-page-tags {
 
 .page-header .container > :not(.row) {
 	max-width: 400px;
-}
-
-.page-template {
-	margin-top: 4rem;
 }
