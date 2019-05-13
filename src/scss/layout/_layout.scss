@@ -54,15 +54,21 @@ body.brown-bg {
 }
 
 .page-header {
-	padding: 0
+	padding: 0;
+	margin-bottom: 4rem;
 }
 
 /* Now style our header */
-.page-header-background {
+body.page .page-header-background {
 	margin-top: 60px;
 	height: 70vh;
 	max-height: 380px;
 	overflow: hidden;
+}
+
+/* Move the page content down if there's no baackground image */
+.page-header .container:first-child {
+	margin-top: 6em;
 }
 
 .container {
@@ -100,10 +106,11 @@ body.brown-bg {
 		bottom: 11rem;
 		right: 20px;
 	}
+}
 
-	.top-page-tags {
-		display: none;
-	}
+/* Dont' display tags on pages */
+body.page .top-page-tags {
+	display: none;
 }
 
 .container > .page-header-title {
@@ -113,8 +120,4 @@ body.brown-bg {
 
 .page-header .container > :not(.row) {
 	max-width: 400px;
-}
-
-.page-template {
-	margin-top: 4rem;
 }

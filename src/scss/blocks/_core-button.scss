@@ -1,0 +1,12 @@
+.wp-block-button {
+	a {
+		background-color: $color_standard_3;
+		color: #fff;
+		text-decoration: none;
+	}
+
+	a:hover {
+		background-color: $color_standard_1;
+		color: #fff;
+	}
+}
