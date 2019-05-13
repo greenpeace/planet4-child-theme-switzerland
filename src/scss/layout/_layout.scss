@@ -65,6 +65,11 @@ body.brown-bg {
 	overflow: hidden;
 }
 
+/* Move the page content down if there's no baackground image */
+.page-header .container:first-child {
+	margin-top: 6em;
+}
+
 .container {
 	.page-header-content {
 		position: absolute;
