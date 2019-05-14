@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * Remove comments ("Discussion") and trackbacks from sidebar.
+ */
+function p4_child_theme_gpch_post_editing() {
+	remove_post_type_support( 'post', 'comments' );
+	remove_post_type_support( 'post', 'trackbacks' );
+
+	remove_post_type_support( 'page', 'comments' );
+	remove_post_type_support( 'page', 'trackbacks' );
+}
+
+add_action( 'init', 'p4_child_theme_gpch_post_editing' );
+
+
+/**
  * add the custom taxonomy "Page Type" of Planet4 to the sidebar
  */
 if ( function_exists( 'acf_add_local_field_group' ) ) {
