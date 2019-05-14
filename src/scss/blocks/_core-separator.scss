@@ -1,46 +1,20 @@
 hr.wp-block-separator {
 	height: 2px;
-	width: 160px;
+	width: 100%;
 	margin: 2rem auto 4rem auto;
 	border: none;
-	background-color: $color_standard_2;
+	background-color: $color_standard_1;
 }
 
-hr.wp-block-separator:after {
-	content: "";
-	display: inline-block;
-	position: relative;
-	top: -11px;
-	width: 100%;
-	height: 1px;
-	background: $color_standard_2;
-}
-
-hr.wp-block-separator.is-style-block {
-	width: 100%;
-	height: 20px;
-}
-
-hr.wp-block-separator.is-style-block:after {
-	display: none;
-}
 
 body.tag-wald {
 	hr.wp-block-separator {
-		background-color: $color_forest_2;
-	}
-
-	hr.wp-block-separator:after {
-		background: $color_forest_2;
+		background-color: $color_forest_1;
 	}
 }
 
 body.tag-klima {
 	hr.wp-block-separator {
-		background-color: $color_climate_2;
-	}
-
-	hr.wp-block-separator:after {
-		background: $color_climate_2;
+		background-color: $color_climate_1;
 	}
 }
