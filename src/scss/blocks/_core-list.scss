@@ -1,7 +1,8 @@
 /* All themes */
 ul.is-style-accent-links {
 	display: inline-block;
-	padding: 1em 8em 1em 2em;
+	padding: 1em 8em 1em 4em;
+	text-indent: -1em;
 	list-style: none;
 	background-color: $color_standard_2;
 
@@ -14,14 +15,16 @@ ul.is-style-accent-links {
 
 	li:before {
 		content: "\27A5";
-		margin-right: .5em;
+		display: inline-block;
+		width: 1em;
 		color: $color_standard_3;
 	}
 }
 
 ul.is-style-accent-info {
 	display: inline-block;
-	padding: 1em 8em 1em 2em;
+	padding: 1em 8em 1em 4em;
+	text-indent: -1em;
 	list-style: none;;
 	background-color: $color_standard_2;
 
@@ -34,7 +37,8 @@ ul.is-style-accent-info {
 
 	li:before {
 		content: "\261b";
-		margin-right: .5em;
+		display: inline-block;
+		width: 1em;
 		color: $color_standard_3;
 	}
 }
