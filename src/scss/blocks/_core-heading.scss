@@ -10,8 +10,8 @@ h3 {
 }
 
 h4 {
-    font-size: 1.2rem;
-    font-weight: 700;
+	font-size: 1.2rem;
+	font-weight: 700;
 }
 
 /* Headings in columns don't need a top margin */
@@ -21,7 +21,7 @@ h4 {
 .wp-block-column > h4,
 .wp-block-column > h5,
 .wp-block-column > h6 {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 /* Headings next to each other need less margin */
@@ -32,38 +32,26 @@ h2 + h3,
 }
 
 
-
 h2.is-style-underline:after,
 h3.is-style-underline:after {
-    content: "";
-    display: block;
-    position: relative;
-    top: .8rem;
-    left: -80px;
-    height: 2px;
-    width: 160px;
-    margin-bottom: 3rem;
-    background-color: $color_standard_3;
+	content: "";
+	display: block;
+	position: relative;
+	top: .8rem;
+	left: -80px;
+	height: 2px;
+	width: 160px;
+	margin-bottom: 3rem;
+	background-color: $color_standard_3;
 }
 
 h3.is-style-underline {
-    color: $color_standard_3;
+	color: $color_standard_3;
 }
 
 h3.is-style-underline:after {
-    background-color: $color_standard_2;
+	background-color: $color_standard_2;
 }
-
-h2.is-style-block,
-h3.is-style-block {
-    display: inline-block;
-    position: relative;
-    left: -80px;
-    padding: .4rem 160px .4rem 80px;
-    background-color: $color_standard_2;
-}
-
-
 
 
 /* Forest */
@@ -73,21 +61,16 @@ body.tag-wald {
 	}
 
 	h2.is-style-underline:after {
-        $background-color: $color_forest_3;
-    }
+		$background-color: $color_forest_3;
+	}
 
-    h3.is-style-underline {
-        color: $color_forest_3;
-    }
+	h3.is-style-underline {
+		color: $color_forest_3;
+	}
 
-    h3.is-style-underline:after {
-        background-color: $color_forest_2;
-    }
-
-    h2.is-style-block,
-    h3.is-style-block {
-        background-color: $color_forest_2;
-    }
+	h3.is-style-underline:after {
+		background-color: $color_forest_2;
+	}
 }
 
 /* Climate */
@@ -96,20 +79,15 @@ body.tag-klima {
 		color: $color_climate_1;
 	}
 
-    h2.is-style-underline:after {
-        $background-color: $color_climate_3;
-    }
+	h2.is-style-underline:after {
+		$background-color: $color_climate_3;
+	}
 
-    h3.is-style-underline {
-        color: $color_climate_3;
-    }
+	h3.is-style-underline {
+		color: $color_climate_3;
+	}
 
-    h3.is-style-underline:after {
-        background-color: $color_climate_2;
-    }
-
-    h2.is-style-block,
-    h3.is-style-block {
-        background-color: $color_climate_2;
-    }
+	h3.is-style-underline:after {
+		background-color: $color_climate_2;
+	}
 }

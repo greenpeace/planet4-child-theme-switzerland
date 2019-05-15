@@ -12,11 +12,6 @@ wp.domReady(() => {
 		label: 'Underline',
 	});
 
-	wp.blocks.registerBlockStyle('core/heading', {
-		name: 'block',
-		label: 'Block',
-	});
-
 	// core/paragraph
 	wp.blocks.registerBlockStyle('core/paragraph', {
 		name: 'default',
