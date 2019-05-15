@@ -159,3 +159,32 @@ body.page .top-page-tags {
 .container > .page-header-title {
 	margin-top: 1rem;
 }
+
+.site-footer {
+	background-color: $color_green_light;
+	color: $color_gray_dark;
+
+	a {
+		color: $color_gray_dark;
+	}
+
+	a:hover {
+		color: $color_green_dark;
+	}
+
+	.footer-social-media {
+		justify-content: center;
+	}
+
+	.footer-links li::after,
+	.footer-links-secondary li::after {
+		content: "\7c";
+		color: $color_gray_dark;
+		margin: 0 .5em;
+	}
+
+	.copyright-text,
+	.gp-year {
+		color: $color_gray_dark;
+	}
+}
