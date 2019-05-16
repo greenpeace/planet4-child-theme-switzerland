@@ -59,52 +59,95 @@ body.brown-bg {
 }
 
 /* Now style our header */
-body.page .page-header-background {
-	margin-top: 60px;
-	height: 70vh;
-	max-height: 380px;
-	overflow: hidden;
-}
+.page-header {
+	position: relative;
+	width: 100%;
+	max-width: $header_width;
+	margin: 60px auto 0 auto;
 
-/* Move the page content down if there's no baackground image */
-.page-header .container:first-child {
-	margin-top: 6em;
-}
+	.page-header-background {
+		height: 70vh;
+		max-height: 600px;
+		overflow: hidden;
+	}
 
-.container {
-	.page-header-content {
+	.container {
 		position: absolute;
-		top: 120px;
-		right: 60px;
-		padding: .6em 1em;
+		top: 100px;
+		right: 40px;
+		max-width: 400px;
 
-		background-color: $color_standard_2;
-		color: #fff;
+		.page-header-content {
+			display: block;
+			width: 100%;
+			max-width: none;
+			padding: .5em;
 
-		font-family: Roboto, sans-serif;
-		font-size: 1.2rem;
-		font-weight: 700;
-		line-height: 1.4;
+			background-color: $color_standard_2;
 
-		p {
-			margin: 0;
+			font-family: Roboto, sans-serif;
+			color: #fff;
+			font-weight: 700;
+			line-height: 1.4;
+
+			p {
+				margin: 0;
+				display: block;
+				width: 100%
+			}
+		}
+
+		.page-header-btn {
+			display: block;
+			width: 100%;
+			max-width: none;
+			margin-top: 1em;
+
+			background-color: $color_standard_1;
+			color: #fff;
+			font-weight: 700;
+			letter-spacing: 0.07em;
+		}
+
+		.page-header-btn:hover {
+			background-color: $color_standard_2;
+			border: none;
 		}
 	}
 
-	.page-header-subtitle {
-		margin-top: -1rem;
-		margin-bottom: 0;
-
-		color: $color_standard_3;
-		font-size: 1.6rem;
-		line-height: 1;
-		font-weight: 700;
+	.page-header-title {
+		margin: 1rem 0 4rem 0;
+		font-size: 8rem;
+		line-height: .8;
+		color: $color_forest_1;
+		text-transform: uppercase;
 	}
+}
 
-	.page-header-btn {
-		position: absolute;
-		bottom: 11rem;
-		right: 20px;
+
+@include media('<=phone') {
+	.page-header {
+		.page-header-background {
+			height: auto;
+
+		}
+
+		.container {
+			right: 0;
+			position: static;
+			top: auto;
+			right: auto;
+			left: auto;
+
+			.page-header-btn {
+				font-size: .8rem;
+			}
+		}
+
+		.page-header-title {
+			margin: 3rem 15px;
+			font-size: 4rem;
+		}
 	}
 }
 
@@ -117,7 +160,31 @@ body.page .top-page-tags {
 	margin-top: 1rem;
 }
 
+.site-footer {
+	background-color: $color_green_light;
+	color: $color_gray_dark;
 
-.page-header .container > :not(.row) {
-	max-width: 400px;
+	a {
+		color: $color_gray_dark;
+	}
+
+	a:hover {
+		color: $color_green_dark;
+	}
+
+	.footer-social-media {
+		justify-content: center;
+	}
+
+	.footer-links li::after,
+	.footer-links-secondary li::after {
+		content: "\7c";
+		color: $color_gray_dark;
+		margin: 0 .5em;
+	}
+
+	.copyright-text,
+	.gp-year {
+		color: $color_gray_dark;
+	}
 }
