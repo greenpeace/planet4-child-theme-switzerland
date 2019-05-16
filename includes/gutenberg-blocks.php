@@ -90,6 +90,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			$allowed_blocks_page = array(
 				'core/freeform', // Classic editor, needed for old pages, can be disabled later on
 				'core/columns',
+				'gravityforms/block',
+				//'gravityforms/mailchimp', // removed, we don't need a Mailchimp block
 				'acf/p4block-articles',
 				'acf/p4block-header-carousel-classic',
 				'acf/p4block-header-carousel-zoom',
