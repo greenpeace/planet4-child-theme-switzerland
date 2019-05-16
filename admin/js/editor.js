@@ -49,4 +49,21 @@ wp.domReady(() => {
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');
 	wp.blocks.unregisterBlockStyle('core/separator', 'wide');
+
+	// core/column
+	// The following would be an ideal solution, but as of 2019-05 it crashed the Gutenberg editor
+	// Until this is fixable, the class name "vertically-centered" has to be added manually to the columns element in the advanced section of the editor
+	// See https://tickets.greenpeace.ch/view.php?id=128#c89
+	/*
+	wp.blocks.registerBlockStyle('core/columns', {
+		name: 'default',
+		label: 'Default',
+		isDefault: true,
+	});
+
+	wp.blocks.registerBlockStyle('core/columns', {
+		name: 'vertically-centered',
+		label: 'Center Vertically',
+	});
+	 */
 });
