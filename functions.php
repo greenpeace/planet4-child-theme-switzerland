@@ -25,6 +25,9 @@ require_once( 'includes/gutenberg-blocks.php' );
 // Color Palette for Gutenberg
 require_once( 'includes/gutenberg-palettes.php' );
 
+// Customize the Gutenberg sidebar
+require_once( 'includes/gutenberg-sidebar.php' );
+
 
 /*
  * Add taxonomy terms as class name to body tag

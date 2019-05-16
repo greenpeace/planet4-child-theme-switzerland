@@ -1,27 +1,29 @@
 /* All themes */
 ul.is-style-accent-links {
 	display: inline-block;
-	padding: 1em 8em 1em 2em;
+	padding: 1em 8em 1em 4em;
+	text-indent: -1em;
 	list-style: none;
-	background-color: $color_standard_2;
 
 	li,
 	li a {
-		color: $color_gray_dark;
+		color: $color_standard_1;
 		font-weight: 700;
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 
 	li:before {
-		content: "\27A5";
-		margin-right: .5em;
+		content: "\2192";
+		display: inline-block;
+		width: 1em;
 		color: $color_standard_3;
 	}
 }
 
 ul.is-style-accent-info {
 	display: inline-block;
-	padding: 1em 8em 1em 2em;
+	padding: 1em 8em 1em 4em;
+	text-indent: -1em;
 	list-style: none;;
 	background-color: $color_standard_2;
 
@@ -34,7 +36,8 @@ ul.is-style-accent-info {
 
 	li:before {
 		content: "\261b";
-		margin-right: .5em;
+		display: inline-block;
+		width: 1em;
 		color: $color_standard_3;
 	}
 }
@@ -42,11 +45,9 @@ ul.is-style-accent-info {
 /* Forest */
 body.tag-wald {
 	ul.is-style-accent-links {
-		background-color: $color_forest_2;
-
 		li,
 		li a {
-			color: $color_gray_dark;
+			color: $color_forest_1;
 		}
 
 		li:before {
@@ -72,11 +73,9 @@ body.tag-wald {
 /* Forest */
 body.tag-klima {
 	ul.is-style-accent-links {
-		background-color: $color_climate_2;
-
 		li,
 		li a {
-			color: $color_gray_dark;
+			color: $color_climate_1;
 		}
 
 		li:before {

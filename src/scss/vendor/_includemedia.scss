@@ -32,9 +32,9 @@
 ///  $breakpoints: ('phone': 320px);
 ///
 $breakpoints: (
-		'phone': 320px,
-		'tablet': 768px,
-		'desktop': 1140px
+		'phone': $size_width_phone,
+		'tablet': $size_width_tablet,
+		'desktop': $size_width_desktop
 ) !default;
 
 
