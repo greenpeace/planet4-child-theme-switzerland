@@ -81,4 +81,9 @@ wp.domReady(() => {
 		name: 'vertically-centered',
 		label: 'Center Vertically',
 	});
+
+	wp.blocks.registerBlockStyle('core/columns', {
+		name: 'petition-left',
+		label: 'Petition Column Left',
+	});
 });
