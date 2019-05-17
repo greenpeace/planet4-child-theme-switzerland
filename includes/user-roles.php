@@ -40,9 +40,29 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$editor_role->add_cap( 'edit_others_archived_posts', true );
 			$editor_role->add_cap( 'publish_archived_posts', true );
 			$editor_role->add_cap( 'read_private_archived_posts', true );
+
+			// Gravity forms
+			// see: https://docs.gravityforms.com/role-management-guide/#gravity-forms-core-capabilities
+			$editor_role->add_cap( 'gravityforms_edit_forms', true );
+			$editor_role->add_cap( 'gravityforms_delete_forms', true );
+			$editor_role->add_cap( 'gravityforms_create_form', true );
+			$editor_role->add_cap( 'gravityforms_view_entries', true );
+			$editor_role->add_cap( 'gravityforms_edit_entries', true );
+			$editor_role->add_cap( 'gravityforms_delete_entries', true );
+			$editor_role->add_cap( 'gravityforms_view_settings', false );
+			$editor_role->add_cap( 'gravityforms_edit_settings', false );
+			$editor_role->add_cap( 'gravityforms_export_entries', true );
+			$editor_role->add_cap( 'gravityforms_uninstall', false );
+			$editor_role->add_cap( 'gravityforms_view_entry_notes', true );
+			$editor_role->add_cap( 'gravityforms_edit_entry_notes', true );
+			$editor_role->add_cap( 'gravityforms_view_updates', false );
+			$editor_role->add_cap( 'gravityforms_view_addons', false );
+			$editor_role->add_cap( 'gravityforms_preview_forms', true );
+			$editor_role->add_cap( 'gravityforms_system_status', false );
+			$editor_role->add_cap( 'gravityforms_logging', false );
 		}
 
-		// Add capabilities to editor role
+		// Add capabilities to admin role
 		$admin_role = get_role( 'administrator' );
 
 		if ( $admin_role ) {
