@@ -1,4 +1,24 @@
 wp.domReady(() => {
+	// Allow styles in columns block without crashing the editor
+	// The crash happens because the preview in the style menu doesn't work if the block uses inner blocks
+	// https://github.com/WordPress/gutenberg/issues/9897#issuecomment-478362380
+	var el = wp.element.createElement;
+	var allowColumnStyle = wp.compose.createHigherOrderComponent(function (BlockEdit) {
+		return function (props) {
+			var content = el(BlockEdit, props);
+
+			if (props.name === 'core/columns' && typeof props.insertBlocksAfter === 'undefined') {
+				content = el('div', {});
+			}
+
+			return el(
+				wp.element.Fragment, {}, content
+			);
+		};
+	}, 'allowColumnStyle');
+
+	wp.hooks.addFilter('editor.BlockEdit', 'my/gutenberg', allowColumnStyle);
+
 
 	// core/heading
 	wp.blocks.registerBlockStyle('core/heading', {
@@ -51,10 +71,6 @@ wp.domReady(() => {
 	wp.blocks.unregisterBlockStyle('core/separator', 'wide');
 
 	// core/column
-	// The following would be an ideal solution, but as of 2019-05 it crashed the Gutenberg editor
-	// Until this is fixable, the class name "vertically-centered" has to be added manually to the columns element in the advanced section of the editor
-	// See https://tickets.greenpeace.ch/view.php?id=128#c89
-	/*
 	wp.blocks.registerBlockStyle('core/columns', {
 		name: 'default',
 		label: 'Default',
@@ -65,5 +81,4 @@ wp.domReady(() => {
 		name: 'vertically-centered',
 		label: 'Center Vertically',
 	});
-	 */
 });
