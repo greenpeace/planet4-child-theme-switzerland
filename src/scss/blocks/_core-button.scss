@@ -10,3 +10,99 @@
 		color: #fff;
 	}
 }
+
+#{$selector_colorscheme_forest} {
+	.wp-block-button {
+		a {
+			background-color: $color_forest_3;
+		}
+
+		a:hover {
+			background-color: $color_forest_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_climate} {
+	.wp-block-button {
+		a {
+			background-color: $color_climate_3;
+		}
+
+		a:hover {
+			background-color: $color_climate_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_ocean} {
+	.wp-block-button {
+		a {
+			background-color: $color_ocean_3;
+		}
+
+		a:hover {
+			background-color: $color_ocean_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_fleet} {
+	.wp-block-button {
+		a {
+			background-color: $color_fleet_3;
+		}
+
+		a:hover {
+			background-color: $color_fleet_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_agriculture} {
+	.wp-block-button {
+		a {
+			background-color: $color_agriculture_3;
+		}
+
+		a:hover {
+			background-color: $color_agriculture_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_arctic} {
+	.wp-block-button {
+		a {
+			background-color: $color_arctic_3;
+		}
+
+		a:hover {
+			background-color: $color_arctic_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_plastic} {
+	.wp-block-button {
+		a {
+			background-color: $color_plastic_3;
+		}
+
+		a:hover {
+			background-color: $color_plastic_1;
+		}
+	}
+}
+
+#{$selector_colorscheme_chemical} {
+	.wp-block-button {
+		a {
+			background-color: $color_chemical_3;
+		}
+
+		a:hover {
+			background-color: $color_chemical_1;
+		}
+	}
+}
