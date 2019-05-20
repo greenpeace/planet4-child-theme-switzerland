@@ -85,6 +85,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-form-progress-bar',
 			'acf/p4-gpch-block-form-counter-text',
 			'acf/p4-gpch-block-action-divider',
+			'acf/raisenow-donation-form',
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
