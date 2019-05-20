@@ -42,57 +42,31 @@ ul.is-style-accent-info {
 	}
 }
 
-/* Forest */
-body.tag-wald {
-	ul.is-style-accent-links {
-		li,
-		li a {
-			color: $color_forest_1;
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		ul.is-style-accent-links {
+			li,
+			li a {
+				color: #{nth($colors_1, $i)};;
+			}
+
+			li:before {
+				color: #{nth($colors_3, $i)};;
+			}
 		}
 
-		li:before {
-			color: $color_forest_3;
-		}
-	}
+		ul.is-style-accent-info {
+			background-color: #{nth($colors_2, $i)};;
 
-	ul.is-style-accent-info {
-		background-color: $color_forest_2;
+			li,
+			li a {
+				color: #{nth($colors_1, $i)};;
+			}
 
-		li,
-		li a {
-			color: $color_forest_1;
-		}
-
-		li:before {
-			color: $color_forest_3;
-		}
-	}
-}
-
-
-/* Forest */
-body.tag-klima {
-	ul.is-style-accent-links {
-		li,
-		li a {
-			color: $color_climate_1;
-		}
-
-		li:before {
-			color: $color_climate_3;
-		}
-	}
-
-	ul.is-style-accent-info {
-		background-color: $color_climate_2;
-
-		li,
-		li a {
-			color: $color_climate_1;
-		}
-
-		li:before {
-			color: $color_climate_3;
+			li:before {
+				color: #{nth($colors_3, $i)};;
+			}
 		}
 	}
 }

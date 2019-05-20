@@ -20,29 +20,16 @@ p.is-style-accent-2 {
 	font-size: 1.2rem;
 }
 
-/* Forest */
-body.tag-wald {
-	p.is-style-accent-1 {
-		background-color: $color_forest_2;
-		color: $color_forest_3;
-	}
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		p.is-style-accent-1 {
+			background-color: #{nth($colors_2, $i)};
+			color: #{nth($colors_3, $i)};
+		}
 
-	p.is-style-accent-2 {
-		background-color: $color_forest_3;
-		color: #fff;
-	}
-}
-
-
-/* Forest */
-body.tag-klima {
-	p.is-style-accent-1 {
-		background-color: $color_climate_2;
-		color: $color_climate_3;
-	}
-
-	p.is-style-accent-2 {
-		background-color: $color_climate_3;
-		color: #fff;
+		p.is-style-accent-2 {
+			background-color: #{nth($colors_3, $i)};
+		}
 	}
 }

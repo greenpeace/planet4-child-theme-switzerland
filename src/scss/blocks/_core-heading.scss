@@ -54,40 +54,23 @@ h3.is-style-underline:after {
 }
 
 
-/* Forest */
-body.tag-wald {
-	h2 {
-		color: $color_forest_1;
-	}
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		h2 {
+			color: #{nth($colors_1, $i)};
+		}
 
-	h2.is-style-underline:after {
-		$background-color: $color_forest_3;
-	}
+		h2.is-style-underline:after {
+			$background-color: #{nth($colors_3, $i)};
+		}
 
-	h3.is-style-underline {
-		color: $color_forest_3;
-	}
+		h3.is-style-underline {
+			color: #{nth($colors_3, $i)};
+		}
 
-	h3.is-style-underline:after {
-		background-color: $color_forest_2;
-	}
-}
-
-/* Climate */
-body.tag-klima {
-	h2 {
-		color: $color_climate_1;
-	}
-
-	h2.is-style-underline:after {
-		$background-color: $color_climate_3;
-	}
-
-	h3.is-style-underline {
-		color: $color_climate_3;
-	}
-
-	h3.is-style-underline:after {
-		background-color: $color_climate_2;
+		h3.is-style-underline:after {
+			background-color: #{nth($colors_2, $i)};
+		}
 	}
 }
