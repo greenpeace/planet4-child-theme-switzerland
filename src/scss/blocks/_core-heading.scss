@@ -54,8 +54,8 @@ h3.is-style-underline:after {
 }
 
 
-/* Forest */
-body.tag-wald {
+/* Color Schemes */
+#{$selector_colorscheme_forest} {
 	h2 {
 		color: $color_forest_1;
 	}
@@ -72,9 +72,7 @@ body.tag-wald {
 		background-color: $color_forest_2;
 	}
 }
-
-/* Climate */
-body.tag-klima {
+#{$selector_colorscheme_climate} {
 	h2 {
 		color: $color_climate_1;
 	}
@@ -89,5 +87,113 @@ body.tag-klima {
 
 	h3.is-style-underline:after {
 		background-color: $color_climate_2;
+	}
+}
+
+#{$selector_colorscheme_ocean} {
+	h2 {
+		color: $color_ocean_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_ocean_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_ocean_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_ocean_2;
+	}
+}
+
+#{$selector_colorscheme_fleet} {
+	h2 {
+		color: $color_fleet_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_fleet_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_fleet_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_fleet_2;
+	}
+}
+
+#{$selector_colorscheme_agriculture} {
+	h2 {
+		color: $color_agriculture_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_agriculture_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_agriculture_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_agriculture_2;
+	}
+}
+
+#{$selector_colorscheme_arctic} {
+	h2 {
+		color: $color_arctic_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_arctic_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_arctic_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_arctic_2;
+	}
+}
+
+#{$selector_colorscheme_plastic} {
+	h2 {
+		color: $color_plastic_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_plastic_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_plastic_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_plastic_2;
+	}
+}
+
+#{$selector_colorscheme_chemical} {
+	h2 {
+		color: $color_chemical_1;
+	}
+
+	h2.is-style-underline:after {
+		$background-color: $color_chemical_3;
+	}
+
+	h3.is-style-underline {
+		color: $color_chemical_3;
+	}
+
+	h3.is-style-underline:after {
+		background-color: $color_chemical_2;
 	}
 }
