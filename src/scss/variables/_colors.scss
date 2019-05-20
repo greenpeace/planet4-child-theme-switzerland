@@ -6,39 +6,89 @@ $color_gray_dark: #333333;
 
 $color_white: #ffffff;
 
-/* page accents */
+/* Color Scheme */
 $color_standard_1: #87bc25;
 $color_standard_2: #dbebbe;
 $color_standard_3: #00573a;
+
+$selector_colorscheme_standard: "
+	body,
+";
+
 
 $color_forest_1: #26774e;
 $color_forest_2: #b3cfc1;
 $color_forest_3: #d06283;
 
+$selector_colorscheme_forest: "
+	body.tag-forest,
+";
+
+
 $color_climate_1: #cd1719;
 $color_climate_2: #eaccbb;
 $color_climate_3: #cccccc;
+
+$selector_colorscheme_climate: "
+	body.tag-energie,
+	body.tag-finanzplatz-schweiz,
+	body.tag-gletscherinitiative,
+	body.tag-klima,
+	body.tag-klimabewegung,
+	body.tag-klimagerechtigkeit
+";
 
 $color_ocean_1: #3290de;
 $color_ocean_2: #bde5fa;
 $color_ocean_1: #1152f0;
 
+$selector_colorscheme_ocean: "
+	body.tag-meer
+";
+
+
 $color_fleet_1: #007799;
 $color_fleet_1: #80bbcc;
 $color_fleet_1: #1a1a1a;
+
+$selector_colorscheme_fleet: "
+	body.tag-flotte
+";
+
 
 $color_agriculture_1: #d7b14d;
 $color_agriculture_1: #ecd6a8;
 $color_agriculture_1: #3aa974;
 
+$selector_colorscheme_agriculture: "
+	body.tag-landwirtschaft
+";
+
+
 $color_arctic_1: #1ebcef;
 $color_arctic_2: #ddf1fd;
 $color_arctic_3: #00b3c4;
+
+$selector_colorscheme_arctic: "
+	body.tag-arktis
+";
+
 
 $color_plastic_1: #69c2be;
 $color_plastic_2: #e8f4f3;
 $color_plastic_3: #e94e28;
 
+$selector_colorscheme_plastic: "
+	body.tag-plastik,
+	body.tag-verpackung
+";
+
+
 $color_chemical_1: #000000;
 $color_chemical_2: #ffffff;
 $color_chemical_3: #ff3893;
+
+$selector_colorscheme_chemical: "
+	body.tag-chemie
+";
+	
