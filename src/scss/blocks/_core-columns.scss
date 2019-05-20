@@ -47,66 +47,13 @@
 	}
 }
 
-#{$selector_colorscheme_forest} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_forest_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_climate} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_climate_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_ocean} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_ocean_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_fleet} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_fleet_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_agriculture} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_agriculture_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_arctic} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_arctic_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_plastic} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_plastic_1;
-		}
-	}
-}
-
-#{$selector_colorscheme_chemical} {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_chemical_1;
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.page-template .wp-block-columns.is-style-petition-left {
+			.wp-block-column:first-child {
+				background-color: #{nth($colors_1, $i)};
+			}
 		}
 	}
 }
