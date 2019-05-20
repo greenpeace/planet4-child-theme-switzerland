@@ -1,37 +1,146 @@
 /* Colors */
 $color_green_light: #87bc25; /* Official color is 66cc00, this one is closer to the print color */
-$color_green_dark: #003300;
+$color_green_dark: #00573a;
 
 $color_gray_dark: #333333;
 
 $color_white: #ffffff;
 
 
-/* page accents */
-$color_standard_1: #26774e;
-$color_standard_2: #94bca6;
-$color_standard_3: #d06283;
+/* Color Scheme */
+$color_standard_1: #87bc25;
+$color_standard_2: #dbebbe;
+$color_standard_3: #00573a;
+
+$selector_colorscheme_standard: "
+	body,
+";
+
 
 $color_forest_1: #26774e;
-$color_forest_2: #94bca6;
+$color_forest_2: #b3cfc1;
 $color_forest_3: #d06283;
+
+$selector_colorscheme_forest: "
+	body.tag-wald,
+";
+
 
 $color_climate_1: #cd1719;
 $color_climate_2: #eaccbb;
 $color_climate_3: #cccccc;
 
+$selector_colorscheme_climate: "
+	body.tag-energie,
+	body.tag-finanzplatz-schweiz,
+	body.tag-gletscherinitiative,
+	body.tag-klima,
+	body.tag-klimabewegung,
+	body.tag-klimagerechtigkeit
+";
+
 $color_ocean_1: #3290de;
-$color_ocean_2: #a1daf8;
-$color_ocean_1: #1152f0;
+$color_ocean_2: #bde5fa;
+$color_ocean_3: #1152f0;
+
+$selector_colorscheme_ocean: "
+	body.tag-meer
+";
+
 
 $color_fleet_1: #007799;
-$color_fleet_1: #80bbcc;
-$color_fleet_1: #1a1a1a;
+$color_fleet_2: #80bbcc;
+$color_fleet_3: #1a1a1a;
+
+$selector_colorscheme_fleet: "
+	body.tag-flotte
+";
+
 
 $color_agriculture_1: #d7b14d;
-$color_agriculture_1: #ecd6a8;
-$color_agriculture_1: #3aa974;
+$color_agriculture_2: #ecd6a8;
+$color_agriculture_3: #3aa974;
+
+$selector_colorscheme_agriculture: "
+	body.tag-landwirtschaft,
+	body.tag-ernaehrung
+";
+
 
 $color_arctic_1: #1ebcef;
 $color_arctic_2: #ddf1fd;
 $color_arctic_3: #00b3c4;
+
+$selector_colorscheme_arctic: "
+	body.tag-arktis,
+	body.tag-antarktis
+";
+
+
+$color_plastic_1: #69c2be;
+$color_plastic_2: #e8f4f3;
+$color_plastic_3: #e94e28;
+
+$selector_colorscheme_plastic: "
+	body.tag-plastik,
+	body.tag-verpackung
+";
+
+
+$color_chemical_1: #000000;
+$color_chemical_2: #ffffff;
+$color_chemical_3: #ff3893;
+
+$selector_colorscheme_chemical: "
+	body.tag-chemie
+";
+
+/* Variable lists for loops */
+$schema_names: forest, climate, ocean, fleet, agriculture, arctic, plastic, chemical;
+$selectors: $selector_colorscheme_forest, $selector_colorscheme_climate, $selector_colorscheme_ocean, $selector_colorscheme_fleet, $selector_colorscheme_agriculture, $selector_colorscheme_arctic, $selector_colorscheme_plastic, $selector_colorscheme_chemical;
+$colors_1: $color_forest_1, $color_climate_1, $color_ocean_1, $color_fleet_1, $color_agriculture_1, $color_arctic_1, $color_plastic_1, $color_chemical_1;
+$colors_2: $color_forest_2, $color_climate_2, $color_ocean_2, $color_fleet_2, $color_agriculture_2, $color_arctic_2, $color_plastic_2, $color_chemical_2;
+$colors_3: $color_forest_3, $color_climate_3, $color_ocean_3, $color_fleet_3, $color_agriculture_3, $color_arctic_3, $color_plastic_3, $color_chemical_3;
+
+
+/* Dummy code to output all color schemes in a loop */
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		/*background-color: #{nth($colors_1, $i)};*/
+	}
+}
+
+
+/* Dummy Code for use in blocks manually (only use this if you have to correct a value from automatic generated code):
+#{$selector_colorscheme_forest} {
+
+}
+#{$selector_colorscheme_climate} {
+
+}
+
+#{$selector_colorscheme_ocean} {
+
+}
+
+#{$selector_colorscheme_fleet} {
+
+}
+
+#{$selector_colorscheme_agriculture} {
+
+}
+
+#{$selector_colorscheme_arctic} {
+
+}
+
+#{$selector_colorscheme_plastic} {
+
+}
+
+#{$selector_colorscheme_chemical} {
+
+}
+*/

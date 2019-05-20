@@ -23,17 +23,6 @@
 	}
 }
 
-/* Climate */
-body.tag-klima {
-	.page-template .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			background-color: $color_climate_1;
-			color: #fff;
-		}
-	}
-}
-
-
 @include media('<=desktop') {
 	.page-template .wp-block-columns.is-style-petition-left {
 		.wp-block-column:first-child {
@@ -54,6 +43,17 @@ body.tag-klima {
 
 		.wp-block-column:nth-child(2) {
 			flex-basis: 100%;
+		}
+	}
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.page-template .wp-block-columns.is-style-petition-left {
+			.wp-block-column:first-child {
+				background-color: #{nth($colors_1, $i)};
+			}
 		}
 	}
 }
