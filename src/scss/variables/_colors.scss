@@ -95,7 +95,24 @@ $selector_colorscheme_chemical: "
 	body.tag-chemie
 ";
 
-/* Dummy Code for use in blocks SCSS:
+/* Variable lists for loops */
+$schema_names: forest, climate, ocean, fleet, agriculture, arctic, plastic, chemical;
+$selectors: $selector_colorscheme_forest, $selector_colorscheme_climate, $selector_colorscheme_ocean, $selector_colorscheme_fleet, $selector_colorscheme_agriculture, $selector_colorscheme_arctic, $selector_colorscheme_plastic, $selector_colorscheme_chemical;
+$colors_1: $color_forest_1, $color_climate_1, $color_ocean_1, $color_fleet_1, $color_agriculture_1, $color_arctic_1, $color_plastic_1, $color_chemical_1;
+$colors_2: $color_forest_2, $color_climate_2, $color_ocean_2, $color_fleet_2, $color_agriculture_2, $color_arctic_2, $color_plastic_2, $color_chemical_2;
+$colors_3: $color_forest_3, $color_climate_3, $color_ocean_3, $color_fleet_3, $color_agriculture_3, $color_arctic_3, $color_plastic_3, $color_chemical_3;
+
+
+/* Dummy code to output all color schemes in a loop */
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		/*background-color: #{nth($colors_1, $i)};*/
+	}
+}
+
+
+/* Dummy Code for use in blocks manually (only use this if you have to correct a value from automatic generated code):
 #{$selector_colorscheme_forest} {
 
 }
