@@ -22,7 +22,7 @@ $color_forest_2: #b3cfc1;
 $color_forest_3: #d06283;
 
 $selector_colorscheme_forest: "
-	body.tag-forest,
+	body.tag-wald,
 ";
 
 
@@ -62,7 +62,8 @@ $color_agriculture_2: #ecd6a8;
 $color_agriculture_3: #3aa974;
 
 $selector_colorscheme_agriculture: "
-	body.tag-landwirtschaft
+	body.tag-landwirtschaft,
+	body.tag-ernaehrung
 ";
 
 
@@ -71,7 +72,8 @@ $color_arctic_2: #ddf1fd;
 $color_arctic_3: #00b3c4;
 
 $selector_colorscheme_arctic: "
-	body.tag-arktis
+	body.tag-arktis,
+	body.tag-antarktis
 ";
 
 
@@ -121,7 +123,7 @@ $selector_colorscheme_chemical: "
 
 }
 
-#{$selector_colorscheme_climate} {
+#{$selector_colorscheme_chemical} {
 
 }
 */
