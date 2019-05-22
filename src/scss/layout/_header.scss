@@ -81,10 +81,14 @@
 
 	.page-header-title {
 		margin: 1rem 0 4rem 0;
-		font-size: 8rem;
+		font-size: 5rem;
 		line-height: .8;
 		color: $color_standard_1;
 		text-transform: uppercase;
+
+		&.long-title {
+			font-size: 4rem;
+		}
 	}
 }
 
