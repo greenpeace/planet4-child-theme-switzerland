@@ -9,6 +9,13 @@
 		background-color: $color_standard_1;
 		color: #fff;
 	}
+
+	/* File icons, e.g. PDF links */
+	a:before {
+		margin-right: .2em;
+		color: #fff;
+		background-color: #fff;
+	}
 }
 
 /* Color Schemes */
