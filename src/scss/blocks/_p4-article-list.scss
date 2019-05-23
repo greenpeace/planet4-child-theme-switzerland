@@ -1,3 +1,16 @@
 .article-list-item-content {
 	font-weight: 400;
 }
+
+.article-list-item .top-page-tags .tag-item {
+	color: $color_standard_1;
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		&.article-list-item .top-page-tags .tag-item {
+			color: #{nth($colors_1, $i)};
+		}
+	}
+}
