@@ -32,6 +32,13 @@
 
 			.btn-primary {
 				background-color: $color_standard_1;
+				border: 0;
+				color: #fff;
+			}
+
+			.btn-primary:hover {
+				background-color: $color_standard_3;
+				border: 0;
 				color: #fff;
 			}
 		}
