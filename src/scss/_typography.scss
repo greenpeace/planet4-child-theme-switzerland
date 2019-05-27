@@ -11,6 +11,20 @@ a:hover {
 	color: $color_standard_3;
 }
 
+/* Other buttons */
+a.btn-accent:not([href]):not([tabindex]),
+a.btn-accent {
+	background-color: $color_standard_3;
+	color: #fff;
+	text-decoration: none;
+}
+
+a.btn-accent:not([href]):not([tabindex]):hover,
+a.btn-accent:hover {
+	background-color: $color_standard_1;
+	color: #fff;
+}
+
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
