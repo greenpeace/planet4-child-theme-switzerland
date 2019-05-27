@@ -1,0 +1,36 @@
+.top-navigation.navbar {
+	.navbar-content {
+		width: 100%;
+		max-width: $header_width;
+		margin: 0 auto;
+		display: flex;
+
+		.site-logo {
+			margin-top: 1rem;
+		}
+
+		.navbar-dropdown {
+			width: 100%;
+
+			.nav-item {
+				a.highlight {
+					padding: 0 1em;
+					color: $color_donate;
+					font-weight: 700;
+				}
+
+				a.highlight:hover {
+					text-decoration: none;
+
+					background-color: $color_donate;
+					color: #fff;
+				}
+			}
+		}
+
+		.nav-search-wrap {
+			margin-top: .7rem;
+		}
+	}
+
+}
