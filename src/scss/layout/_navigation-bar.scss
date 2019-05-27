@@ -9,6 +9,10 @@
 			margin-top: 1rem;
 		}
 
+		.btn-navbar-toggle {
+			background-color: $color_standard_3;
+		}
+
 		.navbar-dropdown {
 			width: 100%;
 
@@ -33,4 +37,33 @@
 		}
 	}
 
+}
+
+@include media('<=desktop') {
+	.top-navigation.navbar {
+		.navbar-content {
+			.navbar-dropdown {
+				width: 400px;
+
+				.nav-item {
+					a {
+						color: #fff;
+					}
+
+					a.highlight {
+						padding: 0 0 0 50px;
+					}
+
+					&.wpml-ls-item {
+						background-color: rgba(0, 0, 0, .3);
+
+						.nav-link:after	 {
+							padding: 0 1em;
+						}
+					}
+				}
+
+			}
+		}
+	}
 }
