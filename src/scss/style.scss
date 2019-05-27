@@ -27,6 +27,7 @@ Text Domain: planet4-child-theme-switzerland
 --------------------------------------------------------------*/
 @import "color-palettes";
 @import "layout/layout";
+@import "layout/navigation-bar";
 @import "layout/header";
 @import "layout/footer";
 @import "typography";
@@ -44,3 +45,4 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/core-columns";
 @import "blocks/core-quote";
 @import "blocks/p4-article-list";
+@import "blocks/p4-header-carousel";
