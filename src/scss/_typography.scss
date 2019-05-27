@@ -3,18 +3,38 @@
 	max-width: 600px;
 }
 
-/* Flotte */
+a {
+	color: $color_standard_1;
+}
 
-/* Arctic */
+a:hover {
+	color: $color_standard_3;
+}
 
-/* Landwirtschaft */
+/* Other buttons */
+a.btn-accent:not([href]):not([tabindex]),
+a.btn-accent {
+	background-color: $color_standard_3;
+	color: #fff;
+	text-decoration: none;
+}
 
-/* Ocean */
+a.btn-accent:not([href]):not([tabindex]):hover,
+a.btn-accent:hover {
+	background-color: $color_standard_1;
+	color: #fff;
+}
 
 
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		a {
+			color: #{nth($colors_1, $i)};
+		}
 
-
-
-
-
-
+		a:hover {
+			color: #{nth($colors_3, $i)};
+		}
+	}
+}

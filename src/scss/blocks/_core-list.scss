@@ -2,8 +2,9 @@
 ul.is-style-accent-links {
 	display: inline-block;
 	padding: 1em 8em 1em 4em;
-	text-indent: -1em;
+	text-indent: -16px;
 	list-style: none;
+
 
 	li,
 	li a {
@@ -15,7 +16,7 @@ ul.is-style-accent-links {
 	li:before {
 		content: "\2192";
 		display: inline-block;
-		width: 1em;
+		width: 16px;
 		color: $color_standard_3;
 	}
 }
@@ -23,9 +24,13 @@ ul.is-style-accent-links {
 ul.is-style-accent-info {
 	display: inline-block;
 	padding: 1em 8em 1em 4em;
-	text-indent: -1em;
+	text-indent: -16px;
 	list-style: none;;
 	background-color: $color_standard_2;
+
+	li {
+		margin-bottom: .5em;
+	}
 
 	li,
 	li a {
@@ -37,7 +42,7 @@ ul.is-style-accent-info {
 	li:before {
 		content: "\261b";
 		display: inline-block;
-		width: 1em;
+		width: 10px;
 		color: $color_standard_3;
 	}
 }
@@ -67,6 +72,26 @@ ul.is-style-accent-info {
 			li:before {
 				color: #{nth($colors_3, $i)};;
 			}
+		}
+	}
+}
+
+
+@include media('<=desktop') {
+	ul.is-style-accent-info {
+		padding-right: 1em;
+
+		li,
+		li a {
+			font-size: 1rem;
+		}
+	}
+	ul.is-style-accent-links {
+		padding-right: 1em;
+
+		li,
+		li a {
+			font-size: 1rem;
 		}
 	}
 }

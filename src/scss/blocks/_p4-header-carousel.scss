@@ -1,0 +1,61 @@
+.carousel-header_full-width-classic {
+	.carousel-item {
+		/* Hide gray overlay */
+		.background-holder::after {
+			display: none;
+		}
+
+		.carousel-caption {
+			.caption-overlay {
+				display: none;
+			}
+
+			.main-header {
+				padding-top: 80px;
+
+				h1 {
+					font-size: 2rem;
+					color: #000;
+				}
+
+				p {
+					margin: 0;
+					color: #000;
+				}
+			}
+
+			.carousel-captions-wrapper {
+				margin: 0 0 1em 0;
+				padding: 1em 2em;
+				background-color: #fff;
+			}
+
+			.btn-primary {
+				background-color: $color_standard_1;
+				border: 0;
+				color: #fff;
+			}
+
+			.btn-primary:hover {
+				background-color: $color_standard_3;
+				border: 0;
+				color: #fff;
+			}
+		}
+	}
+
+	.carousel-indicators {
+		li {
+			background-color: #fff;
+		}
+
+		li.active {
+			background-color: $color_standard_1;
+		}
+	}
+
+	.main-header p {
+		margin: 0;
+		color: #000;
+	}
+}

@@ -3,6 +3,7 @@ $color_green_light: #87bc25; /* Official color is 66cc00, this one is closer to 
 $color_green_dark: #00573a;
 $color_gray_dark: #333333;
 $color_white: #ffffff;
+$color_donate: #ef7831;
 
 
 /* Color Scheme */
@@ -10,17 +11,13 @@ $color_standard_1: #87bc25;
 $color_standard_2: #dbebbe;
 $color_standard_3: #00573a;
 
-$selector_colorscheme_standard: "
-	body,
-";
-
 
 $color_forest_1: #26774e;
 $color_forest_2: #b3cfc1;
 $color_forest_3: #d06283;
 
 $selector_colorscheme_forest: "
-	body.tag-wald,
+	.tag-wald,
 ";
 
 
@@ -29,20 +26,22 @@ $color_climate_2: #eaccbb;
 $color_climate_3: #cccccc;
 
 $selector_colorscheme_climate: "
-	body.tag-energie,
-	body.tag-finanzplatz-schweiz,
-	body.tag-gletscherinitiative,
-	body.tag-klima,
-	body.tag-klimabewegung,
-	body.tag-klimagerechtigkeit
+	.tag-energie,
+	.tag-finanzplatz-schweiz,
+	.tag-gletscherinitiative,
+	.tag-klima,
+	.tag-klimabewegung,
+	.tag-klimagerechtigkeit,
+	.tag-ernaehrung
 ";
+
 
 $color_ocean_1: #3290de;
 $color_ocean_2: #bde5fa;
 $color_ocean_3: #1152f0;
 
 $selector_colorscheme_ocean: "
-	body.tag-meer
+	.tag-meer
 ";
 
 
@@ -51,7 +50,7 @@ $color_fleet_2: #80bbcc;
 $color_fleet_3: #1a1a1a;
 
 $selector_colorscheme_fleet: "
-	body.tag-flotte
+	.tag-flotte
 ";
 
 
@@ -60,8 +59,7 @@ $color_agriculture_2: #ecd6a8;
 $color_agriculture_3: #3aa974;
 
 $selector_colorscheme_agriculture: "
-	body.tag-landwirtschaft,
-	body.tag-ernaehrung
+	.tag-landwirtschaft
 ";
 
 
@@ -70,8 +68,8 @@ $color_arctic_2: #ddf1fd;
 $color_arctic_3: #00b3c4;
 
 $selector_colorscheme_arctic: "
-	body.tag-arktis,
-	body.tag-antarktis
+	.tag-arktis,
+	.tag-antarktis
 ";
 
 
@@ -80,8 +78,8 @@ $color_plastic_2: #e8f4f3;
 $color_plastic_3: #e94e28;
 
 $selector_colorscheme_plastic: "
-	body.tag-plastik,
-	body.tag-verpackung
+	.tag-plastik,
+	.tag-verpackung
 ";
 
 
@@ -90,8 +88,9 @@ $color_chemical_2: #ffffff;
 $color_chemical_3: #ff3893;
 
 $selector_colorscheme_chemical: "
-	body.tag-chemie
+	.tag-chemie
 ";
+
 
 /* Variable lists for loops */
 $schema_names: forest, climate, ocean, fleet, agriculture, arctic, plastic, chemical;
