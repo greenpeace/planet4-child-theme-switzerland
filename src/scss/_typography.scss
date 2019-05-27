@@ -1,6 +1,8 @@
 
-.page-template > p {
-	max-width: 600px;
+.page-template > p,
+.page-template > dl.accordion,
+.page-template > ul {
+	max-width: $one_column_content_width;
 }
 
 a {
