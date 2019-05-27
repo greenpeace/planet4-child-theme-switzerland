@@ -6,6 +6,11 @@
 	color: $color_standard_1;
 }
 
+.article-list-item-headline a,
+.article-list-item-author a {
+	color: $color_gray_dark;
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {

@@ -3,18 +3,24 @@
 	max-width: 600px;
 }
 
-/* Flotte */
+a {
+	color: $color_standard_1;
+}
 
-/* Arctic */
-
-/* Landwirtschaft */
-
-/* Ocean */
-
-
+a:hover {
+	color: $color_standard_3;
+}
 
 
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		a {
+			color: #{nth($colors_1, $i)};
+		}
 
-
-
-
+		a:hover {
+			color: #{nth($colors_3, $i)};
+		}
+	}
+}
