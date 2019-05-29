@@ -8,13 +8,19 @@ $color_donate: #ef7831;
 
 /* Color Scheme */
 $color_standard_1: #87bc25;
+$color_standard_1_font: #fff;
 $color_standard_2: #dbebbe;
+$color_standard_2_font: $color_gray_dark;
 $color_standard_3: #00573a;
+$color_standard_3_font: #fff;
 
 
 $color_forest_1: #26774e;
+$color_forest_1_font: #fff;
 $color_forest_2: #b3cfc1;
+$color_forest_2_font: $color_gray_dark;
 $color_forest_3: #d06283;
+$color_forest_3_font: #fff;
 
 $selector_colorscheme_forest: "
 	.tag-wald,
@@ -22,8 +28,11 @@ $selector_colorscheme_forest: "
 
 
 $color_climate_1: #cd1719;
+$color_climate_1_font: #fff;
 $color_climate_2: #eaccbb;
+$color_climate_2_font: $color_gray_dark;
 $color_climate_3: #cccccc;
+$color_climate_3_font: $color_gray_dark;
 
 $selector_colorscheme_climate: "
 	.tag-energie,
@@ -37,8 +46,11 @@ $selector_colorscheme_climate: "
 
 
 $color_ocean_1: #3290de;
+$color_ocean_1_font: #fff;
 $color_ocean_2: #bde5fa;
+$color_ocean_2_font: $color_gray_dark;
 $color_ocean_3: #1152f0;
+$color_ocean_3_font: #fff;
 
 $selector_colorscheme_ocean: "
 	.tag-meer
@@ -46,8 +58,11 @@ $selector_colorscheme_ocean: "
 
 
 $color_fleet_1: #007799;
+$color_fleet_1_font: #fff;
 $color_fleet_2: #80bbcc;
+$color_fleet_2_font: #fff;
 $color_fleet_3: #1a1a1a;
+$color_fleet_3_font: #fff;
 
 $selector_colorscheme_fleet: "
 	.tag-flotte
@@ -55,8 +70,11 @@ $selector_colorscheme_fleet: "
 
 
 $color_agriculture_1: #d7b14d;
+$color_agriculture_1_font: #fff;
 $color_agriculture_2: #ecd6a8;
+$color_agriculture_2_font: $color_gray_dark;
 $color_agriculture_3: #3aa974;
+$color_agriculture_3_font: #fff;
 
 $selector_colorscheme_agriculture: "
 	.tag-landwirtschaft
@@ -64,8 +82,11 @@ $selector_colorscheme_agriculture: "
 
 
 $color_arctic_1: #1ebcef;
+$color_arctic_1_font: #fff;
 $color_arctic_2: #ddf1fd;
+$color_arctic_2_font: $color_gray_dark;
 $color_arctic_3: #00b3c4;
+$color_arctic_3_font: #fff;
 
 $selector_colorscheme_arctic: "
 	.tag-arktis,
@@ -74,8 +95,11 @@ $selector_colorscheme_arctic: "
 
 
 $color_plastic_1: #69c2be;
+$color_plastic_1_font: #fff;
 $color_plastic_2: #e8f4f3;
+$color_plastic_2_font: $color_gray_dark;
 $color_plastic_3: #e94e28;
+$color_plastic_3_font: #fff;
 
 $selector_colorscheme_plastic: "
 	.tag-plastik,
@@ -84,8 +108,11 @@ $selector_colorscheme_plastic: "
 
 
 $color_chemical_1: #000000;
+$color_chemical_1_font: #fff;
 $color_chemical_2: #ffffff;
+$color_chemical_2_font: $color_gray_dark;
 $color_chemical_3: #ff3893;
+$color_chemical_3_font: #fff;
 
 $selector_colorscheme_chemical: "
 	.tag-chemie
@@ -98,6 +125,10 @@ $selectors: $selector_colorscheme_forest, $selector_colorscheme_climate, $select
 $colors_1: $color_forest_1, $color_climate_1, $color_ocean_1, $color_fleet_1, $color_agriculture_1, $color_arctic_1, $color_plastic_1, $color_chemical_1;
 $colors_2: $color_forest_2, $color_climate_2, $color_ocean_2, $color_fleet_2, $color_agriculture_2, $color_arctic_2, $color_plastic_2, $color_chemical_2;
 $colors_3: $color_forest_3, $color_climate_3, $color_ocean_3, $color_fleet_3, $color_agriculture_3, $color_arctic_3, $color_plastic_3, $color_chemical_3;
+
+$colors_1_font: $color_forest_1_font, $color_climate_1_font, $color_ocean_1_font, $color_fleet_1_font, $color_agriculture_1_font, $color_arctic_1_font, $color_plastic_1_font, $color_chemical_1_font;
+$colors_2_font: $color_forest_2_font, $color_climate_2_font, $color_ocean_2_font, $color_fleet_2_font, $color_agriculture_2_font, $color_arctic_2_font, $color_plastic_2_font, $color_chemical_2_font;
+$colors_3_font: $color_forest_3_font, $color_climate_3_font, $color_ocean_3_font, $color_fleet_3_font, $color_agriculture_3_font, $color_arctic_3_font, $color_plastic_3_font, $color_chemical_3_font;
 
 
 /* Dummy code to output all color schemes in a loop */
