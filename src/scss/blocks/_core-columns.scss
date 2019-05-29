@@ -8,12 +8,12 @@
 		padding: 2rem 1rem;
 
 		background-color: $color_standard_1;
-		color: #fff;
+		color: $color_standard_1_font;
 
 		h2,
 		h3,
 		h4 {
-			color: #fff;
+			color: $color_standard_1_font;
 		}
 
 	}
@@ -53,6 +53,13 @@
 		.page-template .wp-block-columns.is-style-petition-left {
 			.wp-block-column:first-child {
 				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+
+				h2,
+				h3,
+				h4 {
+					color: #{nth($colors_1_font, $i)};
+				}
 			}
 		}
 	}
