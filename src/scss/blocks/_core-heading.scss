@@ -62,7 +62,7 @@ h3.is-style-underline:after {
 		}
 
 		h2.is-style-underline:after {
-			$background-color: #{nth($colors_3, $i)};
+			background-color: #{nth($colors_3, $i)};
 		}
 
 		h3.is-style-underline {
