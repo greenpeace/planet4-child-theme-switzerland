@@ -22,8 +22,8 @@
 	margin-bottom: 4rem;
 }
 
-/* Now style our header */
-.page-header {
+/* Now style our header (pages only) */
+body.page .page-header {
 	position: relative;
 	width: 100%;
 	max-width: $header_width;
