@@ -3,6 +3,9 @@
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
 		text-decoration: none;
+
+		/* Remove default Gutenberg style for rounded corners */
+		border-radius: 0;
 	}
 
 	a:hover {
