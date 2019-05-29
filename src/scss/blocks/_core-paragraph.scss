@@ -14,7 +14,7 @@ p.is-style-accent-2 {
 	list-style: square;
 	padding: 1em 4em 1em 4em;
 	background-color: $color_standard_3;
-	$color: #fff;
+	color: $color_standard_3_font;
 
 	font-weight: 700;
 	font-size: 1.2rem;
@@ -30,6 +30,7 @@ p.is-style-accent-2 {
 
 		p.is-style-accent-2 {
 			background-color: #{nth($colors_3, $i)};
+			color: #{nth($colors_3_font, $i)};
 		}
 	}
 }

@@ -1,20 +1,25 @@
 .wp-block-button {
 	a {
 		background-color: $color_standard_3;
-		color: #fff;
+		color: $color_standard_3_font;
 		text-decoration: none;
 	}
 
 	a:hover {
 		background-color: $color_standard_1;
-		color: #fff;
+		color: $color_standard_1_font;
 	}
 
 	/* File icons, e.g. PDF links */
 	a:before {
 		margin-right: .2em;
-		color: #fff;
-		background-color: #fff;
+		color: $color_standard_3_font;
+		background-color: $color_standard_3_font;
+	}
+
+	a:hover:before {
+		color: $color_standard_1_font;
+		background-color: $color_standard_1_font;
 	}
 }
 
@@ -24,10 +29,22 @@
 		.wp-block-button {
 			a {
 				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)};
 			}
 
 			a:hover {
 				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+			}
+
+			a:before {
+				color: #{nth($colors_3_font, $i)};
+				background-color: #{nth($colors_3_font, $i)};
+			}
+
+			a:hover:before {
+				color: #{nth($colors_1_font, $i)};
+				background-color: #{nth($colors_1_font, $i)};
 			}
 		}
 	}
