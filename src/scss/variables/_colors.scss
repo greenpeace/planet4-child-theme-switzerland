@@ -1,5 +1,5 @@
 /* Colors */
-$color_green_light: #87bc25; /* Official color is 66cc00, this one is closer to the print color */
+$color_green_light: #73BE1E;
 $color_green_dark: #00573a;
 $color_gray_dark: #222222;
 $color_white: #ffffff;
@@ -7,7 +7,7 @@ $color_donate: #ef7831;
 
 
 /* Color Scheme */
-$color_standard_1: #87bc25;
+$color_standard_1: $color_green_light;
 $color_standard_1_font: #fff;
 $color_standard_2: #dbebbe;
 $color_standard_2_font: $color_gray_dark;
