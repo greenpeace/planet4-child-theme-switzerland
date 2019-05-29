@@ -90,6 +90,11 @@ body.page .page-header {
 			font-size: 4rem;
 		}
 	}
+
+	/* move the h1 header down if no header image is set */
+	.container:first-child + .page-header-title {
+		margin-top: 2em;
+	}
 }
 
 .container > .page-header-title {
