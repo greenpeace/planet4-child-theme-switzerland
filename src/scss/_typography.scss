@@ -5,11 +5,17 @@
 	max-width: $one_column_content_width;
 }
 
-a {
+.page-template a,
+.post-content a {
 	color: $color_standard_1;
 }
 
-a:hover {
+body .post-content .swp_social_panel a {
+	color: #fff !important;
+}
+
+.page-template a:hover,
+.post-content a:hover {
 	color: $color_standard_3;
 }
 
@@ -17,25 +23,27 @@ a:hover {
 a.btn-accent:not([href]):not([tabindex]),
 a.btn-accent {
 	background-color: $color_standard_3;
-	color: #fff;
+	color: $color_standard_3_font;
 	text-decoration: none;
 }
 
 a.btn-accent:not([href]):not([tabindex]):hover,
 a.btn-accent:hover {
 	background-color: $color_standard_1;
-	color: #fff;
+	color: $color_standard_1_font;
 }
 
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		a {
+		.page-template a,
+		.post-content a {
 			color: #{nth($colors_1, $i)};
 		}
 
-		a:hover {
+		.page-template a:hover,
+		.post-content a:hover {
 			color: #{nth($colors_3, $i)};
 		}
 	}

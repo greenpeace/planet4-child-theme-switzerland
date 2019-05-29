@@ -22,8 +22,8 @@
 	margin-bottom: 4rem;
 }
 
-/* Now style our header */
-.page-header {
+/* Now style our header (pages only) */
+body.page .page-header {
 	position: relative;
 	width: 100%;
 	max-width: $header_width;
@@ -68,7 +68,7 @@
 			margin-top: 1em;
 
 			background-color: $color_standard_1;
-			color: #fff;
+			color: $color_standard_1_font;
 			font-weight: 700;
 			letter-spacing: 0.07em;
 		}
@@ -89,6 +89,11 @@
 		&.long-title {
 			font-size: 4rem;
 		}
+	}
+
+	/* move the h1 header down if no header image is set */
+	.container:first-child + .page-header-title {
+		margin-top: 2em;
 	}
 }
 

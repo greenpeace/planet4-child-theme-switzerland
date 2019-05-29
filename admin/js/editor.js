@@ -66,6 +66,11 @@ wp.domReady(() => {
 		label: 'Info List',
 	});
 
+	// core/button
+	wp.blocks.unregisterBlockStyle('core/button', 'default');
+	wp.blocks.unregisterBlockStyle('core/button', 'outline');
+	wp.blocks.unregisterBlockStyle('core/button', 'squared');
+	
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');
 	wp.blocks.unregisterBlockStyle('core/separator', 'wide');
