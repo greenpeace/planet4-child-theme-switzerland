@@ -41,6 +41,30 @@ body.page .page-header {
 		right: 40px;
 		max-width: 400px;
 
+
+	}
+
+	/* move the h1 header down if no header image is set */
+	.container:first-child + .page-header-title {
+		margin-top: 2em;
+	}
+}
+
+/* H1 title  */
+.page-header {
+	.page-header-title {
+		margin: 1rem 0 4rem 0;
+		font-size: 5rem;
+		line-height: .8;
+		color: $color_standard_1;
+		text-transform: uppercase;
+
+		&.long-title {
+			font-size: 4rem;
+		}
+	}
+
+	.container {
 		.page-header-content {
 			display: block;
 			width: 100%;
@@ -50,7 +74,7 @@ body.page .page-header {
 			background-color: $color_standard_2;
 
 			font-family: Roboto, sans-serif;
-			color: #fff;
+			color: $color_standard_2_font;
 			font-weight: 700;
 			line-height: 1.4;
 
@@ -75,25 +99,9 @@ body.page .page-header {
 
 		.page-header-btn:hover {
 			background-color: $color_standard_2;
+			olor: $color_standard_2_font;
 			border: none;
 		}
-	}
-
-	.page-header-title {
-		margin: 1rem 0 4rem 0;
-		font-size: 5rem;
-		line-height: .8;
-		color: $color_standard_1;
-		text-transform: uppercase;
-
-		&.long-title {
-			font-size: 4rem;
-		}
-	}
-
-	/* move the h1 header down if no header image is set */
-	.container:first-child + .page-header-title {
-		margin-top: 2em;
 	}
 }
 
@@ -102,7 +110,7 @@ body.page .page-header {
 }
 
 @include media('<=phone') {
-	.page-header {
+	body.page .page-header {
 		.page-header-background {
 			height: auto;
 
@@ -134,14 +142,17 @@ body.page .page-header {
 			.container {
 				.page-header-content {
 					background-color: #{nth($colors_2, $i)};
+					color: #{nth($colors_2_font, $i)};
 				}
 
 				.page-header-btn {
 					background-color: #{nth($colors_1, $i)};
+					color: #{nth($colors_1_font, $i)};
 				}
 
 				.page-header-btn:hover {
 					background-color: #{nth($colors_2, $i)};
+					color: #{nth($colors_2_font, $i)};
 				}
 			}
 
