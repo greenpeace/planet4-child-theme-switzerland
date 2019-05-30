@@ -22,6 +22,17 @@
 	margin-bottom: 4rem;
 }
 
+/* remove the page header when the noheader template is selected */
+body.noheader {
+	.page-header {
+		display: none;
+	}
+
+	.page-template {
+		margin-top: 60px;
+	}
+}
+
 /* Now style our header (pages only) */
 body.page .page-header {
 	position: relative;
