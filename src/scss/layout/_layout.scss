@@ -6,11 +6,16 @@ body.brown-bg {
 	background-color: $color_white;
 }
 
-.top-navigation {
+body .top-navigation {
 	background-color: rgba(255, 255, 255, .9);
 
 	a {
 		color: $color_gray_dark;
+	}
+
+	.navbar-dropdown .active .nav-link {
+		color: $color_standard_1;
+		border-bottom-color: $color_standard_1;
 	}
 
 	a:hover {
