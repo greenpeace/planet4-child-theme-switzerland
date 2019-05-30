@@ -86,6 +86,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-form-counter-text',
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-accordion',
+			'acf/p4-gpch-block-taskforce',
+			'acf/p4-gpch-block-gpch-jobs',
 			'acf/raisenow-donation-form',
 		);
 
