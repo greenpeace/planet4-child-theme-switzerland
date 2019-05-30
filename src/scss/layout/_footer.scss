@@ -1,4 +1,4 @@
-.site-footer {
+body .site-footer {
 	margin-top: 10rem;
 	background-color: $color_green_light;
 	color: $color_gray_dark;
@@ -22,8 +22,28 @@
 		margin: 0 .5em;
 	}
 
+	.footer-links-secondary {
+		font-size: .8rem;
+	}
+
 	.copyright-text,
 	.gp-year {
 		color: $color_gray_dark;
+	}
+}
+
+
+@include media('<=desktop') {
+	body .site-footer {
+		.footer-links,
+		.footer-links-secondary {
+			margin: 1em 0;
+			line-height: 2;
+		}
+
+		.footer-links li::after,
+		.footer-links-secondary li::after {
+			content: "";
+		}
 	}
 }
