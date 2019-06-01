@@ -148,6 +148,20 @@ body.page .page-header {
 	}
 }
 
+/* Posts Header */
+.single-post .page-header {
+	padding-bottom: 0;
+
+	.single-post-meta {
+		margin-bottom: 2rem;
+	}
+
+	.post-header-image {
+		max-width: 65%;
+		height: auto;
+	}
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
