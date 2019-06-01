@@ -4,6 +4,7 @@ h2 {
 }
 
 h3 {
+	margin-top: 2em;
 	font-size: 1.5rem;
 	font-weight: 700;
 	color: $color_gray_dark;
@@ -15,12 +16,12 @@ h4 {
 }
 
 /* Headings in columns don't need a top margin */
-.wp-block-column > h1,
-.wp-block-column > h2,
-.wp-block-column > h3,
-.wp-block-column > h4,
-.wp-block-column > h5,
-.wp-block-column > h6 {
+.wp-block-column > h1:first-child,
+.wp-block-column > h2:first-child,
+.wp-block-column > h3:first-child,
+.wp-block-column > h4:first-child,
+.wp-block-column > h5:first-child,
+.wp-block-column > h6:first-child {
 	margin-top: 0;
 }
 
