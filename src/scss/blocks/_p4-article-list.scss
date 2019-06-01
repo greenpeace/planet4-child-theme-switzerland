@@ -6,9 +6,15 @@
 	color: $color_standard_1;
 }
 
-.article-list-item-headline a,
-.article-list-item-author a {
-	color: $color_gray_dark;
+body .page-template {
+	.article-list-item-headline a,
+	.article-list-item-author a {
+		color: $color_gray_dark;
+	}
+
+	.article-list-item-headline a:hover {
+		color: $color_standard_3;
+	}
 }
 
 /* Color Schemes */
