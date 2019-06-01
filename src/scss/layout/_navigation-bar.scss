@@ -35,6 +35,25 @@
 
 }
 
+/*
+	Remove side paddings when screen is larger than header width.
+	Aligns logo and search bar nicely with the header image.
+ */
+@media screen and (min-width: $header_width) {
+	.top-navigation.navbar {
+		.navbar-content {
+			.site-logo {
+				padding-left: 0;
+			}
+
+			.nav-search-wrap {
+				padding-right: 0;
+			}
+		}
+
+	}
+}
+
 @include media('<=desktop') {
 	.top-navigation.navbar {
 		.navbar-content {
@@ -53,7 +72,7 @@
 					&.wpml-ls-item {
 						background-color: rgba(0, 0, 0, .3);
 
-						.nav-link:after	 {
+						.nav-link:after {
 							padding: 0 1em;
 						}
 					}
