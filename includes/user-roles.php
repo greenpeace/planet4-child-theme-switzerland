@@ -39,7 +39,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$editor_role->add_cap( 'edit_archived_posts', true );
 			$editor_role->add_cap( 'edit_others_archived_posts', true );
 			$editor_role->add_cap( 'publish_archived_posts', true );
-			$editor_role->add_cap( 'read_private_archived_posts', true );
+
+			// Magazine Redirects
+			$editor_role->add_cap( 'edit_magredirect', true );
+			$editor_role->add_cap( 'read_magredirect', true );
+			$editor_role->add_cap( 'delete_magredirects', true );
+			$editor_role->add_cap( 'edit_magredirects', true );
+			$editor_role->add_cap( 'edit_others_magredirects', true );
+			$editor_role->add_cap( 'publish_magredirects', true );
+			$editor_role->add_cap( 'read_private_magredirects', true );
 
 			// Gravity forms
 			// see: https://docs.gravityforms.com/role-management-guide/#gravity-forms-core-capabilities
@@ -83,6 +91,16 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$admin_role->add_cap( 'edit_others_archived_posts', true );
 			$admin_role->add_cap( 'publish_archived_posts', true );
 			$admin_role->add_cap( 'read_private_archived_posts', true );
+
+			// Magazine Redirects
+			$admin_role->add_cap( 'edit_magredirect', true );
+			$admin_role->add_cap( 'read_magredirect', true );
+			$admin_role->add_cap( 'delete_magredirects', true );
+			$admin_role->add_cap( 'edit_magredirects', true );
+			$admin_role->add_cap( 'edit_others_magredirects', true );
+			$admin_role->add_cap( 'publish_magredirects', true );
+			$admin_role->add_cap( 'read_private_magredirects', true );
+
 		}
 	}
 }

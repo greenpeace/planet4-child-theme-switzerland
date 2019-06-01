@@ -1,4 +1,12 @@
-.wp-block-image figcaption {
-	font-weight: 700;
-	text-align: left;
+.wp-block-image {
+	margin-top: 1.5em;
+	
+	figure.aligncenter {
+		text-align: center;
+	}
+
+	figcaption {
+		font-weight: 700;
+		text-align: left;
+	}
 }

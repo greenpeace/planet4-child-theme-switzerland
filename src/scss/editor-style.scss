@@ -22,6 +22,7 @@
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
+@import "layout/elements";
 @import "blocks/core-list";
 @import "blocks/core-separator";
 @import "blocks/core-heading";
@@ -32,6 +33,8 @@
 @import "blocks/core-embeds";
 @import "blocks/p4-article-list";
 @import "blocks/p4-header-carousel";
+@import "blocks/p4-campaign-covers";
+@import "blocks/p4-publications-list";
 @import "blocks/gravity-forms";
 
 

@@ -1,0 +1,11 @@
+.four-column-content .four-column-content-wrap .four-column-content-info {
+	a {
+		color: $color_gray_dark;
+
+		&:hover,
+		h4.four-column-hover {
+			color: $color_standard_3;
+		}
+	}
+
+}

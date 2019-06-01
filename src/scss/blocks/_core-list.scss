@@ -1,4 +1,8 @@
 /* All themes */
+ul, ol {
+	margin-top: 1em;
+}
+
 ul.is-style-accent-links {
 	display: inline-block;
 	padding: 1em 8em 1em 4em;
@@ -11,6 +15,7 @@ ul.is-style-accent-links {
 		color: $color_standard_1;
 		font-weight: 700;
 		font-size: 1.5rem;
+		line-height: 1.6em;
 	}
 
 	li:before {

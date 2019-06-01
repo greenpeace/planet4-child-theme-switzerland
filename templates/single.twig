@@ -62,6 +62,14 @@
 					</div>
 					#}
 				</div>
+				{# Show post image in stories: #}
+				{% if post.page_types.0.slug== 'story' %}
+					<div class="row">
+						<div class="col-md-12">
+							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image" alt="{{ post.title }}"/>
+						</div>
+					</div>
+				{% endif %}
 			</div>
 		</header>
 

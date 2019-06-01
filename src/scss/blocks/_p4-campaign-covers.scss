@@ -1,0 +1,54 @@
+.campaign-thumbnail-block {
+	.thumbnail-largeview-container {
+		/* remove gray overlay */
+		.thumbnail-large::before {
+			display: none;
+		}
+
+		.thumbnail-large:hover::before {
+			display: block;
+
+		}
+
+		.thumbnail-large .yellow-cta {
+			display: inline-block;
+			bottom: 1em;
+			width: auto;
+			margin: 0 0 0 1em;
+			padding: .2em 1em;
+			background-color: $color_standard_2;
+
+			color: $color_standard_2_font;
+			text-shadow: none;
+		}
+
+		a:hover {
+			.thumbnail-large .yellow-cta {
+				background-color: $color_standard_3;
+				color: $color_standard_3_font;
+			}
+		}
+	}
+}
+
+
+/* Color Schemes */
+.campaign-thumbnail-block {
+	.thumbnail-largeview-container {
+		@for $i from 1 through length($schema_names) {
+			#{nth($selectors, $i)} {
+				.thumbnail-large .yellow-cta {
+					background-color: #{nth($colors_2, $i)};;
+					color: #{nth($colors_2_font, $i)};;
+				}
+
+				a:hover {
+					.thumbnail-large .yellow-cta {
+						background-color: #{nth($colors_3, $i)};;
+						color: #{nth($colors_3_font, $i)};;
+					}
+				}
+			}
+		}
+	}
+}

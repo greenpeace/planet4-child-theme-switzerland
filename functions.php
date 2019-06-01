@@ -66,3 +66,17 @@ function p4_child_theme_gpch_setup() {
 add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
 
 
+/*
+ * Enqueue Scripts
+ */
+function p4_child_theme_gpch_scripts() {
+	$js = '/js/gpch-child.js';
+
+	wp_enqueue_script( 'gpch-child-theme-js',
+		get_stylesheet_directory_uri() . $js,
+		array( 'jquery' ),
+		filemtime( get_stylesheet_directory() . $js ),
+		true );
+}
+
+add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
