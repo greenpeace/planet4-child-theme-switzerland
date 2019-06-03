@@ -24,7 +24,7 @@ p.is-style-accent-2 {
 	#{nth($selectors, $i)} {
 		p.is-style-accent-1 {
 			background-color: #{nth($colors_2, $i)};
-			color: #{nth($colors_3, $i)};
+			color: #{nth($colors_2_font, $i)};
 		}
 
 		p.is-style-accent-2 {
