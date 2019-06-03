@@ -1,6 +1,7 @@
 h2 {
 	color: $color_standard_1;
 	margin-top: 3rem;
+	margin-bottom: 1.5rem;
 }
 
 h3 {
@@ -74,4 +75,12 @@ h3.is-style-underline:after {
 			background-color: #{nth($colors_2, $i)};
 		}
 	}
+}
+
+@include media('<=tablet') {
+	h2 {
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+	}
+
 }

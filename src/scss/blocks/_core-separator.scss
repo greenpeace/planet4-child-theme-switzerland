@@ -7,23 +7,20 @@ hr.wp-block-separator {
 }
 
 
-body.tag-wald {
-	hr.wp-block-separator {
-		background-color: $color_forest_1;
-	}
-}
-
-body.tag-klima {
-	hr.wp-block-separator {
-		background-color: $color_climate_1;
-	}
-}
-
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
 		hr.wp-block-separator {
 			background-color: #{nth($colors_1, $i)};
 		}
+	}
+}
+
+
+@include media('<=tablet') {
+	hr.wp-block-separator {
+		height: 2px;
+		width: 100%;
+		margin: 2rem auto 4rem auto;
 	}
 }
