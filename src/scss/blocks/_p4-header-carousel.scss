@@ -69,10 +69,11 @@
 				}
 			}
 		}
-	}
-	.carousel-indicators {
-		li {
-			background-color: $color_gray_dark;
+
+		.carousel-indicators {
+			li {
+				background-color: $color_gray_dark;
+			}
 		}
 	}
 }
