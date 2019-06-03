@@ -17,6 +17,14 @@ body .page-template {
 	}
 }
 
+/*
+	Remove images for press-releases
+	Only works on page for press releases at the moment
+*/
+.page-id-501 .article-list-item-image {
+	display: none;
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
