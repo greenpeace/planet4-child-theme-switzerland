@@ -64,11 +64,14 @@
 				</div>
 				{# Show post image in stories: #}
 				{% if post.page_types.0.slug== 'story' %}
-					<div class="row">
-						<div class="col-md-12">
-							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image" alt="{{ post.title }}"/>
+					{% if post.thumbnail.src is defined %}
+						<div class="row">
+							<div class="col-md-12">
+								<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
+									 alt="{{ post.title }}"/>
+							</div>
 						</div>
-					</div>
+					{% endif %}
 				{% endif %}
 			</div>
 		</header>
@@ -93,8 +96,15 @@
 		{% endif %}
 
 		<section class="article-listing page-section">
-			{% if ( post.articles ) %}
-				{{ post.articles|shortcodes|raw }}
+			{% if post.page_types.0.slug== 'story' %}
+				{% if ( post.articles ) %}
+					{# See: https://tickets.greenpeace.ch/view.php?id=212 #}
+					{{ "[shortcake_articles exclude_post_id=\"#{post.ID}\" post_types=\"75,77\" ignore_categories=\"true' /]\""|shortcodes|raw }}
+				{% endif %}
+			{% else %}
+				{% if ( post.articles ) %}
+					{{ post.articles|shortcodes|raw }}
+				{% endif %}
 			{% endif %}
 		</section>
 		{% if ( 'closed' != post.comment_status ) %}

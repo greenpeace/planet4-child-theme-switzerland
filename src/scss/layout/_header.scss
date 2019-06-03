@@ -118,7 +118,8 @@ body.page .page-header {
 	margin-top: 1rem;
 }
 
-@include media('<=phone') {
+
+@include media('<=tablet') {
 	body.tag .page-header,
 	body.page .page-header {
 		.page-header-background {
@@ -132,6 +133,7 @@ body.page .page-header {
 			top: auto;
 			right: auto;
 			left: auto;
+			bottom: 1em;
 
 			.page-header-btn {
 				font-size: .8rem;
@@ -139,8 +141,8 @@ body.page .page-header {
 		}
 
 		.page-header-title {
-			margin: 3rem 15px;
-			font-size: 4rem;
+			margin: 1rem 15px 4rem 15px;
+			font-size: 3rem;
 		}
 	}
 }
@@ -156,6 +158,36 @@ body.page .page-header {
 	.post-header-image {
 		max-width: 65%;
 		height: auto;
+	}
+
+	.page-header-title {
+		font-size: 3.5rem;
+	}
+}
+
+@include media('<=desktop') {
+	.single-post .page-header {
+		.page-header-title {
+			font-size: 3rem;
+			margin-bottom: 2rem;
+		}
+
+		.post-header-image {
+			max-width: 100%;
+		}
+	}
+}
+
+@include media('<=tablet') {
+	.single-post .page-header {
+		.page-header-title {
+			font-size: 2rem;
+			margin-bottom: 2rem;
+		}
+
+		.post-header-image {
+			max-width: 100%;
+		}
 	}
 }
 
