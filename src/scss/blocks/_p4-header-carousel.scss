@@ -59,3 +59,20 @@
 		color: $color_gray_dark;
 	}
 }
+
+@include media('<=desktop') {
+	.carousel-header_full-width-classic {
+		.carousel-item {
+			.carousel-caption {
+				.main-header {
+					padding-top: 0;
+				}
+			}
+		}
+	}
+	.carousel-indicators {
+		li {
+			background-color: $color_gray_dark;
+		}
+	}
+}
