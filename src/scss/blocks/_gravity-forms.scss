@@ -1,3 +1,16 @@
+body .gform_wrapper {
+	background-color: $color_standard_2;
+	padding: 1em;
+	margin-top: 0;
+}
+
+/* not for petitions */
+.is-style-petition-left .gform_wrapper {
+	background-color: transparent;
+	padding: 0;
+}
+
+
 .gform_body {
 	input[type="checkbox"] {
 		opacity: 1;
@@ -9,5 +22,42 @@
 		opacity: 1;
 		position: static;
 		margin-right: .5em;
+	}
+}
+
+.gform_button {
+	border: 0;
+	padding: .4em 1em;
+	background-color: $color_standard_3;
+	color: $color_standard_3_font
+}
+
+.gform_button:hover {
+	background-color: $color_standard_1;
+	color: $color_standard_1_font;
+	cursor: pointer;
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		/*background-color: #{nth($colors_1, $i)};*/
+		body .gform_wrapper {
+			background-color: #{nth($colors_2, $i)};
+		}
+
+		/* not for petitions */
+		.is-style-petition-left .gform_wrapper {
+			background-color: transparent;
+		}
+
+		.gform_button {
+			background-color: $color_standard_3;
+			color: $color_standard_3_font
+		}
+		.gform_button:hover {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font
+		}
 	}
 }
