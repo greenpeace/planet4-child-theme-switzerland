@@ -163,6 +163,18 @@ body.page .page-header {
 	.page-header-title {
 		font-size: 3.5rem;
 	}
+
+	.top-page-tags a {
+		color: $color_gray_dark;
+	}
+
+	.top-page-tags a:hover {
+		color: $color_standard_1;
+	}
+
+	.top-page-tags .tag-item--main + .tag-wrap::before, .top-page-tags .tag-wrap + .tag-wrap::before {
+		color: $color_standard_1;
+	}
 }
 
 @include media('<=desktop') {
@@ -213,6 +225,17 @@ body.page .page-header {
 			}
 
 			.page-header-title {
+				color: #{nth($colors_1, $i)};
+			}
+		}
+		
+		/* Posts Header */
+		&.single-post .page-header {
+			.top-page-tags a:hover {
+				color: #{nth($colors_1, $i)};
+			}
+
+			.top-page-tags .tag-item--main + .tag-wrap::before, .top-page-tags .tag-wrap + .tag-wrap::before {
 				color: #{nth($colors_1, $i)};
 			}
 		}
