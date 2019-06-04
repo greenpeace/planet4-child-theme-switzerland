@@ -80,3 +80,13 @@ function p4_child_theme_gpch_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
+
+/*
+ * Adds theme support for various things
+ */
+function p4_child_theme_gpch_theme_support() {
+	add_theme_support( 'responsive-embeds' );
+}
+
+add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support');
+
