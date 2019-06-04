@@ -177,6 +177,13 @@ body.page .page-header {
 	}
 }
 
+/* Other content types without a header image */
+.single-gpch_job .page-header
+body.author .page-header,
+body.archive .page-header {
+	margin-top: 144px;
+}
+
 @include media('<=desktop') {
 	.single-post .page-header {
 		.page-header-title {
