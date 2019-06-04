@@ -11,10 +11,19 @@
 
 		.navbar-dropdown {
 			width: 100%;
+			margin-right: 4rem;
 
-			.nav-item {
-				a.highlight {
+			.nav-item:not(.wpml-ls-item) {
+				a {
 					padding: 0 1em;
+				}
+
+				a:hover {
+					background-color: $color_standard_1;
+					color: $color_standard_1_font;
+				}
+
+				a.highlight {
 					color: $color_donate;
 					font-weight: 700;
 				}
@@ -24,6 +33,10 @@
 
 					background-color: $color_donate;
 					color: #fff;
+				}
+
+				&.active a:hover {
+					border-bottom-color: $color_green_dark;
 				}
 			}
 		}

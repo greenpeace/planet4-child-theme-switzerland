@@ -16,9 +16,9 @@
 			width: auto;
 			margin: 0 0 0 1em;
 			padding: .2em 1em;
-			background-color: $color_standard_2;
+			background-color: #fff;
 
-			color: $color_standard_2_font;
+			color: $color_standard_1;
 			text-shadow: none;
 		}
 
@@ -31,6 +31,11 @@
 	}
 }
 
+/* No top margin if right next to a GPCH taskforce block */
+.gpch-taskforce-banner-wrapper + .campaign-thumbnail-block {
+	margin-top: -4px;
+}
+
 
 /* Color Schemes */
 .campaign-thumbnail-block {
@@ -38,8 +43,7 @@
 		@for $i from 1 through length($schema_names) {
 			#{nth($selectors, $i)} {
 				.thumbnail-large .yellow-cta {
-					background-color: #{nth($colors_2, $i)};;
-					color: #{nth($colors_2_font, $i)};;
+					color: #{nth($colors_1, $i)};;
 				}
 
 				a:hover {

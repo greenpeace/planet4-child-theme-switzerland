@@ -16,6 +16,10 @@
 			color: $color_standard_1_font;
 		}
 
+		a {
+			color: $color_standard_3;
+		}
+
 	}
 
 	.wp-block-column:nth-child(2) {
@@ -59,6 +63,10 @@
 				h3,
 				h4 {
 					color: #{nth($colors_1_font, $i)};
+				}
+
+				a {
+					color: #{nth($colors_3, $i)};
 				}
 			}
 		}
