@@ -88,16 +88,5 @@ function p4_child_theme_gpch_theme_support() {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support' );
+add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support');
 
-
-/*
- * Overwrite Social Warfare output with only the styles to prevent it from outputting meta tags
- * Meta output is already done by the P4 master theme
- */
-function p4_child_theme_gpch_swfix( $meta_html ) {
-	return '<style>@font-face {font-family: "sw-icon-font";src:url("' . SWP_PLUGIN_URL . '/assets/fonts/sw-icon-font.eot?ver=' . SWP_VERSION . '");src:url("' . SWP_PLUGIN_URL . '/assets/fonts/sw-icon-font.eot?ver=' . SWP_VERSION . '#iefix") format("embedded-opentype"),url("' . SWP_PLUGIN_URL . '/assets/fonts/sw-icon-font.woff?ver=' . SWP_VERSION . '") format("woff"),
-	url("' . SWP_PLUGIN_URL . '/assets/fonts/sw-icon-font.ttf?ver=' . SWP_VERSION . '") format("truetype"),url("' . SWP_PLUGIN_URL . '/assets/fonts/sw-icon-font.svg?ver=' . SWP_VERSION . '#1445203416") format("svg");font-weight: normal;font-style: normal;}</style>';
-}
-
-add_action( 'swp_header_html', 'p4_child_theme_gpch_swfix', 999 );
