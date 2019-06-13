@@ -100,7 +100,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$admin_role->add_cap( 'edit_others_magredirects', true );
 			$admin_role->add_cap( 'publish_magredirects', true );
 			$admin_role->add_cap( 'read_private_magredirects', true );
-
 		}
 	}
+}
+
+/**
+ * Redirection Plugin Editor access
+ */
+add_filter( 'redirection_role', 'gpch_redirection_access_to_editor_role' );
+
+function gpch_redirection_access_to_editor_role() {
+	return 'edit_pages';
 }
