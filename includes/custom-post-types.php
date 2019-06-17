@@ -69,6 +69,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_job' ) ) {
 			'publicly_queryable'  => true,
 			'rewrite'             => $rewrite,
 			'capabilities'        => $capabilities,
+			'show_in_rest'        => true, // needed  for Gutenberg editor
 		);
 
 		register_post_type( 'gpch_job', $args );
