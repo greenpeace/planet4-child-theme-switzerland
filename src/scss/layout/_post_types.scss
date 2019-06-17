@@ -1,0 +1,12 @@
+/* GPCH Jobs */
+.single-gpch_job {
+	.page-header-title {
+		margin-bottom: 2rem;
+	}
+
+	.single-post-meta {
+		address { /* The author name is not needed in job postings*/
+			display: none;
+		}
+	}
+}
