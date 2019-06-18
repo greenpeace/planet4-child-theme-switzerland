@@ -67,9 +67,14 @@ wp.domReady(() => {
 	});
 
 	// core/button
-	wp.blocks.unregisterBlockStyle('core/button', 'default');
 	wp.blocks.unregisterBlockStyle('core/button', 'outline');
 	wp.blocks.unregisterBlockStyle('core/button', 'squared');
+
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'full-width',
+		label: 'Full Width',
+		isDefault: false,
+	});
 	
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');

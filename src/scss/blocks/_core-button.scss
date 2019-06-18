@@ -26,6 +26,10 @@
 		color: $color_standard_1_font;
 		background-color: $color_standard_1_font;
 	}
+
+	&.is-style-full-width a {
+		width: 100%;
+	}
 }
 
 /* Color Schemes */

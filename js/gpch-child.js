@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
 	var tagList = {
 		"#Ernährung": "tag-ernaehrung",
 		"#FinanzplatzSchweiz": "tag-finanzplatz-schweiz",
-		"#Gletscher-Initiative": "tag-gletscher-initiative",
+		"#GletscherInitiative": "tag-gletscher-initiative",
 		"#Klimabewegung": "tag-klimabewegung",
 		"#Klimagerechtigkeit": "tag-klimagerechtigkeit",
 		"#Verpackung": "tag-verpackung",
