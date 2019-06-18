@@ -186,6 +186,7 @@ body.archive.tax-p4-page-type .page-header {
 }
 
 @include media('<=desktop') {
+	.single-gpch_job .page-header,
 	.single-post .page-header {
 		.page-header-title {
 			font-size: 3rem;
@@ -199,6 +200,7 @@ body.archive.tax-p4-page-type .page-header {
 }
 
 @include media('<=tablet') {
+	.single-gpch_job .page-header,
 	.single-post .page-header {
 		.page-header-title {
 			font-size: 2rem;
