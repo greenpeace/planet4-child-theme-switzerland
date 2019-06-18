@@ -54,7 +54,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_job' ) ) {
 			'label'               => __( 'Job', 'planet4-child-theme-switzerland' ),
 			'description'         => __( 'Job postings', 'planet4-child-theme-switzerland' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
