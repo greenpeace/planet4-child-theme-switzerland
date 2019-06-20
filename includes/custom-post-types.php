@@ -157,7 +157,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_archived_post' ) ) {
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 	/**
-	 * Register Custom Post Type for Archived Post
+	 * Register Custom Post Type for Magazine Redirects
 	 */
 	function p4_child_theme_gpch_custom_post_magredirect() {
 		$labels       = array(
@@ -212,6 +212,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 				'title',
 				'editor',
 				'author',
+				'excerpt',
 				'thumbnail',
 				'revisions',
 				'custom-fields',
