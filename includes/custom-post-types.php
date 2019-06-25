@@ -232,6 +232,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 			'publicly_queryable'  => true,
 			'rewrite'             => $rewrite,
 			'capabilities'        => $capabilities,
+			'taxonomies'          => array( 'post_tag' ),
 		);
 
 		register_post_type( 'gpch_magredirect', $args );
