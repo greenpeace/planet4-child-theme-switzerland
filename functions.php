@@ -13,7 +13,7 @@ function enqueue_child_styles() {
  * Includes
  */
 
-// Custom Post Types: Jobs & Archive
+// Custom Post Types: gpch_job & gpch_archived_post & gpch_magredirect
 require_once( 'includes/custom-post-types.php' );
 
 // Roles, Usergroups & Capabilities
