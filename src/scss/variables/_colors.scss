@@ -22,9 +22,7 @@ $color_forest_2_font: $color_gray_dark;
 $color_forest_3: #d06283;
 $color_forest_3_font: #fff;
 
-$selector_colorscheme_forest: "
-	.tag-wald,
-";
+$selector_colorscheme_forest: ".tag-wald";
 
 
 $color_climate_1: #cd1719;
@@ -34,15 +32,7 @@ $color_climate_2_font: $color_gray_dark;
 $color_climate_3: #cccccc;
 $color_climate_3_font: $color_gray_dark;
 
-$selector_colorscheme_climate: "
-	.tag-energie,
-	.tag-finanzplatz-schweiz,
-	.tag-gletscher-initiative,
-	.tag-klima,
-	.tag-klimabewegung,
-	.tag-klimagerechtigkeit,
-	.tag-ernaehrung
-";
+$selector_colorscheme_climate: ".tag-energie, .tag-finanzplatz-schweiz, .tag-gletscher-initiative, .tag-klima, .tag-klimabewegung, .tag-klimagerechtigkeit, .tag-ernaehrung";
 
 
 $color_ocean_1: #3290de;
@@ -52,9 +42,7 @@ $color_ocean_2_font: $color_gray_dark;
 $color_ocean_3: #1152f0;
 $color_ocean_3_font: #fff;
 
-$selector_colorscheme_ocean: "
-	.tag-meer
-";
+$selector_colorscheme_ocean: ".tag-meer";
 
 
 $color_fleet_1: #007799;
@@ -64,9 +52,7 @@ $color_fleet_2_font: #fff;
 $color_fleet_3: #1a1a1a;
 $color_fleet_3_font: #fff;
 
-$selector_colorscheme_fleet: "
-	.tag-flotte
-";
+$selector_colorscheme_fleet: ".tag-flotte";
 
 
 $color_agriculture_1: #d7b14d;
@@ -76,9 +62,7 @@ $color_agriculture_2_font: $color_gray_dark;
 $color_agriculture_3: #3aa974;
 $color_agriculture_3_font: #fff;
 
-$selector_colorscheme_agriculture: "
-	.tag-landwirtschaft
-";
+$selector_colorscheme_agriculture: ".tag-landwirtschaft";
 
 
 $color_arctic_1: #1ebcef;
@@ -88,10 +72,7 @@ $color_arctic_2_font: $color_gray_dark;
 $color_arctic_3: #00b3c4;
 $color_arctic_3_font: #fff;
 
-$selector_colorscheme_arctic: "
-	.tag-arktis,
-	.tag-antarktis
-";
+$selector_colorscheme_arctic: ".tag-arktis, .tag-antarktis";
 
 
 $color_plastic_1: #69c2be;
@@ -101,10 +82,7 @@ $color_plastic_2_font: $color_gray_dark;
 $color_plastic_3: #e94e28;
 $color_plastic_3_font: #fff;
 
-$selector_colorscheme_plastic: "
-	.tag-plastik,
-	.tag-verpackung
-";
+$selector_colorscheme_plastic: ".tag-plastik, .tag-verpackung";
 
 
 $color_chemical_1: #000000;
@@ -114,9 +92,7 @@ $color_chemical_2_font: $color_gray_dark;
 $color_chemical_3: #ff3893;
 $color_chemical_3_font: #fff;
 
-$selector_colorscheme_chemical: "
-	.tag-chemie
-";
+$selector_colorscheme_chemical: ".tag-chemie";
 
 
 /* Variable lists for loops */
