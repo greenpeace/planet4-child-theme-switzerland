@@ -2,40 +2,44 @@ body .gform_wrapper {
 	background-color: $color_standard_2;
 	padding: 1em;
 	margin-top: 0;
+
+	.gform_button,
+	.gform_footer .gform_button {
+		border: 0;
+		padding: .4rem 2rem;
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+		font-weight: 500;
+		font-size: 0.875rem;
+		text-transform: uppercase;
+	}
+
+	.gform_button:hover,
+	.gform_footer .gform_button:hover {
+		background-color: $color_standard_2;
+		color: $color_standard_2_font;
+		cursor: pointer;
+	}
+
+	.gform_body {
+		input[type="checkbox"] {
+			opacity: 1;
+			position: static;
+			margin-right: .5em;
+		}
+
+		input[type="radio"] {
+			opacity: 1;
+			position: static;
+			margin-right: .5em;
+		}
+	}
 }
 
 /* not for petitions */
 .is-style-petition-left .gform_wrapper {
 	background-color: transparent;
 	padding: 0;
-}
-
-
-.gform_body {
-	input[type="checkbox"] {
-		opacity: 1;
-		position: static;
-		margin-right: .5em;
-	}
-
-	input[type="radio"] {
-		opacity: 1;
-		position: static;
-		margin-right: .5em;
-	}
-}
-
-.gform_button {
-	border: 0;
-	padding: .4em 1em;
-	background-color: $color_standard_3;
-	color: $color_standard_3_font
-}
-
-.gform_button:hover {
-	background-color: $color_standard_1;
-	color: $color_standard_1_font;
-	cursor: pointer;
 }
 
 /* Color Schemes */

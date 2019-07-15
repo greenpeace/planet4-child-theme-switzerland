@@ -21,6 +21,7 @@
 				a:hover {
 					background-color: $color_standard_1;
 					color: $color_standard_1_font;
+					border-bottom: none;
 				}
 
 				a.highlight {
@@ -35,9 +36,20 @@
 					color: #fff;
 				}
 
-				&.active a:hover {
-					border-bottom-color: $color_green_dark;
-				}
+			}
+
+			/* remove bottom border Planet4 style */
+			.active a:hover,
+			.active .nav-link:hover,
+			.nav-link:active,
+			.nav-link:focus,
+			.nav-link:hover,
+			.active .nav-link {
+				border-bottom: none;
+			}
+
+			.nav-item.wpml-ls-item a:hover {
+				text-decoration: underline;
 			}
 		}
 
