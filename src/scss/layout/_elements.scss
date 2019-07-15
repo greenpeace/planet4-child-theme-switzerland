@@ -21,3 +21,62 @@ iframe {
 .nc_wrapper.swp_floating_horizontal_wrapper .swp_social_panel.swp_horizontal_panel {
 	margin-top: .5rem !important;
 }
+
+/* Planet4 Buttons */
+.btn-secondary,
+.post-content .more-link,
+.post-content .page-links a {
+	border: none;
+
+	/* same as ../blocks/_core_button.scss */
+	color: $color_standard_1_font;
+	background-color: $color_standard_1;
+}
+
+.btn-secondary:focus,
+.btn-secondary:hover,
+.post-content .more-link:focus,
+.post-content .more-link:hover,
+.post-content .page-links a:focus,
+.post-content .page-links a:hover {
+	/* same as ../blocks/_core_button.scss */
+	color: $color_standard_3_font;
+	background-color: $color_standard_3;
+}
+
+/* Other buttons (newsletter form, ...) */
+.btn-accent {
+	background-color: $color_standard_1;
+	color: $color_standard_1_font;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.btn-accent:hover {
+	background-color: $color_standard_3;
+	color: $color_standard_3_font;
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.btn-accent {
+			background-color: #{nth($colors_1, $i)};
+			color: #{nth($colors_1_font, $i)};
+		}
+		.btn-accent:hover {
+			background-color: #{nth($colors_3, $i)};
+			color: #{nth($colors_3_font, $i)};
+		}
+	}
+}
+
+/* Remove button focus border from Bootstrap */
+.btn-primary.focus,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+	box-shadow: none;
+}
+

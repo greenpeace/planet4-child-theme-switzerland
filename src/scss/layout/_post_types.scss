@@ -1,9 +1,10 @@
-/* GPCH Jobs */
+/* GPCH Jobs, GPCH Archived Post */
+.single-gpch_archived_post,
 .single-gpch_job {
 	.page-header {
 		margin-bottom: 0;
 	}
-	
+
 	.page-header-title {
 		margin-bottom: 2rem;
 	}
@@ -11,6 +12,78 @@
 	.single-post-meta {
 		address { /* The author name is not needed in job postings*/
 			display: none;
+		}
+	}
+}
+
+
+/* Archive pages */
+body.archive {
+	.page-header {
+		margin-bottom: 0;
+
+		.page-header-content {
+			display: none;
+		}
+
+		.page-header-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.page-template h3:first-child {
+		display: none;
+	}
+
+	.col-lg-8.multiple-search-result {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+	.search-result-tags {
+		a {
+			color: $color_standard_1;
+
+			&:hover {
+				color: $color_standard_3;
+			}
+		}
+	}
+
+	.top-page-tags .tag-wrap {
+		color: $color_standard_3;
+	}
+
+	.search-result-item-image {
+		max-width: 150px;
+	}
+
+	.search-result-item-headline {
+		color: $color_gray_dark;
+		font-size: 1.5rem;
+	}
+
+	.search-result-item-author a {
+		color: $color_gray_dark;
+	}
+
+	.search-result-item-content {
+		font-family: Roboto, sans-serif;
+	}
+}
+
+
+/* Color Schemes */
+body.archive {
+	@for $i from 1 through length($schema_names) {
+		#{nth($selectors, $i)} {
+			.top-page-tags a {
+				color: #{nth($colors_1, $i)};
+			}
+
+			.top-page-tags .tag-wrap {
+				color: #{nth($colors_3, $i)};
+			}
 		}
 	}
 }
