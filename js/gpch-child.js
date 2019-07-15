@@ -18,8 +18,18 @@ jQuery(document).ready(function () {
 		"#Wald": "tag-wald",
 	};
 
+	// Insert tag classes in campaign block
 	jQuery('.campaign-thumbnail-block  .campaign-card-column').each(function () {
 		campaignName = jQuery(this).find('.yellow-cta').text();
+
+		if (campaignName in tagList) {
+			jQuery(this).addClass(tagList[campaignName]);
+		}
+	});
+
+	//Insert tag classes in archive pages
+	jQuery('body.archive .multiple-search-result .search-result-list-item').each(function () {
+		campaignName = jQuery(this).find('.search-result-item-tag').first().text();
 
 		if (campaignName in tagList) {
 			jQuery(this).addClass(tagList[campaignName]);
