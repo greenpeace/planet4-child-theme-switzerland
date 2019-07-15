@@ -3,6 +3,12 @@ ul, ol {
 	margin-top: 1em;
 }
 
+/* No top margin when first child in columns */
+.wp-block-column > ol:first-child,
+.wp-block-column > ul:first-child {
+	margin-top: 0;
+}
+
 ul.is-style-accent-links {
 	display: inline-block;
 	padding: 1em 8em 1em 4em;
