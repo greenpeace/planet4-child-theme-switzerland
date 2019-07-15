@@ -9,7 +9,13 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 	function p4_child_theme_gpch_user_roles() {
 		// New role for HR
 		add_role( 'human-resources', __( 'Human Resources', 'planet4-child-theme-switzerland' ), array(
+			// General
 			'read'              => true,
+
+			// Media upload
+			'upload_files'      => true,
+
+			// Jobs
 			'edit_job'          => true,
 			'read_job'          => true,
 			'delete_jobs'       => true,
