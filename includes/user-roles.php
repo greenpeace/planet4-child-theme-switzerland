@@ -8,6 +8,10 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 	 */
 	function p4_child_theme_gpch_user_roles() {
 		// New role for HR
+		// Remove the role if it exists so we can redefine it with new capabilities
+		remove_role('human-resources');
+
+		// Add the role with new capabilities
 		add_role( 'human-resources', __( 'Human Resources', 'planet4-child-theme-switzerland' ), array(
 			// General
 			'read'              => true,
