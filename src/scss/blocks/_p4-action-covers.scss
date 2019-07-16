@@ -1,0 +1,91 @@
+.cover-card {
+	box-shadow: none;
+	
+	&:not(.single-cover):hover {
+		box-shadow: none;
+	}
+
+	&::before {
+		transition: none;
+	}
+
+	&:hover {
+		box-shadow: none;
+		
+		.btn {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font;
+		}
+
+		&::before {
+			background: none;
+			background-color: $color_hover_overlay;
+			opacity: 1;
+		}
+	}
+
+	&::after {
+		display: none;
+	}
+
+	a.btn-action {
+		background-color: $color_standard_1;
+		color: $color_standard_1_font;
+		border: none;
+
+		transition: none;
+
+		&:hover {
+			background-color: $color_standard_3;
+			color: $color_standard_3_font;
+		}
+	}
+
+	.cover-card-tag {
+		color: $color_standard_1;
+		font-weight: 500;
+		background-color: rgba(255, 255, 255, .9);
+		text-shadow: none;
+		padding: 0 .6rem;
+
+		&:hover {
+			color: $color_standard_1;
+		}
+	}
+
+	.cover-card-heading {
+		font-size: 1.4rem;
+	}
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		&.cover-card {
+			&:hover {
+				.btn {
+					background-color: #{nth($colors_3, $i)};
+				}
+			}
+
+			a.btn-action {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)};
+
+				&:hover {
+					background-color: #{nth($colors_1, $i)};
+					color: #{nth($colors_1_font, $i)};
+				}
+			}
+		}
+
+		.cover-card-tag {
+			color: #{nth($colors_1, $i)};
+			font-weight: 500;
+
+			&:hover {
+				color: #{nth($colors_1, $i)};
+			}
+		}
+	}
+}
