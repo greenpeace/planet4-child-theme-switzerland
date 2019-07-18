@@ -96,4 +96,7 @@ wp.domReady(() => {
 		name: 'petition-left',
 		label: 'Petition Column Left',
 	});
+	
+	// core/table
+	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 });
