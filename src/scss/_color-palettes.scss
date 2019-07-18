@@ -1,7 +1,6 @@
 /*
     Color Palette Styles
  */
-
 .has-almost-black-color {
 	color: #1a1a1a;
 }
@@ -58,162 +57,210 @@
 	background-color: #ffffff;
 }
 
-.has-gp-green-color {
-	color: #66cc00;
+
+/* Standard colors */
+.has-gp-green-1-color {
+	color: $color_standard_1;
 }
 
-.has-gp-green-background-color {
-	background-color: #66cc00;
+.has-gp-green-1-background-color {
+	background-color: $color_standard_1;
 }
 
 .has-gp-green-2-color {
-	color: #8bcc4a;
+	color: $color_standard_2;
 }
 
 .has-gp-green-2-background-color {
-	background-color: #8bcc4a;
+	background-color: $color_standard_2;
 }
 
 .has-gp-green-3-color {
-	color: #abd878;
+	color: $color_standard_3;
 }
 
 .has-gp-green-3-background-color {
-	background-color: #abd878;
+	background-color: $color_standard_3;
 }
 
-.has-gp-green-4-color {
-	color: #c7e5a5;
+
+/* Agriculture */
+.has-gp-agriculture-1-color {
+	color: $color_agriculture_1;
 }
 
-.has-gp-green-4-background-color {
-	background-color: #c7e5a5;
+.has-gp-agriculture-1-background-color {
+	background-color: $color_agriculture_1;
 }
 
-.has-gp-green-5-color {
-	color: #e3f2d2;
+.has-gp-agriculture-2-color {
+	color: $color_agriculture_2;
 }
 
-.has-gp-green-5-background-color {
-	background-color: #e3f2d2;
+.has-gp-agriculture-2-background-color {
+	background-color: $color_agriculture_2;
 }
 
-.has-gp-traditional-green-color {
-	color: #e3f2d2;
+.has-gp-agriculture-3-color {
+	color: $color_agriculture_3;
 }
 
-.has-gp-traditional-green-background-color {
-	background-color: #e3f2d2;
+.has-gp-agriculture-3-background-color {
+	background-color: $color_agriculture_3;
 }
 
-.has-gp-traditional-green-2-color {
-	color: #1b4a1b;
+
+/* Arctic */
+.has-gp-arctic-1-color {
+	color: $color_arctic_1;
 }
 
-.has-gp-traditional-green-2-background-color {
-	background-color: #1b4a1b;
+.has-gp-arctic-1-background-color {
+	background-color: $color_arctic_1;
 }
 
-.has-gp-traditional-green-3-color {
-	color: #497a49;
+.has-gp-arctic-2-color {
+	color: $color_arctic_2;
 }
 
-.has-gp-traditional-green-3-background-color {
-	background-color: #497a49;
+.has-gp-arctic-2-background-color {
+	background-color: $color_arctic_2;
 }
 
-.has-gp-traditional-green-4-color {
-	color: #93b893;
+.has-gp-arctic-3-color {
+	color: $color_arctic_3;
 }
 
-.has-gp-traditional-green-4-background-color {
-	background-color: #93b893;
+.has-gp-arctic-3-background-color {
+	background-color: $color_arctic_3;
 }
 
-.has-gp-traditional-green-5-color {
-	color: #dbe6d8;
+
+/* Climate */
+.has-gp-climate-1-color {
+	color: $color_climate_1;
 }
 
-.has-gp-traditional-green-5-background-color {
-	background-color: #dbe6d8;
+.has-gp-climate-1-background-color {
+	background-color: $color_climate_1;
 }
 
-.has-gp-traditional-blue-color {
-	color: #61bbfc;
+.has-gp-climate-2-color {
+	color: $color_climate_2;
 }
 
-.has-gp-traditional-blue-background-color {
-	background-color: #61bbfc;
+.has-gp-climate-2-background-color {
+	background-color: $color_climate_2;
 }
 
-.has-gp-traditional-blue-2-color {
-	color: #3290de;
+.has-gp-climate-3-color {
+	color: $color_climate_3;
 }
 
-.has-gp-traditional-blue-2-background-color {
-	background-color: #3290de;
+.has-gp-climate-3-background-color {
+	background-color: $color_climate_3;
 }
 
-.has-gp-traditional-blue-3-color {
-	color: #61bbfc;
+
+/* Chemical */
+.has-gp-chemical-1-color {
+	color: $color_chemical_1;
 }
 
-.has-gp-traditional-blue-3-background-color {
-	background-color: #61bbfc;
+.has-gp-chemical-1-background-color {
+	background-color: $color_chemical_1;
 }
 
-.has-gp-traditional-blue-4-color {
-	color: #85cafb;
+.has-gp-chemical-2-color {
+	color: $color_chemical_2;
 }
 
-.has-gp-traditional-blue-4-background-color {
-	background-color: #85cafb;
+.has-gp-chemical-2-background-color {
+	background-color: $color_chemical_2;
 }
 
-.has-gp-traditional-blue-5-color {
-	color: #b9e0fb;
+.has-gp-chemical-3-color {
+	color: $color_chemical_3;
 }
 
-.has-gp-traditional-blue-5-background-color {
-	background-color: #b9e0fb;
+.has-gp-chemical-3-background-color {
+	background-color: $color_chemical_3;
 }
 
-.has-gp-traditional-yellow-color {
-	color: #ffd200;
+
+/* Fleet */
+.has-gp-fleet-1-color {
+	color: $color_fleet_1;
 }
 
-.has-gp-traditional-yellow-background-color {
-	background-color: #ffd200;
+.has-gp-fleet-1-background-color {
+	background-color: $color_fleet_1;
 }
 
-.has-gp-traditional-yellow-2-color {
-	color: #ffdb33;
+.has-gp-fleet-2-color {
+	color: $color_fleet_2;
 }
 
-.has-gp-traditional-yellow-2-background-color {
-	background-color: #ffdb33;
+.has-gp-fleet-2-background-color {
+	background-color: $color_fleet_2;
 }
 
-.has-gp-traditional-yellow-3-color {
-	color: #ffe466;
+.has-gp-fleet-3-color {
+	color: $color_fleet_3;
 }
 
-.has-gp-traditional-yellow-3-background-color {
-	background-color: #ffe466;
+.has-gp-fleet-3-background-color {
+	background-color: $color_fleet_3;
 }
 
-.has-gp-traditional-yellow-4-color {
-	color: #ffed99;
+
+/* Forest */
+.has-gp-forest-1-color {
+	color: $color_forest_1;
 }
 
-.has-gp-traditional-yellow-4-background-color {
-	background-color: #ffed99;
+.has-gp-forest-1-background-color {
+	background-color: $color_forest_1;
 }
 
-.has-gp-traditional-yellow-5-color {
-	color: #fff6cc;
+.has-gp-forest-2-color {
+	color: $color_forest_2;
 }
 
-.has-gp-traditional-yellow-5-background-color {
-	background-color: #fff6cc;
+.has-gp-forest-2-background-color {
+	background-color: $color_forest_2;
+}
+
+.has-gp-forest-3-color {
+	color: $color_forest_3;
+}
+
+.has-gp-forest-3-background-color {
+	background-color: $color_forest_3;
+}
+
+
+/* Plastic */
+.has-gp-plastic-1-color {
+	color: $color_plastic_1;
+}
+
+.has-gp-plastic-1-background-color {
+	background-color: $color_plastic_1;
+}
+
+.has-gp-plastic-2-color {
+	color: $color_plastic_2;
+}
+
+.has-gp-plastic-2-background-color {
+	background-color: $color_plastic_2;
+}
+
+.has-gp-plastic-3-color {
+	color: $color_plastic_3;
+}
+
+.has-gp-plastic-3-background-color {
+	background-color: $color_plastic_3;
 }
