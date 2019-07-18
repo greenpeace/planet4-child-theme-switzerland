@@ -18,8 +18,12 @@ wp.domReady(() => {
 	}, 'allowColumnStyle');
 
 	wp.hooks.addFilter('editor.BlockEdit', 'my/gutenberg', allowColumnStyle);
-
-
+	
+	/**
+	 * Remove unwanted block default styles and add our own where needed
+	 *
+	 * @see https://www.billerickson.net/block-styles-in-gutenberg/
+	 */
 	// core/heading
 	wp.blocks.registerBlockStyle('core/heading', {
 		name: 'default',
