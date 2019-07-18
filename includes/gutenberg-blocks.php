@@ -91,6 +91,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-gpch-jobs',
 			'acf/p4-gpch-block-newsletter',
 			'acf/p4-gpch-block-spacer',
+			'acf/p4block-covers-take-action',
 			'acf/raisenow-donation-form',
 			'social-warfare/social-warfare',
 			'social-warfare/click-to-tweet',
@@ -107,7 +108,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'acf/p4block-header-carousel-zoom',
 				'acf/p4block-covers-campaign',
 				'acf/p4block-covers-content',
-				'acf/p4block-covers-take-action',
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_page );
 		} else if ( $post->post_type === 'post' ) { // block types only for posts
