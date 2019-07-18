@@ -100,4 +100,15 @@ wp.domReady(() => {
 		name: 'petition-left',
 		label: 'Petition Column Left',
 	});
+	
+	
+	/*
+	* Remove the default tags settings from the sidebar
+	* Planet4 adds a custom UI for all roles except admins, this prevents showing two forms for the same thing
+	*
+	*  @see: https://github.com/greenpeace/planet4-master-theme/blob/f02ceaf22a0fc455180395c4414efc19e6f36933/classes/class-p4-master-site.php#L742-L750
+	*/
+	if (gpchUserData.roles.indexOf("administrator") == -1) { // Current user is NOT admin
+		wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' );
+	}
 });

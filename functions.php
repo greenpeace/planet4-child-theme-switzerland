@@ -40,6 +40,15 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 		filemtime( get_stylesheet_directory() . '/admin/js/editor.js' ),
 		true
 	);
+
+	$user  = wp_get_current_user();
+	$roles = ( array ) $user->roles;
+
+	$script_params = array(
+		'roles' => $roles,
+	);
+
+	wp_localize_script( 'gpch-be-editor-customizations', 'gpchUserData', $script_params );
 }
 
 add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_gutenberg_scripts' );
