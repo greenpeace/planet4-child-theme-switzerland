@@ -1,6 +1,6 @@
 .cover-card {
 	box-shadow: none;
-	
+
 	&:not(.single-cover):hover {
 		box-shadow: none;
 	}
@@ -11,7 +11,7 @@
 
 	&:hover {
 		box-shadow: none;
-		
+
 		.btn {
 			background-color: $color_standard_1;
 			color: $color_standard_1_font;
@@ -57,6 +57,19 @@
 		font-size: 1.4rem;
 	}
 }
+
+
+/* CTA cover in post when used as a block */
+.post-content {
+	.cover-card:not(.single-cover) {
+		float: none;
+	}
+
+	.covers-block .cover-card-column {
+		max-width: none;
+	}
+}
+
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
