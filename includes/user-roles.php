@@ -8,28 +8,41 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 	 */
 	function p4_child_theme_gpch_user_roles() {
 		// New role for HR
-		// Remove the role if it exists so we can redefine it with new capabilities
-		remove_role('human-resources');
-
-		// Add the role with new capabilities
+		// Add the role with basic capabilities
+		// Roles are persistent, which means the role will only be added if it doesn't exist yet.
 		add_role( 'human-resources', __( 'Human Resources', 'planet4-child-theme-switzerland' ), array(
 			// General
 			'read'              => true,
 
 			// Media upload
 			'upload_files'      => true,
-
-			// Jobs
-			'edit_job'          => true,
-			'read_job'          => true,
-			'delete_jobs'       => true,
-			'edit_jobs'         => true,
-			'edit_others_jobs'  => true,
-			'publish_jobs'      => true,
-			'read_private_jobs' => true,
 		) );
 
+
+		// Add capabilities to hr role
+		// These capabilities are added even when the role already exists
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
+		$hr_role = get_role( 'human-resources' );
+
+		if ( $hr_role ) {
+			// General
+			$hr_role->add_cap( 'read', true );
+			$hr_role->add_cap( 'upload_files', true );
+			
+			// Jobs
+			$hr_role->add_cap( 'edit_job', true );
+			$hr_role->add_cap( 'read_job', true );
+			$hr_role->add_cap( 'delete_jobs', true );
+			$hr_role->add_cap( 'edit_jobs', true );
+			$hr_role->add_cap( 'edit_others_jobs', true );
+			$hr_role->add_cap( 'publish_jobs', true );
+			$hr_role->add_cap( 'read_private_jobs', true );
+		}
+
 		// Add capabilities to editor role
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
 		$editor_role = get_role( 'editor' );
 
 		if ( $editor_role ) {
@@ -81,6 +94,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 		}
 
 		// Add capabilities to admin role
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
 		$admin_role = get_role( 'administrator' );
 
 		if ( $admin_role ) {
