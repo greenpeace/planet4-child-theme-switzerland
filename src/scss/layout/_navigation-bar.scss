@@ -6,7 +6,7 @@
 		display: flex;
 
 		.btn-navbar-toggle {
-			background-color: $color_standard_3;
+			background-color: $color_standard_1;
 		}
 
 		.navbar-dropdown {
@@ -60,6 +60,7 @@
 
 }
 
+
 /*
 	Remove side paddings when screen is larger than header width.
 	Aligns logo and search bar nicely with the header image.
@@ -103,6 +104,43 @@
 					}
 				}
 
+			}
+		}
+	}
+}
+
+
+/*
+	Mobile Menu
+ */
+@include media('<=desktop') {
+	.top-navigation.navbar .navbar-content {
+		.btn-navbar-toggle {
+			&.open {
+				background-color: rgba(0,0,0,.8);
+			}
+		}
+
+		.navbar-dropdown {
+			background: none;
+			background-color: #fff;
+
+			.nav-item.wpml-ls-item {
+				background-color: $color_standard_1;
+				margin-bottom: 1em;
+			}
+
+			.nav-item a {
+				color: #000;
+			}
+
+			.nav-item:not(.wpml-ls-item) a,
+			.nav-item:not(.wpml-ls-item) a.highlight {
+				padding-left: 50px;
+			}
+
+			.active .nav-link::before {
+				display: none;
 			}
 		}
 	}
