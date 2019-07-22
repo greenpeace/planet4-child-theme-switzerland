@@ -38,3 +38,11 @@ body .top-navigation {
 .country-dropdown-toggle {
 	display: none;
 }
+
+
+@include media('<=desktop') {
+	.post-content .container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
