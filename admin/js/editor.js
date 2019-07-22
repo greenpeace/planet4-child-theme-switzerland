@@ -101,6 +101,8 @@ wp.domReady(() => {
 		label: 'Petition Column Left',
 	});
 	
+	// core/table
+	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
 	/*
 	* Remove the default tags settings from the sidebar
@@ -112,3 +114,4 @@ wp.domReady(() => {
 		wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' );
 	}
 });
+
