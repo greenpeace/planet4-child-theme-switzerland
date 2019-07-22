@@ -31,6 +31,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/header";
 @import "layout/footer";
 @import "layout/post_types";
+@import "layout/search";
 @import "typography";
 
 
@@ -50,5 +51,6 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/p4-article-list";
 @import "blocks/p4-header-carousel";
 @import "blocks/p4-campaign-covers";
+@import "blocks/p4-action-covers";
 @import "blocks/p4-publications-list";
 @import "blocks/gravity-forms";
