@@ -18,7 +18,7 @@ jQuery(document).ready(function () {
 		"#Wald": "tag-wald",
 	};
 
-	// Insert tag classes in campaign block
+	// Insert tag classes in campaign covers block
 	jQuery('.campaign-thumbnail-block  .campaign-card-column').each(function () {
 		campaignName = jQuery(this).find('.yellow-cta').text();
 
@@ -27,9 +27,19 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	//Insert tag classes in archive pages
-	jQuery('body.archive .multiple-search-result .search-result-list-item').each(function () {
+
+	// Insert tag classes in archive and search result pages
+	jQuery('body.archive .multiple-search-result .search-result-list-item, body.search .multiple-search-result .search-result-list-item').each(function () {
 		campaignName = jQuery(this).find('.search-result-item-tag').first().text();
+
+		if (campaignName in tagList) {
+			jQuery(this).addClass(tagList[campaignName]);
+		}
+	});
+
+	// Insert tag classes in action covers block
+	jQuery('.covers-block .cover-card').each(function () {
+		campaignName = jQuery(this).find('.cover-card-tag').first().text();
 
 		if (campaignName in tagList) {
 			jQuery(this).addClass(tagList[campaignName]);

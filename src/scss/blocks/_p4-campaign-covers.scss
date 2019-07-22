@@ -7,7 +7,8 @@
 
 		.thumbnail-large:hover::before {
 			display: block;
-
+			opacity: 1;
+			background-color: $color_hover_overlay;
 		}
 
 		.thumbnail-large .yellow-cta {

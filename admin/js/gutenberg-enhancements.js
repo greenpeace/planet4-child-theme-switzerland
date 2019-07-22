@@ -26,7 +26,7 @@
 		},
 	  ),
 	)
-
+	
 	/**
 	 * Add a button for subscript (<sub>) in Gutenberg rich text
 	 */
