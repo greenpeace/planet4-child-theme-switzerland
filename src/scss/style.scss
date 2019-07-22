@@ -5,7 +5,7 @@ Description: Child theme for the switzerland website in the Planet 4 Wordpress p
 Author: Greenpeace International
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
-Version: 0.1.35
+Version: 1.0.0
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
@@ -31,6 +31,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/header";
 @import "layout/footer";
 @import "layout/post_types";
+@import "layout/search";
 @import "typography";
 
 
@@ -50,5 +51,6 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/p4-article-list";
 @import "blocks/p4-header-carousel";
 @import "blocks/p4-campaign-covers";
+@import "blocks/p4-action-covers";
 @import "blocks/p4-publications-list";
 @import "blocks/gravity-forms";

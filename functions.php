@@ -29,11 +29,35 @@ require_once( 'includes/gutenberg-palettes.php' );
 require_once( 'includes/gutenberg-sidebar.php' );
 
 
+/**
+ * Load Javascript for further Gutenberg customizations
+ */
+function p4_child_theme_gpch_gutenberg_scripts() {
+	wp_enqueue_script(
+		'gpch-be-editor-customizations',
+		get_stylesheet_directory_uri() . '/admin/js/editor.js',
+		array( 'wp-blocks', 'wp-dom' ),
+		filemtime( get_stylesheet_directory() . '/admin/js/editor.js' ),
+		true
+	);
+
+	$user  = wp_get_current_user();
+	$roles = ( array ) $user->roles;
+
+	$script_params = array(
+		'roles' => $roles,
+	);
+
+	wp_localize_script( 'gpch-be-editor-customizations', 'gpchUserData', $script_params );
+}
+
+add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_gutenberg_scripts' );
+
+
 /*
  * Add taxonomy terms as class name to body tag
  */
 add_filter( 'body_class', 'p4_child_theme_gpch_add_taxonomy_classes' );
-
 
 function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 	if ( is_singular() ) {
@@ -51,6 +75,7 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 	return $classes;
 }
 
+
 /*
  * Add custom styles to Gutenberg editor
  */
@@ -67,7 +92,28 @@ add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
 
 
 /*
- * Enqueue Scripts
+ * Enhance Gutenberg Functionality
+ */
+add_action( 'enqueue_block_editor_assets', function () {
+	wp_enqueue_script(
+		'gutenberg-enhancements',
+		get_stylesheet_directory_uri() . '/admin/js/gutenberg-enhancements.js',
+		array(
+			'wp-element',
+			'wp-rich-text',
+			'wp-format-library',
+			'wp-i18n',
+			'wp-editor',
+			'wp-compose',
+			'wp-components',
+		),
+		filemtime( get_stylesheet_directory() . '/admin/js/gutenberg-enhancements.js' ),
+		true
+	);
+} );
+
+/*
+ * Enqueue Scripts (Frontend)
  */
 function p4_child_theme_gpch_scripts() {
 	$js = '/js/gpch-child.js';
@@ -81,6 +127,7 @@ function p4_child_theme_gpch_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
 
+
 /*
  * Adds theme support for various things
  */
@@ -88,5 +135,5 @@ function p4_child_theme_gpch_theme_support() {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support');
+add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support' );
 
