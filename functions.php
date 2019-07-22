@@ -110,13 +110,6 @@ add_action( 'enqueue_block_editor_assets', function () {
 		filemtime( get_stylesheet_directory() . '/admin/js/gutenberg-enhancements.js' ),
 		true
 	);
-
-	wp_enqueue_style(
-		'gutenberg-enhancements',
-		get_stylesheet_directory_uri() . '/admin/css/gutenberg-enhancements.css',
-		array(),
-		filemtime( get_stylesheet_directory() . '/admin/css/gutenberg-enhancements.css' )
-	);
 } );
 
 /*
