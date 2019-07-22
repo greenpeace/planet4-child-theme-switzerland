@@ -27,8 +27,8 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	//Insert tag classes in archive pages
-	jQuery('body.archive .multiple-search-result .search-result-list-item').each(function () {
+	// Insert tag classes in archive and search result pages
+	jQuery('body.archive .multiple-search-result .search-result-list-item, body.search .multiple-search-result .search-result-list-item').each(function () {
 		campaignName = jQuery(this).find('.search-result-item-tag').first().text();
 
 		if (campaignName in tagList) {

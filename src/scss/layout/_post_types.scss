@@ -18,7 +18,8 @@
 
 
 /* Archive pages */
-body.archive {
+body.archive,
+body.search {
 	.page-header {
 		margin-bottom: 0;
 
@@ -69,12 +70,14 @@ body.archive {
 
 	.search-result-item-content {
 		font-family: Roboto, sans-serif;
+		width: 100%;
 	}
 }
 
 
 /* Color Schemes */
-body.archive {
+body.archive,
+body.search {
 	@for $i from 1 through length($schema_names) {
 		#{nth($selectors, $i)} {
 			.top-page-tags a {
