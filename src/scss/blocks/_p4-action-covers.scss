@@ -77,17 +77,17 @@
 		&.cover-card {
 			&:hover {
 				.btn {
-					background-color: #{nth($colors_3, $i)};
+					background-color: #{nth($colors_1, $i)};
 				}
 			}
 
 			a.btn-action {
-				background-color: #{nth($colors_3, $i)};
-				color: #{nth($colors_3_font, $i)};
+				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
 
 				&:hover {
-					background-color: #{nth($colors_1, $i)};
-					color: #{nth($colors_1_font, $i)};
+					background-color: #{nth($colors_3, $i)};
+					color: #{nth($colors_3_font, $i)};
 				}
 			}
 		}
