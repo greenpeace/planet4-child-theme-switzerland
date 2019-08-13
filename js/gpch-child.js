@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
 	// Temporary Solution
 	// See: https://tickets.greenpeace.ch/view.php?id=206
 	var tagList = {
+		"#Klima": "tag-klima",
 		"#Ernährung": "tag-ernaehrung",
 		"#FinanzplatzSchweiz": "tag-finanzplatz-schweiz",
 		"#GletscherInitiative": "tag-gletscher-initiative",
