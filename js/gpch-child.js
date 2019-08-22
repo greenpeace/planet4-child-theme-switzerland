@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 		'#Ernährung': 'tag-ernaehrung',
 		'#Nutrition': 'tag-nutrition',
 		'#FinanzplatzSchweiz': 'tag-finanzplatz-schweiz',
-		'#PlaceFinanciers': 'tag-place-financiers',
+		'#PlaceFinanciere': 'tag-place-financiere',
 		'#GletscherInitiative': 'tag-gletscher-initiative',
 		'#InitiativeGlaciers': 'tag-initiative-glaciers',
 		'#Klimabewegung': 'tag-klimabewegung',
