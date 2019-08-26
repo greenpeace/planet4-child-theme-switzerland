@@ -20,7 +20,7 @@ jQuery(document).ready(function () {
 		'#Antarktis': 'tag-antarktis',
 		'#Antarctique': 'tag-antarctique',
 		'#Arktis': 'tag-arktis',
-		'#arctique': 'tag-arctique',
+		'#Arctique': 'tag-arctique',
 		'#Chemie': 'tag-chemie',
 		'#Toxiques': 'tag-toxiques',
 		'#Energie': 'tag-energie',
