@@ -59,7 +59,7 @@
 					#}
 				</div>
 				{# Show post image in stories: #}
-				{% if post.page_types.0.slug== 'story' %}
+				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'story-fr' ) or (post.page_types.0.slug == 'article-de-magazine') %}
 					{% if post.thumbnail.src is defined %}
 						<div class="row">
 							<div class="col-md-12">
