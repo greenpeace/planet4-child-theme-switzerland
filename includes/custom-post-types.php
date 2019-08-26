@@ -307,3 +307,35 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 
 	add_action( 'init', 'create_gpmagredirect_custom_fields' );
 }
+
+/**
+ * Create meta box for custom post types
+ *
+ * Since we want to have the same meta box like P4, we steal a bit ...
+ */
+function create_gpch_custom_post_type_metabox() {
+	if ( function_exists( 'new_cmb2_box' ) ) {
+
+		$prefix = 'p4_';
+
+		$p4_post = new_cmb2_box(
+			[
+				'id'           => $prefix . 'gpch_custom_post_type_metabox',
+				'title'        => __( 'Post Articles Element Fields', 'planet4-master-theme-backend' ),
+				'object_types' => [ 'gpch_magredirect' ], // at the moment only for Magazine Redirects
+			]
+		);
+
+		$p4_post->add_field(
+			[
+				'name' => __( 'Author Override', 'planet4-master-theme-backend' ),
+				'desc' => __( 'Enter author name if you want to override the author', 'planet4-master-theme-backend' ),
+				'id'   => $prefix . 'author_override',
+				'type' => 'text_medium',
+			]
+		);
+
+	}
+}
+
+add_action( 'cmb2_admin_init', 'create_gpch_custom_post_type_metabox' );
