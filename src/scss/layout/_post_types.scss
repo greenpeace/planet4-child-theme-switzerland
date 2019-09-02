@@ -16,6 +16,27 @@
 	}
 }
 
+/* GPCH Events */
+.single-gpch_event {
+	.page-header .page-header-title {
+		margin-bottom: 1rem;
+	}
+
+	.single-post-meta {
+		address { /* The author name is not needed in events */
+			display: none;
+		}
+	}
+
+	.event-meta {
+		list-style-type: none;
+		padding: 0;
+
+		span.title {
+			font-weight: bold;
+		}
+	}
+}
 
 /* Archive pages */
 body.archive,
