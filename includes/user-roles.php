@@ -40,6 +40,86 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$hr_role->add_cap( 'read_private_jobs', true );
 		}
 
+		// New role for Events
+		// Add the role with basic capabilities
+		// Roles are persistent, which means the role will only be added if it doesn't exist yet.
+		add_role( 'gpch-events', __( 'GPCH Events', 'planet4-child-theme-switzerland' ), array(
+			// General
+			'read'              => true,
+
+			// Media upload
+			'upload_files'      => true,
+		) );
+
+
+		// Add capabilities to events role
+		// These capabilities are added even when the role already exists
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
+		$event_role = get_role( 'gpch-events' );
+
+		if ( $event_role ) {
+			// General
+			$event_role->add_cap( 'read', true );
+			$event_role->add_cap( 'upload_files', true );
+			$event_role->add_cap( 'assign_terms', true );
+			$event_role->add_cap( 'edit_posts', true ); // Seems to be needed for the tags menu to show, doesn't allow publishing of posts
+
+			// Events
+			$event_role->add_cap( 'edit_gpch_event', true );
+			$event_role->add_cap( 'read_gpch_event', true );
+			$event_role->add_cap( 'delete_gpch_events', true );
+			$event_role->add_cap( 'edit_gpch_events', true );
+			$event_role->add_cap( 'edit_others_gpch_events', true );
+			$event_role->add_cap( 'publish_gpch_events', true );
+			$event_role->add_cap( 'read_private_gpch_events', true );
+		}
+
+
+		// New role for form exports and events (combined)
+		// Add the role with basic capabilities
+		// Roles are persistent, which means the role will only be added if it doesn't exist yet.
+		add_role( 'gpch-events-formexports', __( 'GPCH Events & Form Exports', 'planet4-child-theme-switzerland' ), array(
+			// General
+			'read'              => true,
+
+			// Media upload
+			'upload_files'      => true,
+		) );
+
+
+		// Add capabilities to events & form exports role
+		// These capabilities are added even when the role already exists
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
+		$event_formexports_role = get_role( 'gpch-events-formexports' );
+
+		if ( $event_formexports_role ) {
+			// General
+			$event_formexports_role->add_cap( 'read', true );
+			$event_formexports_role->add_cap( 'upload_files', true );
+			$event_formexports_role->add_cap( 'assign_terms', true );
+			$event_formexports_role->add_cap( 'edit_posts', true ); // Seems to be needed for the tags menu to show, doesn't allow publishing of posts
+
+			// Events
+			$event_formexports_role->add_cap( 'edit_gpch_event', true );
+			$event_formexports_role->add_cap( 'read_gpch_event', true );
+			$event_formexports_role->add_cap( 'delete_gpch_events', true );
+			$event_formexports_role->add_cap( 'edit_gpch_events', true );
+			$event_formexports_role->add_cap( 'edit_others_gpch_events', true );
+			$event_formexports_role->add_cap( 'publish_gpch_events', true );
+			$event_formexports_role->add_cap( 'read_private_gpch_events', true );
+
+			// Form Exports
+			$event_formexports_role->add_cap( 'gravityforms_view_entries', true );
+			$event_formexports_role->add_cap( 'gravityforms_edit_entries', true );
+			$event_formexports_role->add_cap( 'gravityforms_delete_entries', true );
+			$event_formexports_role->add_cap( 'gravityforms_view_entry_notes', true );
+			$event_formexports_role->add_cap( 'gravityforms_edit_entry_notes', true );
+			$event_formexports_role->add_cap( 'gravityforms_export_entries', true );
+		}
+
+
 		// Add capabilities to editor role
 		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
 		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
@@ -54,6 +134,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$editor_role->add_cap( 'edit_others_jobs', true );
 			$editor_role->add_cap( 'publish_jobs', true );
 			$editor_role->add_cap( 'read_private_jobs', true );
+
+			// Events
+			$editor_role->add_cap( 'edit_gpch_event', true );
+			$editor_role->add_cap( 'read_gpch_event', true );
+			$editor_role->add_cap( 'delete_gpch_events', true );
+			$editor_role->add_cap( 'edit_gpch_events', true );
+			$editor_role->add_cap( 'edit_others_gpch_events', true );
+			$editor_role->add_cap( 'publish_gpch_events', true );
+			$editor_role->add_cap( 'read_private_gpch_events', true );
 
 			// Archived Posts
 			$editor_role->add_cap( 'edit_archived_post', true );
@@ -107,6 +196,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 			$admin_role->add_cap( 'edit_others_jobs', true );
 			$admin_role->add_cap( 'publish_jobs', true );
 			$admin_role->add_cap( 'read_private_jobs', true );
+
+			// Events
+			$admin_role->add_cap( 'edit_gpch_event', true );
+			$admin_role->add_cap( 'read_gpch_event', true );
+			$admin_role->add_cap( 'delete_gpch_events', true );
+			$admin_role->add_cap( 'edit_gpch_events', true );
+			$admin_role->add_cap( 'edit_others_gpch_events', true );
+			$admin_role->add_cap( 'publish_gpch_events', true );
+			$admin_role->add_cap( 'read_private_gpch_events', true );
 
 			// Archived Posts
 			$admin_role->add_cap( 'edit_archived_post', true );

@@ -105,12 +105,14 @@ wp.domReady(() => {
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
 	/*
-	* Remove the default tags settings from the sidebar
-	* Planet4 adds a custom UI for all roles except admins, this prevents showing two forms for the same thing
+	* Prevent two tag menus to show on the same post edit page.
+	* Planet4 adds its own element for everyone except admins. So we remove the default UI for
+	* - Everyone except admins Admins
+	* - Only on posts where Planet4 adds its UI (not our custom post types that use tags)
 	*
 	*  @see: https://github.com/greenpeace/planet4-master-theme/blob/f02ceaf22a0fc455180395c4414efc19e6f36933/classes/class-p4-master-site.php#L742-L750
 	*/
-	if (gpchUserData.roles.indexOf("administrator") == -1) { // Current user is NOT admin
+	if (gpchUserData.roles.indexOf("administrator") == -1 && gpchUserData.post_type != "gpch_event" && gpchUserData.post_Type != "gpch_magredirect") { // Current user is NOT admin
 		wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' );
 	}
 });
