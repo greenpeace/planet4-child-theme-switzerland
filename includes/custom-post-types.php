@@ -114,7 +114,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 			'filter_items_list'     => __( 'Filter Events list', 'planet4-child-theme-switzerland' ),
 		);
 		$rewrite      = array(
-			'slug'       => 'gpch_event',
+			'slug'       => 'event',
 			'with_front' => true,
 			'pages'      => false,
 			'feeds'      => true,
