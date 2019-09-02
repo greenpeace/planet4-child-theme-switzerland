@@ -45,7 +45,8 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 	$roles = ( array ) $user->roles;
 
 	$script_params = array(
-		'roles' => $roles,
+		'roles'     => $roles,
+		'post_type' => get_post_type(),
 	);
 
 	wp_localize_script( 'gpch-be-editor-customizations', 'gpchUserData', $script_params );
