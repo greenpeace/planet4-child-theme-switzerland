@@ -2,8 +2,13 @@ body {
 	font-family: Roboto, sans-serif;
 }
 
-body.brown-bg {
-	background-color: $color_white;
+
+body {
+	&:not(.wp-admin) {
+		&.brown-bg {
+			background-color: $color_white;
+		}
+	}
 }
 
 body .top-navigation {
