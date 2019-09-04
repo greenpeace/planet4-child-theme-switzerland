@@ -1,13 +1,9 @@
-body {
+body,
+body:not(.wp-admin) { /* Master theme uses this more specific notation */
 	font-family: Roboto, sans-serif;
-}
 
-
-body {
-	&:not(.wp-admin) {
-		&.brown-bg {
-			background-color: $color_white;
-		}
+	&.brown-bg {
+		background-color: $color_white;
 	}
 }
 
