@@ -204,7 +204,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 							'id'    => '',
 						),
 						'display_format'    => 'd. m. Y',
-						'return_format'     => 'c',
+						'return_format'     => 'Y-m-d',
 						'first_day'         => 1,
 					),
 					array(
