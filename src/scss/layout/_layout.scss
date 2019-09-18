@@ -48,6 +48,7 @@ div.page-template > * {
 	z-index: 10000;
 }
 
+
 @include media('<=desktop') {
 	.post-content .container {
 		padding-left: 0;
