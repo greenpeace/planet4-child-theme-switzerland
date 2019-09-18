@@ -40,6 +40,13 @@ body .top-navigation {
 	display: none;
 }
 
+/* Bugfix for donation overlay issue: https://tickets.greenpeace.ch/view.php?id=300 */
+div.page-template > * {
+	z-index: auto;
+}
+.top-navigation {
+	z-index: 10000;
+}
 
 @include media('<=desktop') {
 	.post-content .container {
