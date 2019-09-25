@@ -44,8 +44,9 @@ body .top-navigation {
 div.page-template > * {
 	z-index: auto;
 }
+
 .top-navigation {
-	z-index: 10000;
+	z-index: 9000;
 }
 
 
@@ -53,5 +54,17 @@ div.page-template > * {
 	.post-content .container {
 		padding-left: 0;
 		padding-right: 0;
+	}
+}
+
+/*
+  Correction for min-width in tables on mobile
+  https://tickets.greenpeace.ch/view.php?id=302
+*/
+@media (max-width: #{$small-width}) {
+	.post-content table {
+		td {
+			min-width: auto;
+		}
 	}
 }
