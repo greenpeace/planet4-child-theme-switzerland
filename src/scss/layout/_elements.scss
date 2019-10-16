@@ -57,6 +57,12 @@ iframe {
 	color: $color_standard_3_font;
 }
 
+/* Remove icon for external links from buttons */
+.wp-block-button .external-icon,
+.swp_social_panel a .external-icon {
+	display: none;
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
