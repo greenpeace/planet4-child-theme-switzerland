@@ -5,6 +5,10 @@
 		margin: 0 auto;
 		display: flex;
 
+		.site-logo {
+			line-height: 3.75rem;
+		}
+
 		.btn-navbar-toggle {
 			background-color: $color_standard_1;
 		}
@@ -51,10 +55,6 @@
 			.nav-item.wpml-ls-item a:hover {
 				text-decoration: underline;
 			}
-		}
-
-		.nav-search-wrap {
-			margin-top: .7rem;
 		}
 	}
 
