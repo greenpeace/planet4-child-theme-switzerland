@@ -33,6 +33,12 @@ iframe {
 	background-color: $color_standard_1;
 }
 
+/* Remove Planet4 default button formatting */
+[class="wp-block-button"] a {
+	width: auto;
+	border: 0;
+}
+
 .btn-secondary:focus,
 .btn-secondary:hover,
 .post-content .more-link:focus,
