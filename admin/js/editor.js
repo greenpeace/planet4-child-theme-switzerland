@@ -104,6 +104,20 @@ wp.domReady(() => {
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
+	
+	/**
+	 * Remove unwanted Planet4 block styles and add defaults back that we need
+	 */
+	wp.blocks.unregisterBlockStyle('core/button', 'donate');
+	wp.blocks.unregisterBlockStyle('core/button', 'cta');
+	wp.blocks.unregisterBlockStyle('core/button', 'secondary');
+	
+	wp.blocks.registerBlockStyle( 'core/button', {
+		name: 'default',
+		label: 'Default',
+		isDefault: true,
+	});
+	
 	/*
 	* Prevent two tag menus to show on the same post edit page.
 	* Planet4 adds its own element for everyone except admins. So we remove the default UI for
