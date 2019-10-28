@@ -83,7 +83,6 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 /*
  * Add custom styles to Gutenberg editor
  */
-
 function p4_child_theme_gpch_setup() {
 	// Add support for editor styles.
 	add_theme_support( 'editor-styles' );
@@ -94,27 +93,6 @@ function p4_child_theme_gpch_setup() {
 
 add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
 
-
-/*
- * Enhance Gutenberg Functionality
- */
-add_action( 'enqueue_block_editor_assets', function () {
-	wp_enqueue_script(
-		'gutenberg-enhancements',
-		get_stylesheet_directory_uri() . '/admin/js/gutenberg-enhancements.js',
-		array(
-			'wp-element',
-			'wp-rich-text',
-			'wp-format-library',
-			'wp-i18n',
-			'wp-editor',
-			'wp-compose',
-			'wp-components',
-		),
-		filemtime( get_stylesheet_directory() . '/admin/js/gutenberg-enhancements.js' ),
-		true
-	);
-} );
 
 /*
  * Enqueue Scripts (Frontend)
