@@ -18,24 +18,24 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'core/image',
 			//'core/gallery', // functionality replaced by P4 galleries
 			'core/list',
-			'core/quote', // TODO: Styling or removal
+			'core/quote',
 			'core/audio',
 
 			'core/cover',
 			'core/file',
-			//'core/video', // TODO: Decision. Ideally only allow embedded video
+			//'core/video', // Not needed, we only allow embedded video
 			'core/preformatted',
 			//'core/code', // functionality not needed and not styled
 			'core/html',
-			'core/table', // TODO: Styling
+			'core/table',
 			//'core/pullquote', // removed, normal quote element is available
 			//'core/verse', // removed, not needed, not styled
-			'core/button', // TODO: Styling
+			'core/button',
 			//'core/media-text' // removed, not needed
 			//'core/more', // removed, not needed
 			//'core/nextpage', // removed, not needed,
-			'core/separator', // TODO: Styling
-			//'core/spacer', // removed. TODO: Provide our own spacer that has less options
+			'core/separator',
+			//'core/spacer', // removed, we provide our own spacer, that's not as configurable
 			'core/shortcode',
 			//'core/archives', // removed, not needed
 			//'core/categories', // removed, not needed
@@ -100,7 +100,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
 			$allowed_blocks_page = array(
-				'core/freeform', // Classic editor, needed for old pages, can be disabled later on
+				'core/freeform',
+				// Classic editor, needed for old pages, can be disabled later on
 				'core/columns',
 				'gravityforms/block',
 				//'gravityforms/mailchimp', // removed, we don't need a Mailchimp block
@@ -109,14 +110,62 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'acf/p4block-header-carousel-zoom',
 				'acf/p4block-covers-campaign',
 				'acf/p4block-covers-content',
+
+				// Blocks from planet4-plugin-gutenberg-blocks
+				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
+				'planet4-blocks/articles',
+				'planet4-blocks/carousel-header',
+				//'planet4-blocks/columns', // not used at GPCH
+				'planet4-blocks/cookies',
+				'planet4-blocks/counter',
+				'planet4-blocks/covers',
+				'planet4-blocks/gallery',
+				//'planet4-blocks/happypoint', // not used at GPCH
+				'planet4-blocks/media',
+				'planet4-blocks/social-media',
+				'planet4-blocks/split-two-columns',
+				'planet4-blocks/submenu', // not used at GPCH
+				'planet4-blocks/take-action-boxout',
+				'planet4-blocks/timeline',
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_page );
 		} else if ( $post->post_type === 'post' ) { // block types only for posts
 			$allowed_blocks_post = array(
-				'core/freeform', // Classic editor, needed for old posts
+				'core/freeform',
+				// Classic editor, needed for old posts
 				//'core/columns', // not used in posts
+
+				// Blocks from planet4-plugin-gutenberg-blocks
+				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
+				'planet4-blocks/counter',
+				'planet4-blocks/gallery',
+				'planet4-blocks/take-action-boxout',
+				'planet4-blocks/timeline',
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_post );
+		} else if ( $post->post_type === 'campaign' ) { // block types only for campaign pages
+			$allowed_blocks_post = array(
+				'core/freeform',
+				// Classic editor, needed for old posts
+				//'core/columns', // not used in posts
+
+				// Blocks from planet4-plugin-gutenberg-blocks
+				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
+				// We allow all blocks in these as this content is sometimes imported from other Planet4 sites
+				'planet4-blocks/articles',
+				'planet4-blocks/carousel-header',
+				'planet4-blocks/columns',
+				'planet4-blocks/cookies',
+				'planet4-blocks/counter',
+				'planet4-blocks/covers',
+				'planet4-blocks/gallery',
+				'planet4-blocks/happypoint',
+				'planet4-blocks/media',
+				'planet4-blocks/social-media',
+				'planet4-blocks/split-two-columns',
+				'planet4-blocks/submenu',
+				'planet4-blocks/timeline',
+			);
 		}
 
 		return $allowed_blocks;
