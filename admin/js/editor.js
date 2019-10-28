@@ -104,15 +104,20 @@ wp.domReady(() => {
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
+	
 	/*
-	* Prevent two tag menus to show on the same post edit page.
-	* Planet4 adds its own element for everyone except admins. So we remove the default UI for
-	* - Everyone except admins Admins
-	* - Only on posts where Planet4 adds its UI (not our custom post types that use tags)
+	* Remove the default tags menu where needed.
 	*
-	*  @see: https://github.com/greenpeace/planet4-master-theme/blob/f02ceaf22a0fc455180395c4414efc19e6f36933/classes/class-p4-master-site.php#L742-L750
+	* Planet4 replaces the default sidebar element in the post edit screen (for
+	* everyone except admins) with a custom element that doesn't allow creating
+	* new tags.
+	* We've added the same menu to our custom post types, so we need to hide the
+	* default element as well.
+	*
+	* @see: https://github.com/greenpeace/planet4-master-theme/blob/f02ceaf22a0fc455180395c4414efc19e6f36933/classes/class-p4-master-site.php#L742-L750
+	* @see: https://github.com/greenpeace/planet4-child-theme-switzerland/blob/8900f2faaf924fde32482be06c0c96b238ce2095/includes/gutenberg-sidebar.php#L75-L91
 	*/
-	if (gpchUserData.roles.indexOf("administrator") == -1 && gpchUserData.post_type != "gpch_event" && gpchUserData.post_Type != "gpch_magredirect") { // Current user is NOT admin
+	if (gpchUserData.post_type === "gpch_event" || gpchUserData.post_type === "gpch_magredirect" || gpchUserData.post_type === "gpch_archived_post") { // all users, ceratin post types
 		wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' );
 	}
 });
