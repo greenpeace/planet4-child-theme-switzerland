@@ -15,52 +15,20 @@ add_action( 'init', 'p4_child_theme_gpch_post_editing' );
 
 
 /**
- * add the custom taxonomy "Page Type" of Planet4 to the sidebar
+ * Adds the Planet4 restricted tag box to our own custom post types
  */
-if ( function_exists( 'acf_add_local_field_group' ) ) {
-	acf_add_local_field_group( array(
-		'key'                   => 'group_5cd97c24f05ab',
-		'title'                 => __( 'Page Type', 'planet4-child-theme-switzerland' ),
-		'fields'                => array(
-			array(
-				'key'               => 'field_5cd97c2e6667c',
-				'label'             => '',
-				'name'              => 'p4-page-type',
-				'type'              => 'taxonomy',
-				'instructions'      => '',
-				'required'          => 0,
-				'conditional_logic' => 0,
-				'wrapper'           => array(
-					'width' => '',
-					'class' => '',
-					'id'    => '',
-				),
-				'taxonomy'          => 'p4-page-type',
-				'field_type'        => 'select',
-				'allow_null'        => 0,
-				'add_term'          => 0,
-				'save_terms'        => 1,
-				'load_terms'        => 1,
-				'return_format'     => 'id',
-				'multiple'          => 0,
-			),
-		),
-		'location'              => array(
-			array(
-				array(
-					'param'    => 'post_type',
-					'operator' => '==',
-					'value'    => 'post',
-				),
-			),
-		),
-		'menu_order'            => - 100,
-		'position'              => 'side',
-		'style'                 => 'default',
-		'label_placement'       => 'top',
-		'instruction_placement' => 'label',
-		'hide_on_screen'        => '',
-		'active'                => true,
-		'description'           => '',
-	) );
+function gpch_add_restricted_tags_box() {
+	// Get the class that contains the function to print the custom menu
+	$context = Timber::get_context();
+	$site    = $context['site'];
+
+	add_meta_box(
+		'restricted_tags_box',
+		__( 'Tags', 'planet4-master-theme-backend' ),
+		[ $site, 'print_restricted_tags_box' ],
+		[ 'gpch_event', 'gpch_magredirect', 'gpch_archived_post' ],
+		'side'
+	);
 }
+
+add_action( 'admin_menu', 'gpch_add_restricted_tags_box' );
