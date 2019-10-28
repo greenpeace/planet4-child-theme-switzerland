@@ -105,6 +105,20 @@ wp.domReady(() => {
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
 	
+	/**
+	 * Remove unwanted Planet4 block styles and add defaults back that we need
+	 */
+	wp.blocks.unregisterBlockStyle('core/button', 'donate');
+	wp.blocks.unregisterBlockStyle('core/button', 'cta');
+	wp.blocks.unregisterBlockStyle('core/button', 'secondary');
+	
+	wp.blocks.registerBlockStyle( 'core/button', {
+		name: 'default',
+		label: 'Default',
+		isDefault: true,
+	});
+	
+
 	/*
 	* Remove the default tags menu where needed.
 	*
