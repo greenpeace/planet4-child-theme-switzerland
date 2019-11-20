@@ -3,7 +3,11 @@
 
 	a {
 		background-color: $color_standard_1;
-		color: $color_standard_1_font;
+		/*
+			Master theme changes the button color after loading, only in Firefox.
+			Couldn't find what exactly is happening, so now we use !important.
+		*/
+		color: $color_standard_1_font !important;
 		text-decoration: none;
 
 		font-size: 0.875rem;
@@ -36,13 +40,18 @@
 	}
 }
 
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
 		.wp-block-button {
 			a {
 				background-color: #{nth($colors_3, $i)};
-				color: #{nth($colors_3_font, $i)};
+				/*
+					Master theme changes the button color after loading, only in Firefox.
+					Couldn't find what exactly is happening, so now we use !important.
+				*/
+				color: #{nth($colors_3_font, $i)} !important;
 			}
 
 			a:hover {
