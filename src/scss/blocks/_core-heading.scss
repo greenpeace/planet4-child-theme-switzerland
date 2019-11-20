@@ -13,7 +13,7 @@ h2.page-section-header {
 /* Remove top margin inside certain blocks that already have a margin */
 .block.article-listing,
 .block.covers-block {
-	h2,
+	h2:not(.cover-card-heading),
 	h2.page-section-header {
 		margin-top: 0;
 	}
