@@ -84,9 +84,11 @@ h3.is-style-underline:after {
 }
 
 @include media('<=tablet') {
-	h2 {
+	h2,
+	h2.page-section-header {
 		margin-top: 2rem;
 		margin-bottom: 1rem;
+		font-size: 1.5rem;
 	}
 
 }
