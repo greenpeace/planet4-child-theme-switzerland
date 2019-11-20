@@ -54,7 +54,25 @@
 	}
 
 	.cover-card-heading {
+		margin-top: 1rem;
 		font-size: 1.4rem;
+	}
+}
+
+@include media('<=desktop') {
+	.cover-card {
+		min-height: 300px;
+
+		.cover-card-heading {
+			margin-bottom: 4rem;
+		}
+	}
+}
+
+
+@include media('<=tablet') {
+	.cover-card {
+		min-height: auto;
 	}
 }
 
