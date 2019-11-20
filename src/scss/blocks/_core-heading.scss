@@ -10,6 +10,16 @@ h2.page-section-header {
 	color: $color_standard_1;
 }
 
+/* Remove top margin inside certain blocks that already have a margin */
+.block.article-listing,
+.block.covers-block {
+	h2,
+	h2.page-section-header {
+		margin-top: 0;
+	}
+}
+
+
 h3 {
 	margin-top: 2em;
 	font-size: 1.5rem;
@@ -84,9 +94,11 @@ h3.is-style-underline:after {
 }
 
 @include media('<=tablet') {
-	h2 {
+	h2,
+	h2.page-section-header {
 		margin-top: 2rem;
 		margin-bottom: 1rem;
+		font-size: 1.5rem;
 	}
 
 }
