@@ -13,6 +13,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 	 */
 	function p4_child_theme_gpch_whitelist_blocks( $allowed_blocks, $post ) {
 		$allowed_blocks_general = array(
+			'core/block', // needed for reusable blocks to work
 			'core/paragraph',
 			'core/heading',
 			'core/image',
