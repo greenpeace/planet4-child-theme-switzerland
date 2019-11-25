@@ -53,10 +53,6 @@ body.search {
 		}
 	}
 
-	.page-template h3:first-child {
-		display: none;
-	}
-
 	.col-lg-8.multiple-search-result {
 		flex: 0 0 100%;
 		max-width: 100%;
@@ -90,7 +86,7 @@ body.search {
 	}
 
 	.search-result-item-content {
-		font-family: Roboto, sans-serif;
+		font-family: $font-family;
 		width: 100%;
 	}
 }
