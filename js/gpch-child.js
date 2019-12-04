@@ -6,7 +6,8 @@ jQuery(document).ready(function () {
 		'#Klima': 'tag-klima',
 		'#Climat': 'tag-climat',
 		'#Ernährung': 'tag-ernaehrung',
-		'#Nutrition': 'tag-nutrition',
+		'#Nutrition': 'tag-nutrition', // changed to alimentation, leaving it here for backwards compatibility
+		'#Alimentation': 'tag-alimentation',
 		'#FinanzplatzSchweiz': 'tag-finanzplatz-schweiz',
 		'#PlaceFinanciere': 'tag-place-financiere',
 		'#GletscherInitiative': 'tag-gletscher-initiative',
