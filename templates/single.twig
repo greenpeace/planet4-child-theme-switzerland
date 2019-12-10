@@ -76,7 +76,7 @@
 		<div class="container">
 			<div class="post-content">
 				{% if ( post.take_action_boxout ) %}
-					{{ fn('do_blocks', post.take_action_boxout )|raw }}
+					{{ post.take_action_boxout|shortcodes|raw }}
 				{% endif %}
 				<div class="post-content-lead">
 					<article class="post-details clearfix">
