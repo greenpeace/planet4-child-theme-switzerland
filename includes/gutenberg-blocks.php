@@ -172,3 +172,17 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 		return $allowed_blocks;
 	}
 }
+
+/*
+ * Remove the class 'caption-style-blue-overlay' from image blocks
+ * https://tickets.greenpeace.ch/view.php?id=323
+ */
+function gpch_render_block_filter( $block_content, $block ) {
+	if ( $block['blockName'] === 'core/image' ) {
+		$block_content = str_replace( 'caption-style-blue-overlay', '', $block_content );
+	}
+
+	return $block_content;
+}
+
+add_filter( 'render_block', 'gpch_render_block_filter', 10, 2 );
