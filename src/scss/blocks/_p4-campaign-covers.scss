@@ -1,4 +1,4 @@
-.campaign-thumbnail-block {
+.campaign-covers-block {
 	.thumbnail-largeview-container {
 		/* remove gray overlay */
 		.thumbnail-large::before {
@@ -33,13 +33,13 @@
 }
 
 /* No top margin if right next to a GPCH taskforce block */
-.gpch-taskforce-banner-wrapper + .campaign-thumbnail-block {
+.gpch-taskforce-banner-wrapper + .campaign-covers-block{
 	margin-top: -4px;
 }
 
 
 /* Color Schemes */
-.campaign-thumbnail-block {
+.campaign-covers-block{
 	.thumbnail-largeview-container {
 		@for $i from 1 through length($schema_names) {
 			#{nth($selectors, $i)} {

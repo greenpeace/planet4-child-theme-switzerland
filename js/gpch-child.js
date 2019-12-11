@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
 	}
 
 	// Insert tag classes in campaign covers block
-	jQuery('.campaign-thumbnail-block  .campaign-card-column').each(function () {
+	jQuery('.campaign-covers-block  .campaign-card-column').each(function () {
 		campaignName = jQuery(this).find('.yellow-cta').text();
 
 		if (campaignName in tagList) {
