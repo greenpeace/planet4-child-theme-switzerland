@@ -95,6 +95,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-spacer',
 			'acf/p4block-covers-take-action',
 			'acf/raisenow-donation-form',
+			'gravityforms/form',
 			'social-warfare/social-warfare',
 			'social-warfare/click-to-tweet',
 		);
@@ -104,7 +105,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'core/freeform',
 				// Classic editor, needed for old pages, can be disabled later on
 				'core/columns',
-				'gravityforms/block',
 				//'gravityforms/mailchimp', // removed, we don't need a Mailchimp block
 				'acf/p4block-articles',
 				'acf/p4block-header-carousel-classic',
