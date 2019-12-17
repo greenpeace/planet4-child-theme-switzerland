@@ -1,0 +1,140 @@
+/*
+The block has 4 styles:
+	- .block-style-image
+	- .block-style-icon
+	- .block-style-tasks
+ */
+.block.columns-block {
+	a {
+		color: $color_gray_dark;
+	}
+
+	/*
+		Reset some of the unneeded Planet4 styles.
+		These should be in general typography instead of on a block level, but we can't change that in the child theme, so we overwrite.
+	*/
+	&.block-style-image .column-wrap h3 {
+		font-weight: $font-weight-h3;
+		line-height: $line-height-h3;
+		margin-bottom: $margin-bottom-h3;
+		margin-top: 1em;
+		text-align: left;
+	}
+
+	&.block-style-icons {
+		h3 {
+			margin-top: 0;
+			margin-bottom: .5rem;
+		}
+	}
+
+	&.block-style-tasks,
+	&.block-style-no_image {
+		h3 {
+			margin-top: 0;
+			margin-bottom: .5rem;
+		}
+		
+		.can-do-steps {
+			.step-number {
+				background-color: $color_standard_1;
+				color: $color_standard_1_font;
+
+				.step-number-inner {
+					background-color: $color_standard_1;
+					border-color: $color_standard_3;
+				}
+			}
+
+			.step-info p,
+			.step-info p.has-cta {
+				font-size: 1rem;
+				line-height: 1.5;
+				color: $color_gray_dark;
+				opacity: 1;
+
+			}
+		}
+
+		.btn.btn-secondary {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font;
+			font-size: .875rem;
+			font-weight: 500;
+		}
+
+		.btn.btn-secondary:hover {
+			background-color: $color_standard_3;
+			color: $color_standard_3_font;
+		}
+	}
+
+	a.call-to-action-link {
+		/* Should look the same as core/button, but has different markup */
+		background-color: $color_standard_1;
+		color: $color_standard_1_font;
+		text-decoration: none;
+
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		font-weight: 500;
+
+		/* Remove default Gutenberg style for rounded corners */
+		border-radius: 0;
+
+		display: inline-block;
+		line-height: 3;
+		padding: 2px 30px;
+	}
+
+	a.call-to-action-link:hover {
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+		text-decoration: none;
+	}
+
+	.column-wrap.has-cta {
+		padding-bottom: 2em;
+	}
+}
+
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.block.columns-block {
+			&.block-style-tasks,
+			&.block-style-no_image {
+				.can-do-steps .step-number {
+					background-color: #{nth($colors_1, $i)};
+					color: #{nth($colors_1_font, $i)};
+
+					.step-number-inner {
+						background-color: #{nth($colors_1, $i)};
+						border-color: #{nth($colors_3, $i)};
+					}
+				}
+
+				.btn.btn-secondary {
+					background-color: #{nth($colors_3, $i)};
+					color: #{nth($colors_3_font, $i)};
+				}
+
+				.btn.btn-secondary:hover {
+					background-color: #{nth($colors_1, $i)};
+					color: #{nth($colors_1_font, $i)};
+				}
+			}
+
+			a.call-to-action-link {
+				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+			}
+
+			a.call-to-action-link:hover {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_1_font, $i)};
+			}
+		}
+	}
+}
