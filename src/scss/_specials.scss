@@ -1,0 +1,23 @@
+/*
+	This file contains special formatting, cheats, shortcuts, generally things that shouldn't be done but you'll do them
+	anyways because "there is no time right now to find a proper solution".
+	Think twice about putting anything here and if you do, make sure to document what you're doing.
+*/
+
+/*
+	The yearly review 2019
+	- Title color green
+	- Remove max width for the post on large screens because it contains columns that look very narrow otherwise.
+*/
+.postid-40127 {
+	&.single-post .page-header-title {
+		color: $color_standard_1;
+	}
+
+	.page-header .post-header-image,
+	.post-content-lead {
+		max-width: none;
+	}
+}
+
+
