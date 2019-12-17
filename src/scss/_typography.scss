@@ -5,8 +5,8 @@
 	max-width: $one_column_content_width;
 }
 
-.page-template a,
-.post-content a {
+.page-template :not(h1, h2, h3) a,
+.post-content :not(h1, h2, h3) a {
 	color: $color_standard_1;
 }
 
@@ -37,8 +37,8 @@ a.btn-accent:hover {
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.page-template a,
-		.post-content a {
+		.page-template :not(h1, h2, h3) a,
+		.post-content :not(h1, h2, h3) a {
 			color: #{nth($colors_1, $i)};
 		}
 

@@ -116,7 +116,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
 				'planet4-blocks/articles',
 				'planet4-blocks/carousel-header',
-				//'planet4-blocks/columns', // not used at GPCH
+				'planet4-blocks/columns',
 				'planet4-blocks/cookies',
 				'planet4-blocks/counter',
 				'planet4-blocks/covers',
