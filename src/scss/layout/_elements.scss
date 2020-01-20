@@ -84,6 +84,20 @@ a.external-link {
 	white-space: inherit;
 }
 
+/* Cookie Bar */
+#set-cookie {
+	background: none;
+	background-color: $color_standard_2;
+	color: $color_standard_2_font;
+	min-height: 48px;
+	padding: 12px 36px;
+
+	.btn {
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+	}
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
