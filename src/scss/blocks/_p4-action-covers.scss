@@ -88,6 +88,11 @@
 	}
 }
 
+/* correct margins when CTA blocks appear after a separator */
+.wp-block-separator + .covers-block {
+	margin-top: 0;
+}
+
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
