@@ -4,10 +4,7 @@ body .gform_wrapper {
 	margin-top: 0;
 
 	.gform_button,
-	.gform_footer .gform_button,
-	.gform_page_footer .gform_button,
-	.gform_page_footer .gform_previous_button,
-	.gform_page_footer .gform_next_button {
+	.gform_footer .gform_button {
 		border: 0;
 		padding: .4rem 2rem;
 		background-color: $color_standard_3;
@@ -17,17 +14,10 @@ body .gform_wrapper {
 		text-transform: uppercase;
 	}
 
-	.gform_page_footer .gform_previous_button {
-		background-color: $color_gray_dark;
-		color: #fff;
-	}
-
 	.gform_button:hover,
-	.gform_page_footer .gform_next_button:hover,
-	.gform_footer .gform_button:hover,
-	.gform_page_footer .gform_previous_button:hover {
-		background-color: $color_standard_1;
-		color: $color_standard_1_font;
+	.gform_footer .gform_button:hover {
+		background-color: $color_standard_2;
+		color: $color_standard_2_font;
 		cursor: pointer;
 	}
 
