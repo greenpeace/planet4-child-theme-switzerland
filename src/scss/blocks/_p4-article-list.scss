@@ -17,6 +17,11 @@ body .page-template {
 	}
 }
 
+/* correct margins when articles appear after a separator */
+.wp-block-separator + .articles-block {
+	margin-top: 0;
+}
+
 /*
 	Remove images for press-releases
 	Only works on page for press releases at the moment

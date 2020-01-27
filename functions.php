@@ -28,9 +28,6 @@ require_once( 'includes/gutenberg-palettes.php' );
 // Customize the Gutenberg sidebar
 require_once( 'includes/gutenberg-sidebar.php' );
 
-// Customize Gravity Forms
-require_once( 'includes/gravity-forms.php' );
-
 
 /**
  * Load Javascript for further Gutenberg customizations

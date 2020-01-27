@@ -10,6 +10,13 @@ h2.page-section-header {
 	color: $color_standard_1;
 }
 
+/* remove top margin when inside other blocks */
+.articles-block > .container > header > h2,
+.articles-block > .container > header > h2.page-section-header,
+.content-covers-block > .container > h2 {
+	margin-top: 0;
+}
+
 /* Remove top margin inside certain blocks that already have a margin */
 .block.article-listing,
 .block.covers-block {
