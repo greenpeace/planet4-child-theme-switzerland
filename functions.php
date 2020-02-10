@@ -31,6 +31,9 @@ require_once( 'includes/gutenberg-sidebar.php' );
 // Extend Gravity Forms
 require_once( 'includes/gravity-forms-extensions.php' );
 
+// Customize Gravity Forms
+require_once( 'includes/gravity-forms.php' );
+
 
 /**
  * Load Javascript for further Gutenberg customizations

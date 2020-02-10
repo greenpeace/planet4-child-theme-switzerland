@@ -68,6 +68,7 @@ iframe {
 	text-transform: uppercase;
 	font-weight: 500;
 }
+
 .btn-accent:hover {
 	background-color: $color_standard_3;
 	color: $color_standard_3_font;
@@ -98,6 +99,25 @@ a.external-link {
 	}
 }
 
+/* show / hide elements based on screen size */
+@include media('<tablet') {
+	.hide-mobile {
+		display: none;
+	}
+}
+
+@include media('>=tablet', '<desktop') {
+	.hide-tablet {
+		display: none;
+	}
+}
+
+@include media('>=desktop') {
+	.hide-desktop {
+		display: none;
+	}
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
@@ -105,6 +125,7 @@ a.external-link {
 			background-color: #{nth($colors_1, $i)};
 			color: #{nth($colors_1_font, $i)};
 		}
+
 		.btn-accent:hover {
 			background-color: #{nth($colors_3, $i)};
 			color: #{nth($colors_3_font, $i)};
