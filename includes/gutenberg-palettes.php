@@ -6,7 +6,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_gutenberg_color_palette' ) ) {
 
 	/**
 	 * Add a custom color palette in Gutenberg.
-	 * Uses the Planet4 color palette found here: https://planet4.greenpeace.org/start/style-guide/#colour-palette
 	 */
 	function p4_child_theme_gpch_gutenberg_color_palette() {
 		add_theme_support(
