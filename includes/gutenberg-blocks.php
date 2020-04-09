@@ -31,7 +31,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'core/table',
 			//'core/pullquote', // removed, normal quote element is available
 			//'core/verse', // removed, not needed, not styled
-			'core/button',
+			'core/buttons',
 			//'core/media-text' // removed, not needed
 			//'core/more', // removed, not needed
 			//'core/nextpage', // removed, not needed,
@@ -55,7 +55,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'core-embed/vimeo',
 			'core-embed/animoto',
 			'core-embed/cloudup',
-			'core-embed/collegehumor',
 			'core-embed/dailymotion',
 			'core-embed/funnyordie',
 			'core-embed/hulu',
@@ -77,6 +76,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'core-embed/tumblr',
 			'core-embed/videopress',
 			'core-embed/wordpress-tv',
+			'core-embed/tiktok',
 			'acf/p4block-gallery-3column',
 			'acf/p4block-gallery-grid',
 			'acf/p4block-gallery-slider',
