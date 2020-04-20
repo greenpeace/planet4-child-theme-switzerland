@@ -4,7 +4,8 @@ body .site-footer {
 	color: $color_gray_dark;
 
 	a {
-		color: $color_gray_dark;
+		/* Have to use important because it's also done in the master theme */
+		color: $color_gray_dark !important;
 	}
 
 	a:hover {
@@ -33,7 +34,8 @@ body .site-footer {
 
 	.copyright-text,
 	.gp-year {
-		color: $color_gray_dark;
+		/* Have to use important because it's also done in the master theme */
+		color: $color_gray_dark !important;
 	}
 }
 
