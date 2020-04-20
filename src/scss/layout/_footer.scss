@@ -26,6 +26,11 @@ body .site-footer {
 		font-size: .8rem;
 	}
 
+	.footer-links li,
+	.footer-links-secondary li {
+		line-height: 1.5;
+	}
+
 	.copyright-text,
 	.gp-year {
 		color: $color_gray_dark;
