@@ -77,3 +77,11 @@ function gpch_prefill_gf_user_email() {
 }
 
 add_filter( 'gform_field_value_form_connect_email', 'gpch_prefill_gf_user_email' );
+
+/**
+ * Put zip code before city in address fields
+ */
+add_filter( 'gform_address_display_format', 'gpch_gf_address_format', 10, 2 );
+function gpch_gf_address_format( $format, $field ) {
+	return 'zip_before_city';
+}
