@@ -10,7 +10,7 @@ body:not(.wp-admin) { /* Master theme uses this more specific notation */
 body .top-navigation {
 	background-color: rgba(255, 255, 255, .9);
 
-	a {
+	a.nav-link {
 		color: $color_gray_dark;
 	}
 
@@ -19,7 +19,7 @@ body .top-navigation {
 		border-bottom-color: $color_standard_1;
 	}
 
-	a:hover {
+	a.nav-link:hover {
 		color: $color_standard_3;
 	}
 }
