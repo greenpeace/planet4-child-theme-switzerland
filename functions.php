@@ -122,3 +122,38 @@ function p4_child_theme_gpch_theme_support() {
 
 add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support' );
 
+
+/**
+ * @param $tags
+ * @param $context
+ *
+ * @return mixed
+ */
+function p4_child_theme_gpch_allowed_html_tags( $tags, $context ) {
+	if ( 'post' === $context ) {
+		$tags['select'] = array(
+			'name'          => true,
+			'id'            => true,
+			'class'         => true,
+			'aria-required' => true,
+			'aria-invalid'  => true,
+			'autocomplete'  => true,
+			'autofocus'     => true,
+			'disabled'      => true,
+			'form'          => true,
+			'multiple'      => true,
+			'required'      => true,
+			'size'          => true,
+		);
+		$tags['option'] = array(
+			'value'    => true,
+			'selected' => true,
+			'disabled' => true,
+			'label'    => true,
+		);
+	}
+
+	return $tags;
+}
+
+add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10, 2 );
