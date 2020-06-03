@@ -13,10 +13,22 @@ p.is-style-accent-2 {
 	list-style: square;
 	padding: 1em 4em 1em 4em;
 	background-color: $color_standard_3;
-	color: $color_standard_3_font;
+	color: $color_standard_2;
 
 	font-weight: 700;
 	font-size: 1.2rem;
+
+
+}
+
+/* Hover color needs correction, otherwise the same as the background */
+.page-template,
+.post-content {
+	p.is-style-accent-2 {
+		a:hover {
+			color: $color_standard_3_font;
+		}
+	}
 }
 
 /* Color Schemes */
@@ -31,12 +43,22 @@ p.is-style-accent-2 {
 			background-color: #{nth($colors_3, $i)};
 			color: #{nth($colors_3_font, $i)};
 		}
+
+		.page-template,
+		.post-content {
+			p.is-style-accent-2 {
+				a:hover {
+					color: #{nth($colors_2, $i)};
+				}
+			}
+		}
+
 	}
 }
 
 @include media('<=tablet') {
 	p.is-style-accent-1 {
-		padding: 1em ;
+		padding: 1em;
 	}
 
 	p.is-style-accent-2 {
