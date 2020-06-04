@@ -54,7 +54,7 @@ jQuery(document).ready(function () {
 
 	// Insert tag classes in action covers block
 	jQuery('.covers-block .cover-card').each(function () {
-		campaignName = jQuery(this).find('.cover-card-tag').first().text();
+		campaignName = jQuery(this).find('.cover-card-tag').first().text().trim();
 
 		if (campaignName in tagList) {
 			jQuery(this).addClass(tagList[campaignName]);
