@@ -6,6 +6,11 @@ hr.wp-block-separator {
 	background-color: $color_standard_1;
 }
 
+/* Fix for a master theme greedy selector */
+.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	max-width: none;
+}
+
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
