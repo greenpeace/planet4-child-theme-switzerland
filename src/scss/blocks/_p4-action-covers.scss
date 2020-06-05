@@ -12,6 +12,10 @@
 	&:hover {
 		box-shadow: none;
 
+		p {
+			display: none;
+		}
+
 		.btn {
 			background-color: $color_standard_1;
 			color: $color_standard_1_font;
