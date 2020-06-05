@@ -145,6 +145,19 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/timeline',
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_post );
+		} else if ( $post->post_type === 'gpch_event' ) { // block types only for gpch_events
+			$allowed_blocks_post = array(
+				'core/freeform',
+				// Classic editor, needed for old posts
+				//'core/columns', // not used in events
+
+				// Blocks from planet4-plugin-gutenberg-blocks
+				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
+				'planet4-blocks/counter',
+				'planet4-blocks/gallery',
+				'planet4-blocks/take-action-boxout',
+			);
+			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_post );
 		} else if ( $post->post_type === 'campaign' ) { // block types only for campaign pages
 			$allowed_blocks_post = array(
 				'core/freeform',
@@ -169,7 +182,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/timeline',
 			);
 		}
-
+		
 		return $allowed_blocks;
 	}
 }
