@@ -45,6 +45,10 @@
 		}
 	}
 
+	.cover-card-btn {
+		display: block;
+	}
+
 	.cover-card-tag {
 		color: $color_standard_1;
 		font-weight: 500;
@@ -60,6 +64,11 @@
 	.cover-card-heading {
 		margin-top: 1rem;
 		font-size: 1.4rem;
+
+		&:hover {
+			color: $color_white;
+			text-decoration: none;
+		}
 	}
 }
 
