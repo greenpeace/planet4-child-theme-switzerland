@@ -69,10 +69,14 @@ $context['filter_url'] = add_query_arg(
 // Build the shortcode for articles block.
 if ( 'yes' === $post->include_articles ) {
 	$block_attributes = [
-		'exclude_post_id' => $post->ID,
+		'exclude_post_id'   => $post->ID,
+		'post_types'        => array( 75, 77, 80, 194 ),
+		'ignore_categories' => true,
 	];
 
 	$post->articles = '<!-- wp:planet4-blocks/articles ' . wp_json_encode( $block_attributes, JSON_UNESCAPED_SLASHES ) . ' /-->';
+
+	$post->showArticlesForPostTypes =  array('story', 'story-fr', 'publikation', 'publication', 'hintergrund', 'article-de-magazine');
 }
 
 // Build the shortcode for take action boxout block
