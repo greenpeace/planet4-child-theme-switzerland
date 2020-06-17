@@ -165,13 +165,13 @@ add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10,
  *
  * @param $redirect_page
  */
-function p4_test_action ($redirect_page) {
+function p4_child_theme_gpch_tag_page_redirect ($redirect_page) {
 	$permalink = get_permalink($redirect_page);
 
 	if ($permalink !== false) {
-		header( 'Location: ' . $permalink );
+		wp_safe_redirect($permalink, 301);
 		exit;
 	}
 }
 
-add_action('p4_action_tag_page_redirect', 'p4_test_action');
+add_action('p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect');
