@@ -157,3 +157,21 @@ function p4_child_theme_gpch_allowed_html_tags( $tags, $context ) {
 }
 
 add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10, 2 );
+
+
+/**
+ * Modify the behavior of tag pages when a redirect is set. The master theme will just load the content of the page,
+ * we'll redirect instead.
+ *
+ * @param $redirect_page
+ */
+function p4_test_action ($redirect_page) {
+	$permalink = get_permalink($redirect_page);
+
+	if ($permalink !== false) {
+		header( 'Location: ' . $permalink );
+		exit;
+	}
+}
+
+add_action('p4_action_tag_page_redirect', 'p4_test_action');
