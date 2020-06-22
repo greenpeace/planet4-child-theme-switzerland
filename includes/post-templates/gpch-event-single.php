@@ -42,13 +42,6 @@ $context['og_description']      = $post->get_og_description();
 $context['og_image_data']       = $post->get_og_image();
 $context['custom_body_classes'] = 'white-bg';
 
-// Build the shortcode for take action boxout block
-// Break the content to retrieve first 2 paragraphs and split the content if the take action page has been defined.
-if ( ! empty( $take_action_page ) ) {
-	$post->take_action_page   = $take_action_page;
-	$post->take_action_boxout = "[shortcake_take_action_boxout take_action_page='$take_action_page' /]";
-}
-
 $context['post_tags'] = implode( ', ', $post->tags() );
 
 if ( post_password_required( $post->ID ) ) {
