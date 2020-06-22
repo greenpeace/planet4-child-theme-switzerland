@@ -61,3 +61,10 @@ jQuery(document).ready(function () {
 		}
 	});
 });
+
+// Helper function for copy to clipboard in forms
+function copyTextareaToClipboard() {
+	var copyText = document.querySelector("#clipboard-copy-text");
+	copyText.select();
+	document.execCommand("copy");
+}
