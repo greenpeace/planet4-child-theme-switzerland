@@ -1,5 +1,16 @@
+.covers-block {
+	display: block;
+	margin-top: 4rem;
+
+	.limit-visibility {
+		margin-top: 0; /* Remove a master theme hack */
+	}
+}
+
 .cover-card {
 	box-shadow: none;
+	margin-top: 0;
+	margin-bottom: 1rem;
 
 	&:not(.single-cover):hover {
 		box-shadow: none;

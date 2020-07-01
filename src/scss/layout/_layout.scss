@@ -12,6 +12,7 @@ body .top-navigation {
 
 	a.nav-link {
 		color: $color_gray_dark;
+		display: inline-block;
 	}
 
 	.navbar-dropdown .active .nav-link {
@@ -26,7 +27,7 @@ body .top-navigation {
 
 .navbar-dropdown {
 	.nav-link {
-		font-weight: bold;
+		font-weight: $font-weight-bold;
 	}
 
 	.nav-link:active,

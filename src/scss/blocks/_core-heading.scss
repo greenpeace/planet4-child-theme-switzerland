@@ -4,10 +4,30 @@ h2.page-section-header {
 	margin-bottom: 1.5rem;
 
 	font-size: 2.375rem;
-	font-weight: 700;
+	font-weight: $font-weight-bold;
 	line-height: $line-height-h2;
 
 	color: $color_standard_1;
+}
+
+.post-content h2 {
+	font-size: 1.875rem;
+}
+
+/* The master theme formats these as display-inline, which prevents margins from collapsing.  */
+.page-template {
+	h2 {
+		display: block;
+		margin-top: 3rem;
+		margin-bottom: 1.5rem;
+	}
+}
+
+/* P4 blocks use different markup, get the titles to looks similar */
+.articles-block > .container > header,
+.covers-block > .container > header,
+.content-covers-block > .container > header {
+	margin-bottom: 1.5rem;
 }
 
 /* remove top margin when inside other blocks */
@@ -31,14 +51,19 @@ h3 {
 	margin-top: 2em;
 	margin-bottom: $margin-bottom-h3;
 	font-size: 1.5rem;
-	font-weight: 700;
+	font-weight: $font-weight-bold;
 	line-height: $line-height-h3;
 	color: $color_gray_dark;
 }
 
 h4 {
-	font-size: 1.2rem;
-	font-weight: 700;
+	font-size: 1.25rem;
+	font-weight: $font-weight-bold;
+}
+
+.single h2 {
+	margin-top: 1.5rem;
+	margin-bottom: .5rem;
 }
 
 /* Headings in columns don't need a top margin */
@@ -50,14 +75,6 @@ h4 {
 .wp-block-column > h6:first-child {
 	margin-top: 0;
 }
-
-/* Headings next to each other need less margin */
-h2 + h3,
-.wp-block-column > h2 + h3 {
-	margin-top: -10px;
-	margin-bottom: 1.5rem;
-}
-
 
 h2.is-style-underline:after,
 h3.is-style-underline:after {
@@ -110,4 +127,16 @@ h3.is-style-underline:after {
 		font-size: 1.5rem;
 	}
 
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	/* The master theme formats these as display-inline, which prevents margins from collapsing.  */
+	.page-template > h2 {
+		display: block;
+		margin-top: 3rem;
+		margin-bottom: 1rem;
+	}
 }
+
+
