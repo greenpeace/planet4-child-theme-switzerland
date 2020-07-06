@@ -1,4 +1,6 @@
 .carousel-header_full-width-classic {
+	margin-bottom: 4rem;
+
 	.carousel-item {
 		/* Hide gray overlay */
 		.background-holder::after {
@@ -21,6 +23,7 @@
 				p {
 					margin: 0;
 					color: $color_gray_dark;
+					line-height: $line-height-standard;
 				}
 			}
 

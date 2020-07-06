@@ -14,6 +14,7 @@ body .site-footer {
 
 	.footer-social-media {
 		justify-content: center;
+		padding: 0;
 	}
 
 	.footer-links li::after,
@@ -29,13 +30,17 @@ body .site-footer {
 
 	.footer-links li,
 	.footer-links-secondary li {
-		line-height: 1.5;
+		line-height: 1.75;
 	}
 
 	.copyright-text,
 	.gp-year {
 		/* Have to use important because it's also done in the master theme */
 		color: $color_gray_dark !important;
+	}
+
+	ul li a svg {
+		font-size: 3rem;
 	}
 }
 
