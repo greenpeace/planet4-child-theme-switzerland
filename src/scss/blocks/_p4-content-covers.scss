@@ -1,0 +1,40 @@
+.content-covers-block{
+	display: block;
+	margin-top: 4rem;
+
+	.limit-visibility {
+		margin-top: 0; /* Remove a master theme hack */
+	}
+}
+
+.content-covers-block {
+	.content-covers-block-wrap {
+		margin-top: 0;
+		margin-bottom: 1rem;
+
+		.content-covers-block-info {
+			a {
+				color: $color_gray_dark;
+
+				&:hover {
+					color: $color-standard_3;
+				}
+			}
+
+			.publication-date {
+				margin-bottom: .5rem;
+				font-size: $font-size-standard;
+				line-height: $line-height-standard;
+			}
+
+			p {
+				font-size: $font-size-standard;
+				line-height: $line-height-standard;
+			}
+		}
+	}
+}
+
+@include media('<=tablet') {
+
+}
