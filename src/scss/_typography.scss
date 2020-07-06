@@ -67,3 +67,12 @@ a.btn-accent:hover {
 		}
 	}
 }
+
+@include media('<=tablet') {
+	p,
+	ul li,
+	ol li {
+		font-size: $font-size-standard-mobile;
+		line-height: $line-height-standard;
+	}
+}
