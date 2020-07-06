@@ -1,10 +1,24 @@
-.article-list-item-content {
-	font-weight: 400;
+.articles-block {
+	display: block;
+	margin-top: 4rem;
+
+	.limit-visibility {
+		margin-top: 0; /* Remove a master theme hack */
+	}
+
+	h4.article-list-item-headline {
+		font-size: 1.5rem;
+	}
+
+	.article-list-item-content {
+		font-weight: 400;
+	}
+
+	.article-list-item .top-page-tags .tag-item {
+		color: $color_standard_1;
+	}
 }
 
-.article-list-item .top-page-tags .tag-item {
-	color: $color_standard_1;
-}
 
 body .page-template {
 	.article-list-item-headline a,

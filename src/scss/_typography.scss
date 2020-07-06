@@ -1,3 +1,22 @@
+p,
+ul li,
+ol li {
+	font-size: $font-size-standard;
+	line-height: $line-height-standard;
+}
+
+single {
+	p,
+	ul li,
+	ol li {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+b, strong {
+	font-weight: $font-weight-bold;
+}
 
 .page-template > p,
 .page-template > dl.accordion,
