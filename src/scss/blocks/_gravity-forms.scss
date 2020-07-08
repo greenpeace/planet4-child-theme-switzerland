@@ -48,6 +48,15 @@ body .gform_wrapper {
 			margin-right: .5em;
 		}
 	}
+
+	/* Remove the required icon from the title and display it next to the label */
+	.gfield.privacy-field .gfield_label {
+		display: none;
+	}
+	.gfield.privacy-field label::after {
+		content: " *";
+		color: #790000;
+	}
 }
 
 /* not for petitions */
