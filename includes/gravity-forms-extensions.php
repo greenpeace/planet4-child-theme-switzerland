@@ -186,6 +186,10 @@ function gpch_gf_type_setting( $settings, $form ) {
             		<option value="event" ' . ( $value == 'event' ? 'selected' : '' ) . '>' . __( 'Event', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="contest" ' . ( $value == 'contest' ? 'selected' : '' ) . '>' . __( 'Contest', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="quiz" ' . ( $value == 'quiz' ? 'selected' : '' ) . '>' . __( 'Quiz', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="volunteers" ' . ( $value == 'volunteers' ? 'selected' : '' ) . '>' . __( 'Volunteers', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="testament" ' . ( $value == 'testament' ? 'selected' : '' ) . '>' . __( 'Testament', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="order" ' . ( $value == 'order' ? 'selected' : '' ) . '>' . __( 'Order', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="leadgen" ' . ( $value == 'leadgen' ? 'selected' : '' ) . '>' . __( 'Leadgen', 'planet4-child-theme-switzerland' ) . '</option>
 				</select>';
 
 	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_form_type'] = '
