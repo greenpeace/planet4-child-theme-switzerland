@@ -20,6 +20,16 @@
 			color: $color_standard_3;
 		}
 
+		.gform_wrapper .gform_footer {
+			.gform_button {
+				background-color: $color_standard_3;
+				color: $color_standard_3_font;
+			}
+			.gform_button:hover {
+				background-color: $color_standard_2;
+				color: $color_standard_2_font;
+			}
+		}
 	}
 
 	.wp-block-column:nth-child(2) {
@@ -67,6 +77,17 @@
 
 				a {
 					color: #{nth($colors_3, $i)};
+				}
+
+				.gform_wrapper .gform_footer {
+					.gform_button {
+						background-color: #{nth($colors_3, $i)};
+						color: #{nth($colors_3_font, $i)};
+					}
+					.gform_button:hover {
+						background-color: #{nth($colors_2, $i)};
+						color: #{nth($colors_2_font, $i)};
+					}
 				}
 			}
 		}
