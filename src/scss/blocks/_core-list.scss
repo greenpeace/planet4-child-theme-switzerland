@@ -87,6 +87,17 @@ ul.is-style-accent-info {
 	}
 }
 
+/* Color scheme correction for climate */
+@for $i from 1 through length($selector_colorscheme_climate) {
+	#{nth($selector_colorscheme_climate, $i)} {
+		ul.is-style-accent-info {
+			li:before {
+				color: $color_climate_1;
+			}
+		}
+	}
+}
+
 
 @include media('<=desktop') {
 	ul.is-style-accent-info {
