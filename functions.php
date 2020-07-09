@@ -31,6 +31,9 @@ require_once( 'includes/gutenberg-sidebar.php' );
 // Customize/extend Gravity Forms
 require_once( 'includes/gravity-forms-extensions.php' );
 
+// Custom taxonomy for background articles
+require_once( 'includes/background-taxonomy.php' );
+
 
 /**
  * Load Javascript for further Gutenberg customizations
