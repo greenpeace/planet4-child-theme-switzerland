@@ -42,11 +42,12 @@ $post->set_issues_links();
 $page_meta_data                 = get_post_meta( $post->ID );
 $page_meta_data                 = array_map( 'reset', $page_meta_data );
 $page_terms_data                = get_the_terms( $post, 'p4-page-type' );
-$page_terms_data                = array_map( 'reset', $page_terms_data );
+$post_article_types             = get_the_terms( $post, 'gpch-article-type' );
 $context['background_image']    = $page_meta_data['p4_background_image_override'] ?? '';
 $take_action_page               = $page_meta_data['p4_take_action_page'] ?? '';
-$context['page_type']           = $page_terms_data->name ?? '';
-$context['page_term_id']        = $page_terms_data->term_id ?? '';
+$context['page_type']           = $page_terms_data[0]->name ?? '';
+$context['page_term_id']        = $page_terms_data[0]->term_id ?? '';
+$context['gpch_article_types']  = $post_article_types;
 $context['custom_body_classes'] = 'white-bg';
 $context['page_type_slug']      = $page_terms_data->slug ?? '';
 $context['social_accounts']     = $post->get_social_accounts( $context['footer_social_menu'] );
@@ -76,7 +77,14 @@ if ( 'yes' === $post->include_articles ) {
 
 	$post->articles = '<!-- wp:planet4-blocks/articles ' . wp_json_encode( $block_attributes, JSON_UNESCAPED_SLASHES ) . ' /-->';
 
-	$post->showArticlesForPostTypes =  array('story', 'story-fr', 'publikation', 'publication', 'hintergrund', 'article-de-magazine');
+	$post->showArticlesForPostTypes = array(
+		'story',
+		'story-fr',
+		'publikation',
+		'publication',
+		'hintergrund',
+		'article-de-magazine'
+	);
 }
 
 // Build the shortcode for take action boxout block
@@ -125,5 +133,9 @@ if ( post_password_required( $post->ID ) ) {
 
 	Timber::render( 'single-password.twig', $context );
 } else {
-	Timber::render( [ 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ], $context );
+	Timber::render( [
+		'single-' . $post->ID . '.twig',
+		'single-' . $post->post_type . '.twig',
+		'single.twig'
+	], $context );
 }

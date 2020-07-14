@@ -25,6 +25,15 @@
 						</div>
 					{% endif %}
 
+					{% if (gpch_article_types) %}
+						<div class="tag-wrap article-types">
+							{% for article_type in gpch_article_types %}
+								<a class="tag-item tag" href="{{ article_type.link }}">{{ article_type.name|e('wp_kses_post')|raw }}{% if gpch_article_types|length > loop.index %},{% endif %}
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+
 					{% if (post.tags) %}
 						<div class="tag-wrap tags">
 							{% for tag in post.tags %}
