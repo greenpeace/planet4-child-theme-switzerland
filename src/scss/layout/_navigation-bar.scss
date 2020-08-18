@@ -28,12 +28,12 @@
 					border-bottom: none;
 				}
 
-				a.highlight {
+				&.donate-nav-item a {
 					color: $color_donate;
 					font-weight: 700;
 				}
 
-				a.highlight:hover {
+				&.donate-nav-item a:hover {
 					text-decoration: none;
 
 					background-color: $color_donate;
@@ -55,6 +55,10 @@
 			.nav-item.wpml-ls-item a:hover {
 				text-decoration: underline;
 			}
+		}
+
+		.nav-search-wrap .top-nav-search-btn {
+			top: 10px;
 		}
 
 		#search_input {
