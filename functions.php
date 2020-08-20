@@ -34,6 +34,9 @@ require_once( 'includes/gravity-forms-extensions.php' );
 // Custom taxonomy for background articles
 require_once( 'includes/background-taxonomy.php' );
 
+// GPCH advanced post settings
+require_once( 'includes/advanced-post-settings.php' );
+
 
 /**
  * Load Javascript for further Gutenberg customizations
@@ -78,6 +81,35 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 		if ( $taxonomy_terms ) {
 			foreach ( $taxonomy_terms as $taxonomy_term ) {
 				$classes[] = 'tag-' . $taxonomy_term->slug;
+			}
+		}
+	}
+
+	return $classes;
+}
+
+/*
+ * Add color scheme class to body tag
+ */
+add_filter( 'body_class', 'p4_child_theme_gpch_add_color_scheme_class' );
+
+function p4_child_theme_gpch_add_color_scheme_class( $classes ) {
+	if ( is_singular() ) {
+		global $post;
+
+		$color_scheme_tag = get_field( "color_scheme_override" );
+
+		// Use the color scheme override if it exists
+		if (is_object($color_scheme_tag) && isset($color_scheme_tag->slug)) {
+			$classes[] = 'color-scheme-' . $color_scheme_tag->slug;
+		}
+		else {
+			// Use taxonomy terms
+			$taxonomy_terms = get_the_terms( $post->ID, 'post_tag' );
+
+			if ( is_array($taxonomy_terms) ) {
+				// Use the first tag as the color scheme
+				$classes[] = 'color-scheme-' . $taxonomy_terms[0]->slug;
 			}
 		}
 	}
