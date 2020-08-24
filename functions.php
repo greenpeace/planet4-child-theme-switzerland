@@ -34,6 +34,8 @@ require_once( 'includes/gravity-forms-extensions.php' );
 // Custom taxonomy for background articles
 require_once( 'includes/background-taxonomy.php' );
 
+// GPCH advanced post settings
+require_once( 'includes/advanced-post-settings.php' );
 
 /**
  * Load Javascript for further Gutenberg customizations
