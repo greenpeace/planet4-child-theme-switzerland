@@ -120,6 +120,49 @@ if ( ! function_exists( 'p4_child_theme_gpch_user_roles' ) ) {
 		}
 
 
+		// New role for content feedback
+		// Add the role with basic capabilities
+		// Roles are persistent, which means the role will only be added if it doesn't exist yet.
+		add_role( 'gpch-feedback', __( 'GPCH Content Feedback', 'planet4-child-theme-switzerland' ), array(
+			// General
+			'read'              => true,
+
+			// Media upload
+			'upload_files'      => true,
+		) );
+
+
+		// Add capabilities to previews role
+		// These capabilities are added even when the role already exists
+		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
+		$feedback_role = get_role( 'gpch-feedback' );
+
+		if ( $feedback_role ) {
+			// General
+			$feedback_role->add_cap( 'read', true );
+			$feedback_role->add_cap( 'upload_files', true );
+
+			// Role specific capabilities
+			$feedback_role->add_cap( 'edit_posts', true );
+			$feedback_role->add_cap( 'edit_pages', true );
+			$feedback_role->add_cap( 'edit_others_posts', true );
+			$feedback_role->add_cap( 'edit_others_pages', true );
+
+			// Events
+			$event_formexports_role->add_cap( 'edit_gpch_event', true );
+			$event_formexports_role->add_cap( 'read_gpch_event', true );
+			$event_formexports_role->add_cap( 'edit_gpch_events', true );
+			$event_formexports_role->add_cap( 'edit_others_gpch_events', true );
+
+			// Jobs
+			$hr_role->add_cap( 'edit_job', true );
+			$hr_role->add_cap( 'read_job', true );
+			$hr_role->add_cap( 'edit_jobs', true );
+			$hr_role->add_cap( 'edit_others_jobs', true );
+		}
+
+
 		// Add capabilities to editor role
 		// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
 		// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
