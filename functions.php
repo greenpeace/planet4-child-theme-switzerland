@@ -180,3 +180,17 @@ function p4_child_theme_gpch_tag_page_redirect ($redirect_page) {
 }
 
 add_action('p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect');
+
+
+/**
+ * Change default sort order of pages in Wordpress admin
+ */
+function gpch_set_post_order_in_admin( $wp_query ) {
+	global $pagenow;
+
+	if ( is_admin() && 'edit.php' == $pagenow && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
+		$wp_query->set( 'orderby', 'post_modified' );
+		$wp_query->set( 'order', 'DESC' );
+	}
+}
+add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
