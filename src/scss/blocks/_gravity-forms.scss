@@ -1,7 +1,8 @@
-body .gform_wrapper {
+body .gform_wrapper,
+body #gforms_confirmation_message {
 	background-color: $color_standard_2;
 	padding: 1em;
-	margin-top: 0;
+	margin: 1em 0;
 
 	h2, h3, h4 {
 		font-weight: 700;
@@ -53,9 +54,55 @@ body .gform_wrapper {
 	.gfield.privacy-field .gfield_label {
 		display: none;
 	}
+
 	.gfield.privacy-field label::after {
 		content: " *";
 		color: #790000;
+	}
+}
+
+/* GravityForms Polls Addon specific styles*/
+body .gpoll_wrapper,
+body #gforms_confirmation_message {
+	.gpoll_field_label {
+		margin-bottom: $margin-bottom-h3;
+		font-size: 1.5rem;
+		font-weight: $font-weight-bold;
+		line-height: $line-height-h3;
+		color: $color_gray_dark;
+	}
+
+	.gpoll_ratio_box,
+	.gpoll_bar {
+		background-color: #303133;
+		color: $color_white;
+	}
+
+	.gpoll_ratio_box {
+		border-top-left-radius: 2px;
+		border-bottom-left-radius: 2px;
+	}
+
+	.gpoll_bar {
+		.gpoll_bar_juice {
+			background-color: $color_standard_1;
+			background-image: none;
+
+			border-top-right-radius: 2px;
+			border-bottom-right-radius: 2px;
+
+			box-shadow: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	.gpoll_bar_count {
+		text-shadow: rgba(0, 0, 0, .3) 0px 0px 2px;
 	}
 }
 
@@ -69,10 +116,13 @@ body .gform_wrapper {
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
 		/*background-color: #{nth($colors_1, $i)};*/
-		body .gform_wrapper {
+		/*
+		body .gform_wrapper,
+		body #gforms_confirmation_message {
 			background-color: #{nth($colors_2, $i)};
 		}
-
+		*/
+		
 		/* not for petitions */
 		.is-style-petition-left .gform_wrapper {
 			background-color: transparent;
@@ -82,6 +132,7 @@ body .gform_wrapper {
 			background-color: $color_standard_3;
 			color: $color_standard_3_font
 		}
+
 		.gform_button:hover {
 			background-color: $color_standard_1;
 			color: $color_standard_1_font
