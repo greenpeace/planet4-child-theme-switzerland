@@ -34,6 +34,8 @@ require_once( 'includes/gravity-forms-extensions.php' );
 // Custom taxonomy for background articles
 require_once( 'includes/background-taxonomy.php' );
 
+// GPCH advanced post settings
+require_once( 'includes/advanced-post-settings.php' );
 
 /**
  * Load Javascript for further Gutenberg customizations
@@ -178,3 +180,30 @@ function p4_child_theme_gpch_tag_page_redirect ($redirect_page) {
 }
 
 add_action('p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect');
+
+
+/**
+ * Change default sort order of pages in Wordpress admin
+ */
+function gpch_set_post_order_in_admin( $wp_query ) {
+	global $pagenow;
+
+	if ( is_admin() && 'edit.php' == $pagenow && array_key_exists('post_type', $_GET) && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
+		$wp_query->set( 'orderby', 'post_modified' );
+		$wp_query->set( 'order', 'DESC' );
+	}
+}
+add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
+
+
+/**
+ * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
+ */
+function change_media_label(){
+	global $menu, $submenu;
+
+	// Change the forms list submenu to include sorting by ID (descending)
+	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
+}
+add_action( 'admin_menu', 'change_media_label',  9999999);
+
