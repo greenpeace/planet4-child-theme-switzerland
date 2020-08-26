@@ -113,6 +113,12 @@ function p4_child_theme_gpch_scripts() {
 		array( 'jquery' ),
 		filemtime( get_stylesheet_directory() . $js ),
 		true );
+
+	$script_params = array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+	);
+
+	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
 }
 
 add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
