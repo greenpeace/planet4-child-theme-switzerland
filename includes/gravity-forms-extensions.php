@@ -56,27 +56,36 @@ add_action( 'gform_after_submission', 'gpch_save_gf_user_email', 10, 2 );
 
 
 /**
- * Prefill a Gravity Form field with the users email address if it's available in the session.
+ * Prefill a Gravity Form field with the users email address if it's available in the session (AJAX request)
  * Used to connect to separate forms together.
  * The form needs:
- * - A field called "form_connect_email"
- * - The field "form_connect_email" needs to have the setting "Allow field to be populated dynamically" activated
- *
- * @return string
+ * - A hidden field with the value "form_connect_email"
  */
-function gpch_prefill_gf_user_email() {
-	if ( session_status() == PHP_SESSION_NONE ) {
-		session_start();
+function gpch_ajax_form_prefill() {
+	$field = $_GET['field'];
+
+	if ( $field == 'session_email' ) {
+		if ( session_status() == PHP_SESSION_NONE ) {
+			session_start();
+		}
+
+		if ( isset( $_SESSION['gf_connect_forms_email_expire'] ) && $_SESSION['gf_connect_forms_email_expire'] >= time() ) {
+			$data = array(
+				'email' => $_SESSION['gf_connect_forms_email'],
+			);
+
+			wp_send_json_success( $data );
+		} else {
+			wp_send_json_error( 'email not found' );
+		}
 	}
 
-	if ( isset( $_SESSION['gf_connect_forms_email_expire'] ) && $_SESSION['gf_connect_forms_email_expire'] >= time() ) {
-		return $_SESSION['gf_connect_forms_email'];
-	} else {
-		return '';
-	}
+	wp_send_json_error( 'field not available' );
 }
 
-add_filter( 'gform_field_value_form_connect_email', 'gpch_prefill_gf_user_email' );
+add_filter( 'wp_ajax_nopriv_gpch_gf_prefill_field', 'gpch_ajax_form_prefill' );
+add_filter( 'wp_ajax_gpch_gf_prefill_field', 'gpch_ajax_form_prefill' );
+
 
 /**
  * Put zip code before city in address fields
@@ -185,6 +194,7 @@ function gpch_gf_type_setting( $settings, $form ) {
             		<option value="petition" ' . ( $value == 'petition' ? 'selected' : '' ) . '>' . __( 'Petition', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="event" ' . ( $value == 'event' ? 'selected' : '' ) . '>' . __( 'Event', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="contest" ' . ( $value == 'contest' ? 'selected' : '' ) . '>' . __( 'Contest', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="poll" ' . ( $value == 'poll' ? 'selected' : '' ) . '>' . __( 'Poll', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="quiz" ' . ( $value == 'quiz' ? 'selected' : '' ) . '>' . __( 'Quiz', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="volunteers" ' . ( $value == 'volunteers' ? 'selected' : '' ) . '>' . __( 'Volunteers', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="testament" ' . ( $value == 'testament' ? 'selected' : '' ) . '>' . __( 'Testament', 'planet4-child-theme-switzerland' ) . '</option>
