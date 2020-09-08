@@ -97,6 +97,11 @@ h3.is-style-underline:after {
 	background-color: $color_standard_2;
 }
 
+/* Fixes for master theme */
+div.page-template > h2 {
+	display: block;
+}
+
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
