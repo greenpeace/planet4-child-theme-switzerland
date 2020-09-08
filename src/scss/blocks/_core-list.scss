@@ -58,6 +58,11 @@ ul.is-style-accent-info {
 	}
 }
 
+/* Fixes for master theme */
+div.page-template > ul {
+	display: block;
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
