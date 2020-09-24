@@ -118,6 +118,9 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 			__( 'if you aren\'t redirected within a few seconds.', 'planet4-child-theme-switzerland' )
 		);
 
+		// Default value: no newsletter subscription
+		$newsletter_subscription = 0;
+
 		// Find the newsletter field
 		// Convention: use an admin label in the form field settings that contains "newsletter"
 		foreach ( $form['fields'] as $field ) {
@@ -149,7 +152,7 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 				dataLayer.push({
 					"event": "gravityFormSubmission", 
 					"formType": "' . $form['gpch_gf_type'] . '",
-					"newsletterSubscription": ' . $newsletter_subscription . ',
+					"newsletterSubscription": "' . $newsletter_subscription . '",
 					"newsletterType": "' . $newsletter_type . '",
 					"eventCallback" : function(id) {
 						// There might be multiple gtm containers, make sure we only redirect for our main container
