@@ -94,6 +94,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-newsletter',
 			'acf/p4-gpch-block-spacer',
 			'acf/p4-gpch-block-word-cloud',
+			'acf/p4-gpch-block-banner-tool',
 			'acf/p4block-covers-take-action',
 			'acf/raisenow-donation-form',
 			'gravityforms/form',
