@@ -30,5 +30,6 @@
 		}
 	},
 	"require": {
+		"theiconic/php-ga-measurement-protocol": "^2.0"
 	}
 }
