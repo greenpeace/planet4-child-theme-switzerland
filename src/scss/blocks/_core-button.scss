@@ -12,7 +12,6 @@
 		text-decoration: none;
 
 		font-size: 0.875rem;
-		text-transform: uppercase;
 		font-weight: 500;
 
 		/* Remove default Gutenberg style for rounded corners */
@@ -23,7 +22,7 @@
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
 	}
-
+	
 	/* File icons, e.g. PDF links */
 	a:before {
 		margin-right: .2em;
@@ -42,6 +41,11 @@
 	}
 }
 
+
+/* Master theme fixes */
+.btn, .post-content .more-link, .post-content .page-links a, .wp-block-button a, .wp-block-file .wp-block-file__button {
+	border-radius: 0;
+}
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
