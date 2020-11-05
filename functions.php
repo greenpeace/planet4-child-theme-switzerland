@@ -1,17 +1,6 @@
 <?php
 
-/*
- * Autoload dependencies
- */
-if ( file_exists( get_stylesheet_directory() . '/vendor/autoload.php' ) ) {
-	require get_stylesheet_directory() . '/vendor/autoload.php';
 
-}
-
-
-/*
- * Enqueue scripts
- */
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99 );
 
 function enqueue_child_styles() {
@@ -20,30 +9,9 @@ function enqueue_child_styles() {
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $css_creation );
 }
 
-
-/*
- * Constants
- */
-
-//The types of Gravity Forms we use
-const GPCH_GRAVITY_FORM_TYPES = array(
-	'petition',
-	'event',
-	'contest',
-	'poll',
-	'quiz',
-	'volunteers',
-	'testament',
-	'order',
-	'leadgen'
-);
-
 /*
  * Includes
  */
-
-// Child theme options
-require_once( 'includes/child-theme-options.php' );
 
 // Custom Post Types: gpch_job & gpch_archived_post & gpch_magredirect
 require_once( 'includes/custom-post-types.php' );
@@ -68,10 +36,6 @@ require_once( 'includes/background-taxonomy.php' );
 
 // GPCH advanced post settings
 require_once( 'includes/advanced-post-settings.php' );
-
-// Server Side Google Analytics
-require_once( 'includes/server-side-analytics.php' );
-
 
 /**
  * Load Javascript for further Gutenberg customizations
@@ -150,17 +114,8 @@ function p4_child_theme_gpch_scripts() {
 		filemtime( get_stylesheet_directory() . $js ),
 		true );
 
-	$child_options = get_option( 'gpch_child_options' );
-	if ( key_exists( 'gpch_child_field_ssa_properties', $child_options ) ) {
-		$ssa_properties = $child_options['gpch_child_field_ssa_properties'];
-	}
-	else {
-		$ssa_properties = '';
-	}
-
 	$script_params = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		'ssa_properties' => $ssa_properties,
 	);
 
 	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
@@ -248,7 +203,7 @@ add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
 
 
 /**
- * Manipulate the GravityForms menu to display the forms sorted by ID (descending) in Wordpress admin
+ * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
  */
 function change_media_label(){
 	global $menu, $submenu;
