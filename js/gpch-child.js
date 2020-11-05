@@ -84,28 +84,6 @@ jQuery(document).ready(function () {
 	}
 });
 
-function gpchGACallback() {
-	// Copy Google Analytics ClientId into hidden form field
-	ga(function(tracker) {
-		var clientIdField = jQuery( "input[value='clientId']" );
-		
-		var properties = gpchData.ssa_properties.split( ',' );
-		var clientIds = [];
-		var trackers = ga.getAll();
-		
-		for( var i = 0; i < properties.length; i++ ) {
-			for( var j = 0; j < trackers.length; j++ ) {
-				if( properties[ i ] == trackers[ j ].get( 'trackingId' ) ) {
-					clientIds.push( trackers[ j ].get( 'clientId' ) );
-					break;
-				}
-			}
-		}
-		
-		jQuery(clientIdField).val( clientIds.join( ',' ) );
-	});
-}
-
 
 // Helper function for copy to clipboard in forms
 function copyTextareaToClipboard() {
