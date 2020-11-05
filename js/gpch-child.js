@@ -82,7 +82,9 @@ jQuery(document).ready(function () {
 			}
 		});
 	}
-	
+});
+
+function gpchGACallback() {
 	// Copy Google Analytics ClientId into hidden form field
 	ga(function(tracker) {
 		var clientIdField = jQuery( "input[value='clientId']" );
@@ -102,7 +104,8 @@ jQuery(document).ready(function () {
 		
 		jQuery(clientIdField).val( clientIds.join( ',' ) );
 	});
-});
+}
+
 
 // Helper function for copy to clipboard in forms
 function copyTextareaToClipboard() {
