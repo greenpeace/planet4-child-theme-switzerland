@@ -31,14 +31,27 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 				}
 		}
 
+		// Get child theme options
+		$child_options = get_option( 'gpch_child_options' );
+		$user = $child_options['gpch_child_field_inxmail_user'];
+		$pass = $child_options['gpch_child_field_inxmail_pass'];
+
 		// Optional Authentication:
 		curl_setopt( $curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
-		curl_setopt( $curl, CURLOPT_USERPWD, "username:password" );
+		curl_setopt( $curl, CURLOPT_USERPWD, $user . ':' . $pass );
 
 		curl_setopt( $curl, CURLOPT_URL, $url );
 		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
 
-		$result = curl_exec( $curl );
+		try {
+			$result = curl_exec( $curl );
+
+			if ($result === false) {
+				throw new Exception(curl_error($curl));
+			}
+		} catch (Exception $exception) {
+			Sentry\captureException($exception);
+		}
 
 		curl_close( $curl );
 
