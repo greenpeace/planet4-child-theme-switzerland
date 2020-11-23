@@ -13,6 +13,9 @@ function enqueue_child_styles() {
  * Includes
  */
 
+// Child theme options
+require_once( 'includes/child-theme-options.php' );
+
 // Custom Post Types: gpch_job & gpch_archived_post & gpch_magredirect
 require_once( 'includes/custom-post-types.php' );
 
