@@ -5,13 +5,13 @@
  */
 class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	/**
-	 * @param $method: POST, PUT, GET etc
+	 * @param $method : POST, PUT, GET etc
 	 * @param $url
-	 * @param bool $data: array("param" => "value") ==> index.php?param=value
+	 * @param bool $data : array("param" => "value") ==> index.php?param=value
 	 *
 	 * @return bool|string
 	 */
-	function CallAPI( $method, $url, $data = false ) {
+	function call_api( $method, $url, $data = false ) {
 		$curl = curl_init();
 
 		switch ( $method ) {
@@ -43,5 +43,65 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		curl_close( $curl );
 
 		return $result;
+	}
+
+
+	/**
+	 * Subcribes an recipient to an email list
+	 *
+	 * @string $email: Primary key for recepient
+	 * @array $lists: Array of lists to subscribe to
+	 * @array $personalData: additional personal data: first_name, last_name, salutation
+	 * @param bool $subscribeToGeneral : Wheter or not to subscribe the recipient to the general list at the same time
+	 */
+	public function subscribe( $email, $lists, $personal_data, $subscribe_to_general = true ) {
+		$recipient = $this->retrieve_recipient_info();
+
+		if ( $recipient === null ) {
+			$recipient = $this->create_recipient( $email, $personal_data );
+		}
+
+		// IF: Recipient is subscribed to list
+		// return
+		// ELSE: Subscribe recipient to list
+	}
+
+
+	/**
+	 * Retrieve an Inxmail recipient with current subscription data
+	 *
+	 * @see: https://apidocs.inxmail.com/xpro/rest/v1/#retrieve-recipients-collection
+	 *
+	 * @param $email
+	 *
+	 * @return mixed
+	 */
+	protected function retrieve_recipient_info( $email ) {
+
+		return $recipient;
+	}
+
+
+	protected function create_recipient() {
+
+		return $recipient;
+	}
+
+	/**
+	 * Subscribe recipient to master list
+	 */
+	protected function subcribe_to_list() {
+
+	}
+
+
+	/**
+	 *
+	 * Set flags. Subscribes an recipient to email lists.
+	 *
+	 * @array $flags: Array of flags to set
+	 */
+	protected function set_flags( $flags ) {
+
 	}
 }
