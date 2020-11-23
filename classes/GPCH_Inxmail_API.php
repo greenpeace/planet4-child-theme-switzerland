@@ -1,10 +1,9 @@
 <?php
 
-
 /**
- * Class GPCH_i_INXMAIL_API
+ * Class GPCH_Inxmail_API
  */
-class GPCH_i_INXMAIL_API {
+class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	/**
 	 * @param $method: POST, PUT, GET etc
 	 * @param $url
