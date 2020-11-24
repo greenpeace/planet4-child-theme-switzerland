@@ -227,3 +227,86 @@ function gpch_save_gf_type_setting( $form ) {
 }
 
 add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_type_setting' );
+
+
+/**
+ * Finds newsletter subscriptions in forms and sends them to the Inxmail API
+ *
+ * @param $entry
+ * @param $form
+ */
+function gpch_gform_subscribe_newsletter( $entry, $form ) {
+	// Find the field IDs of the form fields we need.
+	$field_ids         = array();
+	$fields_to_extract = array( 'email', 'salutation', 'first_name', 'last_name', 'newsletter' );
+
+	foreach ( $form['fields'] as $field ) {
+		if ( in_array( $field->adminLabel, $fields_to_extract ) ) {
+			$field_ids[ $field->adminLabel ] = $field->id;
+		}
+	}
+
+	// See if there's a newsletter subscription to process, otherwise return.
+	if ( array_key_exists( 'newsletter', $field_ids ) ) {
+		// "newsletter" is a checkbox group, attaching ".1" to the ID gets us the value of the first checkbox.
+		$subscribe_to_lists = rgar( $entry, $field_ids['newsletter'] . '.1' );
+
+		if ( empty( $subscribe_to_lists ) ) {
+			// Checkbox for newsletter subscription was not selected.
+			return;
+		}
+	} else {
+		// Looks like the form doesn't have a field for newsletter subscription.
+		return;
+	}
+
+	try {
+		// The email field is required. If it doesn't exist, we can't proceed.
+		if ( ! array_key_exists( 'email', $field_ids ) ) {
+			throw new Exception( 'Form doesn\'t contain the required email field' );
+		} else {
+			$email = rgar( $entry, $field_ids['email'] );
+
+			// We expect the form to validate the email address, but let's double check.
+			if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+				throw new Exception( 'Email form field contains an invalid email address' );
+			}
+		}
+	} catch ( Exception $exception ) {
+		Sentry\captureException( $exception );
+
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_error', $exception->getMessage() );
+
+		return;
+	}
+
+	// Prepare data for Inxmail API
+	$personal_data_fields = array( 'salutation', 'first_name', 'last_name' );
+	$data                 = array();
+
+	foreach ( $field_ids as $field_name => $field_id ) {
+		if ( in_array( $field_name, $personal_data_fields ) ) {
+			$data[ $field_name ] = rgar( $entry, $field_id );
+		}
+	}
+
+	$lists = explode( ',', $subscribe_to_lists );
+
+	// Send data to Inxmail API
+	$GPCH_Inxmail_API = new GPCH_Inxmail_API();
+	$response         = $GPCH_Inxmail_API->subscribe( $email, $lists, $data );
+
+	// Save status to entry meta data
+	if ( $response['code'] == 0 ) {
+		gform_update_meta( $entry['id'], 'inxmail_status', 1 );
+	} else {
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_error', $response['message'] );
+	}
+
+	GFCommon::log_debug( 'gpch_gform_subscribe_newsletter: response => ' . print_r( $response, true ) );
+}
+
+add_action( 'gform_after_submission', 'gpch_gform_subscribe_newsletter', 10, 2 );
+
