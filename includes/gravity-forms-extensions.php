@@ -305,8 +305,83 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 		gform_update_meta( $entry['id'], 'inxmail_error', $response['message'] );
 	}
 
+	gform_update_meta( $entry['id'], 'inxmail_date_last_try', date( 'c' ) );
+
 	GFCommon::log_debug( 'gpch_gform_subscribe_newsletter: response => ' . print_r( $response, true ) );
 }
 
 add_action( 'gform_after_submission', 'gpch_gform_subscribe_newsletter', 10, 2 );
+
+
+/**
+ * Add a meta box to the Gravity Forms entry detail page containing info on Inxmail API
+ *
+ * @param array $meta_boxes The properties for the meta boxes.
+ * @param array $entry The entry currently being viewed/edited.
+ * @param array $form The form object used to process the current entry.
+ *
+ * @return array
+ */
+function gpch_register_gravityforms_inxmail_metabox( $meta_boxes, $entry, $form ) {
+	// Find out if the form has a field to register for a newsletter
+	$form_has_newsletter_field = false;
+
+	$fields = GFAPI::get_fields_by_type( $form, array( 'checkbox' ) );
+
+	if ( ! empty( $fields ) ) {
+		foreach ( $fields as $field ) {
+			if ( $field->adminLabel == 'newsletter' ) {
+				$form_has_newsletter_field = true;
+			}
+		}
+	}
+
+	if ( $form_has_newsletter_field ) {
+		$meta_boxes['gpch_inxmail'] = array(
+			'title'    => esc_html__( 'Inxmail API', 'planet4-child-theme-switzerlan' ),
+			'callback' => 'gpch_gravityforms_inxmail_metabox_callback',
+			'context'  => 'side',
+		);
+	}
+
+	return $meta_boxes;
+}
+
+add_filter( 'gform_entry_detail_meta_boxes', 'gpch_register_gravityforms_inxmail_metabox', 10, 3 );
+
+
+/**
+ * The callback used to echo the content of the Inxmail API metabox for Gravity Forms
+ *
+ * @param array $args An array containing the form and entry objects.
+ */
+function gpch_gravityforms_inxmail_metabox_callback( $args ) {
+	$form  = $args['form'];
+	$entry = $args['entry'];
+
+	$html = '';
+
+	// Status
+	$inxmail_status = gform_get_meta( $entry['id'], 'inxmail_status' );
+
+	if ( $inxmail_status == 0 ) {
+		$html .= '<p><b>Status:</b> <span style="color: red;">Not sent</span></p>';
+
+		// Error message
+		$inxmail_error = gform_get_meta( $entry['id'], 'inxmail_error' );
+
+		$html .= '<p><b>Error Message:</b> ' . $inxmail_error . '</p>';
+	} elseif ( $inxmail_status == 1 ) {
+		$html .= '<p><b>Status:</b> <span style="color: green;">OK</span></p>';
+	}
+
+	// Date of last tried connection
+	$inxmail_date_last_try = gform_get_meta( $entry['id'], 'inxmail_date_last_try' );
+
+	if ( $inxmail_date_last_try ) {
+		$html .= '<p><b>Last try:</b> ' . $inxmail_date_last_try . '</p>';
+	}
+
+	echo $html;
+}
 
