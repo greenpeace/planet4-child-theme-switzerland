@@ -4,6 +4,26 @@
  * Class GPCH_Inxmail_API
  */
 class GPCH_Inxmail_API implements GPCH_i_REST_API {
+	private $user = '';
+	private $pass = '';
+	private $base_url = '';
+
+	/**
+	 * GPCH_Inxmail_API constructor.
+	 */
+	function __construct() {
+		// Get child theme options
+		$child_options = get_option( 'gpch_child_options' );
+
+		$user = $child_options['gpch_child_field_inxmail_user'];
+		$pass = $child_options['gpch_child_field_inxmail_pass'];
+		$base_url = $child_options['gpch_child_field_inxmail_baseurl'];
+
+		if ($user) $this->user = $user;
+		if ($pass) $this->pass = $pass;
+		if ($base_url) $this->base_url = $base_url;
+	}
+
 	/**
 	 * @param $method : POST, PUT, GET etc
 	 * @param $url
@@ -11,7 +31,8 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 *
 	 * @return bool|string
 	 */
-	function call_api( $method, $url, $data = false ) {
+	function call_api( $method, $data = false ) {
+		$url = $this->base_url;
 		$curl = curl_init();
 
 		switch ( $method ) {
@@ -31,14 +52,9 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 				}
 		}
 
-		// Get child theme options
-		$child_options = get_option( 'gpch_child_options' );
-		$user = $child_options['gpch_child_field_inxmail_user'];
-		$pass = $child_options['gpch_child_field_inxmail_pass'];
-
 		// Optional Authentication:
 		curl_setopt( $curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
-		curl_setopt( $curl, CURLOPT_USERPWD, $user . ':' . $pass );
+		curl_setopt( $curl, CURLOPT_USERPWD, $this->user . ':' . $this->pass );
 
 		curl_setopt( $curl, CURLOPT_URL, $url );
 		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
@@ -46,18 +62,17 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		try {
 			$result = curl_exec( $curl );
 
-			if ($result === false) {
-				throw new Exception(curl_error($curl));
+			if ( $result === false ) {
+				throw new Exception( curl_error( $curl ) );
 			}
-		} catch (Exception $exception) {
-			Sentry\captureException($exception);
+		} catch ( Exception $exception ) {
+			Sentry\captureException( $exception );
 		}
 
 		curl_close( $curl );
 
 		return $result;
 	}
-
 
 	/**
 	 * Subcribes an recipient to an email list
@@ -89,7 +104,11 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 *
 	 * @return mixed
 	 */
-	protected function retrieve_recipient_info( $email ) {
+	protected function retrieve_recipient_info_by_email( $email ) {
+		$method = 'GET';
+		$data = array('email' => $email);
+
+		$recipient = $this->call_api($method, $data);
 
 		return $recipient;
 	}
