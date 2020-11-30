@@ -7,6 +7,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	private $user = '';
 	private $pass = '';
 	private $base_url = '';
+	private $recipients_slug = 'recipients/';
 
 	/**
 	 * GPCH_Inxmail_API constructor.
@@ -15,13 +16,23 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		// Get child theme options
 		$child_options = get_option( 'gpch_child_options' );
 
-		$user = $child_options['gpch_child_field_inxmail_user'];
-		$pass = $child_options['gpch_child_field_inxmail_pass'];
-		$base_url = $child_options['gpch_child_field_inxmail_baseurl'];
+		// print_r( '[grownnotmade] -> [__construct()] -> [$child_options]' );
+		// var_dump( $child_options );
 
-		if ($user) $this->user = $user;
-		if ($pass) $this->pass = $pass;
-		if ($base_url) $this->base_url = $base_url;
+		if ( $child_options ) {
+			if ( array_key_exists( 'gpch_child_field_inxmail_user', $child_options ) && array_key_exists( 'gpch_child_field_inxmail_pass', $child_options ) && array_key_exists( 'gpch_child_field_inxmail_url', $child_options ) ) {
+				$user     = $child_options['gpch_child_field_inxmail_user'];
+				$pass     = $child_options['gpch_child_field_inxmail_pass'];
+				$base_url = $child_options['gpch_child_field_inxmail_url'];
+
+				$this->user     = $user;
+				$this->pass     = $pass;
+				$this->base_url = $base_url;
+			} else {
+				// todo
+				// Sentry\captureException( $exception );
+			}
+		}
 	}
 
 	/**
@@ -31,8 +42,10 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 *
 	 * @return bool|string
 	 */
-	function call_api( $method, $data = false ) {
-		$url = $this->base_url;
+	function call_api( $method, $slug, $data = false ) {
+		$url = $this->base_url . $slug;
+		// print_r( '[grownnotmade] -> [call_api( $method, $slug, $data = false )] -> [$url]' );
+		// var_dump( $url );
 		$curl = curl_init();
 
 		switch ( $method ) {
@@ -49,6 +62,9 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			default:
 				if ( $data ) {
 					$url = sprintf( "%s?%s", $url, http_build_query( $data ) );
+
+					// print_r( '[grownnotmade] -> [call_api( $method, $slug, $data = false )] -> [$url]' );
+					// var_dump( $url );
 				}
 		}
 
@@ -83,11 +99,14 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param bool $subscribeToGeneral : Wheter or not to subscribe the recipient to the general list at the same time
 	 */
 	public function subscribe( $email, $lists, $personal_data, $subscribe_to_general = true ) {
-		$recipient = $this->retrieve_recipient_info();
+		$recipient = $this->retrieve_recipient_info_by_email( $email );
 
+		// todo: error handling
+		/*
 		if ( $recipient === null ) {
 			$recipient = $this->create_recipient( $email, $personal_data );
 		}
+		*/
 
 		// IF: Recipient is subscribed to list
 		// return
@@ -106,9 +125,16 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 */
 	protected function retrieve_recipient_info_by_email( $email ) {
 		$method = 'GET';
-		$data = array('email' => $email);
+		$data   = array( 'email' => $email );
+		// todo array
+		$slug   = $this->recipients_slug;
 
-		$recipient = $this->call_api($method, $data);
+		$recipient = $this->call_api( $method, $slug, $data );
+
+		// todo: check $recipient
+		print_r( '[grownnotmade] -> [retrieve_recipient_info_by_email( $email )] -> [$recipient]' );
+		var_dump( $recipient );
+		die();
 
 		return $recipient;
 	}
