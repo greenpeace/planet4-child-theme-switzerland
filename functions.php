@@ -117,8 +117,17 @@ function p4_child_theme_gpch_scripts() {
 		filemtime( get_stylesheet_directory() . $js ),
 		true );
 
+	$child_options = get_option( 'gpch_child_options' );
+	if ( key_exists( 'gpch_child_field_ssa_properties', $child_options ) ) {
+		$ssa_properties = $child_options['gpch_child_field_ssa_properties'];
+	}
+	else {
+		$ssa_properties = '';
+	}
+
 	$script_params = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'ssa_properties' => $ssa_properties,
 	);
 
 	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
