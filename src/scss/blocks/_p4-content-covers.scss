@@ -12,6 +12,15 @@
 		margin-top: 0;
 		margin-bottom: 1rem;
 
+		.content-covers-block-symbol {
+			height: auto;
+
+			img {
+				/*height: 71%;*/
+				height: auto;
+			}
+		}
+
 		.content-covers-block-info {
 			a {
 				color: $color_gray_dark;
