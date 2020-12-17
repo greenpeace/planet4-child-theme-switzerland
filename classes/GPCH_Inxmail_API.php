@@ -108,39 +108,35 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			if ( $recipient && $this->is_subscribed_to_list( $greenpeace_master_id, $email ) ) {
 				$result_case_1 = $this->set_flags( $email, $categories );
 
-				// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe] -> [$result_case_1]' );
+				// @todo set attributes ???
+
+				// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_1]' );
 				// var_dump( $result_case_1 );
 				// die();
 
 				return $result_case_1;
 			} else {
+				$categories[] = $general_category;
+				$flags        = $this->prepare_flags( $categories );
+				// @todo set attributes ???
+				$attributes = array_merge( [], $flags );
+
 				$result_case_2 = $this->subscribe_to_list( $greenpeace_master_id, $email, $attributes, $tracking_permission );
 
-				if ( $result_case_2 === true ) {
-					$categories[]  = $general_category;
-					$result_case_3 = $this->set_flags( $email, $categories );
+				// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_2]' );
+				// var_dump( $result_case_2 );
+				// die();
 
-					// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe] -> [$result_case_3]' );
-					// var_dump( $result_case_3 );
-					// die();
-
-					return $result_case_3;
-				} else {
-					// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe] -> [$result_case_2]' );
-					// var_dump( $result_case_2 );
-					// die();
-
-					return $result_case_2;
-				}
+				return $result_case_2;
 			}
 		} else {
-			$result_case_4['error'] = 'e-mail address is not valid';
+			$result_case_3['error'] = 'error in function subscribe: e-mail address is not valid';
 
-			// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe] -> [$result_case_3]' );
-			// var_dump( $result_case_4 );
+			// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_3]' );
+			// var_dump( $result_case_3 );
 			// die();
 
-			return $result_case_4;
+			return $result_case_3;
 		}
 	}
 
@@ -196,6 +192,35 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 */
 	protected function set_flags( string $email, array $categories ) {
 
+		$flags        = $this->prepare_flags( $categories );
+		$patch_result = $this->patch_recipient( $email, $flags );
+
+		if ( $patch_result && array_key_exists( 'id', $patch_result ) ) {
+			$result = true;
+		} else {
+			if ( array_key_exists( 'type', $patch_result ) ) {
+				$error_text = 'error in function set_flags: ';
+				$error_text = $error_text . $patch_result['type'];
+
+				if ( array_key_exists( 'detail', $patch_result ) ) {
+					$error_text = $error_text . ': ' . $patch_result['detail'];
+				}
+
+				$result['error'] = $error_text;
+			} else {
+				$result['error'] = 'error in function set_flags: undefined error in the array $patch_result';
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @param array $categories
+	 *
+	 * @return array $flags
+	 */
+	protected function prepare_flags( array $categories ) {
 		$flags = [];
 
 		// for testing only
@@ -207,25 +232,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			// }
 		}
 
-		$patch_result = $this->patch_recipient( $email, $flags );
-
-		if ( $patch_result && array_key_exists( 'id', $patch_result ) ) {
-			$result = true;
-		} else {
-			if ( array_key_exists( 'type', $patch_result ) ) {
-				$error_text = $patch_result['type'];
-
-				if ( array_key_exists( 'detail', $patch_result ) ) {
-					$error_text = $error_text . ': ' . $patch_result['detail'];
-				}
-
-				$result['error'] = $error_text;
-			} else {
-				$result['error'] = 'Undefined error in the array $patch_result in the set_flags function.';
-			}
-		}
-
-		return $result;
+		return $flags;
 	}
 
 	/**
@@ -244,7 +251,24 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		if ( array_key_exists( 'result', $subscribe_result ) && $subscribe_result['result'] == 'PENDING_SUBSCRIPTION' || $subscribe_result['result'] == 'PENDING_SUBSCRIPTION_DONE' || $subscribe_result['result'] == 'VERIFIED_SUBSCRIPTION' || $subscribe_result['result'] == 'MANUAL_SUBSCRIPTION' || $subscribe_result['result'] == 'DUPLICATE_SUBSCRIPTION' ) {
 			$result = true;
 		} else {
-			$result['error'] = $subscribe_result['result'];
+			if ( array_key_exists( 'type', $subscribe_result ) ) {
+				$error_text = 'error in function subscribe_to_list: ';
+				$error_text = $error_text . $subscribe_result['type'];
+
+				if ( array_key_exists( 'title', $subscribe_result ) ) {
+					$error_text = $error_text . ': ' . $subscribe_result['title'];
+				}
+
+				if ( array_key_exists( 'invalidFields', $subscribe_result ) ) {
+					foreach ( $subscribe_result['invalidFields'] as $key => $value ) {
+						$error_text = $error_text . ', [field: ' . $value['field'] . ', problem: ' . $value['problem'] . ']';
+					}
+				}
+
+				$result['error'] = $error_text;
+			} else {
+				$result['error'] = 'error in function subscribe_to_list: undefined error in the array $subscribe_result';
+			}
 		}
 
 		return $result;
