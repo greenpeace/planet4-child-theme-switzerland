@@ -237,8 +237,15 @@ add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_type_setting' );
  */
 function gpch_gform_subscribe_newsletter( $entry, $form ) {
 	// Find the field IDs of the form fields we need.
-	$field_ids         = array();
-	$fields_to_extract = array( 'email', 'salutation', 'first_name', 'last_name', 'newsletter' );
+	$field_ids           = array();
+	$fields_to_extract   = array( 'email', 'salutation', 'first_name', 'last_name', 'newsletter' );
+	$inxmail_field_names = array(
+		'email'      => 'email',
+		'salutation' => 'Salutation',
+		'first_name' => 'FirstName',
+		'last_name'  => 'Name',
+		'newsletter' => 'newsletter'
+	);
 
 	foreach ( $form['fields'] as $field ) {
 		if ( in_array( $field->adminLabel, $fields_to_extract ) ) {
@@ -287,7 +294,7 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 
 	foreach ( $field_ids as $field_name => $field_id ) {
 		if ( in_array( $field_name, $personal_data_fields ) ) {
-			$data[ $field_name ] = rgar( $entry, $field_id );
+			$data[ $inxmail_field_names [ $field_name ] ] = rgar( $entry, $field_id );
 		}
 	}
 
