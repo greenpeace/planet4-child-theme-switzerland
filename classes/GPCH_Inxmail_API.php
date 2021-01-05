@@ -105,36 +105,30 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 
 			// $recipient_id = $recipient['_embedded']['inx:recipients'][0]['id'];
 
+			// case 1: recipient exists and is subscribed to greenpeace master
 			if ( $recipient && $this->is_subscribed_to_list( $greenpeace_master_id, $email ) ) {
 				$result_case_1 = $this->set_flags( $email, $categories );
 
-				// @todo set attributes ???
-
-				// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_1]' );
-				// var_dump( $result_case_1 );
-				// die();
-
 				return $result_case_1;
 			} else {
+				// case 2: recipient doesn't exist and / or isn't subscribed to greenpeace master
 				$categories[] = $general_category;
 				$flags        = $this->prepare_flags( $categories );
-				// @todo set attributes ???
-				$attributes = array_merge( [], $flags );
 
-				$result_case_2 = $this->subscribe_to_list( $greenpeace_master_id, $email, $attributes, $tracking_permission );
+				// if the recipient exists, we only set flags
+				if ( $recipient ) {
+					$all_attributes_to_set = $flags;
+				} else {
+					$all_attributes_to_set = array_merge( $attributes, $flags );
+				}
 
-				// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_2]' );
-				// var_dump( $result_case_2 );
-				// die();
+				$result_case_2 = $this->subscribe_to_list( $greenpeace_master_id, $email, $all_attributes_to_set, $tracking_permission );
 
 				return $result_case_2;
 			}
 		} else {
+			// case 3: e-mail address is not valid
 			$result_case_3['error'] = 'error in function subscribe: e-mail address is not valid';
-
-			// print_r( '[grownnotmade] -> [GPCH_Inxmail_API] -> [subscribe()] -> [$result_case_3]' );
-			// var_dump( $result_case_3 );
-			// die();
 
 			return $result_case_3;
 		}
@@ -171,8 +165,6 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		$recipient = $this->retrieve_recipients_collection( [], (string) $list_id, '', (array) $email );
 
 		if ( $recipient['_embedded']['inx:recipients'][0] && array_key_exists( 'id', $recipient['_embedded']['inx:recipients'][0] ) ) {
-			// $recipient_id = $recipient['_embedded']['inx:recipients'][0]['id'];
-
 			$result = true;
 		} else {
 			$result = false;
