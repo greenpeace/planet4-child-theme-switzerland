@@ -260,7 +260,7 @@ function gpch_save_gf_settings( $form ) {
 	return $form;
 }
 
-add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_type_setting' );
+add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_settings' );
 
 
 /**
