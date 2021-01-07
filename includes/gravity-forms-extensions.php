@@ -260,7 +260,7 @@ function gpch_save_gf_settings( $form ) {
 	return $form;
 }
 
-add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_settings' );
+add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_type_setting' );
 
 
 /**
@@ -272,6 +272,9 @@ add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_settings' );
 function gpch_gform_subscribe_newsletter( $entry, $form ) {
 	// Only proceed if the setting in form options is set
 	if ( ! ( array_key_exists( 'gpch_gf_inxmail', $form ) && $form['gpch_gf_inxmail'] == 'yes' ) ) {
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_info', 'Inxmail connection was disabled in form settings when this entry was made.' );
+
 		return;
 	}
 
@@ -344,11 +347,12 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 	$response         = $GPCH_Inxmail_API->subscribe( $email, $lists, $data );
 
 	// Save status to entry meta data
-	if ( $response['code'] == 0 ) {
+	if ($response === true) {
 		gform_update_meta( $entry['id'], 'inxmail_status', 1 );
-	} else {
+	}
+	else {
 		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
-		gform_update_meta( $entry['id'], 'inxmail_error', $response['message'] );
+		gform_update_meta( $entry['id'], 'inxmail_error', $response['error'] );
 	}
 
 	gform_update_meta( $entry['id'], 'inxmail_date_last_try', date( 'c' ) );
@@ -410,15 +414,22 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 	// Status
 	$inxmail_status = gform_get_meta( $entry['id'], 'inxmail_status' );
 
-	if ( $inxmail_status == 0 ) {
+	if ( $inxmail_status === '0' ) {
 		$html .= '<p><b>Status:</b> <span style="color: red;">Not sent</span></p>';
-
-		// Error message
-		$inxmail_error = gform_get_meta( $entry['id'], 'inxmail_error' );
-
-		$html .= '<p><b>Error Message:</b> ' . $inxmail_error . '</p>';
-	} elseif ( $inxmail_status == 1 ) {
+	} elseif ( $inxmail_status === 1 ) {
 		$html .= '<p><b>Status:</b> <span style="color: green;">OK</span></p>';
+	}
+
+	// Messages
+	$inxmail_error = gform_get_meta( $entry['id'], 'inxmail_error' );
+	$inxmail_info = gform_get_meta( $entry['id'], 'inxmail_info' );
+
+	if ($inxmail_error !== false) {
+		$html .= '<p><b>Error Message:</b> ' . $inxmail_error . '</p>';
+	}
+
+	if ($inxmail_info !== false) {
+		$html .= '<p><b>Info:</b> ' . $inxmail_info . '</p>';
 	}
 
 	// Date of last tried connection
@@ -426,6 +437,10 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 
 	if ( $inxmail_date_last_try ) {
 		$html .= '<p><b>Last try:</b> ' . $inxmail_date_last_try . '</p>';
+	}
+
+	if (empty($html)) {
+		$html = '<p><i>No data available</i></p>';
 	}
 
 	echo $html;
