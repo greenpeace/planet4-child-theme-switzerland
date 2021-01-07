@@ -218,10 +218,44 @@ add_filter( 'gform_form_settings', 'gpch_gf_type_setting', 10, 2 );
 
 
 /**
- * Save our custom form setting
+ * Add a setting to Gravity Forms to set wheter or not to send newsletter data to Inxmail
+ *
+ * @param $settings
+ * @param $form
+ *
+ * @return mixed
  */
-function gpch_save_gf_type_setting( $form ) {
-	$form['gpch_gf_type'] = rgpost( 'gpch_gf_type' );
+function gpch_gf_inxmail_setting( $settings, $form ) {
+	$value = rgar( $form, 'gpch_gf_inxmail' );
+	if ( empty( $value ) ) {
+		$value = 'other';
+	}
+
+	$select = '<select name="gpch_gf_inxmail">
+            		<option value="no" ' . ( $value == 'no' ? 'selected="selected"' : '' ) . '>' . __( 'No', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="yes" ' . ( $value == 'yes' ? 'selected' : '' ) . '>' . __( 'Yes', 'planet4-child-theme-switzerland' ) . '</option>
+				</select>';
+
+	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_inxmail'] = '
+        <tr>
+            <th>
+            	<label for="gpch_gf_inxmail">' . __( 'GPCH Connect Inxmail', 'planet4-child-theme-switzerland' ) . '</label>
+            </th>
+            <td>' . $select . '</td>
+		</tr>';
+
+	return $settings;
+}
+
+add_filter( 'gform_form_settings', 'gpch_gf_inxmail_setting', 10, 2 );
+
+
+/**
+ * Save our custom form settings
+ */
+function gpch_save_gf_settings( $form ) {
+	$form['gpch_gf_type']    = rgpost( 'gpch_gf_type' );
+	$form['gpch_gf_inxmail'] = rgpost( 'gpch_gf_inxmail' );
 
 	return $form;
 }
@@ -354,7 +388,7 @@ function gpch_register_gravityforms_inxmail_metabox( $meta_boxes, $entry, $form 
 
 	if ( $form_has_newsletter_field ) {
 		$meta_boxes['gpch_inxmail'] = array(
-			'title'    => esc_html__( 'Inxmail API', 'planet4-child-theme-switzerlan' ),
+			'title'    => esc_html__( 'Inxmail API', 'planet4-child-theme-switzerland' ),
 			'callback' => 'gpch_gravityforms_inxmail_metabox_callback',
 			'context'  => 'side',
 		);

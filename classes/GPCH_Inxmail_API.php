@@ -24,7 +24,8 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 				if (empty($user) || empty($pass) || empty($base_url))
 				{
 					$result_empty['error'] = 'error in constructor: one or more required parameter(s) from gpch_child_options are empty';
-					return $result_empty;
+					
+          return $result_empty;
 				}
 				else
 				{
@@ -35,6 +36,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			}
 		} else {
 			$result_missing['error'] = 'error in constructor: required parameter(s) from gpch_child_options are missing';
+      
 			return $result_missing;
 		}
 	}
@@ -89,6 +91,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			}
 		} catch ( Exception $exception ) {
 			Sentry\captureException( $exception );
+      
 			$result['error'] = 'error in function call_api: check sentry.io for exception details';
 		}
 
