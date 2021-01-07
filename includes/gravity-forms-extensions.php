@@ -416,7 +416,7 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 
 	if ( $inxmail_status === '0' ) {
 		$html .= '<p><b>Status:</b> <span style="color: red;">Not sent</span></p>';
-	} elseif ( $inxmail_status === 1 ) {
+	} elseif ( $inxmail_status === "1" ) {
 		$html .= '<p><b>Status:</b> <span style="color: green;">OK</span></p>';
 	}
 
