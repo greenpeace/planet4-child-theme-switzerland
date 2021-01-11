@@ -7,12 +7,19 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	private $user = '';
 	private $pass = '';
 	private $base_url = '';
+	private $error_message = [];
 
 	/**
 	 * GPCH_Inxmail_API constructor.
 	 */
-	function __construct() {
-		// get child theme options
+	public function __construct() {
+	}
+
+	/**
+	 * @return bool $result : true on success, false on failure
+	 */
+	protected function set_connection_parameters() {
+		$result        = false;
 		$child_options = get_option( 'gpch_child_options' );
 
 		if ( $child_options ) {
@@ -22,19 +29,23 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 				$base_url = $child_options['gpch_child_field_inxmail_url'];
 
 				if ( empty( $user ) || empty( $pass ) || empty( $base_url ) ) {
-					$result_empty['error'] = 'error in constructor: one or more required parameter(s) from gpch_child_options are empty';
+					$this->error_message['error'] = 'error in set_connection_parameters: one or more required parameter(s) from gpch_child_options are empty';
 
-					return $result_empty;
+					return $result;
 				} else {
 					$this->user     = $user;
 					$this->pass     = $pass;
 					$this->base_url = $base_url;
+
+					$result = true;
+
+					return $result;
 				}
 			}
 		} else {
-			$result_missing['error'] = 'error in constructor: required parameter(s) from gpch_child_options are missing';
+			$this->error_message['error'] = 'error in set_connection_parameters: required parameter(s) from gpch_child_options are missing';
 
-			return $result_missing;
+			return $result;
 		}
 	}
 
@@ -43,13 +54,22 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param string $slug
 	 * @param mixed $data : array for default, JSON for POST and PATCH
 	 *
-	 * @return mixed $result : JSON on success, false on failure
+	 * @return mixed : JSON on success, false on failure
 	 */
-	function call_api( $method, $slug, $data = [] ) {
-		$result = false;
-		$url    = $this->base_url . $slug;
+	public function call_api( $method, $slug, $data = [] ) {
 
-		$curl = curl_init();
+		$result_scp = $this->set_connection_parameters();
+
+		// print_r( '[grownnotmade] -> [call_api()] -> [$this->error_message]' );
+		// var_dump( $this->error_message );
+
+		if ( $result_scp === false ) {
+			return $result_scp;
+		}
+
+		$url       = $this->base_url . $slug;
+		$curl      = curl_init();
+		$result_ce = false;
 
 		switch ( $method ) {
 			case "POST":
@@ -81,20 +101,21 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
 
 		try {
-			$result = curl_exec( $curl );
+			$result_ce = curl_exec( $curl );
 
-			if ( $result === false ) {
+			if ( $result_ce === false ) {
 				throw new Exception( curl_error( $curl ) );
 			}
 		} catch ( Exception $exception ) {
 			Sentry\captureException( $exception );
 
-			$result['error'] = 'error in function call_api: check sentry.io for exception details';
+			$this->error_message['error'] = 'error in function call_api: check sentry.io for exception details';
 		}
 
 		curl_close( $curl );
 
-		return $result;
+		return $result_ce;
+
 	}
 
 	/**
@@ -106,60 +127,79 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param string $tracking_permission : can be 'GRANTED', 'DENIED' or empty (stays unchanged)
 	 * @param string $general_category : the name of the general newsletter category
 	 *
-	 * @return mixed $result : true on success, array with error details on failure
+	 * @return mixed : true on success, array with error details on failure
 	 */
 	public function subscribe( string $email, array $categories, array $attributes = [], string $tracking_permission = '', string $general_category = 'allgemein' ) {
-		if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-			$recipient            = $this->get_recipient( $email );
-			$greenpeace_master_id = 8;
 
+		if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) === false ) {
+			$this->error_message['error'] = 'error in function subscribe: e-mail address is not valid';
+
+			return $this->error_message;
+		}
+
+		$recipient = $this->get_recipient( $email );
+
+		if ( $recipient === false ) {
+			return $this->error_message;
+		}
+
+		$greenpeace_master_id = 8;
+
+		// case 1: recipient exists
+		if ( $recipient !== null ) {
 			// $recipient_id = $recipient['_embedded']['inx:recipients'][0]['id'];
+			$result_istl = $this->is_subscribed_to_list( $greenpeace_master_id, $email );
 
-			// case 1: recipient exists and is subscribed to greenpeace master
-			if ( $recipient && $this->is_subscribed_to_list( $greenpeace_master_id, $email ) ) {
-				$result_case_1 = $this->set_flags( $email, $categories );
+			if ( $result_istl === false ) {
+				return $this->error_message;
+			}
 
-				return $result_case_1;
-			} else {
-				// case 2: recipient doesn't exist and / or isn't subscribed to greenpeace master
+			// recipient is subscribed to greenpeace master
+			if ( $result_istl === true ) {
+				$result_sf = $this->set_flags( $email, $categories );
+
+				if ( $result_sf === true ) {
+					return $result_sf;
+				} else {
+					return $this->error_message;
+				}
+			} // recipient is not subscribed to greenpeace master
+			else {
 				$categories[] = $general_category;
 				$flags        = $this->prepare_flags( $categories );
-
-				// if the recipient exists, we only set flags
-				if ( $recipient ) {
-					$all_attributes_to_set = $flags;
-				} else {
-					$all_attributes_to_set = array_merge( $attributes, $flags );
-				}
-
-				$result_case_2 = $this->subscribe_to_list( $greenpeace_master_id, $email, $all_attributes_to_set, $tracking_permission );
-
-				return $result_case_2;
+				// if the recipient exists, we don't set attributes
+				$attributes = $flags;
+				$result_stl = $this->subscribe_to_list( $greenpeace_master_id, $email, $attributes, $tracking_permission );
 			}
-		} else {
-			// case 3: e-mail address is not valid
-			$result_case_3['error'] = 'error in function subscribe: e-mail address is not valid';
+		} // case 2: recipient doesn't exist
+		else {
+			$categories[] = $general_category;
+			$flags        = $this->prepare_flags( $categories );
+			// if the recipient doesn't exist, we set attributes
+			$attributes = array_merge( $attributes, $flags );
+			$result_stl = $this->subscribe_to_list( $greenpeace_master_id, $email, $attributes, $tracking_permission );
+		}
 
-			return $result_case_3;
+		if ( $result_stl === true ) {
+			return $result_stl;
+		} else {
+			return $this->error_message;
 		}
 	}
 
 	/**
 	 * Retrieves an Inxmail recipient with current subscription data.
 	 *
-	 * @see: https://apidocs.inxmail.com/xpro/rest/v1/#retrieve-recipients-collection
-	 *
 	 * @param $email
 	 *
-	 * @return mixed $result : array with recipient details on success, false on failure
+	 * @return mixed $result : array with recipient details on success, false on failure, null if recipient doesn't exist
 	 */
 	protected function get_recipient( string $email ) {
-		$recipients_collection = $this->retrieve_recipients_collection( [], '', '', (array) $email );
+		$result     = null;
+		$result_rrc = $this->retrieve_recipients_collection( [], '', '', (array) $email );
 
-		if ( $recipients_collection['_embedded']['inx:recipients'][0] && array_key_exists( 'id', $recipients_collection['_embedded']['inx:recipients'][0] ) ) {
-			$result = $recipients_collection;
-		} else {
-			$result = false;
+		if ( ( $result_rrc === false ) || ( $result_rrc['_embedded']['inx:recipients'][0] && array_key_exists( 'id', $result_rrc['_embedded']['inx:recipients'][0] ) ) ) {
+			$result = $result_rrc;
 		}
 
 		return $result;
@@ -169,20 +209,20 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param int $list_id
 	 * @param string $email
 	 *
-	 * @return bool $result : true when subscribed, false when not subscribed
+	 * @return mixed $result : true if subscribed, false on failure, null if not subscribed
 	 */
 	protected function is_subscribed_to_list( int $list_id, string $email ) {
-		$recipient = $this->retrieve_recipients_collection( [], (string) $list_id, '', (array) $email );
+		$result     = null;
+		$result_rrc = $this->retrieve_recipients_collection( [], (string) $list_id, '', (array) $email );
 
-		if ( $recipient['_embedded']['inx:recipients'][0] && array_key_exists( 'id', $recipient['_embedded']['inx:recipients'][0] ) ) {
+		if ( $result_rrc === false ) {
+			$result = $result_rrc;
+		} elseif ( $result_rrc['_embedded']['inx:recipients'][0] && array_key_exists( 'id', $result_rrc['_embedded']['inx:recipients'][0] ) ) {
 			$result = true;
-		} else {
-			$result = false;
 		}
 
 		return $result;
 	}
-
 
 	/**
 	 * Subscribes a recipient to newsletter categories.
@@ -190,28 +230,28 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param string $email
 	 * @param array $categories
 	 *
-	 * @return mixed $result : true on success, array with error details on failure
+	 * @return mixed $result : true on success, false on failure, null if patch did not work
 	 */
 	protected function set_flags( string $email, array $categories ) {
+		$result    = null;
+		$flags     = $this->prepare_flags( $categories );
+		$result_pr = $this->patch_recipient( $email, $flags );
 
-		$flags        = $this->prepare_flags( $categories );
-		$patch_result = $this->patch_recipient( $email, $flags );
-
-		if ( $patch_result && array_key_exists( 'id', $patch_result ) ) {
+		if ( $result_pr === false ) {
+			$result = $result_pr;
+		} elseif ( $result_pr && array_key_exists( 'id', $result_pr ) ) {
 			$result = true;
-		} else {
-			if ( array_key_exists( 'type', $patch_result ) ) {
-				$error_text = 'error in function set_flags: ';
-				$error_text = $error_text . $patch_result['type'];
+		} elseif ( $result_pr && array_key_exists( 'type', $result_pr ) ) {
+			$error = 'error in function set_flags: ';
+			$error = $error . $result_pr['type'];
 
-				if ( array_key_exists( 'detail', $patch_result ) ) {
-					$error_text = $error_text . ': ' . $patch_result['detail'];
-				}
-
-				$result['error'] = $error_text;
-			} else {
-				$result['error'] = 'error in function set_flags: undefined error in the array $patch_result';
+			if ( array_key_exists( 'detail', $result_pr ) ) {
+				$error = $error . ': ' . $result_pr['detail'];
 			}
+
+			$this->error_message['error'] = $error;
+		} else {
+			$this->error_message['error'] = 'error in function set_flags: undefined error in $result_pr';
 		}
 
 		return $result;
@@ -245,32 +285,33 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param string $tracking_permission
 	 * @param array $attributes
 	 *
-	 * @return mixed  $result : true on success, array with error details on failure
+	 * @return mixed $result : true on success, false on failure, null if subscribe did not work
 	 */
 	protected function subscribe_to_list( int $list_id, string $email, array $attributes = [], string $tracking_permission = '' ) {
-		$subscribe_result = $this->subscribe_recipient_to_list( $list_id, $email, $attributes, $tracking_permission );
+		$result      = null;
+		$result_srtl = $this->subscribe_recipient_to_list( $list_id, $email, $attributes, $tracking_permission );
 
-		if ( array_key_exists( 'result', $subscribe_result ) && $subscribe_result['result'] == 'PENDING_SUBSCRIPTION' || $subscribe_result['result'] == 'PENDING_SUBSCRIPTION_DONE' || $subscribe_result['result'] == 'VERIFIED_SUBSCRIPTION' || $subscribe_result['result'] == 'MANUAL_SUBSCRIPTION' || $subscribe_result['result'] == 'DUPLICATE_SUBSCRIPTION' ) {
+		if ( $result_srtl === false ) {
+			$result = $result_srtl;
+		} elseif ( $result_srtl && array_key_exists( 'result', $result_srtl ) && $result_srtl['result'] == 'PENDING_SUBSCRIPTION' || $result_srtl['result'] == 'PENDING_SUBSCRIPTION_DONE' || $result_srtl['result'] == 'VERIFIED_SUBSCRIPTION' || $result_srtl['result'] == 'MANUAL_SUBSCRIPTION' || $result_srtl['result'] == 'DUPLICATE_SUBSCRIPTION' ) {
 			$result = true;
-		} else {
-			if ( array_key_exists( 'type', $subscribe_result ) ) {
-				$error_text = 'error in function subscribe_to_list: ';
-				$error_text = $error_text . $subscribe_result['type'];
+		} elseif ( $result_srtl && array_key_exists( 'type', $result_srtl ) ) {
+			$error = 'error in function subscribe_to_list: ';
+			$error = $error . $result_srtl['type'];
 
-				if ( array_key_exists( 'title', $subscribe_result ) ) {
-					$error_text = $error_text . ': ' . $subscribe_result['title'];
-				}
-
-				if ( array_key_exists( 'invalidFields', $subscribe_result ) ) {
-					foreach ( $subscribe_result['invalidFields'] as $key => $value ) {
-						$error_text = $error_text . ', [field: ' . $value['field'] . ', problem: ' . $value['problem'] . ']';
-					}
-				}
-
-				$result['error'] = $error_text;
-			} else {
-				$result['error'] = 'error in function subscribe_to_list: undefined error in the array $subscribe_result';
+			if ( array_key_exists( 'title', $result_srtl ) ) {
+				$error = $error . ': ' . $result_srtl['title'];
 			}
+
+			if ( array_key_exists( 'invalidFields', $result_srtl ) ) {
+				foreach ( $result_srtl['invalidFields'] as $key => $value ) {
+					$error = $error . ', [field: ' . $value['field'] . ', problem: ' . $value['problem'] . ']';
+				}
+			}
+
+			$this->error_message['error'] = $error;
+		} else {
+			$this->error_message['error'] = 'error in function subscribe_to_list: undefined error in $result_srtl';
 		}
 
 		return $result;
@@ -290,7 +331,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param array $tracking_permissions_for_lists - NOT YET IMPLEMENTED
 	 * @param array $subscription_dates_for_lists - NOT YET IMPLEMENTED
 	 *
-	 * @return array $result : recipient collection on success, details on failure
+	 * @return mixed $result : array on success, false on failure
 	 */
 	protected function retrieve_recipients_collection( array $attributes = [], string $subscribed_to = '', string $last_modified_since = '', array $email = [], array $attributes_attribute_name = [], array $tracking_permissions_for_lists = [], array $subscription_dates_for_lists = [] ) {
 		$method = 'GET';
@@ -333,8 +374,13 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			}
 		}
 
-		$result = $this->call_api( $method, $slug, $data );
-		$result = json_decode( $result, true );
+		$result_ca = $this->call_api( $method, $slug, $data );
+
+		if ( $result_ca === false ) {
+			$result = $result_ca;
+		} else {
+			$result = json_decode( $result_ca, true );
+		}
 
 		return $result;
 	}
@@ -349,7 +395,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param array $attributes
 	 * @param string $new_email
 	 *
-	 * @return array $result : recipient attributes on success, details on failure
+	 * @return mixed $result : array on success, false on failure
 	 */
 	protected function patch_recipient( string $email, array $attributes, string $new_email = '' ) {
 		$method = 'PATCH';
@@ -366,8 +412,13 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 
 		$json_data = json_encode( $data );
 
-		$result = $this->call_api( $method, $slug, $json_data );
-		$result = json_decode( $result, true );
+		$result_ca = $this->call_api( $method, $slug, $json_data );
+
+		if ( $result_ca === false ) {
+			$result = $result_ca;
+		} else {
+			$result = json_decode( $result_ca, true );
+		}
 
 		return $result;
 	}
@@ -384,7 +435,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 * @param string $tracking_permission
 	 * @param array $attributes
 	 *
-	 * @return array $result : recipient attributes on success, details on failure
+	 * @return mixed $result : array on success, false on failure
 	 */
 	protected function subscribe_recipient_to_list( int $list_id, string $email, array $attributes = [], string $tracking_permission = '' ) {
 		$method = 'POST';
@@ -409,8 +460,13 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 
 		$json_data = json_encode( $data );
 
-		$result = $this->call_api( $method, $slug, $json_data );
-		$result = json_decode( $result, true );
+		$result_ca = $this->call_api( $method, $slug, $json_data );
+
+		if ( $result_ca === false ) {
+			$result = $result_ca;
+		} else {
+			$result = json_decode( $result_ca, true );
+		}
 
 		return $result;
 	}
