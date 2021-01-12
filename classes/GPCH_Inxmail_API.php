@@ -60,9 +60,6 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 
 		$result_scp = $this->set_connection_parameters();
 
-		// print_r( '[grownnotmade] -> [call_api()] -> [$this->error_message]' );
-		// var_dump( $this->error_message );
-
 		if ( $result_scp === false ) {
 			return $result_scp;
 		}
@@ -110,8 +107,6 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			Sentry\captureException( $exception );
 
 			$this->error_message['error'] = 'error in function call_api: check sentry.io for exception details';
-
-			$result['error'] = 'error in function call_api: check sentry.io for exception details';
 		}
 
 		curl_close( $curl );
@@ -249,6 +244,12 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 
 			if ( array_key_exists( 'detail', $result_pr ) ) {
 				$error = $error . ': ' . $result_pr['detail'];
+
+				preg_match( '/(flag_{1})([a-z]*)/', $result_pr['detail'], $flag );
+				$category = $flag[2];
+				$error2   = 'Newsletter category ' . $category . ' does not exist. Check newsletter form field settings.';
+
+				$error = $error2 . ' (' . $error . ')';
 			}
 
 			$this->error_message['error'] = $error;
