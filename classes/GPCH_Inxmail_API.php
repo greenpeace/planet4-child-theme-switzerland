@@ -110,6 +110,8 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 			Sentry\captureException( $exception );
 
 			$this->error_message['error'] = 'error in function call_api: check sentry.io for exception details';
+
+			$result['error'] = 'error in function call_api: check sentry.io for exception details';
 		}
 
 		curl_close( $curl );
