@@ -140,7 +140,6 @@ function gpch_child_section_ssa_callback( $args ) {
 
 /**
  * Analytics properties field callback function.
-
  * @param array $args
  */
 function gpch_child_field_ssa_properties_callback( $args ) {
@@ -159,7 +158,6 @@ function gpch_child_field_ssa_properties_callback( $args ) {
 
 /**
  * Test Mode field callback function.
-
  * @param array $args
  */
 function gpch_child_field_ssa_test_mode_callback( $args ) {

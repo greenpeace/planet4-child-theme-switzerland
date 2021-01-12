@@ -218,12 +218,231 @@ add_filter( 'gform_form_settings', 'gpch_gf_type_setting', 10, 2 );
 
 
 /**
- * Save our custom form setting
+ * Add a setting to Gravity Forms to set wheter or not to send newsletter data to Inxmail
+ *
+ * @param $settings
+ * @param $form
+ *
+ * @return mixed
  */
-function gpch_save_gf_type_setting( $form ) {
-	$form['gpch_gf_type'] = rgpost( 'gpch_gf_type' );
+function gpch_gf_inxmail_setting( $settings, $form ) {
+	$value = rgar( $form, 'gpch_gf_inxmail' );
+	if ( empty( $value ) ) {
+		$value = 'other';
+	}
+
+	$select = '<select name="gpch_gf_inxmail">
+            		<option value="no" ' . ( $value == 'no' ? 'selected="selected"' : '' ) . '>' . __( 'No', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="yes" ' . ( $value == 'yes' ? 'selected' : '' ) . '>' . __( 'Yes', 'planet4-child-theme-switzerland' ) . '</option>
+				</select>';
+
+	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_inxmail'] = '
+        <tr>
+            <th>
+            	<label for="gpch_gf_inxmail">' . __( 'GPCH Connect Inxmail', 'planet4-child-theme-switzerland' ) . '</label>
+            </th>
+            <td>' . $select . '</td>
+		</tr>';
+
+	return $settings;
+}
+
+add_filter( 'gform_form_settings', 'gpch_gf_inxmail_setting', 10, 2 );
+
+
+/**
+ * Save our custom form settings
+ */
+function gpch_save_gf_settings( $form ) {
+	$form['gpch_gf_type']    = rgpost( 'gpch_gf_type' );
+	$form['gpch_gf_inxmail'] = rgpost( 'gpch_gf_inxmail' );
 
 	return $form;
 }
 
-add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_type_setting' );
+add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_settings' );
+
+
+/**
+ * Finds newsletter subscriptions in forms and sends them to the Inxmail API
+ *
+ * @param $entry
+ * @param $form
+ */
+function gpch_gform_subscribe_newsletter( $entry, $form ) {
+	// Only proceed if the setting in form options is set
+	if ( ! ( array_key_exists( 'gpch_gf_inxmail', $form ) && $form['gpch_gf_inxmail'] == 'yes' ) ) {
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_info', 'Inxmail connection was disabled in form settings when this entry was made.' );
+
+		return;
+	}
+
+	// Find the field IDs of the form fields we need.
+	$field_ids           = array();
+	$fields_to_extract   = array( 'email', 'salutation', 'first_name', 'last_name', 'newsletter' );
+	$inxmail_field_names = array(
+		'email'      => 'email',
+		'salutation' => 'Salutation',
+		'first_name' => 'FirstName',
+		'last_name'  => 'Name',
+		'newsletter' => 'newsletter'
+	);
+
+	foreach ( $form['fields'] as $field ) {
+		if ( in_array( $field->adminLabel, $fields_to_extract ) ) {
+			$field_ids[ $field->adminLabel ] = $field->id;
+		}
+	}
+
+	// See if there's a newsletter subscription to process, otherwise return.
+	if ( array_key_exists( 'newsletter', $field_ids ) ) {
+		// "newsletter" is a checkbox group, attaching ".1" to the ID gets us the value of the first checkbox.
+		$subscribe_to_lists = rgar( $entry, $field_ids['newsletter'] . '.1' );
+
+		if ( empty( $subscribe_to_lists ) ) {
+			// Checkbox for newsletter subscription was not selected.
+			return;
+		}
+	} else {
+		// Looks like the form doesn't have a field for newsletter subscription.
+		return;
+	}
+
+	try {
+		// The email field is required. If it doesn't exist, we can't proceed.
+		if ( ! array_key_exists( 'email', $field_ids ) ) {
+			throw new Exception( 'Form doesn\'t contain the required email field' );
+		} else {
+			$email = rgar( $entry, $field_ids['email'] );
+
+			// We expect the form to validate the email address, but let's double check.
+			if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+				throw new Exception( 'Email form field contains an invalid email address' );
+			}
+		}
+	} catch ( Exception $exception ) {
+		Sentry\captureException( $exception );
+
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_error', $exception->getMessage() );
+
+		return;
+	}
+
+	// Prepare data for Inxmail API
+	$personal_data_fields = array( 'salutation', 'first_name', 'last_name' );
+	$data                 = array();
+
+	foreach ( $field_ids as $field_name => $field_id ) {
+		if ( in_array( $field_name, $personal_data_fields ) ) {
+			$data[ $inxmail_field_names [ $field_name ] ] = rgar( $entry, $field_id );
+		}
+	}
+
+	$lists = explode( ',', $subscribe_to_lists );
+
+	// Send data to Inxmail API
+	$GPCH_Inxmail_API = new GPCH_Inxmail_API();
+	$response         = $GPCH_Inxmail_API->subscribe( $email, $lists, $data );
+
+	// Save status to entry meta data
+	if ($response === true) {
+		gform_update_meta( $entry['id'], 'inxmail_status', 1 );
+	}
+	else {
+		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
+		gform_update_meta( $entry['id'], 'inxmail_error', $response['error'] );
+	}
+
+	gform_update_meta( $entry['id'], 'inxmail_date_last_try', date( 'c' ) );
+
+	GFCommon::log_debug( 'gpch_gform_subscribe_newsletter: response => ' . print_r( $response, true ) );
+}
+
+add_action( 'gform_after_submission', 'gpch_gform_subscribe_newsletter', 10, 2 );
+
+
+/**
+ * Add a meta box to the Gravity Forms entry detail page containing info on Inxmail API
+ *
+ * @param array $meta_boxes The properties for the meta boxes.
+ * @param array $entry The entry currently being viewed/edited.
+ * @param array $form The form object used to process the current entry.
+ *
+ * @return array
+ */
+function gpch_register_gravityforms_inxmail_metabox( $meta_boxes, $entry, $form ) {
+	// Find out if the form has a field to register for a newsletter
+	$form_has_newsletter_field = false;
+
+	$fields = GFAPI::get_fields_by_type( $form, array( 'checkbox' ) );
+
+	if ( ! empty( $fields ) ) {
+		foreach ( $fields as $field ) {
+			if ( $field->adminLabel == 'newsletter' ) {
+				$form_has_newsletter_field = true;
+			}
+		}
+	}
+
+	if ( $form_has_newsletter_field ) {
+		$meta_boxes['gpch_inxmail'] = array(
+			'title'    => esc_html__( 'Inxmail API', 'planet4-child-theme-switzerland' ),
+			'callback' => 'gpch_gravityforms_inxmail_metabox_callback',
+			'context'  => 'side',
+		);
+	}
+
+	return $meta_boxes;
+}
+
+add_filter( 'gform_entry_detail_meta_boxes', 'gpch_register_gravityforms_inxmail_metabox', 10, 3 );
+
+
+/**
+ * The callback used to echo the content of the Inxmail API metabox for Gravity Forms
+ *
+ * @param array $args An array containing the form and entry objects.
+ */
+function gpch_gravityforms_inxmail_metabox_callback( $args ) {
+	$form  = $args['form'];
+	$entry = $args['entry'];
+
+	$html = '';
+
+	// Status
+	$inxmail_status = gform_get_meta( $entry['id'], 'inxmail_status' );
+
+	if ( $inxmail_status === '0' ) {
+		$html .= '<p><b>Status:</b> <span style="color: red;">Not sent</span></p>';
+	} elseif ( $inxmail_status === "1" ) {
+		$html .= '<p><b>Status:</b> <span style="color: green;">OK</span></p>';
+	}
+
+	// Messages
+	$inxmail_error = gform_get_meta( $entry['id'], 'inxmail_error' );
+	$inxmail_info = gform_get_meta( $entry['id'], 'inxmail_info' );
+
+	if ($inxmail_error !== false) {
+		$html .= '<p><b>Error Message:</b> ' . $inxmail_error . '</p>';
+	}
+
+	if ($inxmail_info !== false) {
+		$html .= '<p><b>Info:</b> ' . $inxmail_info . '</p>';
+	}
+
+	// Date of last tried connection
+	$inxmail_date_last_try = gform_get_meta( $entry['id'], 'inxmail_date_last_try' );
+
+	if ( $inxmail_date_last_try ) {
+		$html .= '<p><b>Last try:</b> ' . $inxmail_date_last_try . '</p>';
+	}
+
+	if (empty($html)) {
+		$html = '<p><i>No data available</i></p>';
+	}
+
+	echo $html;
+}
+
