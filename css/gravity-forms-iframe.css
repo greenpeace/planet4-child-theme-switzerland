@@ -1,0 +1,41 @@
+body {
+	font-family: Roboto,sans-serif;
+}
+
+body .gform_wrapper {
+	max-width: 600px;
+}
+
+label {
+	color: #00573a;
+}
+
+/*
+input {
+	border-color: #00573a;
+}
+*/
+
+.gform_button {
+	color: #fff;
+	background-color: #00573a;
+	border: 0;
+	padding: .6rem 1.2rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.gform_button:hover {
+	color: #000;
+	background-color: #dbebbe;
+}
+
+/* Required markers */
+body .gform_wrapper .gfield.privacy-field label::after, body #gforms_confirmation_message .gfield.privacy-field label::after {
+	content: " *";
+	color: #790000;
+}
+
+body .gform_wrapper .gfield.privacy-field .gfield_label, body #gforms_confirmation_message .gfield.privacy-field .gfield_label {
+	display: none;
+}
