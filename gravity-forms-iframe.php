@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+header("X-Frame-Options: allow-from: test.greenpeace.ch");
+?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -11,5 +13,6 @@
 <?php GFFormDisplay::print_form_scripts( $form, true ); // ajax = false ?>
 <?php gravity_form( $form_id, $display_title, $display_description ); ?>
 <?php wp_footer(); ?>
+(Add test.)
 </body>
 </html>
