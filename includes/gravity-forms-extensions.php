@@ -446,3 +446,23 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 	echo $html;
 }
 
+
+/**
+ * Set HTTP headers to allow embedding of gravity forms
+ */
+function gpch_gravityforms_embed_whitelist( $whitelist ) {
+	global $wp;
+
+	// Only modify the whitelist if the requested page is an Gravity Form to embed
+	if ( $wp->request == 'gfembed' ) {
+		$options = get_option( 'gpch_child_options' );
+
+		$allowed_ancestors = preg_split( '/\r\n|\r|\n/', $options['gpch_child_field_gf_embed_whitelist'] );
+
+		return array_merge( $whitelist, $allowed_ancestors );
+	} else {
+		return $whitelist;
+	}
+}
+
+add_filter( 'planet4_csp_allowed_frame_ancestors', 'gpch_gravityforms_embed_whitelist' );
