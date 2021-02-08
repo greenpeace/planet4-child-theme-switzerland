@@ -14,7 +14,7 @@
 	iframe {
 		width: 100%;
 	}
-	
+
 	figcaption {
 		text-align: left;
 		font-weight: 700;
@@ -29,3 +29,9 @@
 	padding-bottom: 0;
 }
 
+/*
+Fix broken vimeo embed positioning
+ */
+.wp-block-embed-vimeo .wp-block-embed__wrapper {
+	padding-bottom: 0;
+}
