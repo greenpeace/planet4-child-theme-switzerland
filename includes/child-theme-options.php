@@ -78,6 +78,24 @@ function gpch_child_settings_init() {
 			'class'     => 'gpch_child_row',
 		)
 	);
+
+	add_settings_section(
+		'gpch_child_gf_embed',
+		__( 'Embed Gravity Forms', 'planet4-child-theme-switzerland' ), 'gpch_child_section_gf_embed_callback',
+		'gpch_child'
+	);
+
+	add_settings_field(
+		'gpch_child_field_gf_embed_whitelist',
+		__( 'Gravity Forms Embed Whitelist', 'planet4-child-theme-switzerland' ),
+		'gpch_child_field_gf_embed_whitelist_callback',
+		'gpch_child',
+		'gpch_child_gf_embed',
+		array(
+			'label_for' => 'gpch_child_field_gf_embed_whitelist',
+			'class'     => 'gpch_child_row',
+		)
+	);
 }
 
 /**
@@ -169,6 +187,31 @@ function gpch_child_field_ssa_test_mode_callback( $args ) {
     <p class="description">
 		<?php esc_html_e( 'Use Server Side Analytics in test mode. All events will have "Test: " added to the event category.', 'planet4-child-theme-switzerland' ); ?>
     </p>
+
+	<?php
+}
+
+/**
+ * Gravity Forms Embed Section callback function.
+ *
+ * @param array $args The settings array, defining title, id, callback.
+ */
+function gpch_child_section_gf_embed_callback( $args ) {
+	?>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed Gravity Forms. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
+	<?php
+}
+
+/**
+ * Gravity Forms Embed Whitelist callback function.
+ *
+ * @param array $args
+ */
+function gpch_child_field_gf_embed_whitelist_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+    <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
+              name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo $options[ $args['label_for'] ] ?></textarea>
 
 	<?php
 }
