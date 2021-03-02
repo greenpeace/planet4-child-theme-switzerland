@@ -134,6 +134,15 @@ function p4_child_theme_gpch_scripts() {
 		'ssa_properties' => $ssa_properties,
 	);
 
+	$block_popups_setting = get_field('setting_block_popups');
+
+	if ($block_popups_setting === true) {
+		$script_params['block_popups'] = 1;
+	}
+	else {
+		$script_params['block_popups'] = 0;
+	}
+
 	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
 }
 
