@@ -23,6 +23,25 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
 				'ui_on_text'        => 'Yes',
 				'ui_off_text'       => 'No',
 			),
+			array(
+				'key'               => 'gpch_advanced_settings_block_popups',
+				'label'             => __('Block Popups on this page', 'planet4-child-theme-switzerland' ),
+				'name'              => 'setting_block_popups',
+				'type'              => 'true_false',
+				'instructions'      => __('Blocks popups from appearing on this post/page.', 'planet4-child-theme-switzerland' ),
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => array(
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				),
+				'message'           => '',
+				'default_value'     => 0,
+				'ui'                => 1,
+				'ui_on_text'        => 'Yes',
+				'ui_off_text'       => 'No',
+			),
 		),
 		'location'              => array(
 			array(
@@ -63,3 +82,5 @@ function gpch_noindex_tag_output() {
 	}
 }
 add_action( 'wp_head', 'gpch_noindex_tag_output');
+
+
