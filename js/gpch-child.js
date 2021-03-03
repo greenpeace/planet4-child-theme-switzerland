@@ -5,6 +5,8 @@ jQuery(document).ready(function () {
 	var tagList = {
 		'#Klima': 'tag-klima',
 		'#Climat': 'tag-climat',
+		'#CO2Gesetz': 'tag-co2-gesetz',
+		'#LoiCO2': 'tag-loi-co2',
 		'#Ernährung': 'tag-ernaehrung',
 		'#Nutrition': 'tag-nutrition', // changed to alimentation, leaving it here for backwards compatibility
 		'#Alimentation': 'tag-alimentation',
