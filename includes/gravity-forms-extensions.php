@@ -195,6 +195,7 @@ function gpch_gf_type_setting( $settings, $form ) {
 	$select = '<select name="gpch_gf_type">
             		<option value="other" ' . ( $value == 'other' ? 'selected="selected"' : '' ) . '>' . __( 'Other', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="petition" ' . ( $value == 'petition' ? 'selected' : '' ) . '>' . __( 'Petition', 'planet4-child-theme-switzerland' ) . '</option>
+            		<option value="mail2target" ' . ( $value == 'mail2target' ? 'selected' : '' ) . '>' . __( 'Mail2Target', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="event" ' . ( $value == 'event' ? 'selected' : '' ) . '>' . __( 'Event', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="contest" ' . ( $value == 'contest' ? 'selected' : '' ) . '>' . __( 'Contest', 'planet4-child-theme-switzerland' ) . '</option>
             		<option value="poll" ' . ( $value == 'poll' ? 'selected' : '' ) . '>' . __( 'Poll', 'planet4-child-theme-switzerland' ) . '</option>
