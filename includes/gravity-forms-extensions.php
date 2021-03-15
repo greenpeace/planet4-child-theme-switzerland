@@ -340,6 +340,16 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 		}
 	}
 
+	// Set the language
+	$inxmail_language_codes = array(
+		'de' => "1",
+		'fr' => "2",
+	);
+
+	if (array_key_exists(ICL_LANGUAGE_CODE, $inxmail_language_codes )) {
+		$data['LanguageCode'] = $inxmail_language_codes[ICL_LANGUAGE_CODE];
+	}
+
 	$lists = explode( ',', $subscribe_to_lists );
 
 	// Send data to Inxmail API
@@ -347,10 +357,9 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 	$response         = $GPCH_Inxmail_API->subscribe( $email, $lists, $data );
 
 	// Save status to entry meta data
-	if ($response === true) {
+	if ( $response === true ) {
 		gform_update_meta( $entry['id'], 'inxmail_status', 1 );
-	}
-	else {
+	} else {
 		gform_update_meta( $entry['id'], 'inxmail_status', 0 );
 		gform_update_meta( $entry['id'], 'inxmail_error', $response['error'] );
 	}
@@ -422,13 +431,13 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 
 	// Messages
 	$inxmail_error = gform_get_meta( $entry['id'], 'inxmail_error' );
-	$inxmail_info = gform_get_meta( $entry['id'], 'inxmail_info' );
+	$inxmail_info  = gform_get_meta( $entry['id'], 'inxmail_info' );
 
-	if ($inxmail_error !== false) {
+	if ( $inxmail_error !== false ) {
 		$html .= '<p><b>Error Message:</b> ' . $inxmail_error . '</p>';
 	}
 
-	if ($inxmail_info !== false) {
+	if ( $inxmail_info !== false ) {
 		$html .= '<p><b>Info:</b> ' . $inxmail_info . '</p>';
 	}
 
@@ -439,7 +448,7 @@ function gpch_gravityforms_inxmail_metabox_callback( $args ) {
 		$html .= '<p><b>Last try:</b> ' . $inxmail_date_last_try . '</p>';
 	}
 
-	if (empty($html)) {
+	if ( empty( $html ) ) {
 		$html = '<p><i>No data available</i></p>';
 	}
 
@@ -466,3 +475,15 @@ function gpch_gravityforms_embed_whitelist( $whitelist ) {
 }
 
 add_filter( 'planet4_csp_allowed_frame_ancestors', 'gpch_gravityforms_embed_whitelist' );
+
+
+/**
+ * Force AJAX form submission everywhere
+ */
+function gpch_setup_form_args( $form_args ) {
+	$form_args['ajax'] = true;
+	
+	return $form_args;
+}
+
+add_filter( 'gform_form_args', 'gpch_setup_form_args' );

@@ -100,6 +100,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'gravityforms/form',
 			'social-warfare/social-warfare',
 			'social-warfare/click-to-tweet',
+			'planet4-gpch-plugin-blocks/bs-bingo'
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
