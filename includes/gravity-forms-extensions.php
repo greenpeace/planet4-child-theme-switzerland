@@ -340,6 +340,16 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 		}
 	}
 
+	// Set the language
+	$inxmail_language_codes = array(
+		'de' => "1",
+		'fr' => "2",
+	);
+
+	if (array_key_exists(ICL_LANGUAGE_CODE, $inxmail_language_codes )) {
+		$data['LanguageCode'] = $inxmail_language_codes[ICL_LANGUAGE_CODE];
+	}
+
 	$lists = explode( ',', $subscribe_to_lists );
 
 	// Send data to Inxmail API

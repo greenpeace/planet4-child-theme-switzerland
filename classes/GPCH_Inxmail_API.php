@@ -120,7 +120,7 @@ class GPCH_Inxmail_API implements GPCH_i_REST_API {
 	 *
 	 * @param string $email : primary key for recipient
 	 * @param array $categories : array of categories to subscribe to / set flags for
-	 * @param array $attributes : additional personal data, at the moment $attributes[Salutation, FirstName, Name]
+	 * @param array $attributes : additional personal data, at the moment $attributes[Salutation, FirstName, Name, LanguageCode]
 	 * @param string $tracking_permission : can be 'GRANTED', 'DENIED' or empty (stays unchanged)
 	 * @param string $general_category : the name of the general newsletter category
 	 *
