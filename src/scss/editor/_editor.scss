@@ -7,12 +7,10 @@
 
 /**
   Fixes Youtube previews in backend editor
-  https://tickets.greenpeace.ch/view.php?id=419
+  Broken in master theme: https://github.com/greenpeace/planet4-master-theme/blob/7b63453fc0bc915444552f51d279730779a46117/assets/src/scss/editorOverrides.scss#L202-L206
  */
-.embed-container,
-.wp-block-embed-dailymotion .wp-block-embed__wrapper,
-.wp-block-embed-kickstarter .wp-block-embed__wrapper,
-.wp-block-embed-vimeo .wp-block-embed__wrapper,
-.wp-block-embed-youtube .wp-block-embed__wrapper {
-	padding-bottom: 56.25%;
+.wp-embed-responsive .block-editor {
+	.wp-block-embed.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
+		content: "" !important;
+	}
 }
