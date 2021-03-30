@@ -2,7 +2,7 @@
 	margin-top: 2em;
 	display: block;
 
-	a {
+	a, button {
 		background-color: $color_standard_1;
 		/*
 			Master theme changes the button color after loading, only in Firefox.
@@ -16,21 +16,31 @@
 
 		/* Remove default Gutenberg style for rounded corners */
 		border-radius: 0;
+
+		&.dark {
+			background-color: $color_standard_3;
+			color: $color_standard_3_font;
+		}
+
+		&:hover.dark {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font
+		}
 	}
 
-	a:hover {
+	a:hover, button:hover {
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
 	}
 	
 	/* File icons, e.g. PDF links */
-	a:before {
-		margin-right: .2em;
+	a:before, button:before {
+		margin-right: .4em;
 		color: $color_standard_1_font;
 		background-color: $color_standard_1_font;
 	}
 
-	a:hover:before {
+	a:hover:before, button:hover:before {
 		color: $color_standard_3_font;
 		background-color: $color_standard_3_font;
 	}
@@ -39,12 +49,41 @@
 	&.is-style-full-width a {
 		width: 100%;
 	}
+
+	button {
+		padding: 0.667em 1.333em;
+		border: none;
+		overflow-wrap: break-word;
+
+		&.stealth {
+			background-color: rgb(34,34,34);
+			color: #000;
+		}
+
+		&.dark {
+			background-color: $color_standard_3;
+			color: $color_standard_3_font;
+		}
+
+		&:hover.dark {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font
+		}
+	}
 }
 
 
 /* Master theme fixes */
 .btn, .post-content .more-link, .post-content .page-links a, .wp-block-button a, .wp-block-file .wp-block-file__button {
 	border-radius: 0;
+}
+
+.wp-block-button a.external-link::after {
+	display: none;
+}
+
+.wp-block-button a.pdf-link::before {
+	background-color: $color_standard_1_font;
 }
 
 /* Color Schemes */
@@ -74,6 +113,11 @@
 				color: #{nth($colors_1_font, $i)};
 				background-color: #{nth($colors_1_font, $i)};
 			}
+		}
+
+		/* Master theme fixes */
+		[class="wp-block-button"] a.pdf-link::before {
+			background-color: #{nth($colors_1_font, $i)};
 		}
 	}
 }
