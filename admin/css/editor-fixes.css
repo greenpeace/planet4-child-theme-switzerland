@@ -1,0 +1,89 @@
+/*!
+	Gutenberg Fixes Stylesheet for GPCH Child Theme
+*/
+/*--------------------------------------------------------------
+# General Imports
+--------------------------------------------------------------*/
+/* Colors */
+/* Color Scheme */
+/* Color scheme not in use anymore, joined with climate */
+/* Variable lists for loops */
+/* Dummy code to output all color schemes in a loop */
+/* Color Schemes */
+.tag-wald, .tag-forets {
+  /*background-color: #26774e;*/
+}
+
+.tag-energie, .tag-nachhaltiger-finanzplatz, .tag-gletscher-initiative, .tag-klima, .tag-klimabewegung, .tag-klimagerechtigkeit, .tag-ernaehrung, .tag-climat, .tag-finance-durable, .tag-initiative-glaciers, .tag-mouvement-climatique, .tag-justice-climatique, .tag-nutrition, .tag-alimentation, .tag-landwirtschaft, .tag-agriculture, .tag-co2-gesetz, .tag-loi-co2 {
+  /*background-color: #cd1719;*/
+}
+
+.tag-meer, .tag-oceans {
+  /*background-color: #3290de;*/
+}
+
+.tag-flotte {
+  /*background-color: #007799;*/
+}
+
+.tag-arktis, .tag-antarktis, .tag-arctique, .tag-antarctique {
+  /*background-color: #1ebcef;*/
+}
+
+.tag-plastik, .tag-zero-waste, .tag-zero-dechet {
+  /*background-color: #69c2be;*/
+}
+
+.tag-chemie, .tag-toxiques {
+  /*background-color: #4a81b4;*/
+}
+
+/* Dummy Code for use in blocks manually (only use this if you have to correct a value from automatic generated code):
+.tag-wald, .tag-forets {
+
+}
+.tag-energie, .tag-nachhaltiger-finanzplatz, .tag-gletscher-initiative, .tag-klima, .tag-klimabewegung, .tag-klimagerechtigkeit, .tag-ernaehrung, .tag-climat, .tag-finance-durable, .tag-initiative-glaciers, .tag-mouvement-climatique, .tag-justice-climatique, .tag-nutrition, .tag-alimentation, .tag-landwirtschaft, .tag-agriculture, .tag-co2-gesetz, .tag-loi-co2 {
+
+}
+
+.tag-meer, .tag-oceans {
+
+}
+
+.tag-flotte {
+
+}
+
+.tag-arktis, .tag-antarktis, .tag-arctique, .tag-antarctique {
+
+}
+
+.tag-plastik, .tag-zero-waste, .tag-zero-dechet {
+
+}
+
+.tag-chemie, .tag-toxiques {
+
+}
+*/
+/* Break points for responsive, same values as the master theme uses */
+/* values used by includemedia */
+/*--------------------------------------------------------------
+# Editor (Gutenberg) specific
+--------------------------------------------------------------*/
+/* Do not hide these elements in the editor */
+.hide-mobile,
+.hide-tablet,
+.hide-desktop {
+  display: block !important;
+}
+
+/**
+  Fixes Youtube previews in backend editor
+  Broken in master theme: https://github.com/greenpeace/planet4-master-theme/blob/7b63453fc0bc915444552f51d279730779a46117/assets/src/scss/editorOverrides.scss#L202-L206
+ */
+.wp-embed-responsive .block-editor .wp-block-embed.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
+  content: "" !important;
+}
+
+/*# sourceMappingURL=editor-fixes.css.map */

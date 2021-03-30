@@ -2984,22 +2984,4 @@ body #gforms_confirmation_message .gpoll_bar_count {
   color: #fff;
 }
 
-/*--------------------------------------------------------------
-# Editor (Gutenberg) specific
---------------------------------------------------------------*/
-/* Do not hide these elements in the editor */
-.hide-mobile,
-.hide-tablet,
-.hide-desktop {
-  display: block !important;
-}
-
-/**
-  Fixes Youtube previews in backend editor
-  Broken in master theme: https://github.com/greenpeace/planet4-master-theme/blob/7b63453fc0bc915444552f51d279730779a46117/assets/src/scss/editorOverrides.scss#L202-L206
- */
-.wp-embed-responsive .block-editor .wp-block-embed.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
-  content: "" !important;
-}
-
 /*# sourceMappingURL=editor-style.css.map */
