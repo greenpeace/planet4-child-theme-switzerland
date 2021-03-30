@@ -74,12 +74,6 @@ iframe {
 	color: $color_standard_3_font;
 }
 
-/* Remove icon for external links from buttons */
-.wp-block-button .external-icon,
-.swp_social_panel a .external-icon {
-	display: none;
-}
-
 /* Remove nowrap from external links */
 a.external-link {
 	white-space: inherit;
