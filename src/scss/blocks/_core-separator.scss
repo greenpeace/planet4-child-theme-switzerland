@@ -1,9 +1,10 @@
 hr.wp-block-separator {
 	height: 2px;
 	width: 100%;
-	margin: 4rem auto 6rem auto;
+	margin: 4rem auto 4rem auto;
 	border: none;
 	background-color: $color_standard_1;
+	opacity: 1;
 }
 
 /* Fix for a master theme greedy selector */

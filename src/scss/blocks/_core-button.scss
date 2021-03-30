@@ -2,6 +2,10 @@
 	margin-top: 2em;
 	display: block;
 
+	.wp-block-button {
+		margin-bottom: 1em;
+	}
+
 	a, button {
 		background-color: $color_standard_1;
 		/*
