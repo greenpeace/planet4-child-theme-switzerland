@@ -951,9 +951,10 @@ ul.is-style-accent-links li a {
 hr.wp-block-separator {
   height: 2px;
   width: 100%;
-  margin: 4rem auto 6rem auto;
+  margin: 4rem auto 4rem auto;
   border: none;
   background-color: #73BE1E;
+  opacity: 1;
 }
 
 /* Fix for a master theme greedy selector */
@@ -1372,6 +1373,9 @@ p.is-style-accent-2 {
   margin-top: 2em;
   display: block;
   /* File icons, e.g. PDF links */
+}
+.wp-block-button .wp-block-button {
+  margin-bottom: 1em;
 }
 .wp-block-button a, .wp-block-button button {
   background-color: #73BE1E;
@@ -1873,6 +1877,51 @@ p.is-style-accent-2 {
 .tag-chemie .page-template .wp-block-columns.is-style-petition-left .wp-block-column:first-child .gform_wrapper .gform_footer .gform_button:hover, .tag-toxiques .page-template .wp-block-columns.is-style-petition-left .wp-block-column:first-child .gform_wrapper .gform_footer .gform_button:hover {
   background-color: #a5c0da;
   color: #222222;
+}
+
+blockquote.wp-block-quote {
+  max-width: none;
+  padding: 0;
+  padding-left: 1em;
+  border-left: solid 2px #73BE1E;
+  font-size: 1rem;
+}
+blockquote.wp-block-quote p {
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 1rem;
+}
+blockquote.wp-block-quote cite {
+  font-weight: 700;
+}
+
+/* Color Schemes */
+.tag-wald blockquote.wp-block-quote, .tag-forets blockquote.wp-block-quote {
+  border-left: solid 2px #26774e;
+}
+
+.tag-energie blockquote.wp-block-quote, .tag-nachhaltiger-finanzplatz blockquote.wp-block-quote, .tag-gletscher-initiative blockquote.wp-block-quote, .tag-klima blockquote.wp-block-quote, .tag-klimabewegung blockquote.wp-block-quote, .tag-klimagerechtigkeit blockquote.wp-block-quote, .tag-ernaehrung blockquote.wp-block-quote, .tag-climat blockquote.wp-block-quote, .tag-finance-durable blockquote.wp-block-quote, .tag-initiative-glaciers blockquote.wp-block-quote, .tag-mouvement-climatique blockquote.wp-block-quote, .tag-justice-climatique blockquote.wp-block-quote, .tag-nutrition blockquote.wp-block-quote, .tag-alimentation blockquote.wp-block-quote, .tag-landwirtschaft blockquote.wp-block-quote, .tag-agriculture blockquote.wp-block-quote, .tag-co2-gesetz blockquote.wp-block-quote, .tag-loi-co2 blockquote.wp-block-quote {
+  border-left: solid 2px #cd1719;
+}
+
+.tag-meer blockquote.wp-block-quote, .tag-oceans blockquote.wp-block-quote {
+  border-left: solid 2px #3290de;
+}
+
+.tag-flotte blockquote.wp-block-quote {
+  border-left: solid 2px #007799;
+}
+
+.tag-arktis blockquote.wp-block-quote, .tag-antarktis blockquote.wp-block-quote, .tag-arctique blockquote.wp-block-quote, .tag-antarctique blockquote.wp-block-quote {
+  border-left: solid 2px #1ebcef;
+}
+
+.tag-plastik blockquote.wp-block-quote, .tag-zero-waste blockquote.wp-block-quote, .tag-zero-dechet blockquote.wp-block-quote {
+  border-left: solid 2px #69c2be;
+}
+
+.tag-chemie blockquote.wp-block-quote, .tag-toxiques blockquote.wp-block-quote {
+  border-left: solid 2px #4a81b4;
 }
 
 .issuuembed {
@@ -2389,6 +2438,281 @@ body .page-template .article-list-item-headline a:hover {
   line-height: 1.5;
 }
 
+.timeline-block .tl-text .tl-headline-date,
+.timeline-block .tl-text h3.tl-headline-date {
+  color: #222222;
+}
+.timeline-block .tl-text .tl-text-content p {
+  font-family: Roboto, sans-serif;
+  color: #222222;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.timeline-block .tl-slidenav-title,
+.timeline-block .tl-slidenav-description {
+  display: none;
+}
+.timeline-block .tl-slidenav-previous .tl-slidenav-icon::before,
+.timeline-block .tl-slidenav-next .tl-slidenav-icon::before {
+  background-image: none;
+}
+
+/*
+The block has 4 styles:
+	- .block-style-image
+	- .block-style-icon
+	- .block-style-tasks
+ */
+.block.columns-block {
+  /*
+  	Reset some of the unneeded Planet4 styles.
+  	These should be in general typography instead of on a block level, but we can't change that in the child theme, so we overwrite.
+  */
+}
+.block.columns-block a {
+  color: #222222;
+}
+.block.columns-block.block-style-image .column-wrap h3 {
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  margin-top: 1em;
+  text-align: left;
+}
+.block.columns-block.block-style-icons h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.block.columns-block.block-style-tasks h3, .block.columns-block.block-style-no_image h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.block.columns-block.block-style-tasks .can-do-steps .step-number, .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #73BE1E;
+  color: #fff;
+}
+.block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #73BE1E;
+  border-color: #00573a;
+}
+.block.columns-block.block-style-tasks .can-do-steps .step-info p,
+.block.columns-block.block-style-tasks .can-do-steps .step-info p.has-cta, .block.columns-block.block-style-no_image .can-do-steps .step-info p,
+.block.columns-block.block-style-no_image .can-do-steps .step-info p.has-cta {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #222222;
+  opacity: 1;
+}
+.block.columns-block.block-style-tasks .btn.btn-secondary, .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #73BE1E;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.block.columns-block.block-style-tasks .btn.btn-secondary:hover, .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #00573a;
+  color: #fff;
+}
+.block.columns-block a.call-to-action-link {
+  /* Should look the same as core/button, but has different markup */
+  background-color: #73BE1E;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  /* Remove default Gutenberg style for rounded corners */
+  border-radius: 0;
+  display: inline-block;
+  line-height: 3;
+  padding: 2px 30px;
+}
+.block.columns-block a.call-to-action-link:hover {
+  background-color: #00573a;
+  color: #fff;
+  text-decoration: none;
+}
+.block.columns-block .column-wrap.has-cta {
+  padding-bottom: 2em;
+}
+
+/* Color Schemes */
+.tag-wald .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-wald .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-forets .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-forets .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #26774e;
+  color: #fff;
+}
+.tag-wald .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-wald .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-forets .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-forets .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #26774e;
+  border-color: #d06283;
+}
+.tag-wald .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-wald .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-forets .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-forets .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #d06283;
+  color: #fff;
+}
+.tag-wald .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-wald .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-forets .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-forets .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #26774e;
+  color: #fff;
+}
+.tag-wald .block.columns-block a.call-to-action-link, .tag-forets .block.columns-block a.call-to-action-link {
+  background-color: #26774e;
+  color: #fff;
+}
+.tag-wald .block.columns-block a.call-to-action-link:hover, .tag-forets .block.columns-block a.call-to-action-link:hover {
+  background-color: #d06283;
+  color: #fff;
+}
+
+.tag-energie .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-energie .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-gletscher-initiative .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-gletscher-initiative .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-klima .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-klima .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-klimabewegung .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-klimabewegung .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-klimagerechtigkeit .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-klimagerechtigkeit .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-ernaehrung .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-ernaehrung .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-climat .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-climat .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-finance-durable .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-finance-durable .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-initiative-glaciers .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-initiative-glaciers .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-mouvement-climatique .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-mouvement-climatique .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-justice-climatique .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-justice-climatique .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-nutrition .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-nutrition .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-alimentation .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-alimentation .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-landwirtschaft .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-landwirtschaft .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-agriculture .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-agriculture .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-co2-gesetz .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-co2-gesetz .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-loi-co2 .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-loi-co2 .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #cd1719;
+  color: #fff;
+}
+.tag-energie .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-energie .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-gletscher-initiative .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-gletscher-initiative .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-klima .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-klima .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-klimabewegung .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-klimabewegung .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-klimagerechtigkeit .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-klimagerechtigkeit .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-ernaehrung .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-ernaehrung .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-climat .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-climat .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-finance-durable .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-finance-durable .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-initiative-glaciers .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-initiative-glaciers .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-mouvement-climatique .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-mouvement-climatique .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-justice-climatique .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-justice-climatique .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-nutrition .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-nutrition .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-alimentation .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-alimentation .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-landwirtschaft .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-landwirtschaft .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-agriculture .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-agriculture .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-co2-gesetz .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-co2-gesetz .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-loi-co2 .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-loi-co2 .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #cd1719;
+  border-color: #cccccc;
+}
+.tag-energie .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-energie .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-gletscher-initiative .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-gletscher-initiative .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-klima .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-klima .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-klimabewegung .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-klimabewegung .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-klimagerechtigkeit .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-klimagerechtigkeit .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-ernaehrung .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-ernaehrung .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-climat .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-climat .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-finance-durable .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-finance-durable .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-initiative-glaciers .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-initiative-glaciers .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-mouvement-climatique .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-mouvement-climatique .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-justice-climatique .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-justice-climatique .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-nutrition .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-nutrition .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-alimentation .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-alimentation .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-landwirtschaft .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-landwirtschaft .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-agriculture .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-agriculture .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-co2-gesetz .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-co2-gesetz .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-loi-co2 .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-loi-co2 .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #cccccc;
+  color: #222222;
+}
+.tag-energie .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-energie .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-nachhaltiger-finanzplatz .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-gletscher-initiative .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-gletscher-initiative .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-klima .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-klima .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-klimabewegung .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-klimabewegung .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-klimagerechtigkeit .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-klimagerechtigkeit .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-ernaehrung .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-ernaehrung .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-climat .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-climat .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-finance-durable .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-finance-durable .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-initiative-glaciers .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-initiative-glaciers .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-mouvement-climatique .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-mouvement-climatique .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-justice-climatique .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-justice-climatique .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-nutrition .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-nutrition .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-alimentation .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-alimentation .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-landwirtschaft .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-landwirtschaft .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-agriculture .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-agriculture .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-co2-gesetz .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-co2-gesetz .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-loi-co2 .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-loi-co2 .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #cd1719;
+  color: #fff;
+}
+.tag-energie .block.columns-block a.call-to-action-link, .tag-nachhaltiger-finanzplatz .block.columns-block a.call-to-action-link, .tag-gletscher-initiative .block.columns-block a.call-to-action-link, .tag-klima .block.columns-block a.call-to-action-link, .tag-klimabewegung .block.columns-block a.call-to-action-link, .tag-klimagerechtigkeit .block.columns-block a.call-to-action-link, .tag-ernaehrung .block.columns-block a.call-to-action-link, .tag-climat .block.columns-block a.call-to-action-link, .tag-finance-durable .block.columns-block a.call-to-action-link, .tag-initiative-glaciers .block.columns-block a.call-to-action-link, .tag-mouvement-climatique .block.columns-block a.call-to-action-link, .tag-justice-climatique .block.columns-block a.call-to-action-link, .tag-nutrition .block.columns-block a.call-to-action-link, .tag-alimentation .block.columns-block a.call-to-action-link, .tag-landwirtschaft .block.columns-block a.call-to-action-link, .tag-agriculture .block.columns-block a.call-to-action-link, .tag-co2-gesetz .block.columns-block a.call-to-action-link, .tag-loi-co2 .block.columns-block a.call-to-action-link {
+  background-color: #cd1719;
+  color: #fff;
+}
+.tag-energie .block.columns-block a.call-to-action-link:hover, .tag-nachhaltiger-finanzplatz .block.columns-block a.call-to-action-link:hover, .tag-gletscher-initiative .block.columns-block a.call-to-action-link:hover, .tag-klima .block.columns-block a.call-to-action-link:hover, .tag-klimabewegung .block.columns-block a.call-to-action-link:hover, .tag-klimagerechtigkeit .block.columns-block a.call-to-action-link:hover, .tag-ernaehrung .block.columns-block a.call-to-action-link:hover, .tag-climat .block.columns-block a.call-to-action-link:hover, .tag-finance-durable .block.columns-block a.call-to-action-link:hover, .tag-initiative-glaciers .block.columns-block a.call-to-action-link:hover, .tag-mouvement-climatique .block.columns-block a.call-to-action-link:hover, .tag-justice-climatique .block.columns-block a.call-to-action-link:hover, .tag-nutrition .block.columns-block a.call-to-action-link:hover, .tag-alimentation .block.columns-block a.call-to-action-link:hover, .tag-landwirtschaft .block.columns-block a.call-to-action-link:hover, .tag-agriculture .block.columns-block a.call-to-action-link:hover, .tag-co2-gesetz .block.columns-block a.call-to-action-link:hover, .tag-loi-co2 .block.columns-block a.call-to-action-link:hover {
+  background-color: #cccccc;
+  color: #fff;
+}
+
+.tag-meer .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-meer .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-oceans .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-oceans .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #3290de;
+  color: #fff;
+}
+.tag-meer .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-meer .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-oceans .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-oceans .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #3290de;
+  border-color: #1152f0;
+}
+.tag-meer .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-meer .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-oceans .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-oceans .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #1152f0;
+  color: #fff;
+}
+.tag-meer .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-meer .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-oceans .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-oceans .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #3290de;
+  color: #fff;
+}
+.tag-meer .block.columns-block a.call-to-action-link, .tag-oceans .block.columns-block a.call-to-action-link {
+  background-color: #3290de;
+  color: #fff;
+}
+.tag-meer .block.columns-block a.call-to-action-link:hover, .tag-oceans .block.columns-block a.call-to-action-link:hover {
+  background-color: #1152f0;
+  color: #fff;
+}
+
+.tag-flotte .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-flotte .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #007799;
+  color: #fff;
+}
+.tag-flotte .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-flotte .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #007799;
+  border-color: #1a1a1a;
+}
+.tag-flotte .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-flotte .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.tag-flotte .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-flotte .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #007799;
+  color: #fff;
+}
+.tag-flotte .block.columns-block a.call-to-action-link {
+  background-color: #007799;
+  color: #fff;
+}
+.tag-flotte .block.columns-block a.call-to-action-link:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.tag-arktis .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-arktis .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-antarktis .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-antarktis .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-arctique .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-arctique .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-antarctique .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-antarctique .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #1ebcef;
+  color: #fff;
+}
+.tag-arktis .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-arktis .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-antarktis .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-antarktis .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-arctique .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-arctique .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-antarctique .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-antarctique .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #1ebcef;
+  border-color: #00b3c4;
+}
+.tag-arktis .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-arktis .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-antarktis .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-antarktis .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-arctique .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-arctique .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-antarctique .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-antarctique .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #00b3c4;
+  color: #fff;
+}
+.tag-arktis .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-arktis .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-antarktis .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-antarktis .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-arctique .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-arctique .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-antarctique .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-antarctique .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #1ebcef;
+  color: #fff;
+}
+.tag-arktis .block.columns-block a.call-to-action-link, .tag-antarktis .block.columns-block a.call-to-action-link, .tag-arctique .block.columns-block a.call-to-action-link, .tag-antarctique .block.columns-block a.call-to-action-link {
+  background-color: #1ebcef;
+  color: #fff;
+}
+.tag-arktis .block.columns-block a.call-to-action-link:hover, .tag-antarktis .block.columns-block a.call-to-action-link:hover, .tag-arctique .block.columns-block a.call-to-action-link:hover, .tag-antarctique .block.columns-block a.call-to-action-link:hover {
+  background-color: #00b3c4;
+  color: #fff;
+}
+
+.tag-plastik .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-plastik .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-zero-waste .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-zero-waste .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-zero-dechet .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-zero-dechet .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #69c2be;
+  color: #fff;
+}
+.tag-plastik .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-plastik .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-zero-waste .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-zero-waste .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-zero-dechet .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-zero-dechet .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #69c2be;
+  border-color: #e94e28;
+}
+.tag-plastik .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-plastik .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-zero-waste .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-zero-waste .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-zero-dechet .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-zero-dechet .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #e94e28;
+  color: #fff;
+}
+.tag-plastik .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-plastik .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-zero-waste .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-zero-waste .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-zero-dechet .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-zero-dechet .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #69c2be;
+  color: #fff;
+}
+.tag-plastik .block.columns-block a.call-to-action-link, .tag-zero-waste .block.columns-block a.call-to-action-link, .tag-zero-dechet .block.columns-block a.call-to-action-link {
+  background-color: #69c2be;
+  color: #fff;
+}
+.tag-plastik .block.columns-block a.call-to-action-link:hover, .tag-zero-waste .block.columns-block a.call-to-action-link:hover, .tag-zero-dechet .block.columns-block a.call-to-action-link:hover {
+  background-color: #e94e28;
+  color: #fff;
+}
+
+.tag-chemie .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-chemie .block.columns-block.block-style-no_image .can-do-steps .step-number, .tag-toxiques .block.columns-block.block-style-tasks .can-do-steps .step-number, .tag-toxiques .block.columns-block.block-style-no_image .can-do-steps .step-number {
+  background-color: #4a81b4;
+  color: #fff;
+}
+.tag-chemie .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-chemie .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner, .tag-toxiques .block.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner, .tag-toxiques .block.columns-block.block-style-no_image .can-do-steps .step-number .step-number-inner {
+  background-color: #4a81b4;
+  border-color: #ff3893;
+}
+.tag-chemie .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-chemie .block.columns-block.block-style-no_image .btn.btn-secondary, .tag-toxiques .block.columns-block.block-style-tasks .btn.btn-secondary, .tag-toxiques .block.columns-block.block-style-no_image .btn.btn-secondary {
+  background-color: #ff3893;
+  color: #fff;
+}
+.tag-chemie .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-chemie .block.columns-block.block-style-no_image .btn.btn-secondary:hover, .tag-toxiques .block.columns-block.block-style-tasks .btn.btn-secondary:hover, .tag-toxiques .block.columns-block.block-style-no_image .btn.btn-secondary:hover {
+  background-color: #4a81b4;
+  color: #fff;
+}
+.tag-chemie .block.columns-block a.call-to-action-link, .tag-toxiques .block.columns-block a.call-to-action-link {
+  background-color: #4a81b4;
+  color: #fff;
+}
+.tag-chemie .block.columns-block a.call-to-action-link:hover, .tag-toxiques .block.columns-block a.call-to-action-link:hover {
+  background-color: #ff3893;
+  color: #fff;
+}
+
 body .gform_wrapper,
 body #gforms_confirmation_message {
   background-color: #dbebbe;
@@ -2672,14 +2996,10 @@ body #gforms_confirmation_message .gpoll_bar_count {
 
 /**
   Fixes Youtube previews in backend editor
-  https://tickets.greenpeace.ch/view.php?id=419
+  Broken in master theme: https://github.com/greenpeace/planet4-master-theme/blob/7b63453fc0bc915444552f51d279730779a46117/assets/src/scss/editorOverrides.scss#L202-L206
  */
-.embed-container,
-.wp-block-embed-dailymotion .wp-block-embed__wrapper,
-.wp-block-embed-kickstarter .wp-block-embed__wrapper,
-.wp-block-embed-vimeo .wp-block-embed__wrapper,
-.wp-block-embed-youtube .wp-block-embed__wrapper {
-  padding-bottom: 56.25%;
+.wp-embed-responsive .block-editor .wp-block-embed.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
+  content: "" !important;
 }
 
 /*# sourceMappingURL=editor-style.css.map */
