@@ -582,12 +582,6 @@ iframe {
   color: #fff;
 }
 
-/* Remove icon for external links from buttons */
-.wp-block-button .external-icon,
-.swp_social_panel a .external-icon {
-  display: none;
-}
-
 /* Remove nowrap from external links */
 a.external-link {
   white-space: inherit;
@@ -1379,7 +1373,7 @@ p.is-style-accent-2 {
   display: block;
   /* File icons, e.g. PDF links */
 }
-.wp-block-button a {
+.wp-block-button a, .wp-block-button button {
   background-color: #73BE1E;
   /*
   	Master theme changes the button color after loading, only in Firefox.
@@ -1392,21 +1386,46 @@ p.is-style-accent-2 {
   /* Remove default Gutenberg style for rounded corners */
   border-radius: 0;
 }
-.wp-block-button a:hover {
+.wp-block-button a.dark, .wp-block-button button.dark {
   background-color: #00573a;
   color: #fff;
 }
-.wp-block-button a:before {
-  margin-right: 0.2em;
+.wp-block-button a:hover.dark, .wp-block-button button:hover.dark {
+  background-color: #73BE1E;
+  color: #fff;
+}
+.wp-block-button a:hover, .wp-block-button button:hover {
+  background-color: #00573a;
+  color: #fff;
+}
+.wp-block-button a:before, .wp-block-button button:before {
+  margin-right: 0.4em;
   color: #fff;
   background-color: #fff;
 }
-.wp-block-button a:hover:before {
+.wp-block-button a:hover:before, .wp-block-button button:hover:before {
   color: #fff;
   background-color: #fff;
 }
 .wp-block-button.is-style-full-width, .wp-block-button.is-style-full-width a {
   width: 100%;
+}
+.wp-block-button button {
+  padding: 0.667em 1.333em;
+  border: none;
+  overflow-wrap: break-word;
+}
+.wp-block-button button.stealth {
+  background-color: #222222;
+  color: #000;
+}
+.wp-block-button button.dark {
+  background-color: #00573a;
+  color: #fff;
+}
+.wp-block-button button:hover.dark {
+  background-color: #73BE1E;
+  color: #fff;
 }
 
 /* Master theme fixes */
@@ -1414,7 +1433,18 @@ p.is-style-accent-2 {
   border-radius: 0;
 }
 
+.wp-block-button a.external-link::after {
+  display: none;
+}
+
+.wp-block-button a.pdf-link::before {
+  background-color: #fff;
+}
+
 /* Color Schemes */
+.tag-wald, .tag-forets {
+  /* Master theme fixes */
+}
 .tag-wald .wp-block-button a, .tag-forets .wp-block-button a {
   background-color: #d06283;
   /*
@@ -1435,7 +1465,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-wald [class=wp-block-button] a.pdf-link::before, .tag-forets [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-energie, .tag-nachhaltiger-finanzplatz, .tag-gletscher-initiative, .tag-klima, .tag-klimabewegung, .tag-klimagerechtigkeit, .tag-ernaehrung, .tag-climat, .tag-finance-durable, .tag-initiative-glaciers, .tag-mouvement-climatique, .tag-justice-climatique, .tag-nutrition, .tag-alimentation, .tag-landwirtschaft, .tag-agriculture, .tag-co2-gesetz, .tag-loi-co2 {
+  /* Master theme fixes */
+}
 .tag-energie .wp-block-button a, .tag-nachhaltiger-finanzplatz .wp-block-button a, .tag-gletscher-initiative .wp-block-button a, .tag-klima .wp-block-button a, .tag-klimabewegung .wp-block-button a, .tag-klimagerechtigkeit .wp-block-button a, .tag-ernaehrung .wp-block-button a, .tag-climat .wp-block-button a, .tag-finance-durable .wp-block-button a, .tag-initiative-glaciers .wp-block-button a, .tag-mouvement-climatique .wp-block-button a, .tag-justice-climatique .wp-block-button a, .tag-nutrition .wp-block-button a, .tag-alimentation .wp-block-button a, .tag-landwirtschaft .wp-block-button a, .tag-agriculture .wp-block-button a, .tag-co2-gesetz .wp-block-button a, .tag-loi-co2 .wp-block-button a {
   background-color: #cccccc;
   /*
@@ -1456,7 +1492,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-energie [class=wp-block-button] a.pdf-link::before, .tag-nachhaltiger-finanzplatz [class=wp-block-button] a.pdf-link::before, .tag-gletscher-initiative [class=wp-block-button] a.pdf-link::before, .tag-klima [class=wp-block-button] a.pdf-link::before, .tag-klimabewegung [class=wp-block-button] a.pdf-link::before, .tag-klimagerechtigkeit [class=wp-block-button] a.pdf-link::before, .tag-ernaehrung [class=wp-block-button] a.pdf-link::before, .tag-climat [class=wp-block-button] a.pdf-link::before, .tag-finance-durable [class=wp-block-button] a.pdf-link::before, .tag-initiative-glaciers [class=wp-block-button] a.pdf-link::before, .tag-mouvement-climatique [class=wp-block-button] a.pdf-link::before, .tag-justice-climatique [class=wp-block-button] a.pdf-link::before, .tag-nutrition [class=wp-block-button] a.pdf-link::before, .tag-alimentation [class=wp-block-button] a.pdf-link::before, .tag-landwirtschaft [class=wp-block-button] a.pdf-link::before, .tag-agriculture [class=wp-block-button] a.pdf-link::before, .tag-co2-gesetz [class=wp-block-button] a.pdf-link::before, .tag-loi-co2 [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-meer, .tag-oceans {
+  /* Master theme fixes */
+}
 .tag-meer .wp-block-button a, .tag-oceans .wp-block-button a {
   background-color: #1152f0;
   /*
@@ -1477,7 +1519,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-meer [class=wp-block-button] a.pdf-link::before, .tag-oceans [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-flotte {
+  /* Master theme fixes */
+}
 .tag-flotte .wp-block-button a {
   background-color: #1a1a1a;
   /*
@@ -1498,7 +1546,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-flotte [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-arktis, .tag-antarktis, .tag-arctique, .tag-antarctique {
+  /* Master theme fixes */
+}
 .tag-arktis .wp-block-button a, .tag-antarktis .wp-block-button a, .tag-arctique .wp-block-button a, .tag-antarctique .wp-block-button a {
   background-color: #00b3c4;
   /*
@@ -1519,7 +1573,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-arktis [class=wp-block-button] a.pdf-link::before, .tag-antarktis [class=wp-block-button] a.pdf-link::before, .tag-arctique [class=wp-block-button] a.pdf-link::before, .tag-antarctique [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-plastik, .tag-zero-waste, .tag-zero-dechet {
+  /* Master theme fixes */
+}
 .tag-plastik .wp-block-button a, .tag-zero-waste .wp-block-button a, .tag-zero-dechet .wp-block-button a {
   background-color: #e94e28;
   /*
@@ -1540,7 +1600,13 @@ p.is-style-accent-2 {
   color: #fff;
   background-color: #fff;
 }
+.tag-plastik [class=wp-block-button] a.pdf-link::before, .tag-zero-waste [class=wp-block-button] a.pdf-link::before, .tag-zero-dechet [class=wp-block-button] a.pdf-link::before {
+  background-color: #fff;
+}
 
+.tag-chemie, .tag-toxiques {
+  /* Master theme fixes */
+}
 .tag-chemie .wp-block-button a, .tag-toxiques .wp-block-button a {
   background-color: #ff3893;
   /*
@@ -1559,6 +1625,9 @@ p.is-style-accent-2 {
 }
 .tag-chemie .wp-block-button a:hover:before, .tag-toxiques .wp-block-button a:hover:before {
   color: #fff;
+  background-color: #fff;
+}
+.tag-chemie [class=wp-block-button] a.pdf-link::before, .tag-toxiques [class=wp-block-button] a.pdf-link::before {
   background-color: #fff;
 }
 
@@ -1838,6 +1907,15 @@ Fix broken vimeo embed positioning
  */
 .wp-block-embed-vimeo .wp-block-embed__wrapper {
   padding-bottom: 0;
+}
+
+/* fix broken height in embeds */
+.wp-embed-responsive .wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-9-16 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-18-9 .wp-block-embed__wrapper::before, .wp-embed-responsive .wp-block-embed.wp-embed-aspect-21-9 .wp-block-embed__wrapper::before {
+  display: inline;
+}
+
+.embed-container, .wp-block-embed-dailymotion .wp-block-embed__wrapper, .wp-block-embed-kickstarter .wp-block-embed__wrapper, .wp-block-embed-vimeo .wp-block-embed__wrapper, .wp-block-embed-youtube .wp-block-embed__wrapper {
+  height: auto;
 }
 
 .articles-block {
