@@ -108,6 +108,18 @@ function p4_child_theme_gpch_setup() {
 
 add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
 
+function p4_child_theme_gpch_enqueue_editor_assets() {
+	wp_enqueue_style(
+		'gpch-gutenberg-editor-fixes',
+		get_stylesheet_directory_uri() . '/admin/css/editor-fixes.css',
+		[ 'wp-edit-blocks' ],
+		filemtime( plugin_dir_path( __FILE__ ) . 'admin/css/editor-fixes.css' )
+	);
+}
+
+// Hook into editor only hook
+add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_enqueue_editor_assets' );
+
 
 /*
  * Enqueue Scripts (Frontend)
@@ -124,22 +136,20 @@ function p4_child_theme_gpch_scripts() {
 	$child_options = get_option( 'gpch_child_options' );
 	if ( key_exists( 'gpch_child_field_ssa_properties', $child_options ) ) {
 		$ssa_properties = $child_options['gpch_child_field_ssa_properties'];
-	}
-	else {
+	} else {
 		$ssa_properties = '';
 	}
 
 	$script_params = array(
-		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'ajaxurl'        => admin_url( 'admin-ajax.php' ),
 		'ssa_properties' => $ssa_properties,
 	);
 
-	$block_popups_setting = get_field('setting_block_popups');
+	$block_popups_setting = get_field( 'setting_block_popups' );
 
-	if ($block_popups_setting === true) {
+	if ( $block_popups_setting === true ) {
 		$script_params['block_popups'] = 1;
-	}
-	else {
+	} else {
 		$script_params['block_popups'] = 0;
 	}
 
@@ -201,16 +211,16 @@ add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10,
  *
  * @param $redirect_page
  */
-function p4_child_theme_gpch_tag_page_redirect ($redirect_page) {
-	$permalink = get_permalink($redirect_page);
+function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
+	$permalink = get_permalink( $redirect_page );
 
-	if ($permalink !== false) {
-		wp_safe_redirect($permalink, 301);
+	if ( $permalink !== false ) {
+		wp_safe_redirect( $permalink, 301 );
 		exit;
 	}
 }
 
-add_action('p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect');
+add_action( 'p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect' );
 
 
 /**
@@ -219,22 +229,24 @@ add_action('p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect
 function gpch_set_post_order_in_admin( $wp_query ) {
 	global $pagenow;
 
-	if ( is_admin() && 'edit.php' == $pagenow && array_key_exists('post_type', $_GET) && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
+	if ( is_admin() && 'edit.php' == $pagenow && array_key_exists( 'post_type', $_GET ) && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
 		$wp_query->set( 'orderby', 'post_modified' );
 		$wp_query->set( 'order', 'DESC' );
 	}
 }
+
 add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
 
 
 /**
  * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
  */
-function change_media_label(){
+function change_media_label() {
 	global $menu, $submenu;
 
 	// Change the forms list submenu to include sorting by ID (descending)
 	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
 }
-add_action( 'admin_menu', 'change_media_label',  9999999);
+
+add_action( 'admin_menu', 'change_media_label', 9999999 );
 
