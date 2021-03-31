@@ -151,5 +151,12 @@
 				display: none;
 			}
 		}
+
+		.nav-search-wrap {
+			background-color: $color_standard_2;
+		}
+		.nav-search-wrap .top-nav-search-btn {
+			top: 12px;
+		}
 	}
 }
