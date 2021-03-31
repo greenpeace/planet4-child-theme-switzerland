@@ -1,18 +1,13 @@
-.wp-block-button {
-	margin-top: 2em;
+.wp-block-button,
+.wp-block-button.is-style-secondary {
+	margin-bottom: 1em;
 	display: block;
 
-	.wp-block-button {
-		margin-bottom: 1em;
-	}
-
-	a, button {
+	button,
+	a,
+	a:visited {
 		background-color: $color_standard_1;
-		/*
-			Master theme changes the button color after loading, only in Firefox.
-			Couldn't find what exactly is happening, so now we use !important.
-		*/
-		color: $color_standard_1_font !important;
+		color: $color_standard_1_font;
 		text-decoration: none;
 
 		font-size: 0.875rem;
@@ -20,6 +15,7 @@
 
 		/* Remove default Gutenberg style for rounded corners */
 		border-radius: 0;
+		border: 0;
 
 		&.dark {
 			background-color: $color_standard_3;
@@ -32,19 +28,27 @@
 		}
 	}
 
-	a:hover, button:hover {
+	button:hover,
+	a:hover {
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
 	}
-	
+
 	/* File icons, e.g. PDF links */
 	a:before, button:before {
 		margin-right: .4em;
 		color: $color_standard_1_font;
 		background-color: $color_standard_1_font;
+
+		transition-property: color, background-color, border-color;
+		-webkit-transition-duration: .15s;
+		transition-duration: .15s;
+		-webkit-transition-timing-function: linear;
+		transition-timing-function: linear;
 	}
 
-	a:hover:before, button:hover:before {
+	button:hover:before,
+	a:hover:before {
 		color: $color_standard_3_font;
 		background-color: $color_standard_3_font;
 	}
@@ -60,7 +64,7 @@
 		overflow-wrap: break-word;
 
 		&.stealth {
-			background-color: rgb(34,34,34);
+			background-color: rgb(34, 34, 34);
 			color: #000;
 		}
 
@@ -86,42 +90,35 @@
 	display: none;
 }
 
-.wp-block-button a.pdf-link::before {
-	background-color: $color_standard_1_font;
-}
-
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.wp-block-button {
-			a {
+		.wp-block-button,
+		.wp-block-button.is-style-secondary {
+			button,
+			a,
+			a:visited {
 				background-color: #{nth($colors_3, $i)};
-				/*
-					Master theme changes the button color after loading, only in Firefox.
-					Couldn't find what exactly is happening, so now we use !important.
-				*/
-				color: #{nth($colors_3_font, $i)} !important;
+				color: #{nth($colors_3_font, $i)};
 			}
 
+			button:hover,
 			a:hover {
 				background-color: #{nth($colors_1, $i)};
 				color: #{nth($colors_1_font, $i)};
 			}
 
+			button:before,
 			a:before {
 				color: #{nth($colors_3_font, $i)};
 				background-color: #{nth($colors_3_font, $i)};
 			}
 
+			button:hover:before,
 			a:hover:before {
 				color: #{nth($colors_1_font, $i)};
 				background-color: #{nth($colors_1_font, $i)};
 			}
-		}
-
-		/* Master theme fixes */
-		[class="wp-block-button"] a.pdf-link::before {
-			background-color: #{nth($colors_1_font, $i)};
 		}
 	}
 }
