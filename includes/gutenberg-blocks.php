@@ -132,6 +132,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/submenu', // not used at GPCH
 				'planet4-blocks/take-action-boxout',
 				'planet4-blocks/timeline',
+				'planet4-blocks/accordion'
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_page );
 		} else if ( $post->post_type === 'post' ) { // block types only for posts
