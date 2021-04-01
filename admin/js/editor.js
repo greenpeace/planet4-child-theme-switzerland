@@ -20,6 +20,19 @@ wp.domReady(() => {
 	wp.hooks.addFilter('editor.BlockEdit', 'my/gutenberg', allowColumnStyle);
 	
 	/**
+	 * Remove unwanted Planet4 block styles and add defaults back that we need
+	 */
+	wp.blocks.unregisterBlockStyle('core/button', 'donate');
+	wp.blocks.unregisterBlockStyle('core/button', 'cta');
+	wp.blocks.unregisterBlockStyle('core/button', 'secondary');
+	
+	wp.blocks.registerBlockStyle( 'core/button', {
+		name: 'default',
+		label: 'Default',
+		isDefault: true,
+	});
+	
+	/**
 	 * Remove unwanted block default styles and add our own where needed
 	 *
 	 * @see https://www.billerickson.net/block-styles-in-gutenberg/
@@ -71,7 +84,7 @@ wp.domReady(() => {
 	});
 
 	// core/button
-	wp.blocks.unregisterBlockStyle('core/button', 'fill');
+	//wp.blocks.unregisterBlockStyle('core/button', 'fill');
 
 	wp.blocks.registerBlockStyle('core/button', {
 		name: 'full-width',
@@ -79,8 +92,21 @@ wp.domReady(() => {
 		isDefault: false,
 	});
 	
-	// core/image
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'secondary',
+		label: 'Secondary Color',
+		isDefault: false,
+	});
+	
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'highlight',
+		label: 'Highlight color',
+		isDefault: false,
+	});
+  
+  // core/image
 	wp.blocks.unregisterBlockStyle('core/image', 'rounded');
+
 	
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');
@@ -106,19 +132,6 @@ wp.domReady(() => {
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 	
-	
-	/**
-	 * Remove unwanted Planet4 block styles and add defaults back that we need
-	 */
-	wp.blocks.unregisterBlockStyle('core/button', 'donate');
-	wp.blocks.unregisterBlockStyle('core/button', 'cta');
-	wp.blocks.unregisterBlockStyle('core/button', 'secondary');
-	
-	wp.blocks.registerBlockStyle( 'core/button', {
-		name: 'default',
-		label: 'Default',
-		isDefault: true,
-	});
 	
 
 	/*
