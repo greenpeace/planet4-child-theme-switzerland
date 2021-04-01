@@ -103,6 +103,10 @@ wp.domReady(() => {
 		label: 'Highlight color',
 		isDefault: false,
 	});
+  
+  // core/image
+	wp.blocks.unregisterBlockStyle('core/image', 'rounded');
+
 	
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');
