@@ -11,9 +11,14 @@ Please check the master theme code for more information.
 
 ## Stylesheets
 
-Two stylesheets are generated using SCSS:
-* src/scss/style.scss --> style.css
-* src/scss/editor-style.scss --> admin/css/editor-style.css
+Three stylesheets are generated using SCSS:
+
+```
+sass src/scss/style.scss style.css --style=compressed
+sass src/scss/editor-fixes.scss admin/css/editor-fixes.css
+sass src/scss/editor-style.scss admin/css/editor-style.css --style=compressed
+```
+
 
 ## Autoloader
 

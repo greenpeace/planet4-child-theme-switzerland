@@ -1,11 +1,11 @@
-.wp-block-button,
-.wp-block-button.is-style-secondary {
+.wp-block-button {
 	margin-bottom: 1em;
 	display: block;
 
 	button,
 	a,
-	a:visited {
+	a:visited,
+	div {
 		background-color: $color_standard_1;
 		color: $color_standard_1_font;
 		text-decoration: none;
@@ -35,7 +35,7 @@
 	}
 
 	/* File icons, e.g. PDF links */
-	a:before, button:before {
+	a:before, button:before, div:before {
 		margin-right: .4em;
 		color: $color_standard_1_font;
 		background-color: $color_standard_1_font;
@@ -80,6 +80,68 @@
 	}
 }
 
+/*
+ Button Style secondary
+ */
+.wp-block-button.is-style-secondary {
+	button,
+	a,
+	a:visited,
+	div,
+	.wp-block-button__link[role="textbox"] {
+		background-color: $color_standard_2;
+		color: $color_standard_2_font;
+		border: 0;
+	}
+
+	button:hover,
+	a:hover {
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+	}
+
+	a:before, button:before, div:before {
+		color: $color_standard_2_font;
+		background-color: $color_standard_2_font;
+	}
+
+	button:hover:before,
+	a:hover:before {
+		color: $color_standard_3_font;
+		background-color: $color_standard_3_font;
+	}
+}
+
+/*
+ Button Style highlight
+ */
+.wp-block-button.is-style-highlight {
+	button,
+	a,
+	a:visited,
+	div {
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+	}
+
+	button:hover,
+	a:hover {
+		background-color: $color_standard_1;
+		color: $color_standard_1_font;
+	}
+
+	a:before, button:before, div:before {
+		color: $color_standard_3_font;
+		background-color: $color_standard_3_font;
+	}
+
+	button:hover:before,
+	a:hover:before, {
+		color: $color_standard_1_font;
+		background-color: $color_standard_1_font;
+	}
+}
+
 
 /* Master theme fixes */
 .btn, .post-content .more-link, .post-content .page-links a, .wp-block-button a, .wp-block-file .wp-block-file__button {
@@ -90,6 +152,10 @@
 	display: none;
 }
 
+.wp-block-button .wp-block-button__link[role="textbox"] {
+	border-radius: 0;
+}
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
@@ -98,6 +164,69 @@
 			button,
 			a,
 			a:visited {
+				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+			}
+
+			button:hover,
+			a:hover {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)};
+			}
+
+			button:before,
+			a:before {
+				color: #{nth($colors_1_font, $i)};
+				background-color: #{nth($colors_1_font, $i)};
+			}
+
+			button:hover:before,
+			a:hover:before {
+				color: #{nth($colors_3_font, $i)};
+				background-color: #{nth($colors_3_font, $i)};
+			}
+		}
+
+		/*
+		 Button Style secondary
+		 */
+		.wp-block-button.is-style-secondary {
+			button,
+			a,
+			a:visited,
+			div,
+			.wp-block-button__link[role="textbox"] {
+				background-color: #{nth($colors_2, $i)};
+				color: #{nth($colors_2_font, $i)};
+				border: 0;
+			}
+
+			button:hover,
+			a:hover {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)};
+			}
+
+			a:before, button:before, div:before {
+				color: #{nth($colors_2_font, $i)};
+				background-color: #{nth($colors_2_font, $i)};
+			}
+
+			button:hover:before,
+			a:hover:before {
+				color: #{nth($colors_3_font, $i)};
+				background-color: #{nth($colors_3_font, $i)};
+			}
+		}
+
+		/*
+		 Button Style highlight
+		 */
+		.wp-block-button.is-style-highlight {
+			button,
+			a,
+			a:visited,
+			div {
 				background-color: #{nth($colors_3, $i)};
 				color: #{nth($colors_3_font, $i)};
 			}
@@ -108,14 +237,13 @@
 				color: #{nth($colors_1_font, $i)};
 			}
 
-			button:before,
-			a:before {
+			a:before, button:before, div:before {
 				color: #{nth($colors_3_font, $i)};
 				background-color: #{nth($colors_3_font, $i)};
 			}
 
 			button:hover:before,
-			a:hover:before {
+			a:hover:before, {
 				color: #{nth($colors_1_font, $i)};
 				background-color: #{nth($colors_1_font, $i)};
 			}

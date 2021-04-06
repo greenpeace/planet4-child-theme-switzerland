@@ -1,0 +1,52 @@
+.wp-block-file {
+	.wp-block-file__button,
+	.wp-block-file__button:visited {
+		background-color: $color_standard_1;
+		color: $color_standard_1_font;
+		text-decoration: none;
+
+		margin-left: 0;
+
+		font-size: 0.875rem;
+		font-weight: 500;
+
+		/* Remove default Gutenberg style for rounded corners */
+		border-radius: 0;
+		border: 0;
+	}
+
+	.wp-block-file__button:hover {
+		background-color: $color_standard_3;
+		color: $color_standard_3_font;
+	}
+
+	a:not(.wp-block-file__button) {
+		margin-right: 1em;
+	}
+
+	/* Remove external link icon */
+	a.external-link::after {
+		display: none;
+	}
+}
+
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.wp-block-file {
+			.wp-block-file__button,
+			.wp-block-file__button:visited {
+				background-color: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+			}
+
+			.wp-block-file__button:hover {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)};
+			}
+		}
+
+
+	}
+}
