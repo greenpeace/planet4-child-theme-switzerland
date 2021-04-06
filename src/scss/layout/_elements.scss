@@ -9,8 +9,15 @@ iframe {
 }
 
 /* Social Warfare */
-.swp_social_panel a {
-	color: #fff !important; /* otherwise the icons will use the tag color scheme color */
+.swp_social_panel {
+	/* Remove external link icons added by the master theme */
+	a.external-link::after {
+		display: none;
+	}
+
+	a {
+		color: #fff !important; /* otherwise the icons will use the tag color scheme color */
+	}
 }
 
 .swp_social_panel.swp_horizontal_panel {

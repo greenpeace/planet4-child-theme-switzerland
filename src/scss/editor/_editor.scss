@@ -14,3 +14,10 @@
 		content: "" !important;
 	}
 }
+
+/**
+  Completely hide the color settings panel in the editor
+ */
+.block-editor-panel-color-gradient-settings {
+	display: none;
+}

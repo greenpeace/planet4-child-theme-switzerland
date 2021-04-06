@@ -88,7 +88,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-magazine-articles',
 			'acf/p4-gpch-block-accordion',
-			'acf/p4-gpch-block-taskforce',
 			'acf/p4-gpch-block-gpch-jobs',
 			'acf/p4-gpch-block-gpch-events',
 			'acf/p4-gpch-block-newsletter',
@@ -116,6 +115,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'acf/p4block-covers-campaign',
 				'acf/p4block-covers-content',
 
+				'acf/p4-gpch-block-taskforce',
+
 				// Blocks from planet4-plugin-gutenberg-blocks
 				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
 				'planet4-blocks/articles',
@@ -132,6 +133,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/submenu', // not used at GPCH
 				'planet4-blocks/take-action-boxout',
 				'planet4-blocks/timeline',
+				'planet4-blocks/accordion'
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_page );
 		} else if ( $post->post_type === 'post' ) { // block types only for posts

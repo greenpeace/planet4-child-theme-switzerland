@@ -29,9 +29,6 @@ require_once( 'includes/user-roles.php' );
 // Filter available Gutenberg standard blocks
 require_once( 'includes/gutenberg-blocks.php' );
 
-// Color Palette for Gutenberg
-require_once( 'includes/gutenberg-palettes.php' );
-
 // Customize the Gutenberg sidebar
 require_once( 'includes/gutenberg-sidebar.php' );
 
@@ -102,11 +99,22 @@ function p4_child_theme_gpch_setup() {
 	// Add support for editor styles.
 	add_theme_support( 'editor-styles' );
 
+	// Disable the color selector
+	add_theme_support( 'disable-custom-colors' );
+	add_theme_support( 'disable-custom-gradients' );
+	add_theme_support( 'editor-color-palette', [] );
+
+	// Remove custom text sizes for blocks
+	add_theme_support( 'disable-custom-font-sizes' );
+
+	// Remove options from the text size dropdown
+	add_theme_support( 'editor-font-sizes', [] );
+
 	// Enqueue editor styles.
 	add_editor_style( 'admin/css/editor-style.css' );
 }
 
-add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup' );
+add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup', -9999 );
 
 function p4_child_theme_gpch_enqueue_editor_assets() {
 	wp_enqueue_style(
