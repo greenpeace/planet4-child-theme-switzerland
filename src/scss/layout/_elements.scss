@@ -24,6 +24,11 @@ iframe {
 	margin-top: 4rem !important;
 }
 
+/* Fix floating share buttons overlapping cookie banner */
+.nc_wrapper {
+	z-index: 99;
+}
+
 /* When the buttons are floating, there's no need for a big margin */
 .nc_wrapper.swp_floating_horizontal_wrapper .swp_social_panel.swp_horizontal_panel {
 	margin-top: .5rem !important;
