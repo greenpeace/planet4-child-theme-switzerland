@@ -88,7 +88,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-magazine-articles',
 			'acf/p4-gpch-block-accordion',
-			'acf/p4-gpch-block-taskforce',
 			'acf/p4-gpch-block-gpch-jobs',
 			'acf/p4-gpch-block-gpch-events',
 			'acf/p4-gpch-block-newsletter',
@@ -115,6 +114,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'acf/p4block-header-carousel-zoom',
 				'acf/p4block-covers-campaign',
 				'acf/p4block-covers-content',
+
+				'acf/p4-gpch-block-taskforce',
 
 				// Blocks from planet4-plugin-gutenberg-blocks
 				// @see: https://github.com/greenpeace/planet4-plugin-gutenberg-blocks/blob/develop/planet4-gutenberg-blocks.php
