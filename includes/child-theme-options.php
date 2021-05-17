@@ -98,6 +98,24 @@ function gpch_child_settings_init() {
 	);
 
 	add_settings_section(
+		'gpch_child_bitly',
+		__( 'Bitly API', 'planet4-child-theme-switzerland' ), 'gpch_child_section_bitly_callback',
+		'gpch_child'
+	);
+
+	add_settings_field(
+		'gpch_child_field_bitly_token',
+		__( 'Bitly API token', 'planet4-child-theme-switzerland' ),
+		'gpch_child_fields_bitly_callback',
+		'gpch_child',
+		'gpch_child_bitly',
+		array(
+			'label_for' => 'gpch_child_field_bitly_token',
+			'class'     => 'gpch_child_row',
+		)
+	);
+
+	add_settings_section(
 		'gpch_child_twilio',
 		__( 'Twilio SMS', 'planet4-child-theme-switzerland' ), 'gpch_child_section_twilio_callback',
 		'gpch_child'
@@ -171,6 +189,33 @@ function gpch_child_fields_inxmail_callback( $args ) {
 	<?php
 }
 
+
+/**
+ * Bitly Section callback function.
+ *
+ * @param array $args The settings array, defining title, id, callback.
+ */
+function gpch_child_section_bitly_callback( $args ) {
+	?>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Bitly is used to shorten links.', 'planet4-child-theme-switzerland' ); ?></p>
+	<?php
+}
+
+/**
+ * Bitly text fields callback function.
+ *
+ * @param array $args
+ */
+function gpch_child_fields_bitly_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+           value="<?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?>">
+	<?php
+}
+
+
 /**
  * Twilio Section callback function.
  *
@@ -183,7 +228,7 @@ function gpch_child_section_twilio_callback( $args ) {
 }
 
 /**
- * Inxmail text fields callback function.
+ * Twilio text fields callback function.
  *
  * @param array $args
  */
