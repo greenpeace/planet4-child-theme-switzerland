@@ -100,7 +100,8 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'social-warfare/social-warfare',
 			'social-warfare/click-to-tweet',
 			'planet4-gpch-plugin-blocks/bs-bingo',
-			'planet4-gpch-plugin-blocks/p2p-share'
+			'planet4-gpch-plugin-blocks/p2p-share',
+			'planet4-gpch-plugin-blocks/form-entries'
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
