@@ -67,6 +67,11 @@
 			background-color: rgb(34, 34, 34);
 			color: #fff;
 		}
+		
+		&:hover.stealth {
+			background-color: rgb(108, 108, 108);
+			color: #fff;
+		}
 
 		&.dark {
 			background-color: $color_standard_3;
