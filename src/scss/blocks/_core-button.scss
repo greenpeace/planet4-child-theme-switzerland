@@ -68,6 +68,11 @@
 			color: #fff;
 		}
 
+		&:hover.stealth {
+			background-color: rgb(108, 108, 108);
+			color: #fff;
+		}
+
 		&.dark {
 			background-color: $color_standard_3;
 			color: $color_standard_3_font;
