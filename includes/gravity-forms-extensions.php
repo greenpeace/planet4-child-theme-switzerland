@@ -479,18 +479,6 @@ add_filter( 'planet4_csp_allowed_frame_ancestors', 'gpch_gravityforms_embed_whit
 
 
 /**
- * Force AJAX form submission everywhere
- */
-function gpch_setup_form_args( $form_args ) {
-	$form_args['ajax'] = true;
-	
-	return $form_args;
-}
-
-add_filter( 'gform_form_args', 'gpch_setup_form_args' );
-
-
-/**
  * Client side dynamic population of form fields
  *
  * @param $form
