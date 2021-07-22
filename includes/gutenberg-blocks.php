@@ -101,7 +101,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'social-warfare/click-to-tweet',
 			'planet4-gpch-plugin-blocks/bs-bingo',
 			'planet4-gpch-plugin-blocks/p2p-share',
-			'planet4-gpch-plugin-blocks/form-entries'
+			'planet4-gpch-plugin-blocks/form-entries',
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
@@ -134,7 +134,9 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/submenu', // not used at GPCH
 				'planet4-blocks/take-action-boxout',
 				'planet4-blocks/timeline',
-				'planet4-blocks/accordion'
+				'planet4-blocks/accordion',
+				'planet4-gpch-plugin-blocks/dreampeace-cover',
+				'planet4-gpch-plugin-blocks/dreampeace-slide',
 			);
 			$allowed_blocks      = array_merge( $allowed_blocks_general, $allowed_blocks_page );
 		} else if ( $post->post_type === 'post' ) { // block types only for posts
