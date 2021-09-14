@@ -41,6 +41,9 @@ require_once( 'includes/background-taxonomy.php' );
 // GPCH advanced post settings
 require_once( 'includes/advanced-post-settings.php' );
 
+// GPCH CSP headers
+require_once( 'includes/csp.php' );
+
 /**
  * Load Javascript for further Gutenberg customizations
  */
