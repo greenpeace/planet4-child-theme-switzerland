@@ -219,7 +219,35 @@ add_filter( 'gform_form_settings', 'gpch_gf_type_setting', 10, 2 );
 
 
 /**
- * Add a setting to Gravity Forms to set wheter or not to send newsletter data to Inxmail
+ * Add a setting to Gravity Forms to set the Sextant project_uid
+ *
+ * @param $settings
+ * @param $form
+ *
+ * @return mixed
+ */
+function gpch_gf_sextant_project_uid_setting( $settings, $form ) {
+	$value = rgar( $form, 'gpch_sextant_project_uid' );
+	if ( empty( $value ) ) {
+		$value = '';
+	}
+
+	$input = '<input type="text" name="gpch_sextant_project_uid" value="' . htmlentities( $value ) . '">';
+
+	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_sextant_project_uid'] = '
+        <tr>
+            <th><label for="gpch_sextant_project_uid">' . __( 'GPCH Sextant Project UID', 'planet4-child-theme-switzerland' ) . '</label></th>
+            <td>' . $input . '</td>
+		</tr>';
+
+	return $settings;
+}
+
+add_filter( 'gform_form_settings', 'gpch_gf_sextant_project_uid_setting', 10, 2 );
+
+
+/**
+ * Add a setting to Gravity Forms to set whether or not to send newsletter data to Inxmail
  *
  * @param $settings
  * @param $form
@@ -255,8 +283,9 @@ add_filter( 'gform_form_settings', 'gpch_gf_inxmail_setting', 10, 2 );
  * Save our custom form settings
  */
 function gpch_save_gf_settings( $form ) {
-	$form['gpch_gf_type']    = rgpost( 'gpch_gf_type' );
-	$form['gpch_gf_inxmail'] = rgpost( 'gpch_gf_inxmail' );
+	$form['gpch_gf_type']             = rgpost( 'gpch_gf_type' );
+	$form['gpch_gf_inxmail']          = rgpost( 'gpch_gf_inxmail' );
+	$form['gpch_sextant_project_uid'] = rgpost( 'gpch_sextant_project_uid' );
 
 	return $form;
 }
@@ -341,14 +370,19 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 		}
 	}
 
+	// Add the Sextant ID if there is one set in the form
+	if ( array_key_exists( 'gpch_sextant_project_uid', $form ) && ! empty( $form['gpch_sextant_project_uid'] ) ) {
+		$data['project_uid'] = (int) $form['gpch_sextant_project_uid'];
+	}
+
 	// Set the language
 	$inxmail_language_codes = array(
 		'de' => "1",
 		'fr' => "2",
 	);
 
-	if (array_key_exists(ICL_LANGUAGE_CODE, $inxmail_language_codes )) {
-		$data['LanguageCode'] = $inxmail_language_codes[ICL_LANGUAGE_CODE];
+	if ( array_key_exists( ICL_LANGUAGE_CODE, $inxmail_language_codes ) ) {
+		$data['LanguageCode'] = $inxmail_language_codes[ ICL_LANGUAGE_CODE ];
 	}
 
 	$lists = explode( ',', $subscribe_to_lists );
