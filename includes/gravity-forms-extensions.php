@@ -330,18 +330,65 @@ add_filter( 'gform_form_settings_fields', 'gpch_gf_inxmail_setting', 10, 2 );
 
 
 /**
- * Save our custom form settings
+ * Add a setting to Gravity Forms with a custom entry counter that can be updated manually and automatically
+ *
+ * @param $settings
+ * @param $form
+ *
+ * @return mixed
  */
-function gpch_save_gf_settings( $form ) {
-	$form['_gform_setting_gpch_gf_type']             = rgpost( 'gpch_gf_type' );
-	$form['_gform_setting_gpch_gf_inxmail']          = rgpost( 'gpch_gf_inxmail' );
-	$form['_gform_setting_gpch_sextant_project_uid'] = rgpost( 'gpch_sextant_project_uid' );
+function gpch_gf_entry_counter( $fields, $form ) {
+	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
+		$new_fields['gpch_options'] = array(
+			'title' => 'GPCH Options'
+		);
 
-	return $form;
+		// Add new field to beginning of the $fields array
+		$fields = array_merge( $new_fields, $fields );
+	}
+
+	$fields['gpch_options']['fields'][] = array(
+		'type'                => 'text',
+		'name'                => 'gpch_entry_counter',
+		'label'               => __( 'GPCH Form Entry Counter', 'planet4-child-theme-switzerland' ),
+		'required'            => true,
+		'default_value'       => 0,
+		'validation_callback' => function ( $field, $value ) {
+			if ( ! is_numeric( $value ) || $value < 0 ) {
+				$field->set_error( __( 'Please only use numbers >=0 in this field.', 'planet4-child-theme-switzerland' ) );
+			}
+		}
+	);
+
+	return $fields;
 }
 
-add_filter( 'gform_pre_form_settings_save', 'gpch_save_gf_settings' );
+function gpch_gf_entry_counter_validation_callback( $field, $value ) {
+	return array();
+}
 
+add_filter( 'gform_form_settings_fields', 'gpch_gf_entry_counter', 10, 2 );
+
+
+/**
+ * Increments the form entry counter after each submission
+ *
+ * @param $entry
+ * @param $form
+ */
+function gpch_gf_increment_form_entry_counter( $entry, $form ) {
+	if ( array_key_exists( 'gpch_entry_counter', $form ) && is_numeric( $form['gpch_entry_counter'] ) ) {
+		$form['gpch_entry_counter'] = $form['gpch_entry_counter'] + 1;
+
+		$result = GFAPI::update_form( $form, $form['id'] );
+	} elseif ( ! array_key_exists( 'gpch_entry_counter', $form ) ) {
+		$form['gpch_entry_counter'] = 1;
+
+		$result = GFAPI::update_form( $form, $form['id'] );
+	}
+}
+
+add_action( 'gform_after_submission', 'gpch_gf_increment_form_entry_counter', 10, 2 );
 
 /**
  * Finds newsletter subscriptions in forms and sends them to the Inxmail API
