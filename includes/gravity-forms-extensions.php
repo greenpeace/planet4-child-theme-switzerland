@@ -186,36 +186,74 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
  *
  * @return mixed
  */
-function gpch_gf_type_setting( $settings, $form ) {
-	$value = rgar( $form, 'gpch_gf_type' );
-	if ( empty( $value ) ) {
-		$value = 'other';
+function gpch_gf_type_setting( $fields, $form ) {
+	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
+		$new_fields['gpch_options'] = array(
+			'title' => 'GPCH Options'
+		);
+
+		// Add new field to beginning of the $fields array
+		$fields = array_merge( $new_fields, $fields );
 	}
 
-	$select = '<select name="gpch_gf_type">
-            		<option value="other" ' . ( $value == 'other' ? 'selected="selected"' : '' ) . '>' . __( 'Other', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="petition" ' . ( $value == 'petition' ? 'selected' : '' ) . '>' . __( 'Petition', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="mail2target" ' . ( $value == 'mail2target' ? 'selected' : '' ) . '>' . __( 'Mail2Target', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="event" ' . ( $value == 'event' ? 'selected' : '' ) . '>' . __( 'Event', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="contest" ' . ( $value == 'contest' ? 'selected' : '' ) . '>' . __( 'Contest', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="poll" ' . ( $value == 'poll' ? 'selected' : '' ) . '>' . __( 'Poll', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="quiz" ' . ( $value == 'quiz' ? 'selected' : '' ) . '>' . __( 'Quiz', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="volunteers" ' . ( $value == 'volunteers' ? 'selected' : '' ) . '>' . __( 'Volunteers', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="testament" ' . ( $value == 'testament' ? 'selected' : '' ) . '>' . __( 'Testament', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="order" ' . ( $value == 'order' ? 'selected' : '' ) . '>' . __( 'Order', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="leadgen" ' . ( $value == 'leadgen' ? 'selected' : '' ) . '>' . __( 'Leadgen', 'planet4-child-theme-switzerland' ) . '</option>
-				</select>';
+	$fields['gpch_options']['fields'][] = array(
+		'type'           => 'select',
+		'name'           => 'gpch_gf_type',
+		'label'          => __( 'GPCH Form Type', 'planet4-child-theme-switzerland' ),
+		'required'       => true,
+		'default_value ' => 'other',
+		'choices'        => array(
+			array(
+				'label' => 'Other',
+				'value' => 'other',
+			),
+			array(
+				'label' => 'Petition',
+				'value' => 'petition',
+			),
+			array(
+				'label' => 'Mail 2 Target',
+				'value' => 'mail2target',
+			),
+			array(
+				'label' => 'Event',
+				'value' => 'event',
+			),
+			array(
+				'label' => 'Contest',
+				'value' => 'contest',
+			),
+			array(
+				'label' => 'Poll',
+				'value' => 'poll',
+			),
+			array(
+				'label' => 'Quiz',
+				'value' => 'quiz',
+			),
+			array(
+				'label' => 'Volunteers',
+				'value' => 'volunteers',
+			),
+			array(
+				'label' => 'Testament',
+				'value' => 'testament',
+			),
+			array(
+				'label' => 'Order',
+				'value' => 'order',
+			),
+			array(
+				'label' => 'Leadgen',
+				'value' => 'leadgen',
+			),
+		),
+	);
 
-	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_form_type'] = '
-        <tr>
-            <th><label for="gpch_gf_type">' . __( 'GPCH Form Type', 'planet4-child-theme-switzerland' ) . '</label></th>
-            <td>' . $select . '</td>
-		</tr>';
-
-	return $settings;
+	return $fields;
 }
 
-add_filter( 'gform_form_settings', 'gpch_gf_type_setting', 10, 2 );
+add_filter( 'gform_form_settings_fields', 'gpch_gf_type_setting', 5, 2 );
 
 
 /**
@@ -226,24 +264,27 @@ add_filter( 'gform_form_settings', 'gpch_gf_type_setting', 10, 2 );
  *
  * @return mixed
  */
-function gpch_gf_sextant_project_uid_setting( $settings, $form ) {
-	$value = rgar( $form, 'gpch_sextant_project_uid' );
-	if ( empty( $value ) ) {
-		$value = '';
+function gpch_gf_sextant_project_uid_setting( $fields, $form ) {
+	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
+		$new_fields['gpch_options'] = array(
+			'title' => 'GPCH Options'
+		);
+
+		// Add new field to beginning of the $fields array
+		$fields = array_merge( $new_fields, $fields );
 	}
 
-	$input = '<input type="text" name="gpch_sextant_project_uid" value="' . htmlentities( $value ) . '">';
+	$fields['gpch_options']['fields'][] = array(
+		'type'     => 'text',
+		'name'     => 'gpch_sextant_project_uid',
+		'label'    => __( 'GPCH Sextant Project UID', 'planet4-child-theme-switzerland' ),
+		'required' => false,
+	);
 
-	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_sextant_project_uid'] = '
-        <tr>
-            <th><label for="gpch_sextant_project_uid">' . __( 'GPCH Sextant Project UID', 'planet4-child-theme-switzerland' ) . '</label></th>
-            <td>' . $input . '</td>
-		</tr>';
-
-	return $settings;
+	return $fields;
 }
 
-add_filter( 'gform_form_settings', 'gpch_gf_sextant_project_uid_setting', 10, 2 );
+add_filter( 'gform_form_settings_fields', 'gpch_gf_sextant_project_uid_setting', 10, 2 );
 
 
 /**
@@ -254,38 +295,47 @@ add_filter( 'gform_form_settings', 'gpch_gf_sextant_project_uid_setting', 10, 2 
  *
  * @return mixed
  */
-function gpch_gf_inxmail_setting( $settings, $form ) {
-	$value = rgar( $form, 'gpch_gf_inxmail' );
-	if ( empty( $value ) ) {
-		$value = 'other';
+function gpch_gf_inxmail_setting( $fields, $form ) {
+	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
+		$new_fields['gpch_options'] = array(
+			'title' => 'GPCH Options'
+		);
+
+		// Add new field to beginning of the $fields array
+		$fields = array_merge( $new_fields, $fields );
 	}
 
-	$select = '<select name="gpch_gf_inxmail">
-            		<option value="no" ' . ( $value == 'no' ? 'selected="selected"' : '' ) . '>' . __( 'No', 'planet4-child-theme-switzerland' ) . '</option>
-            		<option value="yes" ' . ( $value == 'yes' ? 'selected' : '' ) . '>' . __( 'Yes', 'planet4-child-theme-switzerland' ) . '</option>
-				</select>';
+	$fields['gpch_options']['fields'][] = array(
+		'type'           => 'select',
+		'name'           => 'gpch_gf_inxmail',
+		'label'          => __( 'GPCH Connect Inxmail', 'planet4-child-theme-switzerland' ),
+		'required'       => true,
+		'default_value ' => 'yes',
+		'choices'        => array(
+			array(
+				'label' => 'Yes',
+				'value' => 'yes',
+			),
+			array(
+				'label' => 'No',
+				'value' => 'no',
+			),
+		),
+	);
 
-	$settings[ __( 'Form Basics', 'gravityforms' ) ]['gpch_inxmail'] = '
-        <tr>
-            <th>
-            	<label for="gpch_gf_inxmail">' . __( 'GPCH Connect Inxmail', 'planet4-child-theme-switzerland' ) . '</label>
-            </th>
-            <td>' . $select . '</td>
-		</tr>';
-
-	return $settings;
+	return $fields;
 }
 
-add_filter( 'gform_form_settings', 'gpch_gf_inxmail_setting', 10, 2 );
+add_filter( 'gform_form_settings_fields', 'gpch_gf_inxmail_setting', 10, 2 );
 
 
 /**
  * Save our custom form settings
  */
 function gpch_save_gf_settings( $form ) {
-	$form['gpch_gf_type']             = rgpost( 'gpch_gf_type' );
-	$form['gpch_gf_inxmail']          = rgpost( 'gpch_gf_inxmail' );
-	$form['gpch_sextant_project_uid'] = rgpost( 'gpch_sextant_project_uid' );
+	$form['_gform_setting_gpch_gf_type']             = rgpost( 'gpch_gf_type' );
+	$form['_gform_setting_gpch_gf_inxmail']          = rgpost( 'gpch_gf_inxmail' );
+	$form['_gform_setting_gpch_sextant_project_uid'] = rgpost( 'gpch_sextant_project_uid' );
 
 	return $form;
 }
