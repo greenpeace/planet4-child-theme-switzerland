@@ -4,8 +4,7 @@ body .site-footer {
 	color: $color_gray_dark;
 
 	a {
-		/* Have to use important because it's also done in the master theme */
-		color: $color_gray_dark !important;
+		color: $color_gray_dark;
 	}
 
 	a:hover {
@@ -13,49 +12,91 @@ body .site-footer {
 	}
 
 	.footer-social-media {
+		display: flex;
 		justify-content: center;
+		margin-bottom: 0;
 		padding: 0;
+
+		li {
+			font-size: 1.25rem;
+
+			.icon {
+				width: 2rem;
+				height: 2rem;
+			}
+		}
+
+		span {
+			display: none
+		}
 	}
 
-	.footer-links li::after,
-	.footer-links-secondary li::after {
-		content: "\7c";
-		color: $color_gray_dark;
-		margin: 0 .5em;
+	.footer-menu {
+		ul.footer-links,
+		ul.footer-links-secondary {
+			column-count: auto;
+			text-align: center;
+
+			li {
+				display: inline-block;
+			}
+
+			li:not(:last-child)::after {
+				content: "\7c";
+				color: $color_gray_dark;
+				margin: 0 .5em;
+			}
+		}
+
+		ul.footer-links li {
+			font-size: 1.25rem;
+			font-weight: 700;
+
+			a,
+			a:hover {
+				color: $color_gray_dark;
+			}
+		}
 	}
 
-	.footer-links-secondary {
-		font-size: .8rem;
-	}
+	.copyright {
+		background-color: $color_standard_3;
+		text-align: center;
 
-	.footer-links li,
-	.footer-links-secondary li {
-		line-height: 1.75;
-	}
-
-	.copyright-text,
-	.gp-year {
-		/* Have to use important because it's also done in the master theme */
-		color: $color_gray_dark !important;
-	}
-
-	ul li a svg {
-		font-size: 3rem;
+		span {
+			font-size: 1rem;
+		}
 	}
 }
 
 
 @include media('<=desktop') {
 	body .site-footer {
-		.footer-links,
-		.footer-links-secondary {
-			margin: 1em 0;
-			line-height: 2;
+		.footer-social-media ul {
+			border-bottom: 0;
 		}
 
-		.footer-links li::after,
-		.footer-links-secondary li::after {
-			content: "";
+		.copyright span {
+			display: block;
+		}
+	}
+}
+
+@include media('<=tablet') {
+	body .site-footer {
+		.footer-menu {
+			ul.footer-links,
+			ul.footer-links-secondary {
+				margin-bottom: 2rem;
+
+				li {
+					display: block;
+				}
+
+				li:not(:last-child)::after {
+					content: "";
+				}
+			}
 		}
 	}
 }
