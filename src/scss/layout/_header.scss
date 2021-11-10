@@ -1,3 +1,9 @@
+/* Master theme variables */
+:root {
+	--nav-link--font-weight: 700;
+	--nav-item--wpml-ls-item--nav-link--font-weight: 700;
+}
+
 /* Remove the Planet4 style header styles */
 .page-template-evergreen .page-header .page-header-background {
 	opacity: 1;
