@@ -50,11 +50,16 @@ ul.is-style-accent-info {
 		color: $color_standard_1;
 	}
 
-	li:before {
+	&>li:before {
 		content: "\261b";
 		display: inline-block;
 		width: 16px;
 		color: $color_standard_3;
+	}
+
+	ul {
+		text-indent: 0px;
+		margin-top: .5em;
 	}
 }
 
