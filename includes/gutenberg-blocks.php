@@ -88,7 +88,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-magazine-articles',
 			'acf/p4-gpch-block-accordion',
-			'acf/p4-gpch-block-gpch-jobs',
 			'acf/p4-gpch-block-gpch-events',
 			'acf/p4-gpch-block-newsletter',
 			'acf/p4-gpch-block-spacer',
