@@ -1,104 +1,42 @@
-.covers-block {
-	display: block;
-	margin-top: 4rem;
 
-	.limit-visibility {
-		margin-top: 0; /* Remove a master theme hack */
+.page-template .cover-card a.btn {
+	margin-bottom: 0;
+}
+
+/* Correct hover behavior from master theme */
+.cover-card:hover .btn {
+	background: var(--button-primary--background, #73BE1E);
+	color: var(--button-primary--color, #fff);
+}
+.cover-card {
+	a.btn {
+
+		&:hover {
+			background: var(--button-primary--hover--background, #00573a);
+			color: var(--button-primary--hover--color, #fff);
+		}
 	}
 }
+
 
 .cover-card {
-	box-shadow: none;
-	margin-top: 0;
-	margin-bottom: 1rem;
-
-	&:not(.single-cover):hover {
-		box-shadow: none;
+	img {
+		border-bottom: solid 3px $color_standard_1;
 	}
 
-	&::before {
-		transition: none;
-	}
-
-	&:hover {
-		box-shadow: none;
-
-		p {
-			display: none;
-		}
-
-		.btn {
-			background-color: $color_standard_1;
-			color: $color_standard_1_font;
-		}
-
-		&::before {
-			background: none;
-			background-color: $color_hover_overlay;
-			opacity: 1;
-		}
-	}
-
-	&::after {
-		display: none;
-	}
-
-	a.btn-action {
-		background-color: $color_standard_1;
-		color: $color_standard_1_font;
-		border: none;
-
-		transition: none;
-
-		&:hover {
-			background-color: $color_standard_3;
-			color: $color_standard_3_font;
-		}
-	}
-
-	.cover-card-btn {
-		display: block;
-	}
-
-	.cover-card-tag {
-		color: $color_standard_1;
-		font-weight: 500;
-		background-color: rgba(255, 255, 255, .9);
-		text-shadow: none;
-		padding: 0 .6rem;
-
-		&:hover {
-			color: $color_standard_1;
-		}
-	}
-
-	.cover-card-heading {
-		margin-top: 1rem;
-		font-size: 1.4rem;
-		color: $color_white !important;
-
-		&:hover {
-			color: $color_white;
-			text-decoration: none;
-		}
+	.cover-card-content {
+		padding-top: 24px;
 	}
 }
 
-@include media('<=desktop') {
-	.cover-card {
-		min-height: 300px;
 
-		.cover-card-heading {
-			margin-bottom: 4rem;
-		}
-	}
+@include media('<=desktop') {
+
 }
 
 
 @include media('<=tablet') {
-	.cover-card {
-		min-height: auto;
-	}
+
 }
 
 
@@ -122,31 +60,24 @@
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.cover-card,
+		&.cover-card:hover .btn {
+			background: #{nth($colors_1, $i)};
+			color: #{nth($colors_1_font, $i)};
+		}
+
 		&.cover-card {
-			&:hover {
-				.btn {
-					background-color: #{nth($colors_1, $i)};
-				}
+			img {
+				border-bottom: solid 4px #{nth($colors_1, $i)};
 			}
 
-			a.btn-action {
-				background-color: #{nth($colors_1, $i)};
+			a.btn {
+				background: #{nth($colors_1, $i)};
 				color: #{nth($colors_1_font, $i)};
 
 				&:hover {
-					background-color: #{nth($colors_3, $i)};
-					color: #{nth($colors_3_font, $i)};
+					background: #{nth($colors_2, $i)};
+					color: #{nth($colors_2_font, $i)};
 				}
-			}
-		}
-
-		.cover-card-tag {
-			color: #{nth($colors_1, $i)};
-			font-weight: 500;
-
-			&:hover {
-				color: #{nth($colors_1, $i)};
 			}
 		}
 	}

@@ -20,7 +20,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "variables/typography";
 @import "mixins";
 @import "vendor/includemedia";
-
+@import "variables/master-theme";
 
 /*--------------------------------------------------------------
 # Layout
@@ -32,6 +32,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/footer";
 @import "layout/post_types";
 @import "layout/search";
+@import "layout/post";
 @import "typography";
 
 
