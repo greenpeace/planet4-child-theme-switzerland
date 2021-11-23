@@ -101,10 +101,21 @@
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
 				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
 					{% if post.thumbnail.src is defined %}
-						<div class="header-image">
+						<figure class="header-image wp-block-image">
 							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
-									 alt="{{ post.title }}"/>
-						</div>
+									 alt="{{ post.title }}" srcset="{{ function( 'wp_get_attachment_image_srcset', post.thumbnail.id, 'large' )  }}" sizes="{{ function( 'wp_get_attachment_image_sizes', post.thumbnail.id, 'large' )  }}"/>
+							{% if post.thumbnail.post_content != '' or post.thumbnail.image_meta.credit != '' or post.thumbnail._credit_text != ''  %}
+								<figcaption>
+									{{ post.thumbnail.post_content }}
+
+									{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
+										© {{ post.thumbnail._credit_text }}
+									{% else %}
+										{{ post.thumbnail.image_meta.credit }}
+									{% endif %}
+								</figcaption>
+							{% endif %}
+							</figure>
 					{% endif %}
 				{% endif %}
 			</header>
