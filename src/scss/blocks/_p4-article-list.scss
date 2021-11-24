@@ -26,11 +26,13 @@
 
 body .page-template {
 	.article-list-item-headline a,
-	.article-list-item-author a {
+	.article-list-item-author a,
+	.search-result-item-body a {
 		color: $color_gray_dark;
 	}
 
-	.article-list-item-headline a:hover {
+	.article-list-item-headline a:hover,
+	.search-result-item-body a:hover {
 		color: $color_standard_3;
 	}
 }
