@@ -35,11 +35,13 @@ const gpchChildThemeScripts = function() {
 	}
 	
 	const init = () => {
-		tagCovers();
+		takeActionCovers();
+		campaignCovers();
+		archivePageTags();
 	}
 	
-	const tagCovers = () => {
-		// Insert tag classes in action covers block
+	// Insert tag classes in action covers block
+	const takeActionCovers = () => {
 		const coversElements = document.querySelectorAll('.covers-block .cover-card');
 		
 		coversElements.forEach(( element ) => {
@@ -51,73 +53,73 @@ const gpchChildThemeScripts = function() {
 		});
 	};
 	
+	// Insert tag classes in campaign covers block
+	const campaignCovers = () => {
+		const coversElements = document.querySelectorAll('.campaign-covers-block  .campaign-card-column' );
+		
+		coversElements.forEach( ( element ) => {
+			const tagName = element.querySelector( ':scope .yellow-cta' ).textContent.trim();
+
+			if ( tagName in tagList ) {
+				element.classList.add( tagList[tagName] );
+			}
+		} );
+	};
+	
+	// Insert tag classes in archive pages
+	const archivePageTags = () => {
+		const resultsElements = document.querySelectorAll( 'body.archive .multiple-search-result .search-result-list-item ' );
+		
+		resultsElements.forEach( ( element ) => {
+			const tagName = element.querySelector( ':scope .search-result-item-tag' ).textContent.trim();
+			
+			if( tagName in tagList ) {
+				element.classList.add( tagList[ tagName ] );
+			}
+		} );
+	};
+	
+	// Observe DOM element for changes
+	// https://stackoverflow.com/questions/3219758/detect-changes-in-the-dom
+	const observeDOM = (function(){
+		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+		
+		return function( obj, callback ){
+			if( !obj || obj.nodeType !== 1 ) return;
+			
+			if( MutationObserver ){
+				// define a new observer
+				var mutationObserver = new MutationObserver(callback)
+				
+				// have the observer observe foo for changes in children
+				mutationObserver.observe( obj, { childList:true, subtree:true })
+				return mutationObserver
+			}
+			
+			// browser support fallback
+			else if( window.addEventListener ){
+				obj.addEventListener('DOMNodeInserted', callback, false)
+				obj.addEventListener('DOMNodeRemoved', callback, false)
+			}
+		}
+	})();
+	
+	// Observe the take action covers block for changes and add classes when new elements are added (load more functionality)
+	const actCoverBlocks = document.querySelectorAll( '.take-action-covers-block' );
+	
+	actCoverBlocks.forEach( ( element ) => {
+		observeDOM( element, function ( ) {
+			takeActionCovers();
+		} );
+	} );
+	
 	init();
 };
 
 gpchChildThemeScripts();
 
 
-// Old scripts
 jQuery(document).ready(function () {
-	// Campaign Cover Block
-	// Temporary Solution
-	// See: https://tickets.greenpeace.ch/view.php?id=206
-	var tagList = {
-		'#Klima': 'tag-klima',
-		'#Climat': 'tag-climat',
-		'#CO2Gesetz': 'tag-co2-gesetz',
-		'#LoiCO2': 'tag-loi-co2',
-		'#Ernährung': 'tag-ernaehrung',
-		'#Nutrition': 'tag-nutrition', // changed to alimentation, leaving it here for backwards compatibility
-		'#Alimentation': 'tag-alimentation',
-		'#NachhaltigerFinanzplatz': 'tag-nachhaltiger-finanzplatz',
-		'#FinanceDurable': 'tag-finance-durable',
-		'#GletscherInitiative': 'tag-gletscher-initiative',
-		'#InitiativeGlaciers': 'tag-initiative-glaciers',
-		'#Klimabewegung': 'tag-klimabewegung',
-		'#MouvementClimatique': 'tag-mouvement-climatique',
-		'#Klimagerechtigkeit': 'tag-klimagerechtigkeit',
-		'#JusticeClimatique': 'tag-justice-climatique',
-		'#ZeroWaste': 'tag-zero-waste',
-		'#ZeroDechet': 'tag-zero-dechet',
-		'#Reparieren': 'tag-reparieren',
-		'#Réparer': 'tag-reparer',
-		'#Antarktis': 'tag-antarktis',
-		'#Antarctique': 'tag-antarctique',
-		'#Arktis': 'tag-arktis',
-		'#Arctique': 'tag-arctique',
-		'#Chemie': 'tag-chemie',
-		'#Toxiques': 'tag-toxiques',
-		'#Energie': 'tag-energie',
-		'#Landwirtschaft': 'tag-landwirtschaft',
-		'#Agriculture': 'tag-agriculture',
-		'#Meer': 'tag-meer',
-		'#Océans': 'tag-oceans',
-		'#Wald': 'tag-wald',
-		'#Fôrets': 'tag-forets',
-	}
-
-	// Insert tag classes in campaign covers block
-	jQuery('.campaign-covers-block  .campaign-card-column').each(function () {
-		campaignName = jQuery(this).find('.yellow-cta').text();
-
-		if (campaignName in tagList) {
-			jQuery(this).addClass(tagList[campaignName]);
-		}
-	});
-
-
-	// Insert tag classes in archive and search result pages
-	jQuery('body.archive .multiple-search-result .search-result-list-item, body.search .multiple-search-result .search-result-list-item').each(function () {
-		campaignName = jQuery(this).find('.search-result-item-tag').first().text();
-
-		if (campaignName in tagList) {
-			jQuery(this).addClass(tagList[campaignName]);
-		}
-	});
-
-	
-	
 	// Prefill email fields in forms
 	var emailConnectFields =  jQuery( "input[value='form_connect_email']" );
 
