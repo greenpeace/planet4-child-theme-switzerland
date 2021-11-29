@@ -9,8 +9,14 @@
 	color: var(--button-primary--color, #fff);
 }
 .cover-card {
-	a.btn {
+	.cover-card-content {
+		.cover-card-excerpt {
+			font-family: $font-family;
+			font-size: 1rem;
+		}
+	}
 
+	a.btn {
 		&:hover {
 			background: var(--button-primary--hover--background, #00573a);
 			color: var(--button-primary--hover--color, #fff);

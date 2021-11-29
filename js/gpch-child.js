@@ -34,11 +34,50 @@ const gpchChildThemeScripts = function() {
 		'#Fôrets': 'tag-forets',
 	}
 	
+	let observingTakeActionCovers = false;
+	
 	const init = () => {
 		takeActionCovers();
 		campaignCovers();
 		archivePageTags();
 	}
+	
+	// Observe DOM element for changes
+	// https://stackoverflow.com/questions/3219758/detect-changes-in-the-dom
+	const observeDOM = (function(){
+		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+		
+		return function( obj, callback ){
+			if( !obj || obj.nodeType !== 1 ) return;
+			
+			if( MutationObserver ){
+				// define a new observer
+				var mutationObserver = new MutationObserver(callback)
+				
+				// have the observer observe foo for changes in children
+				mutationObserver.observe( obj, { childList:true, subtree:true })
+				return mutationObserver
+			}
+			
+			// browser support fallback
+			else if( window.addEventListener ){
+				obj.addEventListener('DOMNodeInserted', callback, false)
+				obj.addEventListener('DOMNodeRemoved', callback, false)
+			}
+		}
+	})();
+	
+	const startObserveDOMTakeAction = ( function() {
+		// Observe the take action covers block for changes and add classes when new elements are added (load more functionality)
+		const actCoverBlocks = document.querySelectorAll(
+		  '.take-action-covers-block' );
+		
+		actCoverBlocks.forEach( ( element ) => {
+			observeDOM( element, function() {
+				takeActionCovers();
+			} );
+		} );
+	} );
 	
 	// Insert tag classes in action covers block
 	const takeActionCovers = () => {
@@ -50,7 +89,19 @@ const gpchChildThemeScripts = function() {
 			if (tagName in tagList) {
 				element.classList.add(tagList[tagName])
 			}
+			
+			// While we're at it, add the # in front of the tag
+			const tags = element.querySelectorAll(':scope .cover-card-tag');
+			
+			tags.forEach( ( tag ) => {
+				tag.textContent = '#' + tag.textContent;
+			} );
 		});
+		
+		if ( ! observingTakeActionCovers ) {
+			observingTakeActionCovers = true;
+			startObserveDOMTakeAction();
+		}
 	};
 	
 	// Insert tag classes in campaign covers block
@@ -78,40 +129,6 @@ const gpchChildThemeScripts = function() {
 			}
 		} );
 	};
-	
-	// Observe DOM element for changes
-	// https://stackoverflow.com/questions/3219758/detect-changes-in-the-dom
-	const observeDOM = (function(){
-		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-		
-		return function( obj, callback ){
-			if( !obj || obj.nodeType !== 1 ) return;
-			
-			if( MutationObserver ){
-				// define a new observer
-				var mutationObserver = new MutationObserver(callback)
-				
-				// have the observer observe foo for changes in children
-				mutationObserver.observe( obj, { childList:true, subtree:true })
-				return mutationObserver
-			}
-			
-			// browser support fallback
-			else if( window.addEventListener ){
-				obj.addEventListener('DOMNodeInserted', callback, false)
-				obj.addEventListener('DOMNodeRemoved', callback, false)
-			}
-		}
-	})();
-	
-	// Observe the take action covers block for changes and add classes when new elements are added (load more functionality)
-	const actCoverBlocks = document.querySelectorAll( '.take-action-covers-block' );
-	
-	actCoverBlocks.forEach( ( element ) => {
-		observeDOM( element, function ( ) {
-			takeActionCovers();
-		} );
-	} );
 	
 	init();
 };
