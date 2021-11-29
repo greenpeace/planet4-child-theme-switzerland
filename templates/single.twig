@@ -20,26 +20,7 @@
 						</a>
 					{% endif %}
 
-					{% if ( page_type and (post.issues_nav_data or post.tags) ) %}
-						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
-					{% endif %}
-
-					{% if ( post.issues_nav_data ) %}
-						<div class="tag-wrap issues">
-							{% for issue in post.issues_nav_data %}
-								<a
-										class="tag-item tag-item--main"
-										href="{{ issue.link|default('#') }}"
-										data-ga-category="Header"
-										data-ga-action="Category Tag"
-										data-ga-label="n/a">
-									{{ issue.name|e('wp_kses_post')|raw }}
-								</a>
-							{% endfor %}
-						</div>
-					{% endif %}
-
-					{% if ( post.issues_nav_data and gpch_article_types ) %}
+					{% if ( page_type and ( gpch_article_types or post.tags ) ) %}
 						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
 					{% endif %}
 
@@ -73,11 +54,6 @@
 				</div>
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
 				<div class="single-post-meta">
-					{% if post.author.avatar %}
-						<img itemprop="image" class="author-pic"
-							 src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': 'mm'}) }}"
-							 alt="{{ post.author.avatar }}">
-					{% endif %}
 					<div class="d-inline-block">
 						{% if post.author.name %}
 							<address class="single-post-author">
