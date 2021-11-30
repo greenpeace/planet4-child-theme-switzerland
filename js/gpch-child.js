@@ -42,6 +42,7 @@ const gpchChildThemeScripts = function() {
 	const init = () => {
 		takeActionCovers();
 		startObserveDOMTakeAction();
+
 		campaignCovers();
 		archivePageTags();
 	}
