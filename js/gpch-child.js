@@ -34,10 +34,14 @@ const gpchChildThemeScripts = function() {
 		'#Fôrets': 'tag-forets',
 	}
 	
-	let observingTakeActionCovers = false;
+	let lastTakeActionCoversEvent = Date.now();
+	
+	// How often the observer is able to trigger the update script in ms
+	const takeActionCoversEventFrequency = 500;
 	
 	const init = () => {
 		takeActionCovers();
+		startObserveDOMTakeAction();
 		campaignCovers();
 		archivePageTags();
 	}
@@ -74,7 +78,10 @@ const gpchChildThemeScripts = function() {
 		
 		actCoverBlocks.forEach( ( element ) => {
 			observeDOM( element, function() {
-				takeActionCovers();
+				if( lastTakeActionCoversEvent + takeActionCoversEventFrequency < Date.now() ) {
+					lastTakeActionCoversEvent = Date.now();
+					takeActionCovers();
+				}
 			} );
 		} );
 	} );
@@ -94,14 +101,11 @@ const gpchChildThemeScripts = function() {
 			const tags = element.querySelectorAll(':scope .cover-card-tag');
 			
 			tags.forEach( ( tag ) => {
-				tag.textContent = '#' + tag.textContent;
+				if (tag.textContent.indexOf('#') < 0) {
+					tag.textContent = '#' + tag.textContent;
+				}
 			} );
 		});
-		
-		if ( ! observingTakeActionCovers ) {
-			observingTakeActionCovers = true;
-			startObserveDOMTakeAction();
-		}
 	};
 	
 	// Insert tag classes in campaign covers block
