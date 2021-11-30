@@ -1,0 +1,89 @@
+.post-content .boxout {
+	margin-bottom: 2rem;
+
+	.boxout-excerpt {
+		font-size: 1rem;
+	}
+
+	.boxout-heading,
+	.boxout-excerpt {
+		line-height: 1.5;
+	}
+
+	.btn {
+		background: var(--button-primary--background, #73BE1E);
+		color: var(--button-primary--color, #fff);
+
+		font-size: 14px;
+
+		&:hover {
+			background: var(--button-primary--hover--background, #00573a);
+			color: var(--button-primary--hover--color, #fff);
+		}
+	}
+}
+
+@include media('<=tablet') {
+	.post-content .boxout {
+		height: auto;
+		padding-bottom: 1em;
+
+		img {
+			width: 160px;
+			height: 160px;
+		}
+
+		.boxout-content {
+			padding-left: 160px;
+		}
+
+		.boxout-heading {
+			font-size: 1.125rem;
+		}
+
+		.boxout-excerpt {
+			display: block;
+		}
+
+		.btn {
+			position: relative;
+			margin-top: 1em;
+			margin-left: 176px;
+			display: inline-block;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.post-content .boxout {
+		img {
+			width: 120px;
+			height: 120px;
+		}
+
+		.boxout-content {
+			padding-left: 120px;
+		}
+
+		.btn {
+			margin-left: 136px;
+		}
+	}
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.post-content .boxout {
+			.btn {
+				background: #{nth($colors_1, $i)};
+				color: #{nth($colors_1_font, $i)};
+
+				&:hover {
+					background: #{nth($colors_2, $i)};
+					color: #{nth($colors_2_font, $i)};
+				}
+			}
+		}
+	}
+}

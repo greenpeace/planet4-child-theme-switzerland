@@ -1,6 +1,5 @@
 <?php
 
-
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99 );
 
 function enqueue_child_styles() {
