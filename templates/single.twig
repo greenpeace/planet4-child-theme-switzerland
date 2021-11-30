@@ -3,15 +3,11 @@
 {% block content %}
 
 	<div class="clearfix"></div>
-	<div class="skewed-overlay"></div>
 
 	<article id="post-{{ post.ID }}">
 
-		<header class="page-header">
-			<div class="page-header-background">
-				{#<img src="{{ background_image }}" class="page-header-image" alt="Image alt data"/>#}
-			</div>
-			<div class="container">
+		<div class="container">
+			<header class="page-header">
 				<div class="top-page-tags">
 					{% if ( page_type ) %}
 						<a
@@ -24,19 +20,8 @@
 						</a>
 					{% endif %}
 
-					{% if ( post.issues_nav_data ) %}
-						<div class="tag-wrap issues">
-							{% for issue in post.issues_nav_data %}
-								<a
-										class="tag-item tag-item--main"
-										href="{{ issue.link|default('#') }}"
-										data-ga-category="Header"
-										data-ga-action="Category Tag"
-										data-ga-label="n/a">
-									{{ issue.name|e('wp_kses_post')|raw }}
-								</a>
-							{% endfor %}
-						</div>
+					{% if ( page_type and ( gpch_article_types or post.tags ) ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
 					{% endif %}
 
 					{% if (gpch_article_types) %}
@@ -46,6 +31,10 @@
 								</a>
 							{% endfor %}
 						</div>
+					{% endif %}
+
+					{% if ( gpch_article_types and post.tags ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
 					{% endif %}
 
 					{% if (post.tags) %}
@@ -64,78 +53,72 @@
 					{% endif %}
 				</div>
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="single-post-meta">
+				<div class="single-post-meta">
+					<div class="d-inline-block">
+						{% if post.author.name %}
 							<address class="single-post-author">
-								{{ __( 'by', 'planet4-master-theme' ) }}
+								{% if not ( post.get_author_override ) %}
+									<a href="{{ post.author.path }}">{{ post.author.name }}</a>
+								{% else %}
 									{{ post.author.name }}
+								{% endif %}
 							</address>
-							<time class="single-post-time" pubdate>{{ post.post_date|date }}</time>
-							{% if ( show_comments ) %}
-								<span class="separator">|</span>
-								<span id="comments-link" class="comment-link">
-									<img src="{{ data_nav_bar.images }}speech_bubble.svg">
-									<a class="quantity"> {{ post_comments_count }} <span class="display-text">{{ __( 'Comments', 'planet4-master-theme' ) }}</span> </a>
-								</span>
-							{% endif %}
-						</div>
-
+						{% endif %}
+						<time class="single-post-time" pubdate>{{ post.post_date|date }}</time>
+						{% if ( show_comments ) %}
+							<span class="single-post-meta-bullet" aria-hidden="true">&#8226;</span>
+							<a href="#comments" class="comment-link">
+								{{ 'comments'|svgicon }}
+								<span class="quantity"> {{ post_comments_count }} <span class="display-text">{{ __( 'Comments', 'planet4-master-theme' ) }}</span>
+							</a>
+						{% endif %}
 					</div>
-					{#
-					<div class="col-md-6">
-						{% include "blocks/share_buttons.twig" with {post:post} %}
-					</div>
-					#}
 				</div>
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
 				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
 					{% if post.thumbnail.src is defined %}
-						<div class="row">
-							<div class="col-md-12">
-								<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
-									 alt="{{ post.title }}"/>
-							</div>
-						</div>
+						<figure class="header-image wp-block-image">
+							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
+									 alt="{{ post.title }}" srcset="{{ function( 'wp_get_attachment_image_srcset', post.thumbnail.id, 'large' )  }}" sizes="{{ function( 'wp_get_attachment_image_sizes', post.thumbnail.id, 'large' )  }}"/>
+							{% if post.thumbnail.post_content != '' or post.thumbnail.image_meta.credit != '' or post.thumbnail._credit_text != ''  %}
+								<figcaption>
+									{{ post.thumbnail.post_content }}
+
+									{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
+										© {{ post.thumbnail._credit_text }}
+									{% else %}
+										{{ post.thumbnail.image_meta.credit }}
+									{% endif %}
+								</figcaption>
+							{% endif %}
+							</figure>
 					{% endif %}
 				{% endif %}
-			</div>
-		</header>
+			</header>
+		</div>
 
 		<!-- Post Block Start -->
 		<div class="container">
 			<div class="post-content">
-				{% if ( post.take_action_boxout ) %}
-					{{ fn('do_blocks', post.take_action_boxout )|raw }}
-				{% endif %}
-				<div class="post-content-lead">
-					<article class="post-details clearfix">
-						{{ post.content|raw }}
-					</article>
-				</div>
+				<article class="post-details clearfix">
+					{{ post.content|e('wp_kses_post')|raw }}
+					{% if ( post.take_action_boxout ) %}
+						{{ fn('do_blocks', post.take_action_boxout )|raw }}
+					{% endif %}
+				</article>
 			</div>
 		</div>
 		<!-- Post Page Block End -->
 
-		{% if ( post.author.name and post.author.description ) %}
-			{% include "blocks/author_profile.twig" with {post:post} %}
-		{% endif %}
+		{% include "blocks/author_profile.twig" with {post:post} %}
 
-		{% if post.page_types.0.slug in post.showArticlesForPostTypes %}
-			<section class="articles-block">
-				{% if ( post.articles ) %}
-					{{ fn('do_blocks', post.articles )|raw }}
-				{% endif %}
+		{% if ( post.articles ) %}
+			<section class="container post-articles-block">
+				{{ fn('do_blocks', post.articles )|raw }}
 			</section>
 		{% endif %}
-
-		{% if ( 'closed' != post.comment_status ) %}
+		{% if ( show_comments ) %}
 			{% include "comments_section.twig" with {comments:post.get_comments()} %}
 		{% endif %}
 	</article>
-
-	<div class="image-zoomer">
-		<span class="image-zoomer-close"><img src="{{ data_nav_bar.images }}close-icon.svg" alt="Close"></span>
-		<div class="image-zoomer-content"></div>
-	</div>
 {% endblock %}

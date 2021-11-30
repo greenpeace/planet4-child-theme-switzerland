@@ -1,0 +1,13 @@
+:root {
+	/* Buttons */
+	--button-primary--background: #{$color_green_light};
+	--button-primary--color: #{$color_white};
+	--button-primary--border: none;
+	--button-primary--border-color: transparent;
+	--button-primary--box-shadow: 0 2px 5px rgba(0,0,0,.25);
+
+	--button-primary--hover--background: #{$color_green_dark};
+	--button-primary--hover--color: #{$color_white};
+	--button-primary--hover--border: none;
+	--button-primary--hover--box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
