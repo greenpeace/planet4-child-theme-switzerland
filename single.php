@@ -21,16 +21,6 @@ $context = Timber::get_context();
 $post            = Timber::query_post( false, 'P4_Post' ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $context['post'] = $post;
 
-// Strip Take Action Boxout block from the post content to add outside the normal block container.
-if ( false !== strpos( $post->post_content, '<!-- wp:planet4-blocks/take-action-boxout' ) ) {
-
-	$take_action_boxout_block_start  = strpos( $post->post_content, '<!-- wp:planet4-blocks/take-action-boxout' );
-	$take_action_boxout_block_end    = strpos( $post->post_content, '/-->', $take_action_boxout_block_start ) + 3;
-	$take_action_boxout_block_length = $take_action_boxout_block_end - $take_action_boxout_block_start + 1;
-	$take_action_boxout_block        = substr( $post->post_content, $take_action_boxout_block_start, $take_action_boxout_block_length );
-
-	$post->post_content = str_replace( $take_action_boxout_block, '', $post->post_content );
-}
 
 // Set Navigation Issues links.
 $post->set_issues_links();

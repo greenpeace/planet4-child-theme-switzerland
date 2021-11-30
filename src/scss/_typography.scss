@@ -24,7 +24,7 @@ b, strong {
 	max-width: $one_column_content_width;
 }
 
-.page-template a,
+.page-template a:not(.btn),
 .post-content a {
 	color: $color_standard_1;
 }
