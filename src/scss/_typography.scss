@@ -24,7 +24,7 @@ b, strong {
 	max-width: $one_column_content_width;
 }
 
-.page-template a:not(.btn),
+.page-template a:not(.btn, .wp-block-button__link),
 .post-content a {
 	color: $color_standard_1;
 }
