@@ -42,7 +42,7 @@ body .top-navigation {
 }
 
 /* Bugfix for donation overlay issue: https://tickets.greenpeace.ch/view.php?id=300 */
-div.page-template > * {
+div.page-content > * {
 	z-index: auto;
 }
 
