@@ -1,8 +1,8 @@
-.page-template .wp-block-columns.is-style-vertically-centered {
+.page-content .wp-block-columns.is-style-vertically-centered {
 	align-items: center;
 }
 
-.page-template .wp-block-columns.is-style-petition-left {
+.page-content .wp-block-columns.is-style-petition-left {
 	.wp-block-column:first-child {
 		flex-basis: calc(33% - 16px);
 		padding: 2rem 1rem;
@@ -38,7 +38,7 @@
 }
 
 @include media('<=desktop') {
-	.page-template .wp-block-columns.is-style-petition-left {
+	.page-content .wp-block-columns.is-style-petition-left {
 		.wp-block-column:first-child {
 			flex-basis: calc(50% - 16px);
 		}
@@ -50,7 +50,7 @@
 }
 
 @include media('<=desktop') {
-	.page-template .wp-block-columns.is-style-petition-left {
+	.page-content .wp-block-columns.is-style-petition-left {
 		.wp-block-column:first-child {
 			flex-basis: 100%;
 		}
@@ -64,7 +64,7 @@
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.page-template .wp-block-columns.is-style-petition-left {
+		.page-content .wp-block-columns.is-style-petition-left {
 			.wp-block-column:first-child {
 				background-color: #{nth($colors_1, $i)};
 				color: #{nth($colors_1_font, $i)};

@@ -22,7 +22,7 @@ p.is-style-accent-2 {
 }
 
 /* Hover color needs correction, otherwise the same as the background */
-.page-template,
+.page-content,
 .post-content {
 	p.is-style-accent-2 {
 		a:hover {
@@ -44,7 +44,7 @@ p.is-style-accent-2 {
 			color: #{nth($colors_3_font, $i)};
 		}
 
-		.page-template,
+		.page-content,
 		.post-content {
 			p.is-style-accent-2 {
 				a:hover {
