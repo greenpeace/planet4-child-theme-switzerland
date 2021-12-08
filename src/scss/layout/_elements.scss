@@ -96,12 +96,26 @@ a.external-link {
 	background: none;
 	background-color: $color_standard_2;
 	color: $color_standard_2_font;
-	min-height: 48px;
-	padding: 12px 36px;
+	z-index: 3000;
+
+	div {
+		font-size: 16px;
+		font-weight: 600;
+	}
 
 	.btn {
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
+
+		border: none;
+		box-shadow: none;
+
+		&:hover {
+			background-color: $color_standard_1;
+			color: $color_standard_1_font;
+
+			text-decoration: underline;
+		}
 	}
 }
 
