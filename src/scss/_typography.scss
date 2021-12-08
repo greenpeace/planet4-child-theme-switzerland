@@ -18,13 +18,13 @@ b, strong {
 	font-weight: $font-weight-bold;
 }
 
-.page-template > p,
-.page-template > dl.accordion,
-.page-template > ul {
+.page-content > p,
+.page-content > dl.accordion,
+.page-content > ul {
 	max-width: $one_column_content_width;
 }
 
-.page-template a:not(.btn, .wp-block-button__link),
+.page-content a:not(.btn, .wp-block-button__link),
 .post-content a {
 	color: $color_standard_1;
 }
@@ -33,7 +33,7 @@ body .post-content .swp_social_panel a {
 	color: #fff !important;
 }
 
-.page-template a:hover,
+.page-content a:hover,
 .post-content a:hover {
 	color: $color_standard_3;
 }
@@ -56,12 +56,12 @@ a.btn-accent:hover {
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.page-template a,
+		.page-content a,
 		.post-content a {
 			color: #{nth($colors_1, $i)};
 		}
 
-		.page-template a:hover,
+		.page-content a:hover,
 		.post-content a:hover {
 			color: #{nth($colors_3, $i)};
 		}
