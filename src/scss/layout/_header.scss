@@ -5,12 +5,12 @@
 }
 
 /* Remove the Planet4 style header styles */
-.page-template-evergreen .page-header .page-header-background {
+.page-content-evergreen .page-header .page-header-background {
 	opacity: 1;
 }
 
 .skewed-overlay,
-.page-template-evergreen .skewed-overlay {
+.page-content-evergreen .skewed-overlay {
 	display: none
 }
 
@@ -34,7 +34,7 @@ body.noheader {
 		display: none;
 	}
 
-	.page-template {
+	.page-content {
 		margin-top: 60px;
 	}
 }
