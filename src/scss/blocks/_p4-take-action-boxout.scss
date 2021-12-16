@@ -1,4 +1,9 @@
-.post-content .boxout {
+/*
+Master theme styles include a confusing hover behavior that sets button hover colors when the cursor hovers over the element, not just the button.
+We reset the same style for hover and non-hover to get back expected bahavior, then add back hover state for the button.
+ */
+body .boxout,
+body .boxout:hover {
 	margin-bottom: 2rem;
 
 	.boxout-excerpt {
@@ -11,10 +16,13 @@
 	}
 
 	.btn {
+		margin-bottom: 0;
+
 		background: var(--button-primary--background, #73BE1E);
 		color: var(--button-primary--color, #fff);
 
 		font-size: 14px;
+		line-height: 1.5;
 
 		&:hover {
 			background: var(--button-primary--hover--background, #00573a);
@@ -23,8 +31,56 @@
 	}
 }
 
+@media (max-width: $extra-large-width) {
+	body .boxout {
+		height: 220px;
+		padding-bottom: 1em;
+
+		img {
+			width: 250px;
+			height: 220px;
+		}
+
+		.boxout-content {
+			padding-left: 250px;
+		}
+
+		.btn {
+			position: relative;
+			display: inline-block;
+			margin-left: 1em;
+			margin-top: 2em;
+		}
+	}
+}
+
+@media (max-width: $large-width) {
+	body .boxout {
+		img {
+			width: 220px;
+		}
+
+		.boxout-content {
+			.boxout-excerpt {
+				padding-left: 0;
+				font-size: .875rem;
+			}
+		}
+
+		.boxout-heading {
+			font-size: 1.125rem;
+		}
+
+		.btn {
+			margin-top: 1em;
+			margin-left: 2em;
+		}
+	}
+}
+
+
 @include media('<=tablet') {
-	.post-content .boxout {
+	body .boxout {
 		height: auto;
 		padding-bottom: 1em;
 
@@ -33,12 +89,12 @@
 			height: 160px;
 		}
 
-		.boxout-content {
-			padding-left: 160px;
+		.boxout-heading {
+			margin-bottom: .5em;
 		}
 
-		.boxout-heading {
-			font-size: 1.125rem;
+		.boxout-content {
+			padding-left: 160px;
 		}
 
 		.boxout-excerpt {
@@ -46,16 +102,14 @@
 		}
 
 		.btn {
-			position: relative;
 			margin-top: 1em;
 			margin-left: 176px;
-			display: inline-block;
 		}
 	}
 }
 
 @media (max-width: 480px) {
-	.post-content .boxout {
+	body .boxout {
 		img {
 			width: 120px;
 			height: 120px;
@@ -74,7 +128,8 @@
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		.post-content .boxout {
+		.boxout,
+		.boxout:hover {
 			.btn {
 				background: #{nth($colors_1, $i)};
 				color: #{nth($colors_1_font, $i)};
