@@ -417,15 +417,26 @@ function gpch_gform_subscribe_newsletter( $entry, $form ) {
 	);
 
 	foreach ( $form['fields'] as $field ) {
+		// Check admin labels
 		if ( in_array( $field->adminLabel, $fields_to_extract ) ) {
 			$field_ids[ $field->adminLabel ] = $field->id;
+		}
+
+		// Check labels
+		if ( in_array( $field->label, $fields_to_extract ) ) {
+			$field_ids[ $field->label ] = $field->id;
 		}
 	}
 
 	// See if there's a newsletter subscription to process, otherwise return.
 	if ( array_key_exists( 'newsletter', $field_ids ) ) {
-		// "newsletter" is a checkbox group, attaching ".1" to the ID gets us the value of the first checkbox.
+		// If "newsletter" is a checkbox group, attaching ".1" to the ID gets us the value of the first checkbox.
 		$subscribe_to_lists = rgar( $entry, $field_ids['newsletter'] . '.1' );
+
+		if ( empty( $subscribe_to_lists ) ) {
+			// Try for other fields than checkboxes
+			$subscribe_to_lists = rgar( $entry, $field_ids['newsletter'] );
+		}
 
 		if ( empty( $subscribe_to_lists ) ) {
 			// Checkbox for newsletter subscription was not selected.
@@ -517,11 +528,17 @@ function gpch_register_gravityforms_inxmail_metabox( $meta_boxes, $entry, $form 
 	// Find out if the form has a field to register for a newsletter
 	$form_has_newsletter_field = false;
 
-	$fields = GFAPI::get_fields_by_type( $form, array( 'checkbox' ) );
+	$fields = GFAPI::get_fields_by_type( $form, array( 'checkbox', 'hidden' ) );
 
 	if ( ! empty( $fields ) ) {
 		foreach ( $fields as $field ) {
+			// Check admin labels
 			if ( $field->adminLabel == 'newsletter' ) {
+				$form_has_newsletter_field = true;
+			}
+
+			// Check labels
+			if ( $field->label == 'newsletter' ) {
 				$form_has_newsletter_field = true;
 			}
 		}
