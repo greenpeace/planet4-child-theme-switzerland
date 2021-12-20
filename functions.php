@@ -262,4 +262,6 @@ add_action( 'admin_menu', 'change_media_label', 9999999 );
 
 // Remove Social Warfare meta box settings from pages and posts
 // Duplicate functionality and causes a saving bug, see https://tickets.greenpeace.ch/view.php?id=406
-add_filter( 'swpmb_meta_boxes', false );
+add_filter( 'swpmb_meta_boxes', function() {
+	return array();
+} );
