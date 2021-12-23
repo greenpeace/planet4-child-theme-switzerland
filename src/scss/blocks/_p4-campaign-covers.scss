@@ -1,5 +1,11 @@
 .campaign-covers-block {
-	.thumbnail-largeview-container {
+	.covers-container {
+		.thumbnail-large {
+			img {
+				height: 260px;
+			}
+		}
+
 		/* remove gray overlay */
 		.thumbnail-large::before {
 			display: none;
@@ -33,14 +39,26 @@
 }
 
 /* No top margin if right next to a GPCH taskforce block */
-.gpch-taskforce-banner-wrapper + .campaign-covers-block{
+.gpch-taskforce-banner-wrapper + div .campaign-covers-block {
 	margin-top: -4px;
+}
+
+@include media('<=tablet') {
+	.campaign-covers-block {
+		.covers-container {
+			.thumbnail-large {
+				img {
+					height: 160px;
+				}
+			}
+		}
+	}
 }
 
 
 /* Color Schemes */
 .campaign-covers-block{
-	.thumbnail-largeview-container {
+	.covers-container {
 		@for $i from 1 through length($schema_names) {
 			#{nth($selectors, $i)} {
 				.thumbnail-large .yellow-cta {
