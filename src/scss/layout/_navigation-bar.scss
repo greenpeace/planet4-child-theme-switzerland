@@ -14,12 +14,46 @@ a.nav-link,
 }
 
 .top-navigation {
-	.btn-donate {
-		border-radius: 4px;
+	background-color: rgba(255,255,255,0.9);
+
+	#nav-menu {
+		ul {
+			padding-right: 0;
+		}
+
+		li a {
+			transition: text-decoration 300ms;
+
+			text-decoration-style: solid;
+			text-decoration-line: underline;
+			text-decoration-thickness: 3px;
+			text-underline-position: under;
+			text-decoration-color: transparent;
+
+			&:hover {
+				text-decoration-color: $color_standard_1;
+			}
+
+			&.btn-donate {
+				border-radius: 4px;
+				text-decoration: none;
+			}
+		}
+
+		li.active a {
+			text-decoration-color: $color_standard_1;
+		}
+
+
 	}
 
 	.nav-languages-toggle {
 		text-transform: uppercase;
+	}
+
+	#search_form {
+		padding-left: 12px;
+		background-color: transparent;
 	}
 
 	#search_input {
@@ -29,13 +63,29 @@ a.nav-link,
 		border: solid 1px rgb(210, 210, 210);
 		border-radius: 4px;
 		line-height: 43px;
+
+		color: $color_gray_dark;
+
+		&:focus {
+			border-color: $color_standard_1;
+		}
 	}
 
 	.nav-search-btn {
 		float: none;
+		position: relative;
+		top: -2px;
 	}
 
 	.nav-search-clear {
 		display: none;
+	}
+}
+
+@media (max-width: $extra-large-width) {
+	.top-navigation {
+		#search_form {
+			background-color: #ffffff;
+		}
 	}
 }
