@@ -31,6 +31,12 @@
 		{% endif %}
 	</div>
 
+	{% if new_design_country_selector and nav_type != 'minimal' %}
+		<div id="country-selector" class="footer-country-selector">
+			{% include 'footer_country_selector.twig' %}
+		</div>
+	{% endif %}
+
 	<div class="copyright">
 		<div class="container">
 			<span role="text">
