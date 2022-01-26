@@ -1,147 +1,41 @@
-.top-navigation.navbar {
-		.site-logo {
-			line-height: 3.75rem;
-		}
 
-		.btn-navbar-toggle {
-			background-color: $color_standard_1;
-		}
-
-		.navbar-dropdown {
-			width: 100%;
-			margin-right: 4rem;
-
-			.nav-item:not(.wpml-ls-item) {
-				a {
-					padding: 0 1em;
-				}
-
-				a:hover {
-					background-color: $color_standard_1;
-					color: $color_standard_1_font;
-					border-bottom: none;
-				}
-
-				&.donate-nav-item a {
-					color: $color_donate;
-					font-weight: 700;
-				}
-
-				&.donate-nav-item a:hover {
-					text-decoration: none;
-
-					background-color: $color_donate;
-					color: #fff;
-				}
-
-			}
-
-			/* remove bottom border Planet4 style */
-			.active a:hover,
-			.active .nav-link:hover,
-			.nav-link:active,
-			.nav-link:focus,
-			.nav-link:hover,
-			.active .nav-link {
-				border-bottom: none;
-			}
-
-			.nav-item.wpml-ls-item a:hover {
-				text-decoration: underline;
-			}
-		}
-
-		.nav-search-wrap .top-nav-search-btn {
-			top: 10px;
-		}
-
-		#search_input {
-			border: 1px solid #ced4da;
-		}
-	}
-
-
-/*
-	Remove side paddings when screen is larger than header width.
-	Aligns logo and search bar nicely with the header image.
- */
-@media screen and (min-width: $header_width) {
-	.top-navigation.navbar {
-			.site-logo {
-			}
-
-			.nav-search-wrap {
-			}
-		}
-}
-
-@include media('<=desktop') {
-	.top-navigation.navbar {
-			.navbar-dropdown {
-				width: 400px;
-
-				.nav-item {
-					a {
-						color: #fff;
-					}
-
-					a.highlight {
-						padding: 0 0 0 50px;
-					}
-
-					&.wpml-ls-item {
-						background-color: rgba(0, 0, 0, .3);
-
-						.nav-link:after {
-							padding: 0 1em;
-						}
-					}
-				}
-
-			}
-	}
+:root {
+	--nav-link-active--text-decoration: underline 3px #73BE1E;
+	--nav-link--hover--text-decoration: underline 3px #73BE1E;
+	--top-navigation--btn-donate--background: #ef7831;
+	--top-navigation--btn-donate--color: #fff;
+	--top-navigation--btn-donate--hover--color: #fff;
 }
 
 
-/*
-	Mobile Menu
- */
-@include media('<=desktop') {
-	.top-navigation.navbar {
-		.btn-navbar-toggle {
-			&.open {
-				background-color: rgba(0,0,0,.8);
-			}
-		}
+a.nav-link,
+.top-navigation .btn-donate {
+	font-size: 18px;
+}
 
-		.navbar-dropdown {
-			background: none;
-			background-color: #fff;
+.top-navigation {
+	.btn-donate {
+		border-radius: 4px;
+	}
 
-			.nav-item.wpml-ls-item {
-				background-color: $color_standard_1;
-				margin-bottom: 1em;
-			}
+	.nav-languages-toggle {
+		text-transform: uppercase;
+	}
 
-			.nav-item a {
-				color: #000;
-			}
+	#search_input {
+		margin: 11px 8px 8px 8px;
+		width: calc(100% - 50px);
 
-			.nav-item:not(.wpml-ls-item) a,
-			.nav-item:not(.wpml-ls-item) a.highlight {
-				padding-left: 50px;
-			}
+		border: solid 1px rgb(210, 210, 210);
+		border-radius: 4px;
+		line-height: 43px;
+	}
 
-			.active .nav-link::before {
-				display: none;
-			}
-		}
+	.nav-search-btn {
+		float: none;
+	}
 
-		.nav-search-wrap {
-			background-color: $color_standard_2;
-		}
-		.nav-search-wrap .top-nav-search-btn {
-			top: 12px;
-		}
+	.nav-search-clear {
+		display: none;
 	}
 }

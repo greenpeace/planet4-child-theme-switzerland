@@ -7,39 +7,6 @@ body:not(.wp-admin) { /* Master theme uses this more specific notation */
 	}
 }
 
-body .top-navigation {
-	background-color: rgba(255, 255, 255, .9);
-
-	a.nav-link {
-		color: $color_gray_dark;
-		display: inline-block;
-	}
-
-	.navbar-dropdown .active .nav-link {
-		color: $color_standard_1;
-		border-bottom-color: $color_standard_1;
-	}
-
-	a.nav-link:hover {
-		color: $color_standard_3;
-	}
-}
-
-.navbar-dropdown {
-	.nav-link {
-		font-weight: $font-weight-bold;
-	}
-
-	.nav-link:active,
-	.nav-link:focus,
-	.nav-link:hover {
-		border-color: $color_standard_3;
-	}
-}
-
-.country-dropdown-toggle {
-	display: none;
-}
 
 /* Bugfix for donation overlay issue: https://tickets.greenpeace.ch/view.php?id=300 */
 div.page-content > * {
