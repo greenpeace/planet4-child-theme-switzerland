@@ -7,7 +7,6 @@
 	--top-navigation--btn-donate--hover--color: #fff;
 }
 
-
 a.nav-link,
 .top-navigation .btn-donate {
 	font-size: 18px;
@@ -22,7 +21,7 @@ a.nav-link,
 		}
 
 		li a {
-			transition: text-decoration 300ms;
+			transition: text-decoration 300ms, background-color 300ms;
 
 			text-decoration-style: solid;
 			text-decoration-line: underline;
@@ -43,12 +42,14 @@ a.nav-link,
 		li.active a {
 			text-decoration-color: $color_standard_1;
 		}
-
-
 	}
 
 	.nav-languages-toggle {
 		text-transform: uppercase;
+
+		&:after {
+			margin-left: 5px;
+		}
 	}
 
 	#search_form {
@@ -94,6 +95,10 @@ a.nav-link,
 			top: 68px;
 			max-width: none;
 			background-color: #fff;
+		}
+
+		#search_input {
+			margin-right: 20px;
 		}
 	}
 }
