@@ -87,7 +87,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-form-counter-text',
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-magazine-articles',
-			'acf/p4-gpch-block-accordion',
 			'acf/p4-gpch-block-gpch-events',
 			'acf/p4-gpch-block-newsletter',
 			'acf/p4-gpch-block-spacer',
@@ -100,6 +99,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'planet4-gpch-plugin-blocks/bs-bingo',
 			'planet4-gpch-plugin-blocks/p2p-share',
 			'planet4-gpch-plugin-blocks/form-entries',
+			'planet4-blocks/accordion',
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
@@ -132,7 +132,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 				'planet4-blocks/submenu', // not used at GPCH
 				'planet4-blocks/take-action-boxout',
 				'planet4-blocks/timeline',
-				'planet4-blocks/accordion',
+
 				'planet4-gpch-plugin-blocks/dreampeace-cover',
 				'planet4-gpch-plugin-blocks/dreampeace-slide',
 			);

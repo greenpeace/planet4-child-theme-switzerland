@@ -61,6 +61,25 @@ body .gform_confirmation_wrapper {
 	}
 }
 
+/* Enhanced user interface fro dropdowns */
+.ginput_container_select .chosen-container-single {
+	a.chosen-single {
+		height: 41px;
+		line-height: 41px;
+
+		color: #000;
+		font-size: 1.125rem;
+
+		& > div {
+			top: 8px;
+		}
+
+		span {
+			color: #000;
+		}
+	}
+}
+
 /* GravityForms Polls Addon specific styles*/
 body .gpoll_wrapper,
 body #gforms_confirmation_message {

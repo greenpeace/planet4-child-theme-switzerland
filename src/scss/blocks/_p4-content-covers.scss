@@ -21,6 +21,10 @@
 		}
 
 		.content-covers-block-info {
+			.content-covers-block-image {
+				height: 369px;
+			}
+
 			a {
 				color: $color_gray_dark;
 
@@ -38,6 +42,18 @@
 			p {
 				font-size: $font-size-standard;
 				line-height: $line-height-standard;
+			}
+		}
+	}
+}
+
+@media (max-width: $extra-large-width) {
+	.content-covers-block {
+		.content-covers-block-wrap {
+			.content-covers-block-info {
+				.content-covers-block-image {
+					height: 321px;
+				}
 			}
 		}
 	}
