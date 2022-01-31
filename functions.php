@@ -16,6 +16,9 @@ function enqueue_child_styles() {
 require_once( 'classes/GPCH_i_REST_API.php' );
 require_once( 'classes/GPCH_Inxmail_API.php' );
 
+// Author pages
+require_once ( 'includes/author-pages.php' );
+
 // Child theme options
 require_once( 'includes/child-theme-options.php' );
 
