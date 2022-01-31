@@ -67,7 +67,7 @@
 
 @include media('<=desktop') {
 	.carousel-header {
-		margin-top: 3.75rem;
+		margin-top: 68px;
 
 		.carousel-item {
 			.carousel-caption {
@@ -90,7 +90,4 @@
 }
 
 @include media('<=tablet') {
-	.carousel-header {
-		margin-top: 3.375rem;
-	}
 }
