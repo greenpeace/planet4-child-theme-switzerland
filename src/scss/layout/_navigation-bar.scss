@@ -1,147 +1,112 @@
-.top-navigation.navbar {
-		.site-logo {
-			line-height: 3.75rem;
+
+:root {
+	--nav-link-active--text-decoration: underline 3px #73BE1E;
+	--nav-link--hover--text-decoration: underline 3px #73BE1E;
+	--top-navigation--btn-donate--background: #ef7831;
+	--top-navigation--btn-donate--color: #fff;
+	--top-navigation--btn-donate--hover--color: #fff;
+}
+
+a.nav-link,
+.top-navigation .btn-donate {
+	font-size: 18px;
+}
+
+.top-navigation {
+	background-color: rgba(255,255,255,0.9);
+
+	#nav-menu {
+		ul {
+			padding-right: 0;
 		}
 
-		.btn-navbar-toggle {
-			background-color: $color_standard_1;
-		}
+		li a {
+			transition: text-decoration 300ms, background-color 300ms;
 
-		.navbar-dropdown {
-			width: 100%;
-			margin-right: 4rem;
+			text-decoration-style: solid;
+			text-decoration-line: underline;
+			text-decoration-thickness: 3px;
+			text-underline-position: under;
+			text-decoration-color: transparent;
 
-			.nav-item:not(.wpml-ls-item) {
-				a {
-					padding: 0 1em;
-				}
-
-				a:hover {
-					background-color: $color_standard_1;
-					color: $color_standard_1_font;
-					border-bottom: none;
-				}
-
-				&.donate-nav-item a {
-					color: $color_donate;
-					font-weight: 700;
-				}
-
-				&.donate-nav-item a:hover {
-					text-decoration: none;
-
-					background-color: $color_donate;
-					color: #fff;
-				}
-
+			&:hover {
+				text-decoration-color: $color_standard_1;
 			}
 
-			/* remove bottom border Planet4 style */
-			.active a:hover,
-			.active .nav-link:hover,
-			.nav-link:active,
-			.nav-link:focus,
-			.nav-link:hover,
-			.active .nav-link {
-				border-bottom: none;
-			}
-
-			.nav-item.wpml-ls-item a:hover {
-				text-decoration: underline;
+			&.btn-donate {
+				border-radius: 4px;
+				text-decoration: none;
 			}
 		}
 
-		.nav-search-wrap .top-nav-search-btn {
-			top: 10px;
+		li.active a {
+			text-decoration-color: $color_standard_1;
+		}
+	}
+
+	.nav-languages-toggle {
+		text-transform: uppercase;
+
+		&:after {
+			margin-left: 5px;
+		}
+	}
+
+	#search_form {
+		position: relative;
+		top: 0;
+		max-width: 250px;
+		padding-left: 12px;
+		background-color: transparent;
+	}
+
+	#search_input {
+		margin: 11px 8px 8px 8px;
+		padding-right: 40px;
+		width: calc(100% - 10px);
+
+		border: solid 1px rgb(190, 190, 190);
+		border-radius: 4px;
+		line-height: 43px;
+
+		color: $color_gray_dark;
+
+		&:focus {
+			border-color: $color_standard_1;
+		}
+	}
+
+	.nav-search-btn {
+		float: none;
+		position: absolute;
+		top: -2px;
+		right: 28px;
+	}
+
+	.nav-search-clear {
+		display: none;
+	}
+}
+
+@media (max-width: $extra-large-width) {
+	.top-navigation {
+		#search_form {
+			position: absolute;
+			top: 68px;
+			max-width: none;
+			background-color: #fff;
 		}
 
 		#search_input {
-			border: 1px solid #ced4da;
+			margin-right: 20px;
 		}
-	}
-
-
-/*
-	Remove side paddings when screen is larger than header width.
-	Aligns logo and search bar nicely with the header image.
- */
-@media screen and (min-width: $header_width) {
-	.top-navigation.navbar {
-			.site-logo {
-			}
-
-			.nav-search-wrap {
-			}
-		}
-}
-
-@include media('<=desktop') {
-	.top-navigation.navbar {
-			.navbar-dropdown {
-				width: 400px;
-
-				.nav-item {
-					a {
-						color: #fff;
-					}
-
-					a.highlight {
-						padding: 0 0 0 50px;
-					}
-
-					&.wpml-ls-item {
-						background-color: rgba(0, 0, 0, .3);
-
-						.nav-link:after {
-							padding: 0 1em;
-						}
-					}
-				}
-
-			}
 	}
 }
 
-
-/*
-	Mobile Menu
- */
-@include media('<=desktop') {
-	.top-navigation.navbar {
-		.btn-navbar-toggle {
-			&.open {
-				background-color: rgba(0,0,0,.8);
-			}
-		}
-
-		.navbar-dropdown {
-			background: none;
-			background-color: #fff;
-
-			.nav-item.wpml-ls-item {
-				background-color: $color_standard_1;
-				margin-bottom: 1em;
-			}
-
-			.nav-item a {
-				color: #000;
-			}
-
-			.nav-item:not(.wpml-ls-item) a,
-			.nav-item:not(.wpml-ls-item) a.highlight {
-				padding-left: 50px;
-			}
-
-			.active .nav-link::before {
-				display: none;
-			}
-		}
-
-		.nav-search-wrap {
-			background-color: $color_standard_2;
-		}
-		.nav-search-wrap .top-nav-search-btn {
-			top: 12px;
+@media (max-width: $large-width) {
+	.top-navigation {
+		#search_form {
+			position: inherit;
 		}
 	}
 }
