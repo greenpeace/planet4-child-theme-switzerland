@@ -12,6 +12,10 @@ a.nav-link,
 	font-size: 18px;
 }
 
+a.nav-link {
+	color: $color_gray_dark
+}
+
 .top-navigation {
 	background-color: rgba(255,255,255,0.9);
 
