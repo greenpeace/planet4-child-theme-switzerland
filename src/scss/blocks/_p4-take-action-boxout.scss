@@ -1,6 +1,6 @@
 /*
 Master theme styles include a confusing hover behavior that sets button hover colors when the cursor hovers over the element, not just the button.
-We reset the same style for hover and non-hover to get back expected bahavior, then add back hover state for the button.
+We reset the same style for hover and non-hover to get back expected behavior, then add back hover state for the button.
  */
 body .boxout,
 body .boxout:hover {
@@ -66,17 +66,6 @@ body .boxout.sticky-bottom-mobile {
 			width: 250px;
 			height: 220px;
 		}
-
-		.boxout-content {
-			padding-left: 250px;
-		}
-
-		.btn {
-			position: relative;
-			display: inline-block;
-			margin-left: 1em;
-			margin-top: 2em;
-		}
 	}
 }
 
@@ -84,6 +73,7 @@ body .boxout.sticky-bottom-mobile {
 	body .boxout {
 		img {
 			width: 220px;
+			height: 100%;
 		}
 
 		.boxout-content {
@@ -117,10 +107,6 @@ body .boxout.sticky-bottom-mobile {
 
 		.boxout-heading {
 			margin-bottom: .5em;
-		}
-
-		.boxout-content {
-			padding-left: 160px;
 		}
 
 		.boxout-excerpt {
