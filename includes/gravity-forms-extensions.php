@@ -247,6 +247,10 @@ function gpch_gf_type_setting( $fields, $form ) {
 				'label' => 'Leadgen',
 				'value' => 'leadgen',
 			),
+			array(
+				'label' => 'Contact Form',
+				'value' => 'contact',
+			),
 		),
 	);
 
