@@ -5,9 +5,19 @@ We reset the same style for hover and non-hover to get back expected behavior, t
 body .boxout,
 body .boxout:hover {
 	margin-bottom: 2rem;
+	flex-wrap: wrap;
+
+	.boxout-content {
+		width: calc(100% - 340px);
+	}
 
 	.boxout-excerpt {
 		font-size: 1rem;
+
+		-webkit-line-clamp: 3;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	.boxout-heading,
@@ -16,6 +26,12 @@ body .boxout:hover {
 	}
 
 	.btn {
+		/* Reset funky master theme positioning */
+		position: relative;
+		right: auto;
+		bottom: 4em;
+		left: 356px;
+
 		margin-bottom: 0;
 
 		background: var(--button-primary--background, #73BE1E);
@@ -58,7 +74,8 @@ body .boxout.sticky-bottom-mobile {
 }
 
 @media (max-width: $extra-large-width) {
-	body .boxout {
+	body .boxout,
+	body .boxout:hover {
 		height: 220px;
 		padding-bottom: 1em;
 
@@ -70,7 +87,8 @@ body .boxout.sticky-bottom-mobile {
 }
 
 @media (max-width: $large-width) {
-	body .boxout {
+	body .boxout,
+	body .boxout:hover {
 		img {
 			width: 220px;
 			height: 100%;
@@ -80,6 +98,7 @@ body .boxout.sticky-bottom-mobile {
 			.boxout-excerpt {
 				padding-left: 0;
 				font-size: .875rem;
+				-webkit-line-clamp: 3;
 			}
 		}
 
@@ -90,32 +109,44 @@ body .boxout.sticky-bottom-mobile {
 		.btn {
 			margin-top: 1em;
 			margin-left: 2em;
+			left: 202px;
 		}
 	}
 }
 
 
 @include media('<=tablet') {
-	body .boxout {
+	body .boxout,
+	body .boxout:hover {
 		height: auto;
 		padding-bottom: 1em;
 
 		img {
 			width: 160px;
+			min-width: 160px;
 			height: 160px;
 		}
 
-		.boxout-heading {
-			margin-bottom: .5em;
-		}
+		.boxout-content {
+			width: calc(100% - 160px);
+			padding-top: 0;
 
-		.boxout-excerpt {
-			display: block;
+			.boxout-heading {
+				margin-bottom: .5em;
+			}
+
+			.boxout-excerpt {
+				-webkit-line-clamp: 2;
+			}
 		}
 
 		.btn {
-			margin-top: 1em;
-			margin-left: 176px;
+			margin-left: 0;
+			margin-top: -3em;
+			right: auto;
+			bottom: auto;
+			left: 170px;
+			height: 38px;
 		}
 	}
 
@@ -128,18 +159,26 @@ body .boxout.sticky-bottom-mobile {
 }
 
 @media (max-width: 480px) {
-	body .boxout {
+	body .boxout,
+	body .boxout:hover {
 		img {
 			width: 120px;
 			height: 120px;
+			min-width: auto;
 		}
 
 		.boxout-content {
-			padding-left: 120px;
+			width: calc(100% - 120px);
+
+			.boxout-excerpt {
+				display: none;
+			}
 		}
 
 		.btn {
-			margin-left: 136px;
+			margin-left: 0;
+			left: 128px;
+			margin-top: -3em;
 		}
 	}
 
