@@ -32,6 +32,8 @@ const gpchChildThemeScripts = function() {
 		'#Océans': 'tag-oceans',
 		'#Wald': 'tag-wald',
 		'#Fôrets': 'tag-forets',
+		'#Konsum': 'tag-konsum',
+		'#Consommation': 'tag-consommation'
 	}
 	
 	let lastTakeActionCoversEvent = Date.now();
