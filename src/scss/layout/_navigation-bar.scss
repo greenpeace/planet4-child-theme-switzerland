@@ -13,7 +13,11 @@ a.nav-link,
 }
 
 a.nav-link {
-	color: $color_gray_dark
+	color: $color_gray_dark;
+
+	&:before {
+		display: none;
+	}
 }
 
 .top-navigation {
