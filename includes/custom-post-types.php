@@ -103,6 +103,24 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 
 
 	/**
+	 *  Redirect to Event URL if available
+	 */
+	function gpchevents_redirect() {
+		if ( get_post_type() == 'gpch_event' ) {
+			if ( is_single() ) {
+				$url = get_field( 'redirect_url' );
+
+				if ( ! empty( $url ) && filter_var( $url, FILTER_VALIDATE_URL ) !== false ) {
+					wp_redirect( $url, 301, 'GPCHEvent' );
+				}
+			}
+		}
+	}
+
+	add_filter( 'template_redirect', 'gpchevents_redirect', 1 );
+
+
+	/**
 	 * Create custom field for GPCH Events using ACF
 	 */
 	function create_gpch_event_custom_fields() {
@@ -163,6 +181,22 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 						'append'            => '',
 						'maxlength'         => '',
 					),
+					array(
+						'key'               => 'field_p4_gpch_events_redirect',
+						'label'             => 'Redirect URL',
+						'name'              => 'redirect_url',
+						'type'              => 'url',
+						'instructions'      => 'Add a URL to redirect instead of showing the details page of the event.',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => array(
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						),
+						'default_value'     => '',
+						'placeholder'       => '',
+					),
 				),
 				'location'              => array(
 					array(
@@ -187,10 +221,6 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 
 	add_action( 'init', 'create_gpch_event_custom_fields' );
 }
-
-/**
- * Custom Fields for gpch_events
- */
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_archived_post' ) ) {
 	/**
