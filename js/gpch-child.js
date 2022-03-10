@@ -33,7 +33,8 @@ const gpchChildThemeScripts = function() {
 		'#Wald': 'tag-wald',
 		'#Fôrets': 'tag-forets',
 		'#Konsum': 'tag-konsum',
-		'#Consommation': 'tag-consommation'
+		'#Consommation': 'tag-consommation',
+		'#Ukraine': 'tag-ukraine'
 	}
 	
 	let lastTakeActionCoversEvent = Date.now();
