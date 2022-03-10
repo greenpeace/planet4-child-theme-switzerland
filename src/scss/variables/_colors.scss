@@ -96,16 +96,25 @@ $color_chemical_3_font: #fff;
 $selector_colorscheme_chemical: ".tag-chemie, .tag-toxiques";
 
 
-/* Variable lists for loops */
-$schema_names: forest, climate, ocean, fleet, arctic, plastic, chemical;
-$selectors: $selector_colorscheme_forest, $selector_colorscheme_climate, $selector_colorscheme_ocean, $selector_colorscheme_fleet, $selector_colorscheme_arctic, $selector_colorscheme_plastic, $selector_colorscheme_chemical;
-$colors_1: $color_forest_1, $color_climate_1, $color_ocean_1, $color_fleet_1, $color_arctic_1, $color_plastic_1, $color_chemical_1;
-$colors_2: $color_forest_2, $color_climate_2, $color_ocean_2, $color_fleet_2, $color_arctic_2, $color_plastic_2, $color_chemical_2;
-$colors_3: $color_forest_3, $color_climate_3, $color_ocean_3, $color_fleet_3, $color_arctic_3, $color_plastic_3, $color_chemical_3;
+$color_ukraine_1: #0057b7;
+$color_ukraine_1_font: #fff;
+$color_ukraine_2: #597692;
+$color_ukraine_2_font: #fff;
+$color_ukraine_3: #ffd700;
+$color_ukraine_3_font: $color_gray_dark;
 
-$colors_1_font: $color_forest_1_font, $color_climate_1_font, $color_ocean_1_font, $color_fleet_1_font, $color_arctic_1_font, $color_plastic_1_font, $color_chemical_1_font;
-$colors_2_font: $color_forest_2_font, $color_climate_2_font, $color_ocean_2_font, $color_fleet_2_font, $color_arctic_2_font, $color_plastic_2_font, $color_chemical_2_font;
-$colors_3_font: $color_forest_3_font, $color_climate_3_font, $color_ocean_3_font, $color_fleet_3_font, $color_arctic_3_font, $color_plastic_3_font, $color_chemical_3_font;
+$selector_colorscheme_ukraine: ".tag-ukraine, .tag-ukraine-fr";
+
+/* Variable lists for loops */
+$schema_names: forest, climate, ocean, fleet, arctic, plastic, chemical, ukraine;
+$selectors: $selector_colorscheme_forest, $selector_colorscheme_climate, $selector_colorscheme_ocean, $selector_colorscheme_fleet, $selector_colorscheme_arctic, $selector_colorscheme_plastic, $selector_colorscheme_chemical, $selector_colorscheme_ukraine;
+$colors_1: $color_forest_1, $color_climate_1, $color_ocean_1, $color_fleet_1, $color_arctic_1, $color_plastic_1, $color_chemical_1, $color_ukraine_1;
+$colors_2: $color_forest_2, $color_climate_2, $color_ocean_2, $color_fleet_2, $color_arctic_2, $color_plastic_2, $color_chemical_2, $color_ukraine_2;
+$colors_3: $color_forest_3, $color_climate_3, $color_ocean_3, $color_fleet_3, $color_arctic_3, $color_plastic_3, $color_chemical_3, $color_ukraine_3;
+
+$colors_1_font: $color_forest_1_font, $color_climate_1_font, $color_ocean_1_font, $color_fleet_1_font, $color_arctic_1_font, $color_plastic_1_font, $color_chemical_1_font, $color_ukraine_1_font;
+$colors_2_font: $color_forest_2_font, $color_climate_2_font, $color_ocean_2_font, $color_fleet_2_font, $color_arctic_2_font, $color_plastic_2_font, $color_chemical_2_font, $color_ukraine_2_font;
+$colors_3_font: $color_forest_3_font, $color_climate_3_font, $color_ocean_3_font, $color_fleet_3_font, $color_arctic_3_font, $color_plastic_3_font, $color_chemical_3_font, $color_ukraine_3_font;
 
 
 /* Dummy code to output all color schemes in a loop */
