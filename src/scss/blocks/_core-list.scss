@@ -108,6 +108,21 @@ div.page-content > ul {
 	}
 }
 
+/* Color scheme correction for ukraine */
+@for $i from 1 through length($selector_colorscheme_ukraine) {
+	#{nth($selector_colorscheme_ukraine, $i)} {
+		ul.is-style-accent-info {
+			li,
+			li a {
+				color: $color_ukraine_2_font ;
+			}
+
+			li:before {
+				color: $color_ukraine_3;
+			}
+		}
+	}
+}
 
 @include media('<=desktop') {
 	ul.is-style-accent-info {
