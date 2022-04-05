@@ -15,7 +15,8 @@
 			.main-header {
 				padding-top: 120px;
 
-				h1 {
+				h2 {
+					margin: .5em 0;
 					font-size: 2rem;
 					color: $color_gray_dark;
 				}
@@ -31,7 +32,7 @@
 				width: auto;
 				max-width: 500px;
 				margin: 0 0 1em 0;
-				padding: 1em 2em;
+				padding: 1em 2em 1.5em 2em;
 				background-color: #fff;
 			}
 

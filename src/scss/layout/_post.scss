@@ -6,6 +6,8 @@
 	.page-header {
 		margin-top: 120px;
 		max-width: 1040px;
+		margin-left: auto;
+		margin-right: auto;
 
 		.tag-item.external-link::after {
 			display: none;
@@ -34,8 +36,12 @@
 			max-width: 100%;
 		}
 	}
-}
 
+	.post-content {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
 
 
 /* Color Schemes */
