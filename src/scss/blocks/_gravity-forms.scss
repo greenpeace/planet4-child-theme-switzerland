@@ -1,11 +1,12 @@
-body .gform_wrapper,
-body .gform_confirmation_wrapper {
+ .gform_wrapper,
+ .gform_confirmation_wrapper {
 	background-color: $color_standard_2;
 	padding: 1em;
 	margin: 1em 0;
 
 	h2, h3, h4 {
 		font-weight: 700;
+		font-size: 2rem;
 	}
 
 	.gform_button,
@@ -14,12 +15,12 @@ body .gform_confirmation_wrapper {
 	.gform_page_footer .gform_previous_button,
 	.gform_page_footer .gform_next_button {
 		border: 0;
-		padding: .4rem 2rem;
+		padding: 0 2rem;
 		background-color: $color_standard_3;
 		color: $color_standard_3_font;
 		font-weight: 500;
-		font-size: 0.875rem;
-		text-transform: uppercase;
+		font-size: 1rem;
+		transition: none;
 	}
 
 	.gform_page_footer .gform_previous_button {
@@ -38,9 +39,9 @@ body .gform_confirmation_wrapper {
 
 	.gform_body {
 		input[type="checkbox"] {
-			opacity: 1;
-			position: static;
-			margin-right: .5em;
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
 		}
 
 		input[type="radio"] {
@@ -48,6 +49,19 @@ body .gform_confirmation_wrapper {
 			position: static;
 			margin-right: .5em;
 		}
+
+		input[type="checkbox"] ~ label {
+			padding-inline-start: 36px;
+		}
+	}
+
+	.gfield_required,
+	.gfield.gfield_error .gfield_label {
+		color: $color_gray_dark;
+	}
+
+	.gform_ajax_spinner {
+		margin-left: 20px;
 	}
 
 	/* Remove the required icon from the title and display it next to the label */
@@ -57,8 +71,90 @@ body .gform_confirmation_wrapper {
 
 	.gfield.privacy-field label::after {
 		content: " *";
-		color: #790000;
+		color: $color_gray_dark;
 	}
+
+	&.gform_validation_error .gform_validation_errors {
+		color: $color_gray_dark;
+		border: none;
+
+		.gform_submission_error {
+			padding: 0 1em;
+			color: #c11d1d !important;
+			font-size: 1rem;
+			line-height: 1.2;
+		}
+
+		.gform-icon--close {
+			display: none;
+		}
+	}
+
+	.gfield.gfield_error .validation_message.gfield_validation_message {
+		background-color: $color_gray_dark;
+		font-size: 14px;
+		border-color: #c11d1d;
+
+		&::after {
+			border-bottom-color: #c11d1d;
+		}
+	}
+
+	/* Enhanced UI select field */
+	.ginput_container_select .chosen-container {
+		border-radius: 4px;
+		font-family: Roboto, sans-serif;
+		background-color: #fff;
+		border: 1px solid #a3a5a7;
+	}
+
+	&.gravity-theme .chosen-container-single .chosen-single div {
+		display: none;
+	}
+
+	.gfield .gfield_time_ampm::after,
+	.gfield .ginput_address_country::after,
+	.gfield .ginput_container_select::after {
+		color: $color_gray_dark;
+	}
+
+	.form-control,
+	.form-select,
+	.gfield_time_ampm select,
+	.gfield input:not([type="file"]),
+	.gfield textarea,
+	.ginput_address_country select,
+	.ginput_container_multiselect select,
+	.ginput_container_select select {
+		color: $color_gray_dark;
+	}
+}
+
+/* GravityForms styles corrections */
+.gform_wrapper.gravity-theme input[type="text"],
+.gform_wrapper.gravity-theme input[type="password"],
+.gform_wrapper.gravity-theme input[type="email"],
+.gform_wrapper.gravity-theme input[type="url"],
+.gform_wrapper.gravity-theme input[type="date"],
+.gform_wrapper.gravity-theme input[type="month"],
+.gform_wrapper.gravity-theme input[type="time"],
+.gform_wrapper.gravity-theme input[type="datetime"],
+.gform_wrapper.gravity-theme input[type="datetime-local"],
+.gform_wrapper.gravity-theme input[type="week"],
+.gform_wrapper.gravity-theme input[type="number"],
+.gform_wrapper.gravity-theme input[type="search"],
+.gform_wrapper.gravity-theme input[type="tel"],
+.gform_wrapper.gravity-theme input[type="color"],
+.gform_wrapper.gravity-theme textarea,
+.gform_wrapper.gravity-theme select {
+	font-size: 18px;
+}
+
+.gform_wrapper.gravity-theme .gfield_checkbox label,
+.gform_wrapper.gravity-theme .gfield_radio label {
+	font-size: 16px;
+	line-height: 1.2;
+	font-weight: bold;
 }
 
 /* Enhanced user interface fro dropdowns */
@@ -134,27 +230,34 @@ body #gforms_confirmation_message {
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
-		/*background-color: #{nth($colors_1, $i)};*/
-		/*
-		body .gform_wrapper,
-		body #gforms_confirmation_message {
-			background-color: #{nth($colors_2, $i)};
-		}
-		*/
-		
-		/* not for petitions */
-		.is-style-petition-left .gform_wrapper {
-			background-color: transparent;
-		}
+		.gform_wrapper,
+		.gform_confirmation_wrapper {
+			background-color: #{nth($colors_1, $i)};
+			color: #{nth($colors_1_font, $i)};
 
-		.gform_button {
-			background-color: $color_standard_3;
-			color: $color_standard_3_font
-		}
+			/* not for petitions */
+			.is-style-petition-left .gform_wrapper {
+				background-color: transparent;
+			}
 
-		.gform_button:hover {
-			background-color: $color_standard_1;
-			color: $color_standard_1_font
+			.gform_button {
+				background-color: #{nth($colors_3, $i)};
+				color: #{nth($colors_3_font, $i)}
+			}
+
+			.gform_button:hover {
+				background-color: #{nth($colors_2, $i)};
+				color: #{nth($colors_2_font, $i)}
+			}
+
+			.gfield_required,
+			.gfield.gfield_error .gfield_label {
+				color: #{nth($colors_1_font, $i)};
+			}
+
+			.gfield.privacy-field label::after {
+				color: #{nth($colors_1_font, $i)};
+			}
 		}
 	}
 }

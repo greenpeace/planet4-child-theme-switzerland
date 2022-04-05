@@ -1,0 +1,34 @@
+
+.custom-control input[type="checkbox"] ~ label {
+	color: $color_gray_dark;
+}
+
+/* Move the checkbox to the :before pseudo element */
+.custom-control input[type="checkbox"] ~ .custom-control-description::before,
+.custom-control input[type="checkbox"] ~ label::before {
+	top: .3em;
+	padding: 0 2px;
+
+	font-size: 18px;
+	line-height: 20px;
+	color: $color_gray_dark;
+}
+
+.custom-control input[type="checkbox"]:checked ~ .custom-control-description::before,
+.custom-control input[type="checkbox"]:checked ~ label::before {
+	content: "\2714";
+}
+
+.custom-control input[type="checkbox"]:checked ~ .custom-control-description::after,
+.custom-control input[type="checkbox"]:checked ~ label::after {
+	all: unset;
+}
+
+/* Color Schemes */
+@for $i from 1 through length($schema_names) {
+	#{nth($selectors, $i)} {
+		.custom-control input[type="checkbox"] ~ label {
+			color: #{nth($colors_1_font, $i)};;
+		}
+	}
+}
