@@ -79,6 +79,8 @@
 		border: none;
 
 		.gform_submission_error {
+			position: relative;
+
 			padding: 0 1em;
 			color: #c11d1d !important;
 			font-size: 1rem;
@@ -86,7 +88,15 @@
 		}
 
 		.gform-icon--close {
-			display: none;
+			display: block;
+			position: absolute;
+			left: -1rem;
+
+			&:before {
+				content: "!";
+				font-weight: bold;
+				font-family: $font-family !important;
+			}
 		}
 	}
 
