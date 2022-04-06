@@ -6,7 +6,6 @@
 /* Move the checkbox to the :before pseudo element */
 .custom-control input[type="checkbox"] ~ .custom-control-description::before,
 .custom-control input[type="checkbox"] ~ label::before {
-	top: .3em;
 	padding: 0 2px;
 
 	font-size: 18px;
