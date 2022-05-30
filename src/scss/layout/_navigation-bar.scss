@@ -24,10 +24,6 @@ a.nav-link {
 	background-color: rgba(255,255,255,0.9);
 
 	#nav-menu {
-		ul {
-			padding-right: 0;
-		}
-
 		li a {
 			transition: text-decoration 300ms, background-color 300ms;
 
@@ -55,8 +51,12 @@ a.nav-link {
 	.nav-languages-toggle {
 		text-transform: uppercase;
 
-		&:after {
-			margin-left: 5px;
+		.nav-link {
+			text-transform: none;
+			
+			&:after {
+				margin-left: 5px;
+			}
 		}
 	}
 
@@ -66,6 +66,7 @@ a.nav-link {
 		max-width: 250px;
 		padding-left: 12px;
 		background-color: transparent;
+		line-height: 68px;
 	}
 
 	#search_input {

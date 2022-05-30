@@ -44,12 +44,6 @@
 			pointer-events: none;
 		}
 
-		input[type="radio"] {
-			opacity: 1;
-			position: static;
-			margin-right: .5em;
-		}
-
 		input[type="checkbox"] ~ label {
 			padding-inline-start: 36px;
 		}
