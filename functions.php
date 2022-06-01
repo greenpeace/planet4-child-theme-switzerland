@@ -46,6 +46,9 @@ require_once( 'includes/advanced-post-settings.php' );
 // GPCH CSP headers
 require_once( 'includes/csp.php' );
 
+// Hubspot
+require_once( 'includes/hubspot.php' );
+
 /**
  * Load Javascript for further Gutenberg customizations
  */
