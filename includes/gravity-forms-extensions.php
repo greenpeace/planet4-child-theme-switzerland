@@ -29,65 +29,6 @@ add_filter( 'gform_phone_formats', 'gpch_add_swiss_phone_format', 10, 2 );
 
 
 /**
- * Save the email address in a Gravity Form to the session after submission.
- *
- * @param $entry
- * @param $form
- */
-function gpch_save_gf_user_email( $entry, $form ) {
-	foreach ( $form['fields'] as $field ) {
-		if ( $field->type == 'email' ) {
-			$email = rgar( $entry, (string) $field->id );
-
-			if ( session_status() == PHP_SESSION_NONE ) {
-				session_start();
-			}
-
-			$_SESSION['gf_connect_forms_email']        = $email;
-			$_SESSION['gf_connect_forms_email_expire'] = time() + 1800;
-
-			// In case the form contains multiple email fields, only use the first one
-			break;
-		}
-	}
-}
-
-add_action( 'gform_after_submission', 'gpch_save_gf_user_email', 10, 2 );
-
-
-/**
- * Prefill a Gravity Form field with the users email address if it's available in the session (AJAX request)
- * Used to connect to separate forms together.
- * The form needs:
- * - A hidden field with the value "form_connect_email"
- */
-function gpch_ajax_form_prefill() {
-	$field = $_GET['field'];
-
-	if ( $field == 'session_email' ) {
-		if ( session_status() == PHP_SESSION_NONE ) {
-			session_start();
-		}
-
-		if ( isset( $_SESSION['gf_connect_forms_email_expire'] ) && $_SESSION['gf_connect_forms_email_expire'] >= time() ) {
-			$data = array(
-				'email' => $_SESSION['gf_connect_forms_email'],
-			);
-
-			wp_send_json_success( $data );
-		} else {
-			wp_send_json_error( 'email not found' );
-		}
-	}
-
-	wp_send_json_error( 'field not available' );
-}
-
-add_filter( 'wp_ajax_nopriv_gpch_gf_prefill_field', 'gpch_ajax_form_prefill' );
-add_filter( 'wp_ajax_gpch_gf_prefill_field', 'gpch_ajax_form_prefill' );
-
-
-/**
  * Put zip code before city in address fields
  */
 add_filter( 'gform_address_display_format', 'gpch_gf_address_format', 10, 2 );
