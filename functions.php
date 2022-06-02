@@ -283,3 +283,15 @@ function gpch_enqueue_youtube_api() {
 }
 add_action( 'wp_enqueue_scripts', 'gpch_enqueue_youtube_api' );
 
+
+/* Change parameters in embedded Youtube videos. Enables the API used for Analytics */
+add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
+	parse_str($parametersString, $parameters);
+
+	$parameters = array_merge($parameters, [
+		'enablejsapi' => '1',
+		'origin' => 'https://' . $_SERVER['SERVER_NAME']
+	]);
+
+	return http_build_query($parameters);
+} );
