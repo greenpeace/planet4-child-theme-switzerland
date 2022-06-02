@@ -16,6 +16,9 @@ function enqueue_child_styles() {
 require_once( 'classes/GPCH_i_REST_API.php' );
 require_once( 'classes/GPCH_Inxmail_API.php' );
 
+// Helpers
+require_once ( 'includes/helpers.php' );
+
 // Author pages
 require_once ( 'includes/author-pages.php' );
 
@@ -268,3 +271,15 @@ add_action( 'admin_menu', 'change_media_label', 9999999 );
 add_filter( 'swpmb_meta_boxes', function() {
 	return array();
 } );
+
+
+function gpch_enqueue_youtube_api() {
+	$id = get_the_ID();
+	$hasYTBlock = gpch_has_block_embed_by_provider( 'youtube', $id );
+
+	if ($hasYTBlock) {
+		wp_enqueue_script( 'custom-js', 'https://www.youtube.com/iframe_api', [], '', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'gpch_enqueue_youtube_api' );
+
