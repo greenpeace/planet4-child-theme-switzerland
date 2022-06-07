@@ -144,31 +144,6 @@ const gpchChildThemeScripts = function() {
 gpchChildThemeScripts();
 
 
-jQuery(document).ready(function () {
-	// Prefill email fields in forms
-	var emailConnectFields =  jQuery( "input[value='form_connect_email']" );
-
-	if (emailConnectFields.length > 0) {
-		var data = {
-			'action': 'gpch_gf_prefill_field',
-			'field': 'session_email'
-		};
-		
-		jQuery.ajax({
-			url: gpchData.ajaxurl,
-			type: 'GET',
-			data: data,
-			success: function (response) {
-				jQuery(emailConnectFields).val(response.data.email);
-			},
-			error: function () {
-				jQuery(emailConnectFields).val('');
-			}
-		});
-	}
-});
-
-
 // Helper function for copy to clipboard in forms
 function copyTextareaToClipboard() {
 	var copyText = document.querySelector("#clipboard-copy-text");
