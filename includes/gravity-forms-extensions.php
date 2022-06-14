@@ -622,3 +622,28 @@ function gpch_client_side_gravityforms_prefill( $form ) {
 }
 
 add_filter( 'gform_pre_render', 'gpch_client_side_gravityforms_prefill' );
+
+
+function gpch_custom_address_validation( $result, $value, $form, $field ) {
+	if ( 'address' === $field->type && $field->isRequired ) {
+		$city = rgar( $value, $field->id . '.3' );
+		$zip  = rgar( $value, $field->id . '.5' );
+
+
+		// Validate zip
+		$input_number = 5;
+		if ( ! empty( $zip ) && $field->get_input_property( $input_number, 'isHidden' ) !== true ) {
+			// 4-6 digits
+			if ( ! ctype_digit( $zip ) || strlen( $zip ) < 4 || strlen( $zip ) >= 5 ) {
+				$field->set_input_validation_state( $input_number, false );
+
+				$result['is_valid'] = false;
+				$result['message']  = empty( $field->errorMessage ) ? __( 'Please enter a valid zip code.', 'planet4-child-theme-switzerland' ) : $field->errorMessage;
+			}
+		}
+	}
+
+	return $result;
+}
+
+add_filter( 'gform_field_validation', 'gpch_custom_address_validation', 10, 4 );
