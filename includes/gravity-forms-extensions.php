@@ -192,6 +192,10 @@ function gpch_gf_type_setting( $fields, $form ) {
 				'label' => 'Contact Form',
 				'value' => 'contact',
 			),
+			array(
+				'label' => 'Newsletter (only) Form',
+				'value' => 'newsletter',
+			),
 		),
 	);
 
