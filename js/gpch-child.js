@@ -203,3 +203,39 @@ function copyTextareaToClipboard() {
 	});
 })();
 
+
+/**
+ * General Newsletter subscription form. Transfer values from checkboxes into hidden field.
+ * Needs
+ * - A checkboxes field (multiple checkboxes) with a class name newsletter-lists-field and checkbox values need to be set to the list names
+ * - A hidden input field with the class newsletter-subscription-field that will contain the comma separated list of email lists
+ */
+(function () {
+	const gpchNewsletterListsField = document.querySelector('.newsletter-lists-field');
+	const gpchNewsletterCheckboxes = gpchNewsletterListsField.querySelectorAll(":scope input[type='checkbox']");
+	const gpchNewsletterField = document.querySelector('.newsletter-subscription-field input');
+	
+	function gpchUpdateNewsletterLists() {
+		let lists = '';
+		
+		gpchNewsletterCheckboxes.forEach((element) => {
+			if (element.checked) {
+				lists += element.value + ',';
+			}
+		});
+		
+		// Remove last comma
+		lists = lists.slice(0, -1);
+		
+		// Update the lists field
+		gpchNewsletterField.value = lists;
+	}
+	
+	gpchNewsletterCheckboxes.forEach((element) => {
+		element.addEventListener('change', function () {
+			gpchUpdateNewsletterLists();
+		});
+	});
+	
+	gpchUpdateNewsletterLists();
+})();
