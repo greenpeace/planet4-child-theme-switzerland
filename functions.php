@@ -16,6 +16,9 @@ function enqueue_child_styles() {
 require_once( 'classes/GPCH_i_REST_API.php' );
 require_once( 'classes/GPCH_Inxmail_API.php' );
 
+// Helpers
+require_once ( 'includes/helpers.php' );
+
 // Author pages
 require_once ( 'includes/author-pages.php' );
 
@@ -270,4 +273,29 @@ add_action( 'admin_menu', 'change_media_label', 9999999 );
 // Duplicate functionality and causes a saving bug, see https://tickets.greenpeace.ch/view.php?id=406
 add_filter( 'swpmb_meta_boxes', function() {
 	return array();
+} );
+
+
+function gpch_enqueue_youtube_api() {
+	$id = get_the_ID();
+	$hasYTBlock = gpch_has_block_embed_by_provider( 'youtube', $id );
+
+	if ($hasYTBlock) {
+		wp_enqueue_script( 'custom-js', 'https://www.youtube.com/iframe_api', [], '', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'gpch_enqueue_youtube_api' );
+
+
+/* Change parameters in embedded Youtube videos. Enables the API used for Analytics */
+add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
+	parse_str($parametersString, $parameters);
+
+	$parameters = array_merge($parameters, [
+		'enablejsapi' => '1',
+		'origin' => 'https://' . $_SERVER['SERVER_NAME'],
+		'cc_load_policy' => 1,
+	]);
+
+	return http_build_query($parameters);
 } );
