@@ -293,7 +293,8 @@ add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
 
 	$parameters = array_merge($parameters, [
 		'enablejsapi' => '1',
-		'origin' => 'https://' . $_SERVER['SERVER_NAME']
+		'origin' => 'https://' . $_SERVER['SERVER_NAME'],
+		'cc_load_policy' => 1,
 	]);
 
 	return http_build_query($parameters);
