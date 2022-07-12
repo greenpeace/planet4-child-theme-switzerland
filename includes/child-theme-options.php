@@ -28,7 +28,7 @@ function gpch_child_settings_init() {
 	add_settings_field(
 		'gpch_child_field_inxmail_pass',
 		__( 'Inxmail API password', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_inxmail_password_callback',
+		'gpch_child_field_password_callback',
 		'gpch_child',
 		'gpch_child_inxmail',
 		array(
@@ -174,6 +174,48 @@ function gpch_child_settings_init() {
 			'class'     => 'gpch_child_row',
 		)
 	);
+
+	add_settings_section(
+		'gpch_child_raisenow',
+		__( 'RaiseNow API', 'planet4-child-theme-switzerland' ), 'gpch_child_section_raisenow_callback',
+		'gpch_child'
+	);
+
+	add_settings_field(
+		'gpch_child_field_raisenow_user',
+		__( 'Raisenow API user', 'planet4-child-theme-switzerland' ),
+		'gpch_child_fields_raisenow_callback',
+		'gpch_child',
+		'gpch_child_raisenow',
+		array(
+			'label_for' => 'gpch_child_field_raisenow_user',
+			'class'     => 'gpch_child_row',
+		)
+	);
+
+	add_settings_field(
+		'gpch_child_field_raisenow_pass',
+		__( 'Raisenow API password', 'planet4-child-theme-switzerland' ),
+		'gpch_child_field_password_callback',
+		'gpch_child',
+		'gpch_child_raisenow',
+		array(
+			'label_for' => 'gpch_child_field_raisenow_pass',
+			'class'     => 'gpch_child_row',
+		)
+	);
+
+	add_settings_field(
+		'gpch_child_field_raisenow_url',
+		__( 'Raisenow API URL', 'planet4-child-theme-switzerland' ),
+		'gpch_child_fields_raisenow_callback',
+		'gpch_child',
+		'gpch_child_raisenow',
+		array(
+			'label_for' => 'gpch_child_field_raisenow_url',
+			'class'     => 'gpch_child_row',
+		)
+	);
 }
 
 /**
@@ -265,7 +307,7 @@ function gpch_child_fields_twilio_callback( $args ) {
  *
  * @param array $args
  */
-function gpch_child_field_inxmail_password_callback( $args ) {
+function gpch_child_field_password_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
     <input type="password" id="<?php echo esc_attr( $args['label_for'] ); ?>"
@@ -370,6 +412,31 @@ function gpch_child_field_gf_embed_whitelist_callback( $args ) {
     <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
               name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?></textarea>
 
+	<?php
+}
+
+/**
+ * RaiseNow section callback function.
+ *
+ * @param array $args The settings array, defining title, id, callback.
+ */
+function gpch_child_section_raisenow_callback( $args ) {
+	?>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The RaiseNow API is used in the blocks plugin, for example for the donations progress bar. A read-only user is recommended.', 'planet4-child-theme-switzerland' ); ?></p>
+	<?php
+}
+
+/**
+ * RaiseNow text fields callback function.
+ *
+ * @param array $args
+ */
+function gpch_child_fields_raisenow_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+           value="<?php echo $options[ $args['label_for'] ] ?>">
 	<?php
 }
 
