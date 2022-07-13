@@ -85,6 +85,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4block-split-two-columns',
 			'acf/p4-gpch-block-form-progress-bar',
 			'acf/p4-gpch-block-form-counter-text',
+			'acf/p4-gpch-block-donation-progress-bar',
 			'acf/p4-gpch-block-action-divider',
 			'acf/p4-gpch-block-magazine-articles',
 			'acf/p4-gpch-block-gpch-events',
