@@ -52,6 +52,11 @@ a.btn-accent:hover {
 	color: $color_standard_1_font;
 }
 
+/* Correction for Wordpress inline style */
+
+a:where(:not(.wp-element-button)) {
+	text-decoration-line: none;
+}
 
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {

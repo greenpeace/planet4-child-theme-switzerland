@@ -101,6 +101,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'planet4-gpch-plugin-blocks/p2p-share',
 			'planet4-gpch-plugin-blocks/form-entries',
 			'planet4-blocks/accordion',
+			'planet4-gpch-tamaro/tamaro-widget',
 		);
 
 		if ( $post->post_type === 'page' ) { // Block types only for pages
