@@ -19,6 +19,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'core/image',
 			//'core/gallery', // functionality replaced by P4 galleries
 			'core/list',
+			'core/list-item',
 			'core/quote',
 			'core/audio',
 
