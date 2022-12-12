@@ -1,5 +1,5 @@
 .campaign-covers-block {
-	.covers-container {
+	.covers {
 		.thumbnail-large {
 			img {
 				height: 260px;
@@ -45,7 +45,7 @@
 
 @include media('<=tablet') {
 	.campaign-covers-block {
-		.covers-container {
+		.covers {
 			.thumbnail-large {
 				img {
 					height: 160px;
@@ -58,7 +58,7 @@
 
 /* Color Schemes */
 .campaign-covers-block{
-	.covers-container {
+	.covers {
 		@for $i from 1 through length($schema_names) {
 			#{nth($selectors, $i)} {
 				.thumbnail-large .yellow-cta {
