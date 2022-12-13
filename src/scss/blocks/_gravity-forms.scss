@@ -236,6 +236,13 @@ body #gforms_confirmation_message {
 	padding: 0;
 }
 
+ /* Master theme corrections */
+ .gform_p4_confirmation {
+	 .share-buttons {
+		 display: none;
+	 }
+ }
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {
