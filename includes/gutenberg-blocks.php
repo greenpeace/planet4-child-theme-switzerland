@@ -133,12 +133,14 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 					'planet4-blocks/gallery',
 					//'planet4-blocks/happypoint', // not used at GPCH
 					'planet4-blocks/media',
+					"planet4-blocks/media-video",
 					'planet4-blocks/social-media',
 					'planet4-blocks/split-two-columns',
 					'planet4-blocks/submenu',
 					// not used at GPCH
 					'planet4-blocks/take-action-boxout',
 					'planet4-blocks/timeline',
+					"planet4-blocks/spreadsheet",
 
 					'planet4-gpch-plugin-blocks/dreampeace-cover',
 					'planet4-gpch-plugin-blocks/dreampeace-slide',
