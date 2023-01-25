@@ -151,3 +151,21 @@ wp.domReady(() => {
 	}
 });
 
+const { addFilter } = wp.hooks;
+
+// Remove AJAX toggle default introduced by planet4-plugin-gutenberg-block that causes issues
+const addGravityFormsBlockFilter = () => {
+	const setAJAXToggleDefaultTrue = (settings, name) => {
+		if ('gravityforms/form' !== name) {
+			return settings;
+		}
+
+		settings.attributes['ajax']['default'] = false;
+
+		return settings;
+	};
+
+	addFilter('blocks.registerBlockType', 'planet4-blocks/filters/file', setAJAXToggleDefaultTrue);
+};
+
+addGravityFormsBlockFilter();
