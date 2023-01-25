@@ -27,9 +27,11 @@
 							<li class="date">
 								<span class="title">{{ __('Date', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.event_date|date("l, d. F Y") }}
 							</li>
+							{% if (post.start_time) %}
 							<li class="time">
 								<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time|date("H:i") }}
 							</li>
+							{% endif %}
 							<li class="place">
 								<span class="title">{{ __('Place', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.place }}
 							</li>
