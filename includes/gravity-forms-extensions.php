@@ -665,3 +665,15 @@ add_filter( 'gform_form_args', function ( $form_args ) {
 
 	return $form_args;
 }, 10, 1 );
+
+
+/**
+ * Load our own version of chosen that is enabled on mobile
+ */
+function gpch_fix_gform_chosen_mobile() {
+	wp_deregister_script( 'gform_chosen' );
+
+	wp_register_script( 'gform_chosen', path_join( get_stylesheet_directory_uri(), 'js/chosen.jquery.fix.js' ), [ 'jquery' ], '1.8.8-fix' );
+}
+
+add_action( 'init', 'gpch_fix_gform_chosen_mobile', 11 );
