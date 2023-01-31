@@ -654,6 +654,20 @@ add_filter( 'gform_field_validation', 'gpch_custom_address_validation', 10, 4 );
 
 
 /**
+ * Forces all GravityForms to use AJAX submission, overwriting the block level setting.
+ *
+ * @param $form_args
+ *
+ * @return $form_args
+ */
+add_filter( 'gform_form_args', function ( $form_args ) {
+	$form_args["ajax"] = true;
+
+	return $form_args;
+}, 10, 1 );
+
+
+/**
  * Load our own version of chosen that is enabled on mobile
  */
 function gpch_fix_gform_chosen_mobile() {
