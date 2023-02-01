@@ -651,3 +651,29 @@ function gpch_custom_address_validation( $result, $value, $form, $field ) {
 }
 
 add_filter( 'gform_field_validation', 'gpch_custom_address_validation', 10, 4 );
+
+
+/**
+ * Forces all GravityForms to use AJAX submission, overwriting the block level setting.
+ *
+ * @param $form_args
+ *
+ * @return $form_args
+ */
+add_filter( 'gform_form_args', function ( $form_args ) {
+	$form_args["ajax"] = true;
+
+	return $form_args;
+}, 10, 1 );
+
+
+/**
+ * Load our own version of chosen that is enabled on mobile
+ */
+function gpch_fix_gform_chosen_mobile() {
+	wp_deregister_script( 'gform_chosen' );
+
+	wp_register_script( 'gform_chosen', path_join( get_stylesheet_directory_uri(), 'js/chosen.jquery.fix.js' ), [ 'jquery' ], '1.8.8-fix' );
+}
+
+add_action( 'init', 'gpch_fix_gform_chosen_mobile', 11 );
