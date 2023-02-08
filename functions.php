@@ -299,3 +299,31 @@ add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
 
 	return http_build_query($parameters);
 } );
+
+
+/**
+ * Add pages with other status than 'published' to the parents page dropdown when editing a page
+ *
+ * @param array $args
+ * @param WP_REST_Request $request
+ *
+ * @return array
+ */
+function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
+	if ( $request->get_param( 'context' ) == 'edit' ) {
+		$show_statuses = [ 'published', 'draft', 'private', 'future', 'pending' ];
+
+		foreach ( $show_statuses as $status ) {
+			if ( ! in_array( $status, $args['post_status'] ) ) {
+				$args['post_status'][] = $status;
+			}
+		}
+
+		return $args;
+	}
+
+	return $args;
+}
+
+add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 10, 2 );
+
