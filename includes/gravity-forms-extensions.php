@@ -677,3 +677,85 @@ function gpch_fix_gform_chosen_mobile() {
 }
 
 add_action( 'init', 'gpch_fix_gform_chosen_mobile', 11 );
+
+
+/**
+ * Clears the cache of pages that contain a form that was just saved.
+ *
+ * @param $form
+ * @param $is_new
+ *
+ * @return void
+ */
+function gpch_clear_page_cache_after_form_save( $form, $is_new ) {
+	if ( ! $is_new ) {
+		$pages_to_clear = [];
+
+		// Search posts that contain the gravityforms/form block
+		$args = [
+			's'           => '<!-- wp:gravityforms/form ',
+			"numberposts" => -1,
+			'post_type'   => [ 'any' ],
+			'post_status' => 'publish',
+		];
+
+		$posts = get_posts( $args );
+
+		foreach ( $posts as $post ) {
+			if ( has_block( 'gravityforms/form', $post ) ) {
+				$blocks = parse_blocks( get_the_content( null, null, $post ) );
+
+				$gf_blocks = gpch_find_nested_blocks( 'gravityforms/form', $blocks );
+
+				foreach ( $gf_blocks as $gf_block ) {
+					if ( $gf_block['attrs']['formId'] == $form['id'] ) {
+						$pages_to_clear[] = $post->ID;
+
+						break;
+					}
+				}
+			}
+		}
+
+		foreach ( $pages_to_clear as $page_id ) {
+			// Update the post. Don't make any changes but trigger cache clearing
+			wp_update_post( [
+				'ID' => $page_id,
+			], false, true );
+		}
+	}
+}
+
+add_action( 'gform_after_save_form', 'gpch_clear_page_cache_after_form_save', 10, 2 );
+
+
+/**
+ * Recurively search blocks array for block with $block_name and return as flat array
+ *
+ * @param string $block_name
+ * @param array $blocks
+ *
+ * @return array
+ */
+function gpch_find_nested_blocks( string $block_name, array $blocks ) {
+	$matching_blocks = [];
+
+	foreach ( $blocks as $block ) {
+		if ( isset( $block['blockName'] ) && $block['blockName'] == $block_name ) {
+			$matching_blocks[] = $block;
+		}
+
+		if ( is_array( $block['innerBlocks'] ) ) {
+			$inner_blocks = gpch_find_nested_blocks( $block_name, $block['innerBlocks'] );
+
+			if ( count( $inner_blocks ) > 0 ) {
+
+				$matching_blocks = array_merge( $matching_blocks, $inner_blocks );
+			}
+
+		}
+	}
+
+	return $matching_blocks;
+}
+
