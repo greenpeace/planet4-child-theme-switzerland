@@ -311,14 +311,16 @@ add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
 	if ( $request->get_param( 'context' ) == 'edit' ) {
-		$show_statuses = [ 'published', 'draft', 'private', 'future', 'pending' ];
+		$show_statuses = [ 'publish', 'draft', 'private', 'future', 'pending' ];
 
 		foreach ( $show_statuses as $status ) {
 			if ( ! in_array( $status, $args['post_status'] ) ) {
 				$args['post_status'][] = $status;
-				$args['posts_per_page'] = 500; // Default was 100
 			}
 		}
+
+		$args['posts_per_page'] = 500; // Default was 100
+		$args['cache_results']  = false;
 
 		return $args;
 	}
@@ -326,5 +328,4 @@ function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request
 	return $args;
 }
 
-add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 10, 2 );
-
+add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 100, 2 );
