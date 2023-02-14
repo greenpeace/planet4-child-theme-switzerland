@@ -316,6 +316,7 @@ function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request
 		foreach ( $show_statuses as $status ) {
 			if ( ! in_array( $status, $args['post_status'] ) ) {
 				$args['post_status'][] = $status;
+				$args['posts_per_page'] = 500; // Default was 100
 			}
 		}
 
