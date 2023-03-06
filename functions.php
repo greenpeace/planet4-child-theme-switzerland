@@ -302,7 +302,8 @@ add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
 
 
 /**
- * Add pages with other status than 'published' to the parents page dropdown when editing a page
+ * Add pages with other status than 'published' to the parents page dropdown when editing a page.
+ * Only works for the standard API request. With Elastic search enabled, check additional function gpch_show_drafts_as_parent_pages_elastic.
  *
  * @param array $args
  * @param WP_REST_Request $request
@@ -311,14 +312,16 @@ add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
 	if ( $request->get_param( 'context' ) == 'edit' ) {
-		$show_statuses = [ 'published', 'draft', 'private', 'future', 'pending' ];
+		$show_statuses = [ 'publish', 'draft', 'private', 'future', 'pending' ];
 
 		foreach ( $show_statuses as $status ) {
 			if ( ! in_array( $status, $args['post_status'] ) ) {
 				$args['post_status'][] = $status;
-				$args['posts_per_page'] = 500; // Default was 100
 			}
 		}
+
+		$args['posts_per_page'] = 500; // Default was 100
+		$args['cache_results']  = false;
 
 		return $args;
 	}
@@ -326,5 +329,23 @@ function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request
 	return $args;
 }
 
-add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 10, 2 );
+add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 100, 2 );
 
+/**
+ * By default, elasticsearch only indexes posts of status "published". This function adds more statuses to the index so they can be used in various internal functionality.
+ * One such use case is adding drafts as parent pages in Gutenberg editor. The results in the search field are provided by ElsaticPress when enables.
+ *
+ *
+ * @param array $args
+ * @param WP_REST_Request $request
+ *
+ * @return array
+ */
+function gpch_show_drafts_as_parent_pages_elastic( array $status ) {
+	return array_unique( array_merge(
+		$status,
+		[ 'publish', 'draft', 'private', 'future', 'pending' ]
+	) );
+}
+
+add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elastic' );
