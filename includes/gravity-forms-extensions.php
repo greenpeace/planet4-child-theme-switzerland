@@ -624,3 +624,71 @@ function gpch_fix_gform_chosen_mobile() {
 }
 
 add_action( 'init', 'gpch_fix_gform_chosen_mobile', 11 );
+
+
+/**
+ * Custom validator for form fields looking for often used characters or strings in spam entries.
+ *
+ * @param $result
+ * @param $value
+ * @param $form
+ * @param $field
+ *
+ * @return mixed
+ */
+function gpch_spam_entry_filter( $result, $value, $form, $field ) {
+	if ( $field->type == 'text' || $field->type == 'textarea' ) {
+		$contains_characters = gpch_contains_forbidden_characters( $value );
+
+		if ( $contains_characters ) {
+			$result['is_valid'] = false;
+			$result['message']  = __( 'Please don\'t use cyrillic characters.', 'planet4-child-theme-switzerland' );
+		}
+	}
+
+	if ( 'name' === $field->type ) {
+		// Input values.
+		$prefix = rgar( $value, $field->id . '.2' );
+		$first  = rgar( $value, $field->id . '.3' );
+		$middle = rgar( $value, $field->id . '.4' );
+		$last   = rgar( $value, $field->id . '.6' );
+		$suffix = rgar( $value, $field->id . '.8' );
+
+		$name_field = array( '2' => $prefix, '3' => $first, '4' => $middle, '6' => $last, '8' => $suffix );
+
+		foreach ( $name_field as $input_number => $input_value ) {
+			if ( ! $field->get_input_property( $input_number, 'isHidden' ) ) {
+				$contains_characters = gpch_contains_forbidden_characters( $input_value );
+
+				if ( $contains_characters ) {
+					$field->set_input_validation_state( $input_number, false );
+					$result['is_valid'] = false;
+					$result['message']  = __( 'Please don\'t use cyrillic characters.', 'planet4-child-theme-switzerland' );
+				}
+			}
+		}
+	}
+
+	return $result;
+}
+
+add_filter( 'gform_field_validation', 'gpch_spam_entry_filter', 10, 4 );
+
+/**
+ * Checks strings for forbidden characters in form submissions.
+ *
+ * @param $string
+ *
+ * @return bool
+ */
+function gpch_contains_forbidden_characters( $string ): bool {
+	$cyrillic_characters = preg_match( '/[А-Яа-яЁё]/u', $string );
+
+	if ( $cyrillic_characters === 1 ) {
+		return true;
+	}
+
+	return false;
+}
+
+
