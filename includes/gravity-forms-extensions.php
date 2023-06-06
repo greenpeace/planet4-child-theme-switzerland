@@ -692,3 +692,25 @@ function gpch_contains_forbidden_characters( $string ): bool {
 }
 
 
+/**
+ * Shows a warning to editors if the Salesforce ID is missing or still the default
+ *
+ * @param $form
+ *
+ * @return void
+ */
+function gpch_salesforce_id_check( $form ) {
+	if ( current_user_can( 'edit_posts' ) ) {
+		foreach ( $form['fields'] as &$field ) {
+			if ( $field->label == "salesforce_campaign_id" ) {
+				if ( strlen( $field->defaultValue ) < 16 || $field->defaultValue == "701090000005gMWAAY" ) {
+					echo "<div class=\"editor-warning\" style=\"border: 5px solid red; margin: 1em 0; padding: 1em;\"><span style=\"font-weight: bold;\">The Salesform Campaign ID in this form is missing or still using the default. Are you sure that's correct? </span><br>(This warning is only shown to editors.)</div>";
+				}
+			}
+		}
+	}
+
+	return $form;
+}
+
+add_filter( 'gform_pre_render', 'gpch_salesforce_id_check' );
