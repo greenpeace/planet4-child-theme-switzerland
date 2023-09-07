@@ -29,5 +29,10 @@
 		.custom-control input[type="checkbox"] ~ label {
 			color: #{nth($colors_1_font, $i)};;
 		}
+
+		.page-content .gform_wrapper a {
+			color: #{nth($colors_1_font, $i)};
+			text-decoration: underline;
+		}
 	}
 }
