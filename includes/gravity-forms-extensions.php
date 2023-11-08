@@ -206,37 +206,6 @@ add_filter( 'gform_form_settings_fields', 'gpch_gf_type_setting', 5, 2 );
 
 
 /**
- * Add a setting to Gravity Forms to set the Sextant project_uid
- *
- * @param $settings
- * @param $form
- *
- * @return mixed
- */
-function gpch_gf_sextant_project_uid_setting( $fields, $form ) {
-	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
-		$new_fields['gpch_options'] = array(
-			'title' => 'GPCH Options'
-		);
-
-		// Add new field to beginning of the $fields array
-		$fields = array_merge( $new_fields, $fields );
-	}
-
-	$fields['gpch_options']['fields'][] = array(
-		'type'     => 'text',
-		'name'     => 'gpch_sextant_project_uid',
-		'label'    => __( 'GPCH Sextant Project UID', 'planet4-child-theme-switzerland' ),
-		'required' => false,
-	);
-
-	return $fields;
-}
-
-add_filter( 'gform_form_settings_fields', 'gpch_gf_sextant_project_uid_setting', 10, 2 );
-
-
-/**
  * Add a setting to Gravity Forms to set whether or not to send newsletter data to Inxmail
  *
  * @param $settings
