@@ -27,14 +27,19 @@
 	}
 }
 
+.take-action-covers-block {
+	.cover {
+		img {
+			border-bottom: solid 3px $color_standard_1;
+		}
 
-.cover-card {
-	img {
-		border-bottom: solid 3px $color_standard_1;
-	}
+		.cover-card-content {
+			padding-top: 24px;
 
-	.cover-card-content {
-		padding-top: 24px;
+			.cover-card-heading {
+				color: $color_standard_2_font;
+			}
+		}
 	}
 }
 
