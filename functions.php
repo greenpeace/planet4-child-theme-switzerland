@@ -12,10 +12,6 @@ function enqueue_child_styles() {
  * Includes
  */
 
-// Classes
-require_once( 'classes/GPCH_i_REST_API.php' );
-require_once( 'classes/GPCH_Inxmail_API.php' );
-
 // Helpers
 require_once ( 'includes/helpers.php' );
 
