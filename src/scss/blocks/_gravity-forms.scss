@@ -243,6 +243,17 @@ body #gforms_confirmation_message {
 	 }
  }
 
+ /* Master theme corrections for image choices */
+ .custom-control .image-choices-choice input[type="radio"] ~ label {
+	 padding-inline-start: 0;
+ }
+
+ .custom-control .image-choices-choice input[type="radio"]:checked ~ .custom-control-description::before,
+ .custom-control .image-choices-choice input[type="radio"]:checked ~ label::before {
+	 display: none;
+ }
+
+
 /* Color Schemes */
 @for $i from 1 through length($schema_names) {
 	#{nth($selectors, $i)} {

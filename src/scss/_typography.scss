@@ -29,6 +29,17 @@ b, strong {
 	color: $color_standard_1;
 }
 
+.page-content p:not(.article-list-item-meta) a, .page-content > ol li a, .page-content > ul li a {
+	border-bottom: none;
+	transition: none;
+}
+.page-content p:not(.article-list-item-meta) a:hover, .page-content > ol li a:hover, .page-content > ul li a:hover {
+	box-shadow: none;
+}
+.page-content p:not(.article-list-item-meta) a:active, .page-content p:not(.article-list-item-meta) a:hover, .page-content > ol li a:active, .page-content > ol li a:hover, .page-content > ul li a:active, .page-content > ul li a:hover {
+	text-decoration: underline !important;
+}
+
 body .post-content .swp_social_panel a {
 	color: #fff !important;
 }
@@ -81,3 +92,9 @@ a:where(:not(.wp-element-button)) {
 		line-height: $line-height-standard;
 	}
 }
+
+/* Visual Identity fixes */
+.carousel-header .carousel-caption .main-header p  {
+	font-weight: var(--font-weight-semibold);
+}
+

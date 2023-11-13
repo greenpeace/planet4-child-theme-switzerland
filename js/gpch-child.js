@@ -141,7 +141,13 @@ const gpchChildThemeScripts = function() {
 	init();
 };
 
-gpchChildThemeScripts();
+
+document.onreadystatechange = () => {
+	if (document.readyState == "complete") {
+		gpchChildThemeScripts();
+		console.log("Ready state is complete");
+	}
+};
 
 
 // Helper function for copy to clipboard in forms
