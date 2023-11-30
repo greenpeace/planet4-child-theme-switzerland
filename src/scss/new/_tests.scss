@@ -1,0 +1,45 @@
+.style-test-window {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ffffff;
+    z-index: 999999;
+    border-radius: 4px;
+
+    padding: 0 1em .5em 1em;
+    border: solid 2px darkred;
+
+    display: none;
+
+    .icons {
+        .icon {
+            font-size: 2rem;
+            margin: 0 .4em;
+            cursor: pointer;
+        }
+    }
+
+    .settings {
+        display: none;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                margin: .5em 0;
+            }
+        }
+    }
+}
+
+
+body.p4gpch-exp1-A {
+    --gpch--font-family-standard: SourceSerifPro;
+    --body--font-family: SourceSerifPro;
+    --font-family-paragraph-primary: SourceSerifPro;
+    --font-family-paragraph-secondary: SourceSerifPro;
+    --font-family-primary: SourceSerifPro;
+    --font-family-secondary: SourceSerifPro;
+    --cookie-notice--font-family: SourceSerifPro;
+}

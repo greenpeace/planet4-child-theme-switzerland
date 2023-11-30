@@ -1,8 +1,8 @@
 /*!
 Theme Name: Greenpeace Planet 4 Child Theme Switzerland
 Theme URI: https://github.com/greenpeace/planet4-child-theme-switzerland
-Description: Child theme for the switzerland website in the Planet 4 Wordpress project
-Author: Greenpeace International
+Description: Child theme for the swiss website in the Planet 4 project
+Author: Greenpeace Switzerland
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
 Version: 1.0.141
@@ -13,8 +13,17 @@ Text Domain: planet4-child-theme-switzerland
 */
 
 /*--------------------------------------------------------------
+# New
+--------------------------------------------------------------*/
+@import "new/css-variables";
+@import "new/typography";
+
+
+
+/*--------------------------------------------------------------
 # General Imports
 --------------------------------------------------------------*/
+/*
 @import "variables/colors";
 @import "variables/sizes";
 @import "variables/typography";
@@ -22,9 +31,12 @@ Text Domain: planet4-child-theme-switzerland
 @import "vendor/includemedia";
 @import "variables/master-theme";
 
+ */
+
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
+/*
 @import "color-palettes";
 @import "layout/layout";
 @import "layout/navigation-bar";
@@ -39,10 +51,13 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/listing-page";
 @import "typography";
 
+ */
+
 
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
+/*
 @import "layout/elements";
 @import "blocks/core-list";
 @import "blocks/core-separator";
@@ -65,8 +80,18 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/gravity-forms";
 @import "blocks/p4-take-action-boxout";
 
+ */
+
 
 /*--------------------------------------------------------------
 # Things we don't talk about in public
 --------------------------------------------------------------*/
+/*
 @import "specials";
+*/
+
+
+/*--------------------------------------------------------------
+# Temporary tests
+--------------------------------------------------------------*/
+@import "new/tests";
