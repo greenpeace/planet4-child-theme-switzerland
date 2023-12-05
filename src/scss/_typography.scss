@@ -29,13 +29,16 @@ b, strong {
 	color: $color_standard_1;
 }
 
+.post-content p:not(.article-list-item-meta) a, .post-content > ol li a, .post-content > ul li a,
 .page-content p:not(.article-list-item-meta) a, .page-content > ol li a, .page-content > ul li a {
 	border-bottom: none;
 	transition: none;
 }
+.post-content p:not(.article-list-item-meta) a:hover, .post-content > ol li a:hover, .post-content > ul li a:hover,
 .page-content p:not(.article-list-item-meta) a:hover, .page-content > ol li a:hover, .page-content > ul li a:hover {
 	box-shadow: none;
 }
+.post-content p:not(.article-list-item-meta) a:active, .post-content p:not(.article-list-item-meta) a:hover, .post-content > ol li a:active, .post-content > ol li a:hover, .post-content > ul li a:active, .post-content > ul li a:hover,
 .page-content p:not(.article-list-item-meta) a:active, .page-content p:not(.article-list-item-meta) a:hover, .page-content > ol li a:active, .page-content > ol li a:hover, .page-content > ul li a:active, .page-content > ul li a:hover {
 	text-decoration: underline !important;
 }
