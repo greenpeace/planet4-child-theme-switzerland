@@ -9,6 +9,9 @@
  * @since    Timber 0.1
  */
 
+use P4\MasterTheme\Context;
+use P4\MasterTheme\Post;
+use P4\MasterTheme\Settings\CommentsGdpr;
 use Timber\Timber;
 
 // Initializing variables.
