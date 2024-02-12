@@ -18,7 +18,7 @@ $context = Timber::get_context();
  *
  * @var P4_Post $post
  */
-$post            = Timber::query_post( false, 'P4_Post' ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+$post            = Timber::query_post( false, Post::class ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $context['post'] = $post;
 
 
@@ -30,7 +30,7 @@ $post->set_issues_links();
 // p4_take_action_page parameter to populate the take action boxout block
 // Author override parameter. If this is set then the author profile section will not be displayed.
 $page_meta_data                 = get_post_meta( $post->ID );
-$page_meta_data                 = array_map( 'reset', $page_meta_data );
+$page_meta_data                 = array_map(fn($v) => reset($v), $page_meta_data);
 $page_terms_data                = get_the_terms( $post, 'p4-page-type' );
 $post_article_types             = get_the_terms( $post, 'gpch-article-type' );
 $context['background_image']    = $page_meta_data['p4_background_image_override'] ?? '';
@@ -44,8 +44,9 @@ $context['social_accounts']     = $post->get_social_accounts( $context['footer_s
 $context['page_category']       = 'Post Page';
 $context['post_tags']           = implode( ', ', $post->tags() );
 
-P4_Context::set_og_meta_fields( $context, $post );
-P4_Context::set_campaign_datalayer( $context, $page_meta_data );
+Context::set_og_meta_fields($context, $post);
+Context::set_campaign_datalayer($context, $page_meta_data);
+Context::set_utm_params($context, $post);
 
 $context['filter_url'] = add_query_arg(
 	[
@@ -77,34 +78,23 @@ if ( 'yes' === $post->include_articles ) {
 	);
 }
 
-// Build the shortcode for take action boxout block
-// Break the content to retrieve first 2 paragraphs and split the content if the take action page has been defined.
-if ( isset( $take_action_boxout_block ) ) {
-	$post->take_action_boxout = $take_action_boxout_block;
-} elseif ( ! empty( $take_action_page ) ) {
-	$post->take_action_page = $take_action_page;
-
-	$block_attributes = [
-		'take_action_page' => $take_action_page,
-	];
-
-	$post->take_action_boxout = '<!-- wp:planet4-blocks/take-action-boxout ' . wp_json_encode( $block_attributes, JSON_UNESCAPED_SLASHES ) . ' /-->';
-}
-
 // Build an arguments array to customize WordPress comment form.
 $comments_args = [
 	'comment_notes_before' => '',
 	'comment_notes_after'  => '',
 	'comment_field'        => Timber::compile( 'comment_form/comment_field.twig' ),
-	'submit_button'        => Timber::compile( 'comment_form/submit_button.twig' ),
-	'title_reply'          => __( 'Leave Your Reply', 'planet4-master-theme' ),
-	'fields'               => apply_filters(
-		'comment_form_default_fields',
+	'submit_button'        => Timber::compile(
+		'comment_form/submit_button.twig',
 		[
-			'author' => Timber::compile( 'comment_form/author_field.twig' ),
-			'email'  => Timber::compile( 'comment_form/email_field.twig' ),
+			'gdpr_checkbox' => CommentsGdpr::get_option(),
+			'gdpr_label'    => __(
+			// phpcs:ignore Generic.Files.LineLength.MaxExceeded
+				'I agree on providing my name, email and content so that my comment can be stored and displayed in the website.',
+				'planet4-master-theme'
+			),
 		]
 	),
+	'title_reply'          => __( 'Leave your reply', 'planet4-master-theme' ),
 ];
 
 $context['comments_args']       = $comments_args;
@@ -118,14 +108,21 @@ $context['post_comments_count'] = get_comments(
 	]
 );
 
+Context::set_p4_blocks_datalayer( $context, $post );
+
 if ( post_password_required( $post->ID ) ) {
+	// Password protected form validation.
+	$context['is_password_valid'] = $post->is_password_valid();
+
+	// Hide the post title from links to the extra feeds.
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+
 	$context['login_url'] = wp_login_url();
 
 	Timber::render( 'single-password.twig', $context );
 } else {
-	Timber::render( [
-		'single-' . $post->ID . '.twig',
-		'single-' . $post->post_type . '.twig',
-		'single.twig'
-	], $context );
+	Timber::render(
+		[ 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ],
+		$context
+	);
 }
