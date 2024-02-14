@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
+ */
+function change_media_label() {
+	global $menu, $submenu;
+
+	// Change the forms list submenu to include sorting by ID (descending)
+	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
+}
+
+add_action( 'admin_menu', 'change_media_label', 9999999 );
+
+/**
  * Add Swiss phone number validation
  *
  * @param $phone_formats

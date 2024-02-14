@@ -28,10 +28,10 @@ require_once( 'includes/custom-post-types.php' );
 require_once( 'includes/user-roles.php' );
 
 // Filter available Gutenberg standard blocks
-require_once( 'includes/gutenberg-blocks.php' );
+//require_once( 'includes/gutenberg-blocks.php' );
 
 // Customize the Gutenberg sidebar
-require_once( 'includes/gutenberg-sidebar.php' );
+//require_once( 'includes/gutenberg-sidebar.php' );
 
 // Customize/extend Gravity Forms
 require_once( 'includes/gravity-forms-extensions.php' );
@@ -51,6 +51,7 @@ require_once( 'includes/hubspot.php' );
 /**
  * Load Javascript for further Gutenberg customizations
  */
+/*
 function p4_child_theme_gpch_gutenberg_scripts() {
 	wp_enqueue_script(
 		'gpch-be-editor-customizations',
@@ -75,7 +76,7 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_gutenberg_scripts' );
-
+*/
 
 /*
  * Add taxonomy terms as class name to body tag
@@ -102,6 +103,7 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 /*
  * Add custom styles to Gutenberg editor
  */
+/*
 function p4_child_theme_gpch_setup() {
 	// Add support for editor styles.
 	add_theme_support( 'editor-styles' );
@@ -134,7 +136,7 @@ function p4_child_theme_gpch_enqueue_editor_assets() {
 
 // Hook into editor only hook
 add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_enqueue_editor_assets' );
-
+*/
 
 /*
  * Enqueue Scripts (Frontend)
@@ -199,6 +201,7 @@ add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support' );
  *
  * @return mixed
  */
+/*
 function p4_child_theme_gpch_allowed_html_tags( $tags, $context ) {
 	if ( 'post' === $context ) {
 		$tags['select'] = array(
@@ -227,7 +230,7 @@ function p4_child_theme_gpch_allowed_html_tags( $tags, $context ) {
 }
 
 add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10, 2 );
-
+*/
 
 /**
  * Modify the behavior of tag pages when a redirect is set. The master theme will just load the content of the page,
@@ -235,6 +238,7 @@ add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10,
  *
  * @param $redirect_page
  */
+/*
 function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
 	$permalink = get_permalink( $redirect_page );
 
@@ -245,7 +249,7 @@ function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
 }
 
 add_action( 'p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect' );
-
+*/
 
 /**
  * Change default sort order of pages in Wordpress admin
@@ -262,17 +266,6 @@ function gpch_set_post_order_in_admin( $wp_query ) {
 add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
 
 
-/**
- * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
- */
-function change_media_label() {
-	global $menu, $submenu;
-
-	// Change the forms list submenu to include sorting by ID (descending)
-	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
-}
-
-add_action( 'admin_menu', 'change_media_label', 9999999 );
 
 // Remove Social Warfare meta box settings from pages and posts
 // Duplicate functionality and causes a saving bug, see https://tickets.greenpeace.ch/view.php?id=406
