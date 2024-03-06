@@ -8,9 +8,9 @@ document.body.appendChild(testWindowsElement);
 const experimentSettings = '<ul>' +
     '<li>Experiment 1: <select name="exp1" data-index="0"><option value="A">A</option><option value="B">B</option></select> (Header fonts)</li>' +
     '<li>Experiment 2: <select name="exp2" data-index="1"><option value="A">A</option><option value="B">B</option></select> (Text fonts)</li>' +
-    '<li>Experiment 3: <select name="exp3" data-index="2"><option value="A">A</option><option value="B">B</option></select> (Color schemes)</li>' +
+    '<!--<li>Experiment 3: <select name="exp3" data-index="2"><option value="A">A</option><option value="B">B</option></select> (Color schemes)</li>' +
     '<li>Experiment 4: <select name="exp4" data-index="3"><option value="A">A</option><option value="B">B</option></select></li>' +
-    '</ul>';
+    '--></ul>';
 
 testWindowsElement.innerHTML = '<div class="icons"><span class="icon expand-icon">⤢</span><span id="testWindowElementDrag" class="icon drag-icon">✥</span></div><div class="settings">' + experimentSettings + '</div>';
 

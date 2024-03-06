@@ -33,8 +33,56 @@
     }
 }
 
+body.p4gpch-exp0-A {
+    --font-family-heading: var(--gpch--font-family-header);
+    --page-section-header--font-family: var(--gpch--font-family-standard);
+    --page-section-header--font-weight: var(--gpch--font-weight--bold);
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: Roboto, sans-serif;
+    }
+
+    .carousel-captions-wrapper h2,
+    .article-list-item-headline h4,
+    h1.page-header-title,
+    .gpch-taskforce-content h2
+    {
+        font-family: var(--font-family-heading);
+        text-transform: none;
+    }
+}
+body.p4gpch-exp0-B {
+    --font-family-heading: var(--font-family-heading);
+    --page-section-header--font-family: var(--font-family-heading);
+    --page-section-header--font-weight: var(--font-family-heading);
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-family-heading);
+    }
+
+    .carousel-captions-wrapper h2,
+    .article-list-item-headline h4,
+    h1.page-header-title,
+    .gpch-taskforce-content h2
+    {
+        font-family: var(--font-family-heading);
+        text-transform: none;
+    }
+}
+
+
 
 body.p4gpch-exp1-A {
+    --gpch--font-family-standard: Roboto, sans-serif;
+    --body--font-family: Roboto, sans-serif;
+    --font-family-paragraph-primary: Roboto, sans-serif;
+    --font-family-paragraph-secondary: Roboto, sans-serif;
+    --font-family-primary: Roboto, sans-serif;
+    --font-family-secondary: Roboto, sans-serif;
+    --cookie-notice--font-family: Roboto, sans-serif;
+}
+
+body.p4gpch-exp1-B {
     --gpch--font-family-standard: SourceSerifPro;
     --body--font-family: SourceSerifPro;
     --font-family-paragraph-primary: SourceSerifPro;
@@ -43,3 +91,7 @@ body.p4gpch-exp1-A {
     --font-family-secondary: SourceSerifPro;
     --cookie-notice--font-family: SourceSerifPro;
 }
+
+
+
+
