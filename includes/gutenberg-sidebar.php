@@ -4,7 +4,7 @@
  * Remove comments ("Discussion") and trackbacks from sidebar.
  */
 function p4_child_theme_gpch_post_editing() {
-	remove_post_type_support( 'post', 'comments' );
+	//remove_post_type_support( 'post', 'comments' );
 	remove_post_type_support( 'post', 'trackbacks' );
 
 	remove_post_type_support( 'page', 'comments' );
