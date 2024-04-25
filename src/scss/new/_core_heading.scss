@@ -1,0 +1,59 @@
+h2,
+.page-content > h2 {
+    margin-top: 1em;
+    margin-bottom: .5em;
+
+    font-weight: var(--gpch--font-weight--bold);
+}
+
+h3 {
+    margin-top: 1em;
+
+    font-weight: var(--gpch--font-weight--bold);
+    color: var(--p4-dark-green-800)
+}
+
+h4 {
+    margin-top: 1em;
+
+    font-weight: var(--gpch--font-weight--bold);
+    font-size: var(--text--x-large-and-up--font-size,var(--font-size-xl--font-family-secondary));
+    line-height: var(--text--x-large-and-up--line-height,var(--line-height-xl--font-family-secondary));
+}
+
+/* Remove margin when the heading is the first element in a column */
+.wp-block-column h2:first-child,
+.wp-block-column h3:first-child {
+    margin-top: 0;
+}
+
+    /* Remove margin for headers inside a Planet4 block */
+.articles-block h2.page-section-header,
+.covers-block h2.page-section-header {
+    margin-top: 0;
+}
+/* Add the margin to the block */
+div[data-hydrate="planet4-blocks/covers"],
+div[data-hydrate="planet4-blocks/articles"] {
+    margin-top: 2.5rem;
+}
+
+    /* Correct block spacing from master theme */
+.page-content > h2,
+.post-details > h2 {
+    display: unset;
+}
+
+/* Underline for h2 */
+:not(.submenu-block, .gpch-taskforce-content) > h2:not(.is-style-no-underline):after {
+    content: "";
+    display: block;
+    position: relative;
+    top: .8rem;
+    left: -80px;
+    height: 4px;
+    width: 160px;
+    margin-bottom: 3rem;
+    background-color: var(--gp-green-400);
+}
+

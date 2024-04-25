@@ -1,6 +1,13 @@
 
 :root {
     /*------------------------------------------
+    # Layout
+    ------------------------------------------*/
+
+    --gpch-one-column-content-width: 740px;
+
+
+    /*------------------------------------------
     # Typography
     ------------------------------------------*/
 
@@ -12,7 +19,9 @@
     --gpch--font-weight--semibold: 500;
     --gpch--font-weight--bold: 600;
 
+
     /* Font sizes */
+    --h3--medium-and-up--font-size: 1.5em;
 
 
     /* Headings */
@@ -33,10 +42,8 @@
     --font-family-paragraph-primary: var(--gpch--font-family-standard);
     --font-family-paragraph-secondary: var(--gpch--font-family-standard);
 
-    --font-size-m--font-family-secondary: 1rem;
+    --font-size-m--font-family-secondary: 1.125rem;
 
-    --line-height-xl--font-family-secondary: 1.5;
-    
 
     /* Navigation */
     --nav-item--font-size: 1.125rem;
@@ -54,5 +61,10 @@
     --button--font-weight: 500;
     --top-page-tags--tag-item--font-weight: 500;
 
+    --page-section-header--font-weight: var(--gpch--font-weight--bold);
+
+
+    /* Colors */
+    --color-border-separator: var(--grey-500)
 
 }

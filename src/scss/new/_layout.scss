@@ -1,0 +1,8 @@
+
+
+/* max-width for content elements in single column */
+.page-content > p,
+.page-content > dl.accordion,
+.page-content > ul {
+    max-width: var(--gpch-one-column-content-width);
+}

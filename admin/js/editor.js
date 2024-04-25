@@ -18,35 +18,19 @@ wp.domReady(() => {
 	}, 'allowColumnStyle');
 
 	wp.hooks.addFilter('editor.BlockEdit', 'my/gutenberg', allowColumnStyle);
-	
-	/**
-	 * Remove unwanted Planet4 block styles and add defaults back that we need
-	 */
-	wp.blocks.unregisterBlockStyle('core/button', 'donate');
-	wp.blocks.unregisterBlockStyle('core/button', 'cta');
-	wp.blocks.unregisterBlockStyle('core/button', 'secondary');
-	
-	wp.blocks.registerBlockStyle( 'core/button', {
-		name: 'default',
-		label: 'Default',
-		isDefault: true,
-	});
-	
+
+
 	/**
 	 * Remove unwanted block default styles and add our own where needed
 	 *
 	 * @see https://www.billerickson.net/block-styles-in-gutenberg/
 	 */
-	// core/heading
-	wp.blocks.registerBlockStyle('core/heading', {
-		name: 'default',
-		label: 'Default',
-		isDefault: true,
-	});
+
+	wp.blocks.unregisterBlockStyle('core/heading', 'chevron');
 
 	wp.blocks.registerBlockStyle('core/heading', {
-		name: 'underline',
-		label: 'Underline',
+		name: 'no-underline',
+		label: 'No Underline',
 	});
 
 	// core/paragraph
@@ -58,12 +42,12 @@ wp.domReady(() => {
 
 	wp.blocks.registerBlockStyle('core/paragraph', {
 		name: 'accent-1',
-		label: 'Colorful 1',
+		label: 'Colorful 1 Beige',
 	});
 
 	wp.blocks.registerBlockStyle('core/paragraph', {
 		name: 'accent-2',
-		label: 'Colorful 2',
+		label: 'Colorful 2 Green',
 	});
 
 	// core/list
@@ -74,40 +58,13 @@ wp.domReady(() => {
 	});
 
 	wp.blocks.registerBlockStyle('core/list', {
-		name: 'accent-links',
-		label: 'Navigation List',
-	});
-
-	wp.blocks.registerBlockStyle('core/list', {
 		name: 'accent-info',
 		label: 'Info List',
 	});
 
-	// core/button
-	//wp.blocks.unregisterBlockStyle('core/button', 'fill');
+	// core/quote
+	wp.blocks.unregisterBlockStyle('core/heading', 'plain');
 
-	wp.blocks.registerBlockStyle('core/button', {
-		name: 'full-width',
-		label: 'Full Width',
-		isDefault: false,
-	});
-	
-	wp.blocks.registerBlockStyle('core/button', {
-		name: 'secondary',
-		label: 'Secondary Color',
-		isDefault: false,
-	});
-	
-	wp.blocks.registerBlockStyle('core/button', {
-		name: 'highlight',
-		label: 'Highlight color',
-		isDefault: false,
-	});
-  
-  // core/image
-	wp.blocks.unregisterBlockStyle('core/image', 'rounded');
-
-	
 	// core/separator
 	wp.blocks.unregisterBlockStyle('core/separator', 'dots');
 	wp.blocks.unregisterBlockStyle('core/separator', 'wide');

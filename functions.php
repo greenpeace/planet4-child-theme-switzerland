@@ -51,7 +51,6 @@ require_once( 'includes/hubspot.php' );
 /**
  * Load Javascript for further Gutenberg customizations
  */
-/*
 function p4_child_theme_gpch_gutenberg_scripts() {
 	wp_enqueue_script(
 		'gpch-be-editor-customizations',
@@ -76,7 +75,7 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_gutenberg_scripts' );
-*/
+
 
 /*
  * Add taxonomy terms as class name to body tag

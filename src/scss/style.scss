@@ -16,8 +16,15 @@ Text Domain: planet4-child-theme-switzerland
 # New
 --------------------------------------------------------------*/
 @import "new/css-variables";
+@import "new/layout";
 @import "new/typography";
 
+/* Blocks */
+@import "new/core_heading";
+@import "new/core_separator";
+@import "new/core_paragraph";
+@import "new/core_quote";
+@import "new/core_list";
 
 
 /*--------------------------------------------------------------
@@ -94,4 +101,8 @@ Text Domain: planet4-child-theme-switzerland
 /*--------------------------------------------------------------
 # Temporary tests
 --------------------------------------------------------------*/
+/*
 @import "new/tests";
+
+
+ */
