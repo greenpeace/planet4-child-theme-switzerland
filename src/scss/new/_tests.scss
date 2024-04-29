@@ -33,41 +33,26 @@
     }
 }
 
-body.p4gpch-exp0-A {
-    --font-family-heading: var(--gpch--font-family-header);
-    --page-section-header--font-family: var(--gpch--font-family-standard);
-    --page-section-header--font-weight: var(--gpch--font-weight--bold);
 
-    h1, h2, h3, h4, h5, h6 {
-        font-family: Roboto, sans-serif;
-    }
-
-    .carousel-captions-wrapper h2,
-    .article-list-item-headline h4,
-    h1.page-header-title,
-    .gpch-taskforce-content h2
-    {
-        font-family: var(--font-family-heading);
-        text-transform: none;
+body.p4gpch-exp0-A {}
+body.p4gpch-exp0-B {
+    h2,
+    .page-section-header {
+        font-family: var(--gpch--font-family-header);
     }
 }
-body.p4gpch-exp0-B {
-    --font-family-heading: var(--font-family-heading);
-    --page-section-header--font-family: var(--font-family-heading);
-    --page-section-header--font-weight: var(--font-family-heading);
-
-    h1, h2, h3, h4, h5, h6 {
-        font-family: var(--font-family-heading);
+body.p4gpch-exp0-C {
+    h2, h3, h4,
+    .page-section-header {
+        font-family: var(--gpch--font-family-header);
     }
 
-    .carousel-captions-wrapper h2,
-    .article-list-item-headline h4,
-    h1.page-header-title,
-    .gpch-taskforce-content h2
-    {
-        font-family: var(--font-family-heading);
-        text-transform: none;
+    .top-navigation,
+    .btn,
+    .wp-block-button a {
+        font-family: var(--gpch--font-family-header);
     }
+
 }
 
 
@@ -91,7 +76,17 @@ body.p4gpch-exp1-B {
     --font-family-secondary: SourceSerifPro;
     --cookie-notice--font-family: SourceSerifPro;
 }
+body.p4gpch-exp1-C {
+    --gpch--font-family-standard: SourceSans3;
+    --body--font-family: SourceSans3;
+    --font-family-paragraph-primary: SourceSans3;
+    --font-family-paragraph-secondary: SourceSans3;
+    --font-family-primary: SourceSans3;
+    --font-family-secondary: SourceSans3;
+    --cookie-notice--font-family: SourceSans3;
 
-
+    --font-size-xl--font-family-secondary: 19px !important;
+    --line-height-xl--font-family-secondary: 1.4 !important;;
+}
 
 
