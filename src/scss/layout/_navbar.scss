@@ -1,0 +1,19 @@
+.top-navigation {
+    font-family: var(--gpch--font-family-standard-heavy);
+
+    .nav-item {
+        font-weight: var(--gpch--font-family-standard-heavy);
+    }
+}
+
+#search_form {
+    margin-bottom: 0;
+}
+
+.nav-languages-toggle {
+    text-transform: uppercase;
+
+    .nav-languages {
+        text-transform: none;
+    }
+}

@@ -12,19 +12,38 @@ Tags: light, accessibility-ready
 Text Domain: planet4-child-theme-switzerland
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@700&display=swap');
+
+/*--------------------------------------------------------------
+# General Imports
+--------------------------------------------------------------*/
+@import "new/css-variables";
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "layout/navbar";
+@import "layout/cookies";
+
 /*--------------------------------------------------------------
 # New
 --------------------------------------------------------------*/
-@import "new/css-variables";
+
 @import "new/layout";
 @import "new/typography";
 
-/* Blocks */
+/*--------------------------------------------------------------
+# Blocks
+--------------------------------------------------------------*/
 @import "new/core_heading";
 @import "new/core_separator";
 @import "new/core_paragraph";
 @import "new/core_quote";
 @import "new/core_list";
+@import "blocks/core_column";
+@import "blocks/p4_take-action-covers";
+@import "blocks/p4_articles";
+@import "blocks/p4_covers";
 
 
 /*--------------------------------------------------------------

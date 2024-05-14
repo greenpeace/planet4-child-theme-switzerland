@@ -1,0 +1,24 @@
+.articles-block {
+    .article-list-item {
+        .article-list-item-body {
+            .top-page-tags {
+                margin-bottom: 4px;
+            }
+
+            h4 {
+                margin-top: 0;
+                font-size: var(--gpch-font-size--large);
+            }
+
+            .article-list-item-content {
+                font-size: var(--gpch-font-size--standard);
+            }
+
+            .article-list-item-bullet {
+                padding: 0;
+                margin-inline-start: 8px;
+                margin-inline-end: 8px;
+            }
+        }
+    }
+}

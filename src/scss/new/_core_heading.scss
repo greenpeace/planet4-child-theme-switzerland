@@ -2,21 +2,15 @@ h2,
 .page-content > h2 {
     margin-top: 1em;
     margin-bottom: .5em;
-
-    font-weight: var(--gpch--font-weight--bold);
 }
 
 h3 {
     margin-top: 1em;
-
-    font-weight: var(--gpch--font-weight--bold);
-    color: var(--p4-dark-green-800)
 }
 
 h4 {
     margin-top: 1em;
 
-    font-weight: var(--gpch--font-weight--bold);
     font-size: var(--text--x-large-and-up--font-size,var(--font-size-xl--font-family-secondary));
     line-height: var(--text--x-large-and-up--line-height,var(--line-height-xl--font-family-secondary));
 }
