@@ -33,7 +33,7 @@
     }
 }
 
-
+/*
 body.p4gpch-exp0-A {}
 body.p4gpch-exp0-B {
     h2,
@@ -88,5 +88,20 @@ body.p4gpch-exp1-C {
     --font-size-xl--font-family-secondary: 19px !important;
     --line-height-xl--font-family-secondary: 1.4 !important;;
 }
+*/
 
+body.p4gpch-exp1-A {}
+body.p4gpch-exp1-B {
+    /* Overall GPCH font-family definitions */
+    --gpch--font-family-standard: "Work Sans";
+    --gpch--font-family-header: "GreenpeaceSans";
+    --gpch--font-family-standard-heavy: "Work Sans", sans-serif;
 
+    /* Master theme font overwrites */
+    --font-family-primary: "GreenpeaceSans"; /* Existing */
+    --font-family-secondary: "Work Sans"; /* Changed from SourceSerifPro */
+    --font-family-tertiary: "Work Sans"; /* Existing */
+
+    --body--font-family: "Work Sans";
+    --font-family-paragraph-secondary: "Work Sans";
+}

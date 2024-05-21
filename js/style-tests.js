@@ -6,11 +6,10 @@ testWindowsElement.setAttribute('id', 'testWindowElement');
 document.body.appendChild(testWindowsElement);
 
 const experimentSettings = '<ul>' +
-    '<li>1) Header Fonts <select name="exp1" data-index="0"><option value="A">A) GPSans in page header, articles and take action blocks</option><option value="B">B) + GP Sans in all h2 headers</option><option value="C">C C) + GP Sans in menu, buttons & h3 headers</option></select></li>' +
-    '<li>2) Text font <select name="exp2" data-index="1"><option value="A">A) Roboto Sans</option><option value="B">B) SourceSerif</option><option value="C">C) SourceSans3</option></select></li>' +
-    '<!--<li>Experiment 3: <select name="exp3" data-index="2"><option value="A">A</option><option value="B">B</option></select> (Color schemes)</li>' +
-    '<li>Experiment 4: <select name="exp4" data-index="3"><option value="A">A</option><option value="B">B</option></select></li>' +
-    '--></ul>';
+    '<!--<li>1) Header Fonts <select name="exp1" data-index="0"><option value="A">A) GPSans in page header, articles and take action blocks</option><option value="B">B) + GP Sans in all h2 headers</option><option value="C">C C) + GP Sans in menu, buttons & h3 headers</option></select></li>' +
+    '<li>2) Text font <select name="exp2" data-index="1"><option value="A">A) Roboto Sans</option><option value="B">B) SourceSerif</option><option value="C">C) SourceSans3</option></select></li>-->' +
+    '<li>3) Secondary font <select name="exp3" data-index="1"><option value="A">A) Source Sans 3</option><option value="B">B) Work Sans</option></select></li>' +
+    '</ul>';
 
 testWindowsElement.innerHTML = '<div class="icons"><span class="icon expand-icon">⤢</span><span id="testWindowElementDrag" class="icon drag-icon">✥</span></div><div class="settings">' + experimentSettings + '</div>';
 
