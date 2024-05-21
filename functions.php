@@ -346,10 +346,3 @@ function gpch_show_drafts_as_parent_pages_elastic( array $status ) {
 }
 
 add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elastic' );
-
-
-function gpch_change_email_sender ($sender_email) {
-	return 'noreply-test@greenpeace.ch';
-}
-
-add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
