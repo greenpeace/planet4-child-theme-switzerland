@@ -21,7 +21,7 @@ h4 {
     margin-top: 0;
 }
 
-    /* Remove margin for headers inside a Planet4 block */
+/* Remove margin for headers inside a Planet4 block */
 .articles-block h2.page-section-header,
 .covers-block h2.page-section-header {
     margin-top: 0;
@@ -32,7 +32,7 @@ div[data-hydrate="planet4-blocks/articles"] {
     margin-top: 2.5rem;
 }
 
-    /* Correct block spacing from master theme */
+/* Correct block spacing from master theme */
 .page-content > h2,
 .post-details > h2 {
     display: unset;
@@ -49,5 +49,10 @@ div[data-hydrate="planet4-blocks/articles"] {
     width: 160px;
     margin-bottom: 3rem;
     background-color: var(--gp-green-400);
+}
+
+/* Don't show underline in posts */
+.single-post h2:after {
+    display: none !important;
 }
 
