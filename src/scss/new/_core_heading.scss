@@ -51,8 +51,9 @@ div[data-hydrate="planet4-blocks/articles"] {
     background-color: var(--gp-green-400);
 }
 
-/* Don't show underline in posts */
-.single-post h2:after {
+/* Don't show underline in posts and columns */
+.single-post h2:after,
+.wp-block-columns h2:after {
     display: none !important;
 }
 
