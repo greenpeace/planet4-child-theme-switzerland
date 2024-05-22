@@ -105,6 +105,10 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 				dataLayer.push({
 					"event": "gravityFormSubmission", 
 					"formType": "' . $form['gpch_gf_type'] . '",
+					"formID": "' . $form['id'] . '",
+					"formPlugin": "Gravity Form",
+					"gGoal":  "' . ($form['p4_gf_type'] ?? self::DEFAULT_GF_TYPE) . '",
+					"formTitle": "' . $form['title'] . '",
 					"newsletterSubscription": "' . $newsletter_subscription . '",
 					"newsletterType": "' . $newsletter_type . '",
 					"eventCallback" : function(id) {
