@@ -10,7 +10,7 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_ssa',
-		__( 'Server Side Analytics', 'planet4-child-theme-switzerland' ), 'gpch_child_section_ssa_callback',
+		__( 'Web Analytics', 'planet4-child-theme-switzerland' ), 'gpch_child_section_ssa_callback',
 		'gpch_child'
 	);
 
@@ -27,13 +27,13 @@ function gpch_child_settings_init() {
 	);
 
 	add_settings_field(
-		'gpch_child_field_ssa_test_mode',
-		__( 'Test mode for Server Side Analytics', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_ssa_test_mode_callback',
+		'gpch_child_field_gp_user_id_salt',
+		__( 'Salt for gp_user_id', 'planet4-child-theme-switzerland' ),
+		'gpch_child_field_gp_user_id_salt_callback',
 		'gpch_child',
 		'gpch_child_ssa',
 		array(
-			'label_for' => 'gpch_child_field_ssa_test_mode',
+			'label_for' => 'gpch_child_field_gp_user_id_salt',
 			'class'     => 'gpch_child_row',
 		)
 	);
@@ -242,7 +242,7 @@ function gpch_child_fields_twilio_callback( $args ) {
  */
 function gpch_child_section_ssa_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Server Side Analytics sends events to Google Analytics server side for better data quality.', 'planet4-child-theme-switzerland' ); ?></p>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Web analytics settings', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
@@ -266,20 +266,19 @@ function gpch_child_field_ssa_properties_callback( $args ) {
 
 
 /**
- * Test Mode field callback function.
+ * gp_user_id Salt field callback function.
  *
  * @param array $args
  */
-function gpch_child_field_ssa_test_mode_callback( $args ) {
+function gpch_child_field_gp_user_id_salt_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <input type="checkbox" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
            name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="1" <?php echo ( array_key_exists( $args['label_for'], $options ) && $options[ $args['label_for'] ] == 1 ) ? ' checked="checked"' : '' ?>>
+           value="<?php echo $options[ $args['label_for'] ] ?>">
     <p class="description">
-		<?php esc_html_e( 'Use Server Side Analytics in test mode. All events will have "Test: " added to the event category.', 'planet4-child-theme-switzerland' ); ?>
+		<?php esc_html_e( 'Salt value to generate the gp_user_id for Mixpanel (do not change!)', 'planet4-child-theme-switzerland' ); ?>
     </p>
-
 	<?php
 }
 
@@ -353,6 +352,20 @@ function gpch_child_fields_raisenow_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
     <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+           value="<?php echo $options[ $args['label_for'] ] ?>">
+	<?php
+}
+
+/**
+ * Password text fields callback function.
+ *
+ * @param array $args
+ */
+function gpch_child_field_password_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+    <input type="password" id="<?php echo esc_attr( $args['label_for'] ); ?>"
            name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
            value="<?php echo $options[ $args['label_for'] ] ?>">
 	<?php

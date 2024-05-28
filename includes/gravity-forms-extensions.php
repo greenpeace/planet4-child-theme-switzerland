@@ -99,6 +99,8 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 		$options = get_option( 'planet4_options' );
 		$gtm_id  = $options['google_tag_manager_identifier'];
 
+		$gp_user_id = gpch_generate_user_id_from_form_submission($form, $entry);
+
 		$script = '<script type="text/javascript">
 			if (window["google_tag_manager"]) {
 				window.dataLayer = window.dataLayer || [];
@@ -117,6 +119,7 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 	                        window.top.location.href = "' . $url . '";
 	                    }
 	                },
+	                "gp_user_id": "' . $gp_user_id . '",
 	                "eventTimeout" : 2000
 				});
 			}

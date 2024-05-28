@@ -15,6 +15,9 @@ function enqueue_child_styles() {
 // Helpers
 require_once ( 'includes/helpers.php' );
 
+// GP user ID
+require_once ( 'includes/gp-user-id.php' );
+
 // Author pages
 require_once ( 'includes/author-pages.php' );
 
