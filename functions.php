@@ -362,3 +362,6 @@ function gpch_change_email_sender ($sender_email) {
 
 add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
 
+
+// Disable auto translations in WPML. Might be cause for a bug that changes translated pages back to the original language.
+define( 'WPML_TRANSLATION_AUTO_UPDATE_ENABLED', false );
