@@ -349,3 +349,17 @@ function gpch_show_drafts_as_parent_pages_elastic( array $status ) {
 }
 
 add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elastic' );
+
+
+/**
+ * Set the email address we use for sending emails though Planet4's Sendgrid connection
+ * @param $sender_email
+ *
+ * @return string
+ */
+function gpch_change_email_sender ($sender_email) {
+	return 'noreply@greenpeace.ch';
+}
+
+add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
+
