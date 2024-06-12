@@ -13,6 +13,14 @@ div.page-content > * {
 	z-index: auto;
 }
 
+.page-content.no-page-title {
+	padding-top: 0;
+
+	.is-pattern-p4-page-header {
+		padding-top: 0;
+	}
+}
+
 .top-navigation {
 	z-index: 9000;
 }
