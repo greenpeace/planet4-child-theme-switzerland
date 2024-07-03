@@ -32,7 +32,7 @@ function gpch_convert_page_headers( $args ) {
 			$image_id = get_post_thumbnail_id( $page->ID );
 		}
 
-		$image_src = wp_get_attachment_image_src( $image_id );
+		$image_src = wp_get_attachment_image_url( $image_id, 'full' );
 
 		// Page title to use
 		$page_title = $page_meta_data['p4_title'][0] ?? '';
