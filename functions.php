@@ -51,6 +51,11 @@ require_once( 'includes/csp.php' );
 // Hubspot
 require_once( 'includes/hubspot.php' );
 
+// WP CLi
+if ( class_exists( "WP_CLI" ) ) {
+	require_once( 'includes/wp-cli.php' );
+}
+
 /**
  * Load Javascript for further Gutenberg customizations
  */

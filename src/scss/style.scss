@@ -27,6 +27,7 @@ Text Domain: planet4-child-theme-switzerland
 --------------------------------------------------------------*/
 @import "layout/navbar";
 @import "layout/cookies";
+@import "layout/page_header";
 
 /*--------------------------------------------------------------
 # New
@@ -48,6 +49,10 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/p4_articles";
 @import "blocks/p4_covers";
 
+/*--------------------------------------------------------------
+# Patterns
+--------------------------------------------------------------*/
+@import "patterns/p4_page_header";
 
 /*--------------------------------------------------------------
 # General Imports
