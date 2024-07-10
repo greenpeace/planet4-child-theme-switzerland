@@ -56,6 +56,9 @@ if ( class_exists( "WP_CLI" ) ) {
 	require_once( 'includes/wp-cli.php' );
 }
 
+// WordPress
+require_once( 'includes/wordpress.php' );
+
 /**
  * Load Javascript for further Gutenberg customizations
  */
