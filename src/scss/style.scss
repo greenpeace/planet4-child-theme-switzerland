@@ -20,34 +20,31 @@ Text Domain: planet4-child-theme-switzerland
 /*--------------------------------------------------------------
 # General Imports
 --------------------------------------------------------------*/
-@import "new/css-variables";
+@import "variables/css-variables";
 
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
+@import "layout/layout";
+@import "layout/typography";
 @import "layout/navbar";
 @import "layout/cookies";
 @import "layout/page_header";
 
 /*--------------------------------------------------------------
-# New
---------------------------------------------------------------*/
-
-@import "new/layout";
-@import "new/typography";
-
-/*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
-@import "new/core_heading";
-@import "new/core_separator";
-@import "new/core_paragraph";
-@import "new/core_quote";
-@import "new/core_list";
 @import "blocks/core_columns";
-@import "blocks/p4_take-action-covers";
+@import "blocks/core_heading";
+@import "blocks/core_list";
+@import "blocks/core_paragraph";
+@import "blocks/core_quote";
+@import "blocks/core_separator";
+
 @import "blocks/p4_articles";
 @import "blocks/p4_covers";
+@import "blocks/p4_take-action-boxout";
+@import "blocks/p4_take-action-covers";
 
 /*--------------------------------------------------------------
 # Patterns

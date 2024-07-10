@@ -1,5 +1,7 @@
 .take-action-covers-block {
     .cover {
+        min-height: 514px;
+
         .cover-card-btn {
             font-size: var(--button--font-size);
         }
@@ -11,7 +13,10 @@
                 line-height: var(--gpch-line-height-standard);
                 font-weight: var(--gpch--font-weight--bold);
             }
-        }
 
+            .cover-card-excerpt {
+                -webkit-line-clamp: 4;
+            }
+        }
     }
 }

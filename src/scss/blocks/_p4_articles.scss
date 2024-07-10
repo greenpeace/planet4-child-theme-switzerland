@@ -8,10 +8,13 @@
             h4 {
                 margin-top: 0;
                 font-size: var(--gpch-font-size--large);
+
+                -webkit-line-clamp: 4;
             }
 
             .article-list-item-content {
                 font-size: var(--gpch-font-size--standard);
+                -webkit-line-clamp: 6;
             }
 
             .article-list-item-bullet {
