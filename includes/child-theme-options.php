@@ -7,37 +7,6 @@ function gpch_child_settings_init() {
 	// Register settings
 	register_setting( 'gpch_child', 'gpch_child_options' );
 
-
-	add_settings_section(
-		'gpch_child_ssa',
-		__( 'Web Analytics', 'planet4-child-theme-switzerland' ), 'gpch_child_section_ssa_callback',
-		'gpch_child'
-	);
-
-	add_settings_field(
-		'gpch_child_field_ssa_properties',
-		__( 'Google Analytics Properties (comma separated)', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_ssa_properties_callback',
-		'gpch_child',
-		'gpch_child_ssa',
-		array(
-			'label_for' => 'gpch_child_field_ssa_properties',
-			'class'     => 'gpch_child_row',
-		)
-	);
-
-	add_settings_field(
-		'gpch_child_field_gp_user_id_salt',
-		__( 'Salt for gp_user_id', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_gp_user_id_salt_callback',
-		'gpch_child',
-		'gpch_child_ssa',
-		array(
-			'label_for' => 'gpch_child_field_gp_user_id_salt',
-			'class'     => 'gpch_child_row',
-		)
-	);
-
 	add_settings_section(
 		'gpch_child_content_embed',
 		__( 'Allowlist for websites to embed our content', 'planet4-child-theme-switzerland' ), 'gpch_child_section_content_embed_callback',
@@ -234,53 +203,6 @@ function gpch_child_fields_twilio_callback( $args ) {
 	<?php
 }
 
-
-/**
- * SSA Section callback function.
- *
- * @param array $args The settings array, defining title, id, callback.
- */
-function gpch_child_section_ssa_callback( $args ) {
-	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Web analytics settings', 'planet4-child-theme-switzerland' ); ?></p>
-	<?php
-}
-
-/**
- * Analytics properties field callback function.
- *
- * @param array $args
- */
-function gpch_child_field_ssa_properties_callback( $args ) {
-	$options = get_option( 'gpch_child_options' );
-	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo $options[ $args['label_for'] ] ?>">
-    <p class="description">
-		<?php esc_html_e( 'Comma separated list of Google Analytics tracking ids. For Example: "UA-12345678-1,UA-12345678-2".', 'planet4-child-theme-switzerland' ); ?>
-    </p>
-
-	<?php
-}
-
-
-/**
- * gp_user_id Salt field callback function.
- *
- * @param array $args
- */
-function gpch_child_field_gp_user_id_salt_callback( $args ) {
-	$options = get_option( 'gpch_child_options' );
-	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo $options[ $args['label_for'] ] ?>">
-    <p class="description">
-		<?php esc_html_e( 'Salt value to generate the gp_user_id for Mixpanel (do not change!)', 'planet4-child-theme-switzerland' ); ?>
-    </p>
-	<?php
-}
 
 /**
  * Gravity Forms Embed Section callback function.

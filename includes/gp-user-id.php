@@ -28,14 +28,12 @@ function gpch_generate_user_id_from_form_submission( $form, $entry ) {
  * @return string|null
  */
 function gpch_generate_user_id( $email ) {
+	// Hash and base64 encode the email using SHA-256
+	$hashed_email = base64_encode(hash('sha256', $email, true));
 
-	$child_options = get_option( 'gpch_child_options' );
+	// Remove '/' characters if present in Base64 encoding
+	$hashed_email = str_replace('/', '', $hashed_email);
 
-	if ( array_key_exists( 'gpch_child_field_gp_user_id_salt', $child_options ) && ! empty( $child_options['gpch_child_field_gp_user_id_salt'] ) ) {
-		$salt = $child_options['gpch_child_field_gp_user_id_salt'];
+	return hash( 'sha256', $hashed_email );
 
-		return hash( 'sha256', $email . $salt );
-	} else {
-		return null;
-	}
 }

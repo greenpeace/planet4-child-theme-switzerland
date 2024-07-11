@@ -83,24 +83,7 @@ wp.domReady(() => {
 	
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
-	
-	
 
-	/*
-	* Remove the default tags menu where needed.
-	*
-	* Planet4 replaces the default sidebar element in the post edit screen (for
-	* everyone except admins) with a custom element that doesn't allow creating
-	* new tags.
-	* We've added the same menu to our custom post types, so we need to hide the
-	* default element as well.
-	*
-	* @see: https://github.com/greenpeace/planet4-master-theme/blob/f02ceaf22a0fc455180395c4414efc19e6f36933/classes/class-p4-master-site.php#L742-L750
-	* @see: https://github.com/greenpeace/planet4-child-theme-switzerland/blob/8900f2faaf924fde32482be06c0c96b238ce2095/includes/gutenberg-sidebar.php#L75-L91
-	*/
-	if (gpchUserData.post_type === "gpch_event" || gpchUserData.post_type === "gpch_magredirect" || gpchUserData.post_type === "gpch_archived_post") { // all users, ceratin post types
-		wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' );
-	}
 });
 
 const { addFilter } = wp.hooks;

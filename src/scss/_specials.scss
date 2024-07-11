@@ -10,10 +10,6 @@
 	- Remove max width for the post on large screens because it contains columns that look very narrow otherwise.
 */
 .postid-40127 {
-	&.single-post .page-header-title {
-		color: $color_standard_1;
-	}
-
 	.page-header .post-header-image,
 	.post-content-lead {
 		max-width: none;

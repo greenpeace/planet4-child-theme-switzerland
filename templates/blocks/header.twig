@@ -1,10 +1,40 @@
 {% if ( header_title ) %}
 	{% set page_header_show = ( header_subtitle or header_description or not hide_page_title )  %}
 	<div class="page-header {% if not page_header_show %}page-header-hidden{% endif %}">
+		{#
+		{% if ( background_image and not hide_background ) %}
+			<div class="page-header-background">
+				<img src="{{ background_image }}"
+						{% if ( background_image_srcset ) %}
+							srcset="{{ background_image_srcset }}"
+						{% endif %}
+					 class="page-header-image" />
+			</div>
+		{% endif %}
+		#}
 		<div class="container">
 			{#
 			{% if not hide_page_title and ( post.issues_nav_data or campaigns ) %}
 				<div class="top-page-tags">
+					{% if ( post.issues_nav_data ) %}
+						<div class="tag-wrap issues">
+							{% for issue in post.issues_nav_data %}
+								<a
+										class="tag-item tag-item--main"
+										href="{{ issue.link|default('#') }}"
+										data-ga-category="Header"
+										data-ga-action="Category Tag"
+										data-ga-label="n/a">
+									{{ issue.name|e('wp_kses_post')|raw }}
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					{% if ( post.issues_nav_data and campaigns ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
+					{% endif %}
+
 					{% if ( campaigns ) %}
 						<div class="tag-wrap issues">
 							{% for campaign in campaigns %}

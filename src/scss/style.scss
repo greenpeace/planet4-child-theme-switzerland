@@ -11,11 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
 Text Domain: planet4-child-theme-switzerland
 */
-/*
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@700&display=swap');
-
- */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*--------------------------------------------------------------
 # General Imports
@@ -52,79 +48,8 @@ Text Domain: planet4-child-theme-switzerland
 @import "patterns/p4_page_header";
 
 /*--------------------------------------------------------------
-# General Imports
---------------------------------------------------------------*/
-/*
-@import "variables/colors";
-@import "variables/sizes";
-@import "variables/typography";
-@import "mixins";
-@import "vendor/includemedia";
-@import "variables/master-theme";
-
- */
-
-/*--------------------------------------------------------------
-# Layout
---------------------------------------------------------------*/
-/*
-@import "color-palettes";
-@import "layout/layout";
-@import "layout/navigation-bar";
-@import "layout/header";
-@import "layout/footer";
-@import "layout/post_types";
-@import "layout/search";
-@import "layout/post";
-@import "layout/forms";
-@import "layout/breadcrumbs";
-@import "layout/cookies";
-@import "layout/listing-page";
-@import "typography";
-
- */
-
-
-/*--------------------------------------------------------------
-# Blocks
---------------------------------------------------------------*/
-/*
-@import "layout/elements";
-@import "blocks/core-list";
-@import "blocks/core-separator";
-@import "blocks/core-heading";
-@import "blocks/core-image";
-@import "blocks/core-paragraph";
-@import "blocks/core-button";
-@import "blocks/core-columns";
-@import "blocks/core-quote";
-@import "blocks/core-embeds";
-@import "blocks/core-file";
-@import "blocks/p4-article-list";
-@import "blocks/p4-header-carousel";
-@import "blocks/p4-campaign-covers";
-@import "blocks/p4-action-covers";
-@import "blocks/p4-content-covers";
-@import "blocks/p4-timeline";
-@import "blocks/p4-columns";
-@import "blocks/p4-accordion";
-@import "blocks/gravity-forms";
-@import "blocks/p4-take-action-boxout";
-
- */
-
-
-/*--------------------------------------------------------------
 # Things we don't talk about in public
 --------------------------------------------------------------*/
-/*
 @import "specials";
-*/
 
-
-/*--------------------------------------------------------------
-# Temporary tests
---------------------------------------------------------------*/
-
-@import "new/tests";
 
