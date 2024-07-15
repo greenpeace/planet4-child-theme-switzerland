@@ -16,18 +16,11 @@ if ( ! function_exists( 'p4_child_theme_gpch_whitelist_blocks' ) ) {
 			'acf/p4-gpch-block-form-progress-bar',
 			'acf/p4-gpch-block-form-counter-text',
 			'acf/p4-gpch-block-donation-progress-bar',
-			'acf/p4-gpch-block-action-divider',
-			'acf/p4-gpch-block-magazine-articles',
 			'acf/p4-gpch-block-gpch-events',
-			'acf/p4-gpch-block-newsletter',
 			'acf/p4-gpch-block-spacer',
 			'acf/p4-gpch-block-word-cloud',
 			'social-warfare/social-warfare',
-			'social-warfare/click-to-tweet',
-			'planet4-gpch-plugin-blocks/bs-bingo',
 			'planet4-gpch-plugin-blocks/p2p-share',
-			'planet4-gpch-plugin-blocks/form-entries',
-			'planet4-blocks/accordion',
 			'planet4-gpch-tamaro/tamaro-widget',
 		];
 
