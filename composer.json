@@ -5,8 +5,8 @@
 	"minimum-stability" : "stable",
 	"authors": [
 		{
-			"name": "Konstantinos Kokkorogiannis",
-			"email": "kkokkoro@greenpeace.org"
+			"name": "Stefan Dürrenberger",
+			"email": "stefan.duerrenberger@greenpeace.org"
 		}
 	],
 	"license": "GPL-3.0+",

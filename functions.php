@@ -15,6 +15,9 @@ function enqueue_child_styles() {
 // Helpers
 require_once ( 'includes/helpers.php' );
 
+// GP user ID
+require_once ( 'includes/gp-user-id.php' );
+
 // Author pages
 require_once ( 'includes/author-pages.php' );
 
@@ -29,9 +32,6 @@ require_once( 'includes/user-roles.php' );
 
 // Filter available Gutenberg standard blocks
 require_once( 'includes/gutenberg-blocks.php' );
-
-// Customize the Gutenberg sidebar
-require_once( 'includes/gutenberg-sidebar.php' );
 
 // Customize/extend Gravity Forms
 require_once( 'includes/gravity-forms-extensions.php' );
@@ -48,10 +48,8 @@ require_once( 'includes/csp.php' );
 // Hubspot
 require_once( 'includes/hubspot.php' );
 
-// WP CLi
-if ( class_exists( "WP_CLI" ) ) {
-	require_once( 'includes/wp-cli.php' );
-}
+// WordPress
+require_once( 'includes/wordpress.php' );
 
 /**
  * Load Javascript for further Gutenberg customizations
@@ -111,11 +109,6 @@ function p4_child_theme_gpch_setup() {
 	// Add support for editor styles.
 	add_theme_support( 'editor-styles' );
 
-	// Disable the color selector
-	add_theme_support( 'disable-custom-colors' );
-	add_theme_support( 'disable-custom-gradients' );
-	add_theme_support( 'editor-color-palette', [] );
-
 	// Remove custom text sizes for blocks
 	add_theme_support( 'disable-custom-font-sizes' );
 
@@ -124,22 +117,12 @@ function p4_child_theme_gpch_setup() {
 
 	// Enqueue editor styles.
 	add_editor_style( 'admin/css/editor-style.css' );
+
+	// Responsive embeds
+	add_theme_support( 'responsive-embeds' );
 }
 
 add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup', -9999 );
-
-function p4_child_theme_gpch_enqueue_editor_assets() {
-	wp_enqueue_style(
-		'gpch-gutenberg-editor-fixes',
-		get_stylesheet_directory_uri() . '/admin/css/editor-fixes.css',
-		[ 'wp-edit-blocks' ],
-		filemtime( plugin_dir_path( __FILE__ ) . 'admin/css/editor-fixes.css' )
-	);
-}
-
-// Hook into editor only hook
-add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_enqueue_editor_assets' );
-
 
 /*
  * Enqueue Scripts (Frontend)
@@ -153,16 +136,8 @@ function p4_child_theme_gpch_scripts() {
 		filemtime( get_stylesheet_directory() . $js ),
 		true );
 
-	$child_options = get_option( 'gpch_child_options' );
-	if ( key_exists( 'gpch_child_field_ssa_properties', $child_options ) ) {
-		$ssa_properties = $child_options['gpch_child_field_ssa_properties'];
-	} else {
-		$ssa_properties = '';
-	}
-
 	$script_params = array(
 		'ajaxurl'        => admin_url( 'admin-ajax.php' ),
-		'ssa_properties' => $ssa_properties,
 	);
 
 	$block_popups_setting = get_field( 'setting_block_popups' );
@@ -177,52 +152,6 @@ function p4_child_theme_gpch_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
-
-
-/*
- * Adds theme support for various things
- */
-function p4_child_theme_gpch_theme_support() {
-	add_theme_support( 'responsive-embeds' );
-}
-
-add_action( 'after_setup_theme', 'p4_child_theme_gpch_theme_support' );
-
-
-/**
- * @param $tags
- * @param $context
- *
- * @return mixed
- */
-function p4_child_theme_gpch_allowed_html_tags( $tags, $context ) {
-	if ( 'post' === $context ) {
-		$tags['select'] = array(
-			'name'          => true,
-			'id'            => true,
-			'class'         => true,
-			'aria-required' => true,
-			'aria-invalid'  => true,
-			'autocomplete'  => true,
-			'autofocus'     => true,
-			'disabled'      => true,
-			'form'          => true,
-			'multiple'      => true,
-			'required'      => true,
-			'size'          => true,
-		);
-		$tags['option'] = array(
-			'value'    => true,
-			'selected' => true,
-			'disabled' => true,
-			'label'    => true,
-		);
-	}
-
-	return $tags;
-}
-
-add_filter( 'wp_kses_allowed_html', 'p4_child_theme_gpch_allowed_html_tags', 10, 2 );
 
 
 /**
@@ -242,7 +171,6 @@ function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
 
 add_action( 'p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect' );
 
-
 /**
  * Change default sort order of pages in Wordpress admin
  */
@@ -258,17 +186,6 @@ function gpch_set_post_order_in_admin( $wp_query ) {
 add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
 
 
-/**
- * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
- */
-function change_media_label() {
-	global $menu, $submenu;
-
-	// Change the forms list submenu to include sorting by ID (descending)
-	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
-}
-
-add_action( 'admin_menu', 'change_media_label', 9999999 );
 
 // Remove Social Warfare meta box settings from pages and posts
 // Duplicate functionality and causes a saving bug, see https://tickets.greenpeace.ch/view.php?id=406

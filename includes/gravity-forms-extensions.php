@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Manipulate the GravityForms menu to display the forms sorted by ID (descending)
+ */
+function change_media_label() {
+	global $menu, $submenu;
+
+	// Change the forms list submenu to include sorting by ID (descending)
+	$submenu['gf_edit_forms'][0][2] = 'admin.php?page=gf_edit_forms&orderby=id&order=desc';
+}
+
+add_action( 'admin_menu', 'change_media_label', 9999999 );
+
+/**
  * Add Swiss phone number validation
  *
  * @param $phone_formats
@@ -98,12 +110,18 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 		$options = get_option( 'planet4_options' );
 		$gtm_id  = $options['google_tag_manager_identifier'];
 
+		$gp_user_id = gpch_generate_user_id_from_form_submission($form, $entry);
+
 		$script = '<script type="text/javascript">
 			if (window["google_tag_manager"]) {
 				window.dataLayer = window.dataLayer || [];
 				dataLayer.push({
 					"event": "gravityFormSubmission", 
 					"formType": "' . $form['gpch_gf_type'] . '",
+					"formID": "' . $form['id'] . '",
+					"formPlugin": "Gravity Form",
+					"gGoal":  "' . ($form['p4_gf_type'] ?? self::DEFAULT_GF_TYPE) . '",
+					"formTitle": "' . $form['title'] . '",
 					"newsletterSubscription": "' . $newsletter_subscription . '",
 					"newsletterType": "' . $newsletter_type . '",
 					"formContainsPhoneField": "' . $phone_field_used . '",
@@ -114,6 +132,7 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 	                        window.top.location.href = "' . $url . '";
 	                    }
 	                },
+	                "gp_user_id": "' . $gp_user_id . '",
 	                "eventTimeout" : 2000
 				});
 			}
@@ -216,38 +235,6 @@ function gpch_gf_type_setting( $fields, $form ) {
 }
 
 add_filter( 'gform_form_settings_fields', 'gpch_gf_type_setting', 5, 2 );
-
-
-/**
- * Add a setting to Gravity Forms to set the Sextant project_uid
- *
- * @param $settings
- * @param $form
- *
- * @return mixed
- */
-function gpch_gf_sextant_project_uid_setting( $fields, $form ) {
-	if ( ! array_key_exists( 'gpch_options', $fields ) ) {
-		$new_fields['gpch_options'] = array(
-			'title' => 'GPCH Options'
-		);
-
-		// Add new field to beginning of the $fields array
-		$fields = array_merge( $new_fields, $fields );
-	}
-
-	$fields['gpch_options']['fields'][] = array(
-		'type'     => 'text',
-		'name'     => 'gpch_sextant_project_uid',
-		'label'    => __( 'GPCH Sextant Project UID', 'planet4-child-theme-switzerland' ),
-		'required' => false,
-	);
-
-	return $fields;
-}
-
-add_filter( 'gform_form_settings_fields', 'gpch_gf_sextant_project_uid_setting', 10, 2 );
-
 
 /**
  * Add a setting to Gravity Forms with a custom entry counter that can be updated manually and automatically

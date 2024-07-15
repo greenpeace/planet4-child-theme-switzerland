@@ -1,75 +1,55 @@
 /*!
 Theme Name: Greenpeace Planet 4 Child Theme Switzerland
 Theme URI: https://github.com/greenpeace/planet4-child-theme-switzerland
-Description: Child theme for the switzerland website in the Planet 4 Wordpress project
-Author: Greenpeace International
+Description: Child theme for the swiss website in the Planet 4 project
+Author: Greenpeace Switzerland
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
-Version: 1.0.155
+Version: 1.0.141
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
 Text Domain: planet4-child-theme-switzerland
 */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*--------------------------------------------------------------
 # General Imports
 --------------------------------------------------------------*/
-@import "layout/page_header";
-@import "patterns/p4_page_header";
-@import "variables/colors";
-@import "variables/sizes";
-@import "variables/typography";
-@import "mixins";
-@import "vendor/includemedia";
-@import "variables/master-theme";
+@import "variables/css-variables";
 
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-@import "color-palettes";
 @import "layout/layout";
-@import "layout/navigation-bar";
-@import "layout/header";
-@import "layout/footer";
-@import "layout/post_types";
-@import "layout/search";
-@import "layout/post";
-@import "layout/forms";
-@import "layout/breadcrumbs";
+@import "layout/typography";
+@import "layout/navbar";
 @import "layout/cookies";
-@import "layout/listing-page";
-@import "layout/comments";
-@import "typography";
-
+@import "layout/page_header";
 
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
-@import "layout/elements";
-@import "blocks/core-list";
-@import "blocks/core-separator";
-@import "blocks/core-heading";
-@import "blocks/core-image";
-@import "blocks/core-paragraph";
-@import "blocks/core-button";
-@import "blocks/core-columns";
-@import "blocks/core-quote";
-@import "blocks/core-embeds";
-@import "blocks/core-file";
-@import "blocks/p4-article-list";
-@import "blocks/p4-header-carousel";
-@import "blocks/p4-campaign-covers";
-@import "blocks/p4-action-covers";
-@import "blocks/p4-content-covers";
-@import "blocks/p4-timeline";
-@import "blocks/p4-columns";
-@import "blocks/p4-accordion";
-@import "blocks/gravity-forms";
-@import "blocks/p4-take-action-boxout";
+@import "blocks/core_columns";
+@import "blocks/core_heading";
+@import "blocks/core_list";
+@import "blocks/core_paragraph";
+@import "blocks/core_quote";
+@import "blocks/core_separator";
 
+@import "blocks/p4_articles";
+@import "blocks/p4_covers";
+@import "blocks/p4_take-action-boxout";
+@import "blocks/p4_take-action-covers";
+
+/*--------------------------------------------------------------
+# Patterns
+--------------------------------------------------------------*/
+@import "patterns/p4_page_header";
 
 /*--------------------------------------------------------------
 # Things we don't talk about in public
 --------------------------------------------------------------*/
 @import "specials";
+
+

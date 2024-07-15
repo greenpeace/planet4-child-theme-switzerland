@@ -7,37 +7,6 @@ function gpch_child_settings_init() {
 	// Register settings
 	register_setting( 'gpch_child', 'gpch_child_options' );
 
-
-	add_settings_section(
-		'gpch_child_ssa',
-		__( 'Server Side Analytics', 'planet4-child-theme-switzerland' ), 'gpch_child_section_ssa_callback',
-		'gpch_child'
-	);
-
-	add_settings_field(
-		'gpch_child_field_ssa_properties',
-		__( 'Google Analytics Properties (comma separated)', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_ssa_properties_callback',
-		'gpch_child',
-		'gpch_child_ssa',
-		array(
-			'label_for' => 'gpch_child_field_ssa_properties',
-			'class'     => 'gpch_child_row',
-		)
-	);
-
-	add_settings_field(
-		'gpch_child_field_ssa_test_mode',
-		__( 'Test mode for Server Side Analytics', 'planet4-child-theme-switzerland' ),
-		'gpch_child_field_ssa_test_mode_callback',
-		'gpch_child',
-		'gpch_child_ssa',
-		array(
-			'label_for' => 'gpch_child_field_ssa_test_mode',
-			'class'     => 'gpch_child_row',
-		)
-	);
-
 	add_settings_section(
 		'gpch_child_content_embed',
 		__( 'Allowlist for websites to embed our content', 'planet4-child-theme-switzerland' ), 'gpch_child_section_content_embed_callback',
@@ -236,54 +205,6 @@ function gpch_child_fields_twilio_callback( $args ) {
 
 
 /**
- * SSA Section callback function.
- *
- * @param array $args The settings array, defining title, id, callback.
- */
-function gpch_child_section_ssa_callback( $args ) {
-	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Server Side Analytics sends events to Google Analytics server side for better data quality.', 'planet4-child-theme-switzerland' ); ?></p>
-	<?php
-}
-
-/**
- * Analytics properties field callback function.
- *
- * @param array $args
- */
-function gpch_child_field_ssa_properties_callback( $args ) {
-	$options = get_option( 'gpch_child_options' );
-	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo $options[ $args['label_for'] ] ?>">
-    <p class="description">
-		<?php esc_html_e( 'Comma separated list of Google Analytics tracking ids. For Example: "UA-12345678-1,UA-12345678-2".', 'planet4-child-theme-switzerland' ); ?>
-    </p>
-
-	<?php
-}
-
-
-/**
- * Test Mode field callback function.
- *
- * @param array $args
- */
-function gpch_child_field_ssa_test_mode_callback( $args ) {
-	$options = get_option( 'gpch_child_options' );
-	?>
-    <input type="checkbox" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="1" <?php echo ( array_key_exists( $args['label_for'], $options ) && $options[ $args['label_for'] ] == 1 ) ? ' checked="checked"' : '' ?>>
-    <p class="description">
-		<?php esc_html_e( 'Use Server Side Analytics in test mode. All events will have "Test: " added to the event category.', 'planet4-child-theme-switzerland' ); ?>
-    </p>
-
-	<?php
-}
-
-/**
  * Gravity Forms Embed Section callback function.
  *
  * @param array $args The settings array, defining title, id, callback.
@@ -353,6 +274,20 @@ function gpch_child_fields_raisenow_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
     <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+           value="<?php echo $options[ $args['label_for'] ] ?>">
+	<?php
+}
+
+/**
+ * Password text fields callback function.
+ *
+ * @param array $args
+ */
+function gpch_child_field_password_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+    <input type="password" id="<?php echo esc_attr( $args['label_for'] ); ?>"
            name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
            value="<?php echo $options[ $args['label_for'] ] ?>">
 	<?php

@@ -1,7 +1,111 @@
 /*
-Master theme styles include a confusing hover behavior that sets button hover colors when the cursor hovers over the element, not just the button.
-We reset the same style for hover and non-hover to get back expected behavior, then add back hover state for the button.
+    Master theme styles use a lot of text trimming to fit the content in their design. Most modifications are to
+    prioritize presenting the content correctly.
  */
+
+body .boxout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    height: auto;
+    margin-bottom: 1rem;
+    padding: 0;
+
+    img {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+
+        width: 100%;
+        max-height: 240px;
+    }
+
+    .boxout-heading {
+        margin-bottom: .5rem;
+        -webkit-line-clamp: 4;
+    }
+
+    .boxout-content {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 1;
+
+        padding: 1rem 1rem 0 0;
+        padding-bottom: 1rem;
+
+        .boxout-excerpt {
+            -webkit-line-clamp: 3;
+            display: block;
+            margin-bottom: 0;
+
+            font-size: var(--gpch-font-size-smaller);
+            line-height: var(--gpch-line-height-standard);
+        }
+    }
+
+    .btn {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: 1rem 1rem 1rem 0;
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+}
+
+@media (max-width: 769px) {
+    body .boxout {
+        img {
+            margin: 1rem;
+            padding-right: 1rem;
+            height: calc(100% - 2rem);
+        }
+
+        .boxout-heading {
+            font-size: var(--gpch-font-size--larger);
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    body .boxout {
+        grid-template-columns: 144px 1fr;
+
+        img {
+            height: 128px;
+            width: 128px;
+            padding: 0;
+        }
+
+        .btn {
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    body .boxout {
+        grid-template-columns: 112px 1fr;
+
+        img {
+            height: 96px;
+            width: 96px;
+        }
+
+        .boxout-content {
+            .boxout-excerpt {
+                display: none;
+            }
+        }
+    }
+}
+
+
+/*
 body .boxout,
 body .boxout:hover {
 	margin-bottom: 2rem;
@@ -27,6 +131,7 @@ body .boxout:hover {
 
 	.btn {
 		/* Reset funky master theme positioning */
+/*
 		position: relative;
 		right: auto;
 		bottom: 4em;
@@ -46,7 +151,8 @@ body .boxout:hover {
 		}
 	}
 }
-
+*/
+/*
 body .boxout.collapse:not(.show) {
 	display: none;
 }
@@ -189,21 +295,4 @@ body .boxout.sticky-bottom-mobile {
 		}
 	}
 }
-
-/* Color Schemes */
-@for $i from 1 through length($schema_names) {
-	#{nth($selectors, $i)} {
-		.boxout,
-		.boxout:hover {
-			.btn {
-				background: #{nth($colors_1, $i)};
-				color: #{nth($colors_1_font, $i)};
-
-				&:hover {
-					background: #{nth($colors_2, $i)};
-					color: #{nth($colors_2_font, $i)};
-				}
-			}
-		}
-	}
-}
+*/

@@ -15,7 +15,6 @@ Three stylesheets are generated using SCSS:
 
 ```
 sass src/scss/style.scss style.css --style=compressed
-sass src/scss/editor-fixes.scss admin/css/editor-fixes.css
 sass src/scss/editor-style.scss admin/css/editor-style.css --style=compressed
 ```
 

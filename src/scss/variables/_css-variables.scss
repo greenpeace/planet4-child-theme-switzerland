@@ -1,0 +1,94 @@
+
+:root {
+    /*------------------------------------------
+    # Layout
+    ------------------------------------------*/
+
+    --gpch-one-column-content-width: 740px;
+
+
+    /*------------------------------------------
+    # Typography
+    ------------------------------------------*/
+
+    /* Overall GPCH font-family definitions */
+    --gpch--font-family-standard: "Work Sans";
+    --gpch--font-family-header: "GreenpeaceSans";
+
+    /* Master theme font overwrites */
+    --font-family-primary: "GreenpeaceSans"; /* Existing */
+    --font-family-secondary: "Work Sans"; /* Changed from SourceSerifPro */
+    --font-family-tertiary: "Work Sans"; /* Changed from Source Sans */
+
+    --font-family-button: var(--font-family-secondary); /* Changed from --font-family-primary */
+    --font-family-heading: var(--font-family-primary); /* Existing */
+    --font-family-paragraph-primary: var(--font-family-secondary); /* Existing */
+    --font-family-paragraph-secondary: var(--font-family-tertiary); /* Existing */
+
+    --body--font-family: var(--font-family-secondary);
+
+    --gpch--letter-spacing--secondary-font: -0.02em;
+
+
+    /* Overall GPCH font weights */
+    --gpch--font-weight--normal: 400;
+    --gpch--font-weight--semibold: 500;
+    --gpch--font-weight--bold: 600;
+    --gpch--font-weight-boldest: 700;
+
+    /* Font weights */
+    --font-weight-regular: 400;
+    --font-weight-semibold: 500;
+    --font-weight-bold: 600;
+    --nav-item--font-weight: 600;
+    --button--font-weight: 500;
+    --top-page-tags--tag-item--font-weight: 500;
+    --page-header-title--font-weight: 500;
+
+
+    /* Font sizes */
+    --gpch-font-size--standard: 1rem;
+    --gpch-font-size--larger: 1.125rem;
+    --gpch-font-size--large: 1.25rem;
+    --gpch-font-size-smaller: 0.875rem;
+    --font-size-xl--font-family-secondary: 1.125rem;
+    --nav-item--font-size: 1.25rem;
+    --button--font-size: 1rem;
+    --image-figcaption--font-size: 1rem;
+
+    --font-size-s--font-family-tertiary: var(--gpch-font-size--standard);
+    --font-size-m--font-family-tertiary: var(--gpch-font-size--standard);
+
+
+    /* Line heights */
+    --gpch-line-height-standard: 1.5;
+    --gpch-line-height-standard-smaller: 1.375;
+    --line-height-xl--font-family-secondary: 1.5; /* Changed from 2rem */
+    --image-figcaption--line-height: var(--gpch-line-height-standard-smaller);
+    --cover-card-excerpt--line-height: var(--gpch-line-height-standard-smaller);
+
+    --line-height-s--font-family-tertiary: var(--gpch-line-height-standard);
+
+
+    /* Navigation */
+    /*
+    --nav-item--font-size: 1.125rem;
+
+     */
+
+    /* Buttons */
+    --button-donate--background: var(--color-background-button--cta);
+
+
+    /* Font weights */
+
+
+
+
+    /* Colors */
+    /*
+    --color-border-separator: var(--grey-500)
+    */
+
+
+}
