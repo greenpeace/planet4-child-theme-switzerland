@@ -91,10 +91,21 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 					$newsletter_subscription = 0;
 					$newsletter_type         = '';
 				}
-
 			}
 		}
 
+		// Find address and phone fields for event parameters
+		$address_field_used = 0;
+		$phone_field_used = 0;
+		foreach ( $form['fields'] as $field ) {
+			if ( $field['type'] == 'address' ) {
+				$address_field_used = 1;
+			}
+			elseif ( $field['type'] == 'phone' ) {
+				$phone_field_used = 1;
+			}
+		}
+		
 		// Get the tag manager data layer ID from master theme settings
 		$options = get_option( 'planet4_options' );
 		$gtm_id  = $options['google_tag_manager_identifier'];
@@ -113,6 +124,8 @@ add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax
 					"formTitle": "' . $form['title'] . '",
 					"newsletterSubscription": "' . $newsletter_subscription . '",
 					"newsletterType": "' . $newsletter_type . '",
+					"formContainsPhoneField": "' . $phone_field_used . '",
+					"formContainsAddressField": "' . $address_field_used . '",
 					"eventCallback" : function(id) {
 						// There might be multiple gtm containers, make sure we only redirect for our main container
 						if( id == "' . $gtm_id . '") { 
