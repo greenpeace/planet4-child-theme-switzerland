@@ -84,6 +84,11 @@ wp.domReady(() => {
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 
+	// core/column
+	wp.blocks.registerBlockStyle('core/column', {
+		name: 'background-1',
+		label: 'Background Beige',
+	});
 });
 
 const { addFilter } = wp.hooks;

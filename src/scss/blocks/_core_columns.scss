@@ -1,6 +1,20 @@
+.wp-block-columns {
+	.wp-block-column {
+		&.is-style-background-1 {
+			padding: 2em;
+			background-color: var(--beige-100);
+		}
+	}
+}
+
 .page-content .wp-block-columns.is-style-petition-left {
 	.wp-block-column {
 		padding: 2rem 0;
+
+		&.is-style-background-1 {
+			padding: 2em;
+			background-color: var(--beige-100);
+		}
 	}
 
 	.wp-block-column:first-child {
@@ -19,28 +33,13 @@
 	margin-top: 0;
 }
 
-/*
-@include media('<=desktop') {
-	.page-content .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			flex-basis: calc(50% - 16px);
-		}
 
-		.wp-block-column:nth-child(2) {
-			flex-basis: calc(50% - 16px);;
+@media (max-width: 480px) {
+	.wp-block-columns {
+		.wp-block-column {
+			&.is-style-background-1 {
+				padding: 2em 1em;
+			}
 		}
 	}
 }
-
-@include media('<=desktop') {
-	.page-content .wp-block-columns.is-style-petition-left {
-		.wp-block-column:first-child {
-			flex-basis: 100%;
-		}
-
-		.wp-block-column:nth-child(2) {
-			flex-basis: 100%;
-		}
-	}
-}
-*/
