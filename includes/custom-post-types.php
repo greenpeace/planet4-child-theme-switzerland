@@ -4,7 +4,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 	/**
 	 * Register Custom Post Type for Event
 	 */
-	function p4_child_theme_gpch_custom_post_gpch_event() {
+	function gpch_custom_post_gpch_event() {
 		$labels       = array(
 			'name'                  => _x( 'Events', 'Post Type General Name', 'planet4-child-theme-switzerland' ),
 			'singular_name'         => _x( 'Event', 'Post Type Singular Name', 'planet4-child-theme-switzerland' ),
@@ -60,7 +60,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 				'revisions',
 				'author',
 				'excerpt',
-				'custom-fields'
+				'custom-fields',
 			),
 			'hierarchical'        => false,
 			'public'              => true,
@@ -83,13 +83,17 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 		register_post_type( 'gpch_event', $args );
 	}
 
-	add_action( 'init', 'p4_child_theme_gpch_custom_post_gpch_event', 0 );
+	add_action( 'init', 'gpch_custom_post_gpch_event', 0 );
 
 
 	/**
 	 * Add a custom template for GPCH Events
+	 *
+	 * @param string $template_path The path to the template of a post of type gpch_event.
+	 *
+	 * @return mixed|string
 	 */
-	function include_gpchevents_template( $template_path ) {
+	function gpch_include_gpchevents_template( $template_path ) {
 		if ( get_post_type() == 'gpch_event' ) {
 			if ( is_single() ) {
 				$template_path = get_stylesheet_directory() . '/includes/post-templates/gpch-event-single.php';
@@ -99,13 +103,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 		return $template_path;
 	}
 
-	add_filter( 'template_include', 'include_gpchevents_template', 1 );
+	add_filter( 'template_include', 'gpch_include_gpchevents_template', 1 );
 
 
 	/**
-	 *  Redirect to Event URL if available
+	 * Redirect to Event URL if available
+	 *
+	 * @return void
 	 */
-	function gpchevents_redirect() {
+	function gpch_events_redirect() {
 		if ( get_post_type() == 'gpch_event' ) {
 			if ( is_single() ) {
 				$url = get_field( 'redirect_url' );
@@ -117,116 +123,118 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 		}
 	}
 
-	add_filter( 'template_redirect', 'gpchevents_redirect', 1 );
+	add_filter( 'template_redirect', 'gpch_events_redirect', 1 );
 
 
 	/**
 	 * Create custom field for GPCH Events using ACF
 	 */
-	function create_gpch_event_custom_fields() {
+	function gpch_event_create_custom_fields() {
 		if ( function_exists( 'acf_add_local_field_group' ) ) {
-			acf_add_local_field_group( array(
-				'key'                   => 'group_p4_gpch_events',
-				'title'                 => 'Events',
-				'fields'                => array(
-					array(
-						'key'               => 'field_p4_gpch_events_date',
-						'label'             => 'Event Date',
-						'name'              => 'event_date',
-						'type'              => 'date_picker',
-						'instructions'      => '',
-						'required'          => 0,
-						'conditional_logic' => 0,
-						'wrapper'           => array(
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						),
-						'display_format'    => 'd. m. Y',
-						'return_format'     => 'Y-m-d',
-						'first_day'         => 1,
-					),
-					array(
-						'key'               => 'field_p4_gpch_events_start_time',
-						'label'             => 'Event Start Time',
-						'name'              => 'start_time',
-						'type'              => 'time_picker',
-						'instructions'      => '',
-						'required'          => 0,
-						'conditional_logic' => 0,
-						'wrapper'           => array(
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						),
-						'display_format'    => 'H:i',
-						'return_format'     => 'H:i',
-					),
-					array(
-						'key'               => 'field_p4_gpch_events_place',
-						'label'             => 'Place',
-						'name'              => 'place',
-						'type'              => 'text',
-						'instructions'      => '',
-						'required'          => 0,
-						'conditional_logic' => 0,
-						'wrapper'           => array(
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						),
-						'default_value'     => '',
-						'placeholder'       => '',
-						'prepend'           => '',
-						'append'            => '',
-						'maxlength'         => '',
-					),
-					array(
-						'key'               => 'field_p4_gpch_events_redirect',
-						'label'             => 'Redirect URL',
-						'name'              => 'redirect_url',
-						'type'              => 'url',
-						'instructions'      => 'Add a URL to redirect instead of showing the details page of the event.',
-						'required'          => 0,
-						'conditional_logic' => 0,
-						'wrapper'           => array(
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						),
-						'default_value'     => '',
-						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
+			acf_add_local_field_group(
+				array(
+					'key'                   => 'group_p4_gpch_events',
+					'title'                 => 'Events',
+					'fields'                => array(
 						array(
-							'param'    => 'post_type',
-							'operator' => '==',
-							'value'    => 'gpch_event',
+							'key'               => 'field_p4_gpch_events_date',
+							'label'             => 'Event Date',
+							'name'              => 'event_date',
+							'type'              => 'date_picker',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'display_format'    => 'd. m. Y',
+							'return_format'     => 'Y-m-d',
+							'first_day'         => 1,
+						),
+						array(
+							'key'               => 'field_p4_gpch_events_start_time',
+							'label'             => 'Event Start Time',
+							'name'              => 'start_time',
+							'type'              => 'time_picker',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'display_format'    => 'H:i',
+							'return_format'     => 'H:i',
+						),
+						array(
+							'key'               => 'field_p4_gpch_events_place',
+							'label'             => 'Place',
+							'name'              => 'place',
+							'type'              => 'text',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => '',
+							'placeholder'       => '',
+							'prepend'           => '',
+							'append'            => '',
+							'maxlength'         => '',
+						),
+						array(
+							'key'               => 'field_p4_gpch_events_redirect',
+							'label'             => 'Redirect URL',
+							'name'              => 'redirect_url',
+							'type'              => 'url',
+							'instructions'      => 'Add a URL to redirect instead of showing the details page of the event.',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => '',
+							'placeholder'       => '',
 						),
 					),
-				),
-				'menu_order'            => 0,
-				'position'              => 'acf_after_title',
-				'style'                 => 'default',
-				'label_placement'       => 'top',
-				'instruction_placement' => 'label',
-				'hide_on_screen'        => '',
-				'active'                => true,
-				'description'           => '',
-			) );
+					'location'              => array(
+						array(
+							array(
+								'param'    => 'post_type',
+								'operator' => '==',
+								'value'    => 'gpch_event',
+							),
+						),
+					),
+					'menu_order'            => 0,
+					'position'              => 'acf_after_title',
+					'style'                 => 'default',
+					'label_placement'       => 'top',
+					'instruction_placement' => 'label',
+					'hide_on_screen'        => '',
+					'active'                => true,
+					'description'           => '',
+				)
+			);
 		}
 	}
 
-	add_action( 'init', 'create_gpch_event_custom_fields' );
+	add_action( 'init', 'gpch_event_create_custom_fields' );
 }
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_archived_post' ) ) {
 	/**
 	 * Register Custom Post Type for Archived Post
 	 */
-	function p4_child_theme_gpch_custom_post_archived_post() {
+	function gpch_custom_post_archived_post() {
 		$labels       = array(
 			'name'                  => _x( 'Archived Posts', 'Post Type General Name', 'planet4-child-theme-switzerland' ),
 			'singular_name'         => _x( 'Archived Post', 'Post Type Singular Name', 'planet4-child-theme-switzerland' ),
@@ -295,14 +303,14 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_archived_post' ) ) {
 		register_post_type( 'gpch_archived_post', $args );
 	}
 
-	add_action( 'init', 'p4_child_theme_gpch_custom_post_archived_post', 0 );
+	add_action( 'init', 'gpch_custom_post_archived_post', 0 );
 }
 
 if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 	/**
 	 * Register Custom Post Type for Magazine Redirects
 	 */
-	function p4_child_theme_gpch_custom_post_magredirect() {
+	function gpch_custom_post_magredirect() {
 		$labels       = array(
 			'name'                  => _x( 'Magazine Redirects', 'Post Type General Name', 'planet4-child-theme-switzerland' ),
 			'singular_name'         => _x( 'Magazine Redirect', 'Post Type Singular Name', 'planet4-child-theme-switzerland' ),
@@ -381,13 +389,15 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 		register_post_type( 'gpch_magredirect', $args );
 	}
 
-	add_action( 'init', 'p4_child_theme_gpch_custom_post_magredirect' );
+	add_action( 'init', 'gpch_custom_post_magredirect' );
 
 
 	/**
 	 * Add a custom template for Magazine Redirect single view
+	 *
+	 * @param string $template_path The path to the template of a post of type gpch_magredirect.
 	 */
-	function include_gpmagredirect_template( $template_path ) {
+	function gpch_include_gpmagredirect_template( $template_path ) {
 		if ( get_post_type() == 'gpch_magredirect' ) {
 			if ( is_single() ) {
 				$template_path = get_stylesheet_directory() . '/includes/post-templates/gpch-magredirect-single.php';
@@ -397,57 +407,59 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 		return $template_path;
 	}
 
-	add_filter( 'template_include', 'include_gpmagredirect_template', 1 );
+	add_filter( 'template_include', 'gpch_include_gpmagredirect_template', 1 );
 
 
 	/**
 	 * Create custom field for Magazine Redirects using ACF
 	 */
-	function create_gpmagredirect_custom_fields() {
+	function gpch_create_gpmagredirect_custom_fields() {
 		if ( function_exists( 'acf_add_local_field_group' ) ) {
-			acf_add_local_field_group( array(
-				'key'                   => 'group_5cf2025d115b9',
-				'title'                 => 'Magazin Redirect',
-				'fields'                => array(
-					array(
-						'key'               => 'field_5cf202661b26b',
-						'label'             => __( 'Magazin URL', 'planet4-child-theme-switzerland' ),
-						'name'              => 'magazin_url',
-						'type'              => 'url',
-						'instructions'      => __( 'The URL of the magazine article where the user is redirected.', 'planet4-child-theme-switzerland' ),
-						'required'          => 1,
-						'conditional_logic' => 0,
-						'wrapper'           => array(
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						),
-						'default_value'     => '',
-						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
+			acf_add_local_field_group(
+				array(
+					'key'                   => 'group_5cf2025d115b9',
+					'title'                 => 'Magazin Redirect',
+					'fields'                => array(
 						array(
-							'param'    => 'post_type',
-							'operator' => '==',
-							'value'    => 'gpch_magredirect',
+							'key'               => 'field_5cf202661b26b',
+							'label'             => __( 'Magazin URL', 'planet4-child-theme-switzerland' ),
+							'name'              => 'magazin_url',
+							'type'              => 'url',
+							'instructions'      => __( 'The URL of the magazine article where the user is redirected.', 'planet4-child-theme-switzerland' ),
+							'required'          => 1,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => '',
+							'placeholder'       => '',
 						),
 					),
-				),
-				'menu_order'            => - 5,
-				'position'              => 'acf_after_title',
-				'style'                 => 'seamless',
-				'label_placement'       => 'top',
-				'instruction_placement' => 'label',
-				'hide_on_screen'        => '',
-				'active'                => true,
-				'description'           => '',
-			) );
+					'location'              => array(
+						array(
+							array(
+								'param'    => 'post_type',
+								'operator' => '==',
+								'value'    => 'gpch_magredirect',
+							),
+						),
+					),
+					'menu_order'            => - 5,
+					'position'              => 'acf_after_title',
+					'style'                 => 'seamless',
+					'label_placement'       => 'top',
+					'instruction_placement' => 'label',
+					'hide_on_screen'        => '',
+					'active'                => true,
+					'description'           => '',
+				)
+			);
 		}
 	}
 
-	add_action( 'init', 'create_gpmagredirect_custom_fields' );
+	add_action( 'init', 'gpch_create_gpmagredirect_custom_fields' );
 }
 
 /**
@@ -455,23 +467,22 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
  *
  * Since we want to have the same meta box like P4, we steal a bit ...
  */
-function create_gpch_custom_post_type_metabox() {
+function gpch_create_custom_post_type_metabox() {
 	if ( function_exists( 'new_cmb2_box' ) ) {
-
 		$prefix = 'p4_';
 
 		$p4_post = new_cmb2_box(
 			[
 				'id'           => $prefix . 'gpch_custom_post_type_metabox',
-				'title'        => __( 'Post Articles Element Fields', 'planet4-master-theme-backend' ),
+				'title'        => __( 'Post Articles Element Fields', 'planet4-child-theme-switzerland' ),
 				'object_types' => [ 'gpch_magredirect' ], // at the moment only for Magazine Redirects
 			]
 		);
 
 		$p4_post->add_field(
 			[
-				'name' => __( 'Author Override', 'planet4-master-theme-backend' ),
-				'desc' => __( 'Enter author name if you want to override the author', 'planet4-master-theme-backend' ),
+				'name' => __( 'Author Override', 'planet4-child-theme-switzerland' ),
+				'desc' => __( 'Enter author name if you want to override the author', 'planet4-child-theme-switzerland' ),
 				'id'   => $prefix . 'author_override',
 				'type' => 'text_medium',
 			]
@@ -480,4 +491,4 @@ function create_gpch_custom_post_type_metabox() {
 	}
 }
 
-add_action( 'cmb2_admin_init', 'create_gpch_custom_post_type_metabox' );
+add_action( 'cmb2_admin_init', 'gpch_create_custom_post_type_metabox' );

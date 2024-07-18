@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Registers the taxonomy for background articles (a custom post type).
+ *
+ * @return void
+ */
 function gpch_register_taxonomy_article_type() {
 	$labels = [
 		'name'              => _x( 'Background Article Type', 'taxonomy general name', 'planet4-child-theme-switzerland' ),

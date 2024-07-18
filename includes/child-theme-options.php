@@ -9,7 +9,8 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_content_embed',
-		__( 'Allowlist for websites to embed our content', 'planet4-child-theme-switzerland' ), 'gpch_child_section_content_embed_callback',
+		__( 'Allowlist for websites to embed our content', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_content_embed_callback',
 		'gpch_child'
 	);
 
@@ -27,7 +28,8 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_gf_embed',
-		__( 'Allowlist websites that can embed our Gravity Forms', 'planet4-child-theme-switzerland' ), 'gpch_child_section_gf_embed_callback',
+		__( 'Allowlist websites that can embed our Gravity Forms', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_gf_embed_callback',
 		'gpch_child'
 	);
 
@@ -45,7 +47,8 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_bitly',
-		__( 'Bitly API', 'planet4-child-theme-switzerland' ), 'gpch_child_section_bitly_callback',
+		__( 'Bitly API', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_bitly_callback',
 		'gpch_child'
 	);
 
@@ -63,7 +66,8 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_twilio',
-		__( 'Twilio SMS', 'planet4-child-theme-switzerland' ), 'gpch_child_section_twilio_callback',
+		__( 'Twilio SMS', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_twilio_callback',
 		'gpch_child'
 	);
 
@@ -105,7 +109,8 @@ function gpch_child_settings_init() {
 
 	add_settings_section(
 		'gpch_child_raisenow',
-		__( 'RaiseNow API', 'planet4-child-theme-switzerland' ), 'gpch_child_section_raisenow_callback',
+		__( 'RaiseNow API', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_raisenow_callback',
 		'gpch_child'
 	);
 
@@ -159,21 +164,21 @@ add_action( 'admin_init', 'gpch_child_settings_init' );
  */
 function gpch_child_section_bitly_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Bitly is used to shorten links.', 'planet4-child-theme-switzerland' ); ?></p>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Bitly is used to shorten links.', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
 /**
  * Bitly text fields callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_fields_bitly_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?>">
+	<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+			name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+			value="<?php echo ( isset( $options[ $args['label_for'] ] ) ) ? esc_html( $options[ $args['label_for'] ] ) : ''; ?>">
 	<?php
 }
 
@@ -185,21 +190,21 @@ function gpch_child_fields_bitly_callback( $args ) {
  */
 function gpch_child_section_twilio_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Twilio is used to send SMS.', 'planet4-child-theme-switzerland' ); ?></p>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Twilio is used to send SMS.', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
 /**
  * Twilio text fields callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_fields_twilio_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?>">
+	<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+			name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+			value="<?php echo ( isset( $options[ $args['label_for'] ] ) ) ? esc_html( $options[ $args['label_for'] ] ) : ''; ?>">
 	<?php
 }
 
@@ -211,20 +216,20 @@ function gpch_child_fields_twilio_callback( $args ) {
  */
 function gpch_child_section_content_embed_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed any of our content. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed any of our content. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
 /**
  * Gravity Forms Embed Whitelist callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_field_content_embed_allowlist_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
-              name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?></textarea>
+	<textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
+				name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo ( isset( $options[ $args['label_for'] ] ) ) ? esc_html( $options[ $args['label_for'] ] ) : ''; ?></textarea>
 
 	<?php
 }
@@ -236,20 +241,20 @@ function gpch_child_field_content_embed_allowlist_callback( $args ) {
  */
 function gpch_child_section_gf_embed_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed Gravity Forms. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed Gravity Forms. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
 /**
  * Gravity Forms Embed Whitelist callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_field_gf_embed_whitelist_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
-              name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo ( isset( $options[ $args['label_for'] ] ) ) ? $options[ $args['label_for'] ] : '' ?></textarea>
+	<textarea id="<?php echo esc_attr( $args['label_for'] ); ?>"
+				name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"><?php echo ( isset( $options[ $args['label_for'] ] ) ) ? esc_html( $options[ $args['label_for'] ] ) : ''; ?></textarea>
 
 	<?php
 }
@@ -261,41 +266,41 @@ function gpch_child_field_gf_embed_whitelist_callback( $args ) {
  */
 function gpch_child_section_raisenow_callback( $args ) {
 	?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The RaiseNow API is used in the blocks plugin, for example for the donations progress bar. A read-only user is recommended.', 'planet4-child-theme-switzerland' ); ?></p>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The RaiseNow API is used in the blocks plugin, for example for the donations progress bar. A read-only user is recommended.', 'planet4-child-theme-switzerland' ); ?></p>
 	<?php
 }
 
 /**
  * RaiseNow text fields callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_fields_raisenow_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo $options[ $args['label_for'] ] ?>">
+	<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+			name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+			value="<?php echo esc_attr( $options[ $args['label_for'] ] ); ?>">
 	<?php
 }
 
 /**
  * Password text fields callback function.
  *
- * @param array $args
+ * @param array $args The arguments used for building the form field.
  */
 function gpch_child_field_password_callback( $args ) {
 	$options = get_option( 'gpch_child_options' );
 	?>
-    <input type="password" id="<?php echo esc_attr( $args['label_for'] ); ?>"
-           name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
-           value="<?php echo $options[ $args['label_for'] ] ?>">
+	<input type="password" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+			name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+			value="<?php echo esc_attr( $options[ $args['label_for'] ] ); ?>">
 	<?php
 }
 
 
 /**
- * Add the menu page as subpage of Wordpress settings.
+ * Add the menu page as subpage of WordPress settings.
  */
 function gpch_child_options_page() {
 	add_submenu_page(
@@ -326,9 +331,9 @@ function gpch_child_options_page_html() {
 	// show error/update messages
 	settings_errors( 'gpch_child_messages' );
 	?>
-    <div class="wrap">
-        <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-        <form action="options.php" method="post">
+	<div class="wrap">
+		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+		<form action="options.php" method="post">
 			<?php
 			// output security fields for the registered setting "gpch_child"
 			settings_fields( 'gpch_child' );
@@ -337,7 +342,7 @@ function gpch_child_options_page_html() {
 
 			submit_button( 'Save Settings' );
 			?>
-        </form>
-    </div>
+		</form>
+	</div>
 	<?php
 }

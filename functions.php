@@ -1,60 +1,66 @@
 <?php
 
-add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99 );
-
-function enqueue_child_styles() {
+/**
+ * Enqueue the stylesheet of this child theme
+ *
+ * @return void
+ */
+function gpch_enqueue_child_styles() {
 	$css_creation = filectime( get_stylesheet_directory() . '/style.css' );
 
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $css_creation );
 }
+
+add_action( 'wp_enqueue_scripts', 'gpch_enqueue_child_styles', 99 );
 
 /*
  * Includes
  */
 
 // Helpers
-require_once ( 'includes/helpers.php' );
+require_once 'includes/helpers.php';
 
 // GP user ID
-require_once ( 'includes/gp-user-id.php' );
+require_once 'includes/gp-user-id.php';
 
 // Author pages
-require_once ( 'includes/author-pages.php' );
+require_once 'includes/author-pages.php';
 
 // Child theme options
-require_once( 'includes/child-theme-options.php' );
+require_once 'includes/child-theme-options.php';
 
 // Custom Post Types: gpch_job & gpch_archived_post & gpch_magredirect
-require_once( 'includes/custom-post-types.php' );
+require_once 'includes/custom-post-types.php';
 
 // Roles, Usergroups & Capabilities
-require_once( 'includes/user-roles.php' );
+require_once 'includes/user-roles.php';
 
 // Filter available Gutenberg standard blocks
-require_once( 'includes/gutenberg-blocks.php' );
+require_once 'includes/gutenberg-blocks.php';
 
 // Customize/extend Gravity Forms
-require_once( 'includes/gravity-forms-extensions.php' );
+require_once 'includes/gravity-forms-extensions.php';
 
 // Custom taxonomy for background articles
-require_once( 'includes/background-taxonomy.php' );
+require_once 'includes/background-taxonomy.php';
 
 // GPCH advanced post settings
-require_once( 'includes/advanced-post-settings.php' );
+require_once 'includes/advanced-post-settings.php';
 
 // GPCH CSP headers
-require_once( 'includes/csp.php' );
+require_once 'includes/csp.php';
 
 // Hubspot
-require_once( 'includes/hubspot.php' );
+require_once 'includes/hubspot.php';
 
 // WordPress
-require_once( 'includes/wordpress.php' );
+require_once 'includes/wordpress.php';
+
 
 /**
  * Load Javascript for further Gutenberg customizations
  */
-function p4_child_theme_gpch_gutenberg_scripts() {
+function gpch_gutenberg_scripts() {
 	wp_enqueue_script(
 		'gpch-be-editor-customizations',
 		get_stylesheet_directory_uri() . '/admin/js/editor.js',
@@ -67,7 +73,7 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 	);
 
 	$user  = wp_get_current_user();
-	$roles = ( array ) $user->roles;
+	$roles = (array) $user->roles;
 
 	$script_params = array(
 		'roles'     => $roles,
@@ -77,15 +83,17 @@ function p4_child_theme_gpch_gutenberg_scripts() {
 	wp_localize_script( 'gpch-be-editor-customizations', 'gpchUserData', $script_params );
 }
 
-add_action( 'enqueue_block_editor_assets', 'p4_child_theme_gpch_gutenberg_scripts' );
+add_action( 'enqueue_block_editor_assets', 'gpch_gutenberg_scripts' );
 
 
-/*
+/**
  * Add taxonomy terms as class name to body tag
+ *
+ * @param array $classes The classes added to the body tag.
+ *
+ * @return array $classes
  */
-add_filter( 'body_class', 'p4_child_theme_gpch_add_taxonomy_classes' );
-
-function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
+function gpch_add_taxonomy_classes( $classes ) {
 	if ( is_singular() ) {
 		global $post;
 
@@ -101,11 +109,15 @@ function p4_child_theme_gpch_add_taxonomy_classes( $classes ) {
 	return $classes;
 }
 
+add_filter( 'body_class', 'gpch_add_taxonomy_classes' );
 
-/*
- * Add custom styles to Gutenberg editor
+
+/**
+ * Add custom stylesheet to Gutenberg editor and configure theme support.
+ *
+ * @return void
  */
-function p4_child_theme_gpch_setup() {
+function gpch_editor_setup() {
 	// Add support for editor styles.
 	add_theme_support( 'editor-styles' );
 
@@ -122,22 +134,27 @@ function p4_child_theme_gpch_setup() {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_action( 'after_setup_theme', 'p4_child_theme_gpch_setup', -9999 );
+add_action( 'after_setup_theme', 'gpch_editor_setup', -9999 );
 
-/*
- * Enqueue Scripts (Frontend)
+
+/**
+ * Enqueue frontend scripts
+ *
+ * @return void
  */
-function p4_child_theme_gpch_scripts() {
+function gpch_enqueue_scripts() {
 	$js = '/js/gpch-child.js';
 
-	wp_enqueue_script( 'gpch-child-theme-js',
+	wp_enqueue_script(
+		'gpch-child-theme-js',
 		get_stylesheet_directory_uri() . $js,
 		array(),
 		filemtime( get_stylesheet_directory() . $js ),
-		true );
+		true
+	);
 
 	$script_params = array(
-		'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 	);
 
 	$block_popups_setting = get_field( 'setting_block_popups' );
@@ -151,16 +168,16 @@ function p4_child_theme_gpch_scripts() {
 	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
 }
 
-add_action( 'wp_enqueue_scripts', 'p4_child_theme_gpch_scripts' );
+add_action( 'wp_enqueue_scripts', 'gpch_enqueue_scripts' );
 
 
 /**
  * Modify the behavior of tag pages when a redirect is set. The master theme will just load the content of the page,
  * we'll redirect instead.
  *
- * @param $redirect_page
+ * @param string $redirect_page The page URL to redirect to.
  */
-function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
+function gpch_tag_page_redirect( $redirect_page ) {
 	$permalink = get_permalink( $redirect_page );
 
 	if ( $permalink !== false ) {
@@ -169,10 +186,15 @@ function p4_child_theme_gpch_tag_page_redirect( $redirect_page ) {
 	}
 }
 
-add_action( 'p4_action_tag_page_redirect', 'p4_child_theme_gpch_tag_page_redirect' );
+add_action( 'p4_action_tag_page_redirect', 'gpch_tag_page_redirect' );
+
 
 /**
- * Change default sort order of pages in Wordpress admin
+ * Change default sort order of pages in WordPress admin
+ *
+ * @param WP_Query $wp_query The current WordPress Qqery object.
+ *
+ * @return void
  */
 function gpch_set_post_order_in_admin( $wp_query ) {
 	global $pagenow;
@@ -189,44 +211,64 @@ add_filter( 'pre_get_posts', 'gpch_set_post_order_in_admin', 5 );
 
 // Remove Social Warfare meta box settings from pages and posts
 // Duplicate functionality and causes a saving bug, see https://tickets.greenpeace.ch/view.php?id=406
-add_filter( 'swpmb_meta_boxes', function() {
-	return array();
-} );
+add_filter(
+	'swpmb_meta_boxes',
+	function () {
+		return array();
+	}
+);
 
 
+/**
+ * Manually enqueue the YouTube API script in pages that have the embed block
+ *
+ * @return void
+ */
 function gpch_enqueue_youtube_api() {
-	$id = get_the_ID();
-	$hasYTBlock = gpch_has_block_embed_by_provider( 'youtube', $id );
+	$id         = get_the_ID();
+	$has_yt_block = gpch_has_block_embed_by_provider( 'youtube', $id );
 
-	if ($hasYTBlock) {
-		wp_enqueue_script( 'custom-js', 'https://www.youtube.com/iframe_api', [], '', true );
+	if ( $has_yt_block ) {
+		wp_enqueue_script( 'custom-js', 'https://www.youtube.com/iframe_api', [], '1', true );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'gpch_enqueue_youtube_api' );
 
 
-/* Change parameters in embedded Youtube videos. Enables the API used for Analytics */
-add_filter( 'planet4_youtube_embed_parameters', function($parametersString){
-	parse_str($parametersString, $parameters);
+/**
+ * Change parameters in embedded Youtube videos. Enables the API used for Analytics.
+ *
+ * @param string $parameters_string String of parameters added to the URL of embedded YouTube videos.
+ *
+ * @return string
+ */
+function gpch_change_youtube_embed_parameters( $parameters_string ) {
+	parse_str( $parameters_string, $parameters );
 
-	$parameters = array_merge($parameters, [
-		'enablejsapi' => '1',
-		'origin' => 'https://' . $_SERVER['SERVER_NAME'],
-		'cc_load_policy' => 1,
-	]);
+	$parameters = array_merge(
+		$parameters,
+		[
+			'enablejsapi'    => '1',
+			'origin'         => 'https://' . $_SERVER['SERVER_NAME'],
+			'cc_load_policy' => 1,
+		]
+	);
 
-	return http_build_query($parameters);
-} );
+	return http_build_query( $parameters );
+}
+
+add_filter( 'planet4_youtube_embed_parameters', 'gpch_change_youtube_embed_parameters' );
 
 
 /**
  * Add pages with other status than 'published' to the parents page dropdown when editing a page.
  * Only works for the standard API request. With Elastic search enabled, check additional function gpch_show_drafts_as_parent_pages_elastic.
  *
- * @param array $args
- * @param WP_REST_Request $request
+ * @param array           $args Query arguments.
+ * @param WP_REST_Request $request The current request.
  *
- * @return array
+ * @return array $args
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
 	if ( $request->get_param( 'context' ) == 'edit' ) {
@@ -249,32 +291,35 @@ function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request
 
 add_filter( 'rest_page_query', 'gpch_show_drafts_as_parent_pages', 100, 2 );
 
+
 /**
  * By default, elasticsearch only indexes posts of status "published". This function adds more statuses to the index so they can be used in various internal functionality.
  * One such use case is adding drafts as parent pages in Gutenberg editor. The results in the search field are provided by ElsaticPress when enables.
  *
- *
- * @param array $args
- * @param WP_REST_Request $request
+ * @param array $status An array of Status tp include in the query.
  *
  * @return array
  */
 function gpch_show_drafts_as_parent_pages_elastic( array $status ) {
-	return array_unique( array_merge(
-		$status,
-		[ 'publish', 'draft', 'private', 'future', 'pending' ]
-	) );
+	return array_unique(
+		array_merge(
+			$status,
+			[ 'publish', 'draft', 'private', 'future', 'pending' ]
+		)
+	);
 }
 
 add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elastic' );
 
+
 /**
  * Set the email sending address used for all emails sent through the Planet4 Sendgrid integration
- * @param $sender_email
+ *
+ * @param string $sender_email The email address used as a sender.
  *
  * @return string
  */
-function gpch_change_email_sender ($sender_email) {
+function gpch_change_email_sender( $sender_email ) {
 	return 'noreply@greenpeace.ch';
 }
 
@@ -282,4 +327,5 @@ add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
 
 
 // Disable auto translations in WPML. Might be cause for a bug that changes translated pages back to the original language.
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 define( 'WPML_TRANSLATION_AUTO_UPDATE_ENABLED', false );
