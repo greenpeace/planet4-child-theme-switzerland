@@ -9,6 +9,14 @@ Please check the master theme code for more information.
 
 # Development
 
+## Coding standards
+
+Using mostly WordPress coding standards, with a few exceptions. 
+
+### PHP 
+
+PHPCS is configured. Use `composer sniffs` to show errors and `composer fixes` to fix automatically.
+
 ## Stylesheets
 
 Three stylesheets are generated using SCSS:
