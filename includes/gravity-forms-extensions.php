@@ -58,115 +58,59 @@ add_filter( 'gform_address_display_format', 'gpch_gf_address_format', 10, 2 );
 
 
 /**
- * Suppress the redirect in forms to use our own redirect handling (see below)
- */
-add_filter( 'gform_suppress_confirmation_redirect', '__return_true' );
-
-
-/**
- * Redirect using Javascript after form submission instead of sending a header. Makes it possible to send tag manager
- * events before redirecting.
+ * Adds custom paramters to form submission datalayer events.
  *
- * @param string | array $confirmation The confirmation message/array to be filtered.
- * @param Form_Object    $form The current form.
- * @param Entry_Object   $entry The current entry.
- * @param bool           $ajax Specifies if this form is configured to be submitted via AJAX.
+ * @param array $parameters The event parameters.
+ * @param mixed $form The form properties.
+ * @param mixed $entry The current entry.
  *
- * @return mixed|string|void
+ * @return array $parameters
  */
-function gpch_gpform_confirmation( $confirmation, $form, $entry, $ajax ) {
-	GFCommon::log_debug( __METHOD__ . '(): running.' );
-	if ( isset( $confirmation['redirect'] ) ) {
-		$url = esc_url_raw( $confirmation['redirect'] );
-		GFCommon::log_debug( __METHOD__ . '(): Redirect to URL: ' . $url );
+function gpch_form_submission_event_parameters( $parameters, $form, $entry ) {
+	// Find the newsletter field
+	// Convention: use an admin label in the form field settings that contains "newsletter"
+	foreach ( $form['fields'] as $field ) {
+		if ( $field['type'] == 'checkbox' && strpos( $field['adminLabel'], 'newsletter' ) !== false ) {
+			$newsletter_type     = $field['adminLabel'];
+			$newsletter_field_id = $field['inputs'][0]['id'];
 
-		$html = sprintf(
-			'<p><b>%s</b></p><p>%s <a href="' . $url . '">%s</a> %s</p>',
-			__( 'Thank you!', 'planet4-child-theme-switzerland' ),
-			__( 'Please', 'planet4-child-theme-switzerland' ),
-			__( 'click here', 'planet4-child-theme-switzerland' ),
-			__( 'if you aren\'t redirected within a few seconds.', 'planet4-child-theme-switzerland' )
-		);
+			// Retrieve newsletter checkbox value
+			$newsletter_field       = RGFormsModel::get_field( $form, $newsletter_field_id );
+			$newsletter_field_value = is_object( $newsletter_field ) ? $field->get_value_export( $entry ) : '';
 
-		// Default value: no newsletter subscription
-		$newsletter_subscription = 0;
-
-		// Find the newsletter field
-		// Convention: use an admin label in the form field settings that contains "newsletter"
-		foreach ( $form['fields'] as $field ) {
-			if ( $field['type'] == 'checkbox' && strpos( $field['adminLabel'], 'newsletter' ) !== false ) {
-				$newsletter_type     = $field['adminLabel'];
-				$newsletter_field_id = $field['inputs'][0]['id'];
-
-				// Retrieve newsletter checkbox value
-				$newsletter_field       = RGFormsModel::get_field( $form, $newsletter_field_id );
-				$newsletter_field_value = is_object( $newsletter_field ) ? $field->get_value_export( $entry ) : '';
-
-				if ( ! empty( $newsletter_field_value ) ) {
-					$newsletter_subscription = 1;
-				} else {
-					$newsletter_subscription = 0;
-					$newsletter_type         = '';
-				}
+			if ( ! empty( $newsletter_field_value ) ) {
+				$newsletter_subscription = 1;
+			} else {
+				$newsletter_subscription = 0;
+				$newsletter_type         = '';
 			}
 		}
-
-		// Find address and phone fields for event parameters
-		$address_field_used = 0;
-		$phone_field_used = 0;
-		foreach ( $form['fields'] as $field ) {
-			if ( $field['type'] == 'address' ) {
-				$address_field_used = 1;
-			} elseif ( $field['type'] == 'phone' ) {
-				$phone_field_used = 1;
-			}
-		}
-
-		// Get the tag manager data layer ID from master theme settings
-		$options = get_option( 'planet4_options' );
-		$gtm_id  = $options['google_tag_manager_identifier'];
-
-		$gp_user_id = gpch_generate_user_id_from_form_submission( $form, $entry );
-
-		$script = '<script type="text/javascript">
-			if ( window["google_tag_manager"] ) {
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					"event": "gravityFormSubmission",
-					"formType": "' . $form['gpch_gf_type'] . '",
-					"formID": "' . $form['id'] . '",
-					"formPlugin": "Gravity Form",
-					"formTitle": "' . $form['title'] . '",
-					"newsletterSubscription": "' . $newsletter_subscription . '",
-					"newsletterType": "' . $newsletter_type . '",
-					"formContainsPhoneField": "' . $phone_field_used . '",
-					"formContainsAddressField": "' . $address_field_used . '",
-					"eventCallback" : function(id) {
-						// There might be multiple gtm containers, make sure we only redirect for our main container
-						if( id == "' . $gtm_id . '") {
-	                        window.top.location.href = "' . $url . '";
-	                    }
-	                },
-	                "gp_user_id": "' . $gp_user_id . '",
-	                "eventTimeout" : 2000
-				});
-			}
-			else {
-				/* Redirect latest after two seconds. This is a failsafe in case the request to tag manager is blocked */
-				setTimeout( function() {
-					window.top.location.href = "' . $url . '";
-				}, 2000);
-			}
-			</script>';
-
-		$confirmation = $html . $script;
 	}
 
-	return $confirmation;
+	// Find address and phone fields for event parameters
+	$address_field_used = 0;
+	$phone_field_used   = 0;
+	foreach ( $form['fields'] as $field ) {
+		if ( $field['type'] == 'address' ) {
+			$address_field_used = 1;
+		} elseif ( $field['type'] == 'phone' ) {
+			$phone_field_used = 1;
+		}
+	}
+
+	if ( array_key_exists( 'gpch_gf_type', $form ) ) {
+		$parameters['formType'] = $form['gpch_gf_type'];
+	}
+
+	$parameters['newsletterSubscription']   = $newsletter_subscription;
+	$parameters['newsletterType']           = $newsletter_type;
+	$parameters['formContainsPhoneField']   = $phone_field_used;
+	$parameters['formContainsAddressField'] = $address_field_used;
+
+	return $parameters;
 }
 
-add_filter( 'gform_confirmation', 'gpch_gpform_confirmation', 10, 4 );
-
+add_filter( 'planet4_datalayer_form_submission', 'gpch_form_submission_event_parameters', 10, 3 );
 
 /**
  * Add a setting to gravity Forms to set the type of form
@@ -386,7 +330,7 @@ function gpch_gform_arguments( $form_args ) {
 	return $form_args;
 }
 
-add_filter( 'gform_form_args', 'gpch_gform_arguments', 10, 1 );
+// add_filter( 'gform_form_args', 'gpch_gform_arguments', 10, 1 );
 
 
 /**
