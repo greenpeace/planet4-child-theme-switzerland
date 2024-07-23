@@ -1,4 +1,6 @@
 <?php
+// Leave this file in Planet4 code style for easier upstream comparison
+// phpcs:ignoreFile
 /*Template Name: Magazine Redirects single
 */
 

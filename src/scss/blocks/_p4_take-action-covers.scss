@@ -1,0 +1,22 @@
+.take-action-covers-block {
+    .cover {
+        min-height: 514px;
+
+        .cover-card-btn {
+            font-size: var(--button--font-size);
+        }
+
+        .cover-card-content {
+            .cover-card-tag {
+                font-family: var(--gpch--font-family-standard);
+                font-size: var(--gpch-font-size--standard);
+                line-height: var(--gpch-line-height-standard);
+                font-weight: var(--gpch--font-weight--bold);
+            }
+
+            .cover-card-excerpt {
+                -webkit-line-clamp: 4;
+            }
+        }
+    }
+}

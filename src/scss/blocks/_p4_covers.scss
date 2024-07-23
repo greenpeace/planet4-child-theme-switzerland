@@ -1,0 +1,21 @@
+.content-covers-block .content-covers-block-wrap {
+    .content-covers-block-info {
+        h5 {
+            font-size: var(--gpch-font-size--larger);
+        }
+
+        .publication-date {
+            font-size: var(--gpch-font-size--standard);
+            font-style: normal;
+        }
+
+        .post-excerpt {
+            font-size: var(--gpch-font-size--standard);
+            line-height: var(--gpch-line-height-standard-smaller);
+        }
+    }
+
+    .content-covers-block-image img {
+        width: auto;
+    }
+}

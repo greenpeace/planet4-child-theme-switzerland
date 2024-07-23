@@ -3,8 +3,8 @@
 /**
  * Checks if a post has an embed block of a defined provider
  *
- * @param $provider
- * @param $post
+ * @param string  $provider Provider name.
+ * @param WP_Post $post The current post.
  *
  * @return bool
  */
@@ -23,9 +23,9 @@ function gpch_has_block_embed_by_provider( $provider, $post = null ) {
 	if ( has_block( 'embed', $post ) ) {
 		$blocks = parse_blocks( $post );
 
-		$ytBlocks = gpch_search_array_key_value( $blocks, 'providerNameSlug', $provider );
+		$provider_blocks = gpch_search_array_key_value( $blocks, 'providerNameSlug', $provider );
 
-		if ( count( $ytBlocks ) > 0 ) {
+		if ( count( $provider_blocks ) > 0 ) {
 			return true;
 		}
 	}
@@ -36,9 +36,9 @@ function gpch_has_block_embed_by_provider( $provider, $post = null ) {
 /**
  * Searches multidimensional arrays for key/value pairs
  *
- * @param $array
- * @param $key
- * @param $value
+ * @param array  $array The array to search.
+ * @param string $key The key name to search for.
+ * @param string $value The value to search for.
  *
  * @return array
  */

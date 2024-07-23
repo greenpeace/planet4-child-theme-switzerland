@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
+  "version": 3,
   "settings": {
     "border": {
       "color": false,
@@ -20,9 +20,6 @@
       "gradients": [],
       "link": false,
       "text": false
-    },
-    "layout": {
-      "contentSize": "736px"
     },
     "typography": {
       "customFontSize": false,
