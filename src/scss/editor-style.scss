@@ -1,48 +1,34 @@
-/*!
-	Gutenberg Stylesheet for GPCH Child Theme
+/*
+	Gutenberg Editor Stylesheet for GPCH Child Theme
 */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*--------------------------------------------------------------
 # General Imports
 --------------------------------------------------------------*/
-
-@import "variables/colors";
-@import "variables/sizes";
-@import "variables/typography";
-@import "variables/master-theme";
-@import "mixins";
-@import "vendor/includemedia";
-
-
-/*--------------------------------------------------------------
-# Layout
---------------------------------------------------------------*/
-@import "color-palettes";
-@import "typography";
-
+@import "variables/css-variables";
 
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
-@import "layout/elements";
-@import "blocks/core-list";
-@import "blocks/core-separator";
-@import "blocks/core-heading";
-@import "blocks/core-image";
-@import "blocks/core-paragraph";
-@import "blocks/core-button";
-@import "blocks/core-columns";
-@import "blocks/core-quote";
-@import "blocks/core-embeds";
-@import "blocks/core-file";
-@import "blocks/p4-article-list";
-@import "blocks/p4-header-carousel";
-@import "blocks/p4-campaign-covers";
-@import "blocks/p4-action-covers";
-@import "blocks/p4-content-covers";
-@import "blocks/p4-timeline";
-@import "blocks/p4-columns";
-@import "blocks/p4-accordion";
-@import "blocks/gravity-forms";
+@import "blocks/core_columns";
+@import "blocks/core_heading";
+@import "blocks/core_list";
+@import "blocks/core_paragraph";
+@import "blocks/core_quote";
+@import "blocks/core_separator";
 
+@import "blocks/p4_articles";
+@import "blocks/p4_covers";
+@import "blocks/p4_take-action-boxout";
+@import "blocks/p4_take-action-covers";
 
+/*--------------------------------------------------------------
+# Patterns
+--------------------------------------------------------------*/
+@import "patterns/p4_page_header";
+
+/*--------------------------------------------------------------
+# Editor specific styles
+--------------------------------------------------------------*/
+@import "editor/editor";

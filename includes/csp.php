@@ -4,6 +4,10 @@
  * Set Content Security Policy HTTP headers to allow embedding of gravity forms
  *
  * See GravityForms extensions for separate allowlist functionality
+ *
+ * @param array $allowlist Current allowlist of CSP entries.
+ *
+ * @return array
  */
 function gpch_cps_allowlist( $allowlist ) {
 	global $wp;

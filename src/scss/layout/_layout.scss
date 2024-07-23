@@ -1,46 +1,8 @@
-body,
-body:not(.wp-admin) { /* Master theme uses this more specific notation */
-	font-family: $font-family;
-
-	&.brown-bg {
-		background-color: $color_white;
-	}
-}
 
 
-/* Bugfix for donation overlay issue: https://tickets.greenpeace.ch/view.php?id=300 */
-div.page-content > * {
-	z-index: auto;
-}
-
-.page-content.no-page-title {
-	padding-top: 0;
-
-	.is-pattern-p4-page-header {
-		padding-top: 0;
-	}
-}
-
-.top-navigation {
-	z-index: 9000;
-}
-
-
-@include media('<=desktop') {
-	.post-content .container {
-		padding-left: 0;
-		padding-right: 0;
-	}
-}
-
-/*
-  Correction for min-width in tables on mobile
-  https://tickets.greenpeace.ch/view.php?id=302
-*/
-@media (max-width: #{$small-width}) {
-	.post-content table {
-		td {
-			min-width: auto;
-		}
-	}
+/* max-width for content elements in single column */
+.page-content > p,
+.page-content > dl.accordion,
+.page-content > ul {
+    max-width: var(--gpch-one-column-content-width);
 }
