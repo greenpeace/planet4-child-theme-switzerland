@@ -1,3 +1,4 @@
+/* Single column style "Background Beige" */
 .wp-block-columns {
 	.wp-block-column {
 		&.is-style-background-1 {
@@ -7,7 +8,8 @@
 	}
 }
 
-.page-content .wp-block-columns.is-style-petition-left {
+/* Columns style "Petition Column Left" */
+.wp-block-columns.is-style-petition-left {
 	.wp-block-column {
 		padding: 2rem 0;
 
