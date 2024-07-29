@@ -80,7 +80,7 @@ wp.domReady(() => {
 		name: 'petition-left',
 		label: 'Petition Column Left',
 	});
-	
+
 	// core/table
 	wp.blocks.unregisterBlockStyle('core/table', 'stripes');
 
@@ -89,6 +89,19 @@ wp.domReady(() => {
 		name: 'background-1',
 		label: 'Background Beige',
 	});
+
+	// core/group
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'background-1',
+		label: 'Background Beige',
+	});
+
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'quote',
+		label: 'Quote',
+	});
+
+
 });
 
 const { addFilter } = wp.hooks;
