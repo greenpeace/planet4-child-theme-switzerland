@@ -83,6 +83,7 @@ if ('yes' === $post->include_articles) {
 		'categories' => $category_id_array,
 		'article_heading' => __('Related Articles', 'planet4-blocks'),
 		'read_more_text' => __('Load more', 'planet4-blocks'),
+		'post_types' => $page_terms_data->term_id,
 	];
 
 	$post->showArticlesForPostTypes =[
