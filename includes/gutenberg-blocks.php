@@ -25,6 +25,9 @@ function gpch_blocks_allowlist( $allowed_blocks, $context ) {
 		'planet4-gpch-plugin-blocks/form-entries',
 		'planet4-blocks/accordion',
 		'planet4-gpch-tamaro/tamaro-widget',
+
+		// allow on all content types
+		'planet4-blocks/take-action-boxout',
 	];
 
 	$allowed_blocks = array_merge( $allowed_blocks, $additional_blocks );
