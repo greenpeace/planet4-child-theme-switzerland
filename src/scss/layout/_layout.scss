@@ -6,3 +6,14 @@
 .page-content > ul {
     max-width: var(--gpch-one-column-content-width);
 }
+
+/* Max width for title image in posts */
+article header figure.wp-block-image {
+	max-width: 736px;
+}
+
+@media (max-width: 1200px) {
+	article header figure.wp-block-image {
+		max-width: 776px;
+	}
+}
