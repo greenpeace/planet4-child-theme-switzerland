@@ -58,7 +58,7 @@ add_filter( 'gform_address_display_format', 'gpch_gf_address_format', 10, 2 );
 
 
 /**
- * Adds custom paramters to form submission datalayer events.
+ * Adds custom parameters to form submission datalayer events.
  *
  * @param array $parameters The event parameters.
  * @param mixed $form The form properties.
@@ -316,6 +316,20 @@ function gpch_custom_address_validation( $result, $value, $form, $field ) {
 
 add_filter( 'gform_field_validation', 'gpch_custom_address_validation', 10, 4 );
 
+
+/**
+ * Set allowed html tags in form submissions.
+ *
+ * @param string|bool $allowable_tags The allowed html tags.
+ *
+ * @return string
+ */
+function gpch_set_allowed_form_submission_tags( $allowable_tags ) {
+	// Return an empty string to disallow all html tags.
+	return '';
+}
+
+add_filter( 'gform_allowable_tags', 'gpch_set_allowed_form_submission_tags', 10, 1 );
 
 /**
  * Forces all GravityForms to use AJAX submission, overwriting the block level setting.
