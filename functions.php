@@ -41,6 +41,9 @@ require_once 'includes/gutenberg-blocks.php';
 // Customize/extend Gravity Forms
 require_once 'includes/gravity-forms-extensions.php';
 
+// Gravity PDF
+require_once 'includes/gravity-pdf.php';
+
 // Custom taxonomy for background articles
 require_once 'includes/background-taxonomy.php';
 
