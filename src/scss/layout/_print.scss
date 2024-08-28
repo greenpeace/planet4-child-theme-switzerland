@@ -1,0 +1,17 @@
+@media print {
+	.top-navigation {
+		position: static;
+
+		.nav-menu-toggle,
+		.nav-search-toggle-container,
+		#nav-main-desktop,
+		#search_form,
+		.nav-languages-toggle {
+			display: none !important;
+		}
+	}
+
+	.page-header {
+		padding-top: 20px
+	}
+}
