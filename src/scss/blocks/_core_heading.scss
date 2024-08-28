@@ -33,7 +33,7 @@ div[data-hydrate="planet4-blocks/articles"] {
 }
 
 /* Underline for h2 */
-:not(.submenu-block, .gpch-taskforce-content) > h2:not(.is-style-no-underline):after {
+:not(.submenu-block, .gpch-taskforce-content, .gform_validation_errors) > h2:not(.is-style-no-underline):after {
     content: "";
     display: block;
     position: relative;
