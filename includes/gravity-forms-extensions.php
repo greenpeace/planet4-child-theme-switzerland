@@ -455,3 +455,29 @@ function gpch_salesforce_id_check( $form ) {
 }
 
 add_filter( 'gform_pre_render', 'gpch_salesforce_id_check' );
+
+// carndt
+/*
+add_action( 'after_setup_theme', function() {
+	remove_filter('gform_form_post_get_meta', [$this, 'p4_gf_enable_default_meta_settings'], 10);
+	global $wp_filter;
+	var_dump($wp_filter['gform_form_post_get_meta']);
+	var_dump($wp_filter['gform_form_post_get_meta_417']);
+});
+*/
+
+/**
+ * Enable default meta parameters for Gravity forms.
+ *
+ * @param array $meta Associative array containing all form properties.
+ *
+ */
+function gpch_gf_enable_default_meta_settings(array $meta): array {
+	$meta['personalData']['preventIP'] = false;
+	// $meta['personalData']['retention']['policy'] = 'delete';
+	// $meta['personalData']['retention']['retain_entries_days'] = 90;
+	// $meta['personalData']['exportingAndErasing']['enabled'] = true;
+	return $meta;
+}
+
+add_filter('gform_form_post_get_meta_417', 'gpch_gf_enable_default_meta_settings', 10, 1);
