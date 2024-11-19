@@ -480,4 +480,4 @@ function gpch_gf_enable_default_meta_settings(array $meta): array {
 	return $meta;
 }
 
-add_filter('gform_form_post_get_meta_417', 'gpch_gf_enable_default_meta_settings', 10, 1);
+add_filter('gform_form_post_get_meta_443', 'gpch_gf_enable_default_meta_settings', 10, 1);
