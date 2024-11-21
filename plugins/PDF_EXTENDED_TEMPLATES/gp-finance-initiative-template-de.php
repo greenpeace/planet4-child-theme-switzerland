@@ -29,6 +29,15 @@ return;
 
 ?>
 
+<?php
+//Form Fields
+$kanton = $form_data['field'][36] ?? '';
+$politische_gemeinde = $form_data['field'][32] ?? '';
+$plz = $form_data['field'][21]['zip'] ?? '';
+$adresse = $form_data['field'][21]['street'] ?? '';
+$geburtsdatum = $form_data['field'][26] ?? '';
+?>
+
 <style>
 	body,@page {
 		margin: 0mm;
@@ -64,6 +73,12 @@ h2 {
 	font-weight: 400;
 	color: #155CA8;
 	margin-bottom: 5px;
+}
+h3 {
+	font-size: 14.5px;
+	line-height: 14.5px;
+	font-weight: bold;
+	color: #ffffff;
 }
 .font-size-xxl {
 	font-size: 16px;
@@ -107,16 +122,11 @@ General table Styling
 Informationsteil - erste Seitenhälfte
 --------------------------------------*/ 
 .info-section {
-	background: #232D74;
 	color: #ffffff;
-	padding-top: 15px;
-	padding-right: 15px;
-	padding-bottom: 0px;
-	padding-left: 15px;
 	position: absolute; 
-	left:0; 
-	top:0; 
-	width:33%; 
+	left:5mm; 
+	top:5mm; 
+	width:45%; 
 	height:148mm;
 }
 .main-title {
@@ -130,29 +140,38 @@ Informationsteil - erste Seitenhälfte
 	z-index: -1; 
 	margin-top:-60px;
 }
+.main-cta {
+	margin-top: -23px; 
+	margin-left:10px;
+}
 .anschrift {
 	position: absolute; 
 	width: 200px; 
 	height: 70px; 
-	top:65mm; 
-	right:60mm;
+	top:75mm; 
+	right:30mm;
 	font-weight: normal;
 }
-.description-text {
-	margin-top: 10px;
+.info-text {
+	background: #232D74;
+	margin-top: 20px;
+	padding-top: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 20px;
 }
+.description-text {
+
+}
 .additional-info {
 	border-collapse: collapse;
-	margin-bottom: 20px;
-	margin-top: 25px;
+	margin-bottom: 10px;
+	margin-top: 10px;
 	color: #ffffff;
 }
 .additional-info td {
 	padding: 10px;
-	vertical-align: bottom;
+	vertical-align: middle;
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -160,9 +179,13 @@ Informationsteil - erste Seitenhälfte
 	width:60px;
 }
 .initiative-logo {
-	margin-left:-40px;
-	margin-right:-22px;
-	margin-bottom:-10px;
+	margin-bottom:32px;
+}
+.frankatur {
+	position: absolute; 
+	top: 10mm; 
+	left:127mm;
+	width:330px;
 }
 /*-----------------------------------
 Falzmarke
@@ -170,8 +193,10 @@ Falzmarke
 .fold {
 	position: absolute;
 	top: 145.5mm;
+	left: 5mm;
 	text-align: center;
 	color: #a5a5a5;
+	width: 200mm;
 }
 .fold-text {
 	color: #a5a5a5;
@@ -231,6 +256,9 @@ table.initiative-signatures .angaben-region td {
 }
 table.initiative-signatures .heading-unterzeichner td {
 	height: 32px;
+	vertical-align: top;
+}
+table.initiative-signatures .heading-unterzeichner .nr {
 	vertical-align: middle;
 }
 table.initiative-signatures .angaben-unterzeichner td {
@@ -239,7 +267,7 @@ table.initiative-signatures .angaben-unterzeichner td {
 } 
 table.initiative-signatures td,
 table.initiative-signatures th {
-	padding-top: 2px;
+	padding-top: 3px;
 	padding-right: 5px;
 	padding-bottom: 2px;
 	padding-left: 5px;
@@ -252,7 +280,7 @@ table.initiative-signatures .nr {
 table.initiative-beglaubigung {
 	border-collapse: collapse;
 	table-layout: fixed;
-	width: 950px;
+	width: 820px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
@@ -281,26 +309,38 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 .underline {
 	border-bottom: 1px solid #000000;
 }
+/*---------
+Section Code
+----------*/
+.section-code {
+	position: absolute;
+	bottom: 15mm;
+	right: 5mm;
+	rotate: -90;
+}
 </style>
 
 <!--- Informationsteil obere Seitenhälfte --->
 <div class="info-section font-inter">
 	<h1 class="main-title">Kein Geld <br/>für Zerstörung</h1>
 	 	<img class="main-image" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-image-button-de.png"/>
-		<p class="font-size-xl description-text"><strong>Der Schweizer Finanzplatz ist ein globales Schwergewicht. Die Milliarden, die hierzulande verwaltet oder als Kredite vergeben werden, richten woanders grossen Schaden an und fliessen beispielsweise in die Abholzung des Regenwalds oder den Abbau von Kohle. Mit der Finanzplatz-Initiative wird dieses Geld künftig nicht mehr in Klimaerhitzung und die Zerstörung der Umwelt investiert.</strong></p>
+	 	<h3 class="main-cta">Jetzt Initiative unterschreiben!</h3>
+	 	<div class="info-text">
+		<p class="font-size-l description-text"><strong>Der Schweizer Finanzplatz ist ein globales Schwergewicht. Die Milliarden, die hierzulande verwaltet oder als Kredite vergeben werden, richten woanders grossen Schaden an und fliessen beispielsweise in die Abholzung des Regenwalds oder den Abbau von Kohle. Mit der Finanzplatz-Initiative wird dieses Geld künftig nicht mehr in Klimaerhitzung und die Zerstörung der Umwelt investiert.</strong></p>
 	  <table class="additional-info">
 	    <tr>
-	      <td><img class="qr-code" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-qr-de.png"/></td>
-	      <td><p class="font-size-l">Mehr erfahren:<br /> www.finanzplatz-initiative.ch</p></td>
+	      <td style="width: 20%"><img class="qr-code" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-qr-de.png"/></td>
+	      <td style="width: 80%"><p class="font-size-l">Mehr erfahren:<br /> www.finanzplatz-initiative.ch</p></td>
 	    </tr>
 	  </table>
-	<img class="initiative-logo" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-logo-de.png"/>
+		</div>
+	<img class="initiative-logo" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-footer-logo-de.png"/>
 </div>
-<div class="frankatur" style="position: absolute; top: 10mm; left:125mm;width:330px;">
+<div class="frankatur">
 	<img class="initiative-frankatur" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-frankatur-de.png"/>
 </div>
 <div class="anschrift font-inter">
-	<p class="font-size-xxl">Finanzplatz-Initiative<br/>Postfach 6094<br/>2500 Biel 6</p>
+	<p class="font-size-xl">Finanzplatz-Initiative<br/>Postfach 6094<br/>2500 Biel 6</p>
 </div>
 
 <!--- Falzmarke Seitenmitte --->
@@ -319,13 +359,13 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 
 <div class="initiative-official-section">
 	<h2>Eidgenössische Volksinitiative <strong>«Für einen nachhaltigen und zukunftsgerichteten Finanzplatz Schweiz (Finanzplatz-Initiative)»</strong></h2>
-	<p class="intro font-size-m">Im Bundesblatt veröffentlicht am 26.11.2024. Die unterzeichnenden stimmberechtigten Schweizer Bürgerinnen und Bürger stellen hiermit, gestützt auf Art. 34, 136, 139 und 194 der Bundesverfassung und nach dem Bundesgesetz vom 17. Dezember 1976 über die politischen Rechte, Art. 68ff., folgendes Begehren:</p>
+	<p class="intro font-size-m">Im Bundesblatt veröffentlicht am <strong>26.11.2024</strong>. Die unterzeichnenden stimmberechtigten Schweizer Bürgerinnen und Bürger stellen hiermit, gestützt auf Art. 34, 136, 139 und 194 der Bundesverfassung und nach dem Bundesgesetz vom 17. Dezember 1976 über die politischen Rechte, Art. 68ff., folgendes Begehren:</p>
 			<!--- Änderungen Bundesverfassung bzw. Initiativtext --->
 	<table class="initiative-bv-content">
 	  <tr>
 	    <td style="vertical-align: top; width: 475px;">
 	      <p class="font-size-s"><strong>Die Bundesverfassung<sup>1</sup> wird wie folgt geändert:</strong></p>
-	      <p class="font-size-s"><strong>Art. 98a &nbsp;&nbsp;&nbsp;Nachhaltiger Finanzplatz</strong></p>
+	      <p class="font-size-s"><strong><em>Art. 98a</em>&nbsp;&nbsp;&nbsp;Nachhaltiger Finanzplatz</strong></p>
 	      <p class="font-size-s"><sup>1</sup> Der Bund setzt sich für eine ökologisch nachhaltige Ausrichtung des Schweizer Finanzplatzes ein. Er trifft Massnahmen zur entsprechenden Ausrichtung der Finanzmittelflüsse; die Massnahmen müssen im Einklang stehen mit den internationalen Standards und völkerrechtlichen Verpflichtungen der Schweiz zur Klimaverträglichkeit und zum Schutz und zur Wiederherstellung der biologischen Vielfalt.</p>	
 	      <p class="font-size-s"><sup>2</sup> Schweizer Finanzmarktteilnehmende wie Banken, Versicherungsunternehmen, Finanzinstitute sowie Vorsorge- und Sozialversicherungseinrichtungen richten ihre Geschäftstätigkeiten mit Umweltauswirkungen im Ausland, insbesondere aufgrund von Treibhausgasemissionen, auf das nach dem aktuellen Stand der Wissenschaft international vereinbarte Temperaturziel und auf die internationalen Biodiversitätsziele aus; dabei berücksichtigen sie direkte und indirekte Emissionen sowie die Auswirkungen auf die Biodiversität entlang der gesamten Wertschöpfungskette. Das Gesetz sieht Ausnahmen vor für Finanzmarktteilnehmende, deren Tätigkeiten mit geringen Umweltauswirkungen verbunden sind.</p>
 	    </td>
@@ -333,7 +373,7 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 	      <p class="font-size-s"><sup>3</sup> Schweizer Finanzmarktteilnehmende erbringen keine Finanzierungs- und Versicherungsdienstleistungen, die der Erschliessung und der Förderung neuer sowie der Ausweitung des Abbaus bestehender fossiler Energievorkommen dienen; das Gesetz legt die entsprechenden Einschränkungen fest.</p>
 	      <p class="font-size-s"> <sup>4</sup> Zur Durchsetzung dieser Vorgaben wird eine Aufsicht vorgesehen; diese hat Verfügungs- und Sanktionskompetenzen.</p>
 	      <p class="font-size-xs">&nbsp;</p>
-	      <p class="font-size-s"><strong><em>Art. 197 Ziff. 17</em><sup>2</sup></strong></p>
+	      <p class="font-size-s"><strong><em>Art. 197 Ziff. 17&thinsp;</em><sup>2</sup></strong></p>
 				<p class="font-size-s"><strong><em>17. Übergangsbestimmung zu Art. 98a (Nachhaltiger Finanzplatz)</em></strong></p>
 				<p class="font-size-s">Die Bundesversammlung erlässt die Ausführungsbestimmungen zu Artikel 98a spätestens drei Jahre nach dessen Annahme durch Volk und Stände. Treten die Ausführungsbestimmungen innerhalb dieser Frist nicht in Kraft, so erlässt der Bundesrat die Ausführungsbestimmungen in Form einer Verordnung und setzt sie innerhalb eines Jahres in Kraft. Die Verordnung gilt bis zum Inkrafttreten der von der Bundesversammlung erlassenen Ausführungsbestimmungen.</p>
 			</td>
@@ -342,7 +382,7 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 	    <td class="fussnoten" colspan="2" style="vertical-align: middle;">
 	      <hr>
 	      <p class="font-size-s"><sup>1</sup> SR <strong>101</strong></p>
-				<p class="font-size-s"><sup>2</sup> Die endgültige Ziffer dieser Übergangsbestimmung wird nach der Volksabstimmung von der Bundeskanzlei festgelegt.</p>
+				<p class="font-size-s"><sup>2</sup> Die endgültige Ziffer dieser übergangsbestimmung wird nach der Volksabstimmung von der Bundeskanzlei festgelegt.</p>
 	    </td>
 	  </tr>
 	</table>
@@ -353,9 +393,9 @@ table.initiative-beglaubigung .angaben-amtsperson td {
  	<table class="initiative-signatures">
 	  <tbody>
 	    <tr class="angaben-region">
-			  <td colspan="2" class="plz border font-size-m"><span class="label">Kanton: </span>{Kanton:36}</td>
-			  <td colspan="1" class="gemeinde border font-size-m"><span class="label">PLZ: </span>{address (ZIP / Postal Code):21.5}</td>
-			  <td colspan="3" class="kanton border font-size-m"><span class="label">Politische Gemeinde: </span>{Politische Gemeinde:32}</td>
+			  <td colspan="2" class="plz border font-size-m"><span class="label">Kanton: </span><?php echo esc_html( $kanton ); ?></td>
+			  <td colspan="1" class="gemeinde border font-size-m"><span class="label">PLZ: </span><?php echo esc_html( $plz ); ?></td>
+			  <td colspan="3" class="kanton border font-size-m"><span class="label">Politische Gemeinde: </span><?php echo esc_html( $politische_gemeinde ); ?></td>
 		  </tr>
 		  <tr class="heading-unterzeichner">
 			  <td class="nr leave-empty border"><span class="font-size-l leave-empty">Nr.</span></td>
@@ -368,8 +408,8 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 	   	<tr class="angaben-unterzeichner">
 			  <td style="width:60px;" class="nr border font-size-l">1.</td>
 			  <td style="width:220px;" class="name border font-size-m"></td>
-			  <td style="width:150px;" class="geburtsdatum-tag border font-size-m">{Geburtsdatum:26}</td>
-			  <td style="width:220px;" class="adresse border font-size-m">{address (Street Address):21.1}</td>
+			  <td style="width:150px;" class="geburtsdatum-tag border font-size-m"><?php echo esc_html( $geburtsdatum ); ?></td>
+			  <td style="width:220px;" class="adresse border font-size-m"><?php echo esc_html( $adresse ); ?></td>
 			  <td style="width:220px" class="unterschrift border font-size-m"></td>
 			  <td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
 		  </tr>
@@ -395,15 +435,15 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 	   <!--- Initiativkomitee --->
 	<p class="font-size-xs"><strong>Das Initiativkomitee, bestehend aus nachstehenden Urheberinnen und Urhebern, ist berechtigt, diese Volksinitiative mit absoluter Mehrheit seiner noch stimmberechtigten Mitglieder zurückzuziehen:</strong> <br/><strong>Gerhard Andrey</strong>, Chablioux-Parc 16, 1763 Granges-Paccot, <strong>Nicole Bardet</strong>, En Bouley 39, 1680 Romont, <strong>Samuel Bendahan</strong>, Route des Plaines-du-Loup 41, 1018 Lausanne, <strong>Kathrin Bertschy</strong>, Länggassstr. 10, 3012 Bern, <strong>Peter Bosshard</strong>, Feldgüetliweg 71, 8706 Meilen, <strong>Elgin Brunner</strong>, Zeunerstr. 17, 8037 Zürich, <strong>Sasha Cisar</strong>, Juliastr. 5, 8032 Zürich, <strong>Raphaël Comte</strong>, Postfach 76, 2035 Corcelles, <strong>Melanie Gajowski</strong>, Trittligasse 26, 8001 Zürich, <strong>Susanne Hochuli</strong>, Im Winkel 10, 5057 Reitnau, <strong>Marc Jost</strong>, Hohmadstr. 29, 3600 Thun, <strong>Konrad Langhart</strong>, Breitenweg 1, 8477 Oberstammheim, <strong>Michaël Malquarti</strong>, Av. De Champel 59, 1206 Genf, <strong>Yvan Maillard Ardenti</strong>, Ch. des Cossettes 41, 1723 Marly, <strong>Lisa Mazzone</strong>, Av. Ernest-Pictet 5, 1203 Genf, <strong>Mattea Meyer</strong>, Unterrütiweg 3, 8400 Winterthur, <strong>Stefan Müller-Altermatt</strong>, Dorfstr. 6, 4715 Herbetswil, <strong>Jon Pult</strong>, Engadinstr. 19, 7000 Chur, <strong>Marc Rüdisüli</strong>, Hochwachtstr. 24, 8370 Sirnach, <strong>Barbara Schaffner</strong>, Riedstr. 4, 8112 Otelfingen, <strong>Frédéric Steimer</strong>, Av. Louis-Ruchonnet 24, 1003 Lausanne, <strong>Maya Tharian</strong>, Birkenstr. 44, 8107 Buchs, <strong>Thomas Vellacott</strong>, Gladiolenweg 3, 8048 Zürich, <strong>Natascha Wey</strong>, Waffenplatzstr. 95, 8002 Zürich, <strong>Céline Widmer</strong>, Anwandstr. 28, 8004 Zürich, <strong>Marc Wuarin</strong>, Ch. Du Pré-du-Couvent 3f, 1224 Chêne-Bougeries, <strong>Kurt Zaugg-Ott</strong>, Melchtalstr. 15, 3014 Bern</p>
 	  <p class="font-size-s" style="margin-top:5px;">Ablauf der Sammelfrist: <strong>26.05.2026</strong></p>
-	  <p class="font-size-s" style="margin-top:5px;">Die unterzeichnende Amtsperson bescheinigt hiermit, dass obenstehende _______ (Anzahl) Unterzeichnende in eidgenössischen Angelegenheiten stimmberechtigt sind und ihre politischen Rechte in der erwähnten Gemeinde ausüben.</p>
+	  <p class="font-size-s" style="margin-top:5px;">Die unterzeichnende Amtsperson bescheinigt hiermit, dass obenstehende _______ (Anzahl) Unterzeichnerinnen und Unterzeichner der Volksinitiative in eidgenössischen Angelegenheiten stimmberechtigt sind und ihre politischen Rechte in der erwähnten Gemeinde ausüben.</p>
 
 	  <!--- Tabelle für Beglaubigung Amtsperson --->
 	<table class="initiative-beglaubigung">
 	  <tbody>
 	  	<tr class="angaben-amtsperson">
-	     	<td style="width:350px;" class="border font-size-s"><span>Ort:</span></td>
-	     	<td style="width:350px;" class="border font-size-s"><span>Eigenhändige Unterschrift: </span></td>
-	     	<td style="width:250px;" class="border font-size-s" rowspan="2">Amtsstempel:</td>
+	     	<td style="width:260px;" class="border font-size-s"><span>Ort:</span></td>
+	     	<td style="width:340px;" class="border font-size-s"><span>Eigenhändige Unterschrift: </span></td>
+	     	<td style="width:220px;" class="border font-size-s" rowspan="2">Amtsstempel:</td>
 	    </tr>
 	    <tr class="angaben-amtsperson">
 	     	<td class="border font-size-s"><span>Datum: </span></td>
@@ -416,3 +456,5 @@ table.initiative-beglaubigung .angaben-amtsperson td {
 	<p class="font-size-s">Senden Sie diese Liste teilweise oder vollständig ausgefüllt möglichst bald an das Initiativkomitee: Finanzplatz-Initiative, Postfach 6094, 2500 Biel 6</p>
 	<p class="font-size-s">Weitere Informationen und Unterschriftenbögen finden Sie unter: <strong><a class="font-size-s" href="https://finanzplatz-initiative.ch">www.finanzplatz-initiative.ch</a></strong></p>
 </div>
+
+<div class="section-code font-size-m font-inter">GP On</div>
