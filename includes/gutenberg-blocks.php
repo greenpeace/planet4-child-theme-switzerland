@@ -57,4 +57,4 @@ function gpch_blocks_allowlist( $allowed_blocks, $context ) {
 	}
 }
 
-add_filter( 'allowed_block_types_all', 'gpch_blocks_allowlist', 10, 2 );
+add_filter( 'allowed_block_types_all', 'gpch_blocks_allowlist', 100, 2 );
