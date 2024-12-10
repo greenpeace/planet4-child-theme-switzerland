@@ -53,6 +53,7 @@
 					{% endif %}
 				</div>
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
+				{% if post.post_type != "gpch_archived_post" %}
 				<div class="single-post-meta">
 					{% if not post.get_author_override and post.author.avatar %}
 						<img itemprop="image" class="author-pic"
@@ -86,6 +87,7 @@
 						{% endif %}
 					</div>
 				</div>
+				{% endif %}
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
 				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
 					{% if post.thumbnail.src is defined %}
