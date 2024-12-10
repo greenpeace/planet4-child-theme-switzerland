@@ -47,6 +47,8 @@ $context['social_accounts'] = $post->get_social_accounts($context['footer_social
 $context['page_category'] = 'Post Page';
 $context['post_tags'] = implode(', ', $post->tags());
 $context['post_categories'] = implode(', ', $post->categories());
+$context['page_date'] = explode('+', get_the_date('c', $post->ID))[0];
+$context['old_posts_archive_notice'] = $post->get_old_posts_archive_notice();
 
 // GPCH Additions
 $post_article_types = get_the_terms( $post, 'gpch-article-type' );
@@ -66,7 +68,7 @@ $context['filter_url'] = add_query_arg(
 	get_home_url()
 );
 
-// Build the shortcode for articles block.
+// Build the shortcode for related-posts block.
 if ('yes' === $post->include_articles) {
 	$tag_id_array = [];
 	foreach ($post->tags() as $post_tag) {
@@ -77,15 +79,6 @@ if ('yes' === $post->include_articles) {
 		$category_id_array[] = $category->id;
 	}
 
-	$block_attributes = [
-		'exclude_post_id' => $post->ID,
-		'tags' => $tag_id_array,
-		'categories' => $category_id_array,
-		'article_heading' => __('Related Articles', 'planet4-blocks'),
-		'read_more_text' => __('Load more', 'planet4-blocks'),
-		'post_types' => $page_terms_data->term_id,
-	];
-
 	$post->showArticlesForPostTypes =[
 		'story',
 		'story-fr',
@@ -95,9 +88,26 @@ if ('yes' === $post->include_articles) {
 		'article-de-magazine'
 	];
 
-	$post->articles = '<!-- wp:planet4-blocks/articles '
-	                  . wp_json_encode($block_attributes, JSON_UNESCAPED_SLASHES)
-	                  . ' /-->';
+	$block_attributes = [
+		'query' => [
+			'perPage' => 3,
+			'post_type' => 'post',
+			'taxQuery' => [
+				'post_tag' => $tag_id_array,
+				'category' => $category_id_array,
+			],
+			'exclude' => [$post->ID],
+		],
+		'className' => 'posts-list p4-query-loop is-custom-layout-list',
+		'hasPassword' => false,
+		'layout' => [
+			'type' => 'default',
+			'columnCount' => 3,
+		],
+		'namespace' => 'planet4-blocks/posts-list',
+	];
+
+	$post->articles = '<!-- wp:p4/related-posts {"query_attributes" : ' . wp_json_encode($block_attributes) . '} /-->';
 }
 
 if (! empty($take_action_page) && ! has_block('planet4-blocks/take-action-boxout')) {

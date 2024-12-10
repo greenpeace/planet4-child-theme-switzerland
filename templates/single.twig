@@ -11,11 +11,11 @@
 				<div class="top-page-tags">
 					{% if ( page_type ) %}
 						<a
-								class="tag-item tag-item--main page-type"
-								href="{{ fn('get_term_link', page_term_id) }}"
-								data-ga-category="Header"
-								data-ga-action="Post Type Tag"
-								data-ga-label="n/a">
+							class="tag-item tag-item--main page-type"
+							href="{{ fn('get_term_link', page_term_id) }}"
+							data-ga-category="Header"
+							data-ga-action="Post Type Tag"
+							data-ga-label="n/a">
 							{{ page_type|e('wp_kses_post')|raw }}
 						</a>
 					{% endif %}
@@ -53,7 +53,13 @@
 					{% endif %}
 				</div>
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
+				{% if post.post_type != "gpch_archived_post" %}
 				<div class="single-post-meta">
+					{% if not post.get_author_override and post.author.avatar %}
+						<img itemprop="image" class="author-pic"
+							 src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': 'mm'}) }}"
+							 alt="{{ post.author.avatar }}">
+					{% endif %}
 					<div class="d-inline-block">
 						{% if post.author.name %}
 							<address class="single-post-author">
@@ -65,6 +71,13 @@
 							</address>
 						{% endif %}
 						<time class="single-post-time" pubdate>{{ post.post_date|date }}</time>
+						{% set reading_time = post.reading_time_for_display %}
+						{% if reading_time %}
+							<span class="single-post-meta-bullet" aria-hidden="true">&#8226;</span>
+							<span class="single-post-meta-readtime">
+                                {{ __( '%d min read', 'planet4-master-theme' )|format(reading_time) }}
+                            </span>
+						{% endif %}
 						{% if ( show_comments ) %}
 							<span class="single-post-meta-bullet" aria-hidden="true">&#8226;</span>
 							<a href="#comments" class="comment-link">
@@ -74,6 +87,7 @@
 						{% endif %}
 					</div>
 				</div>
+				{% endif %}
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
 				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
 					{% if post.thumbnail.src is defined %}
@@ -94,12 +108,28 @@
 							</figure>
 					{% endif %}
 				{% endif %}
+
+				{% if old_posts_archive_notice.show_notice %}
+					<div class="single-post-old-posts-archive-notice">
+						{% if ( old_posts_archive_notice.title ) %}
+							<h4>{{ old_posts_archive_notice.title|e('wp_kses_post')|raw }}</h4>
+						{% endif %}
+						{% if ( old_posts_archive_notice.description ) %}
+							<p>{{ old_posts_archive_notice.description|e('wp_kses_post')|raw }}</p>
+						{% endif %}
+						{% if ( old_posts_archive_notice.button ) %}
+							<a class="btn btn-secondary" href="{{ fn('get_term_link', page_term_id) }}">
+								{{ old_posts_archive_notice.button|e('wp_kses_post')|raw }}
+							</a>
+						{% endif %}
+					</div>
+				{% endif %}
 			</header>
 		</div>
 
 		<!-- Post Block Start -->
 		<div class="container">
-			<div class="post-content">
+			<div class="post-content" id="content">
 				<article class="post-details clearfix">
 					{{ post.content|raw }}
 					{% if ( post.take_action_boxout ) %}
