@@ -1,3 +1,8 @@
+.cookie-notice {
+	/* Make sure the z-index is higher than the floating share buttons of our plugin */
+	z-index: 999999;
+}
+
 .cookies-text {
     font-size: var(--gpch-font-size--standard);
 }
