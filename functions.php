@@ -26,6 +26,9 @@ require_once 'includes/gp-user-id.php';
 // Author pages
 require_once 'includes/author-pages.php';
 
+// Author pages
+require_once 'includes/business-cards.php';
+
 // Child theme options
 require_once 'includes/child-theme-options.php';
 

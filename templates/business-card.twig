@@ -1,0 +1,6 @@
+<ul>
+	<li>Business card ID: {{ _context.business_card_id }}</li>
+	{% for key, value in _context.user %}
+		<li>{{ key }}: {{ value }}</li>
+	{% endfor %}
+</ul>
