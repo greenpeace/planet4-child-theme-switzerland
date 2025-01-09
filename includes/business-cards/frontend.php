@@ -82,10 +82,15 @@ function custom_business_card_content($content) {
 				}
 			}
 
+			// vCard file link
+			$context['vcard_link'] = get_site_url() . '/business-card/vcard/' . $user_acf_fields['business_card_id'];
+
 			// Render the Twig template
 			return Timber::compile('templates/business-card.twig', $context);
 		}
 	}
+
+	return $content;
 }
 add_filter('the_content', 'custom_business_card_content');
 
