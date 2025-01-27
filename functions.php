@@ -132,9 +132,6 @@ function gpch_editor_setup() {
 
 	// Enqueue editor styles.
 	add_editor_style( 'admin/css/editor-style.css' );
-
-	// Responsive embeds
-	add_theme_support( 'responsive-embeds' );
 }
 
 add_action( 'after_setup_theme', 'gpch_editor_setup', -9999 );
