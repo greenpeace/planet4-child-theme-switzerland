@@ -24,16 +24,16 @@ add_action( 'admin_menu', 'gpch_change_media_label', 9999999 );
 function gpch_add_swiss_phone_format( $phone_formats ) {
 	$phone_formats['ch'] = array(
 		'label'       => '+41 ## ### ## ## (Telefon Schweiz)',
-		'mask'        => '+41 99 999 99 99',
-		'regex'       => '/^(\+41)\s(\d{2})\s(\d{3})\s(\d{2})\s(\d{2})$/',
-		'instruction' => '+41 xx xxx xx xx',
+		'mask'        => false,
+		'regex'       => '/^[0-9 +()CH]*$/',
+		'instruction' => __( 'Use only numbers, spaces, parentheses and "+"', 'planet4-child-theme-switzerland' ),
 	);
 
 	$phone_formats['ch-mobile'] = array(
 		'label'       => '+41 7# ### ## ## (Mobile Schweiz)',
-		'mask'        => '+41 79 999 99 99',
-		'regex'       => '/^(\+41\s7)(\d{1})\s(\d{3})\s(\d{2})\s(\d{2})$/',
-		'instruction' => '+41 7x xxx xx xx',
+		'mask'        => false,
+		'regex'       => '/^[0-9 +()CH]*$/',
+		'instruction' => __( 'Use only numbers, spaces, parentheses and "+"', 'planet4-child-theme-switzerland' ),
 	);
 
 	return $phone_formats;
