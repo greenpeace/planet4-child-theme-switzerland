@@ -44,6 +44,8 @@ function gpch_render_business_card_page()
 
 	// Save data
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['business_card_nonce'])) {
+		gpch_generate_business_card_id_on_save(get_current_user_id());
+
 		if (wp_verify_nonce($_POST['business_card_nonce'], 'save_business_card_fields')) {
 			// Save ACF data
 			if (function_exists('acf_save_post')) {

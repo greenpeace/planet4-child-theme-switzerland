@@ -366,7 +366,7 @@ add_action( 'acf/include_fields', function() {
 				'label' => 'Instagram Handle',
 				'name' => 'bc_instagram',
 				'aria-label' => '',
-				'type' => 'text',
+				'type' => 'url',
 				'instructions' => '',
 				'required' => 0,
 				'conditional_logic' => array(
