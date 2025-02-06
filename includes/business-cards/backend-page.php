@@ -38,7 +38,7 @@ add_action('admin_menu', 'gpch_add_business_card_submenu');
 function gpch_render_business_card_page()
 {
 	// Check user capabilities
-	if (!current_user_can('edit_users')) {
+	if (!current_user_can('read')) {
 		return;
 	}
 
