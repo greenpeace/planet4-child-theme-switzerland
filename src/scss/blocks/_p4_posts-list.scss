@@ -4,6 +4,7 @@
 
 		img {
 			height: 100%;
+			max-width: 262px;
 		}
 	}
 
@@ -13,6 +14,11 @@
 		.taxonomy-category {
 			display: none;
 		}
+	}
+
+	.wp-block-post-title {
+		margin-top: 0;
+		margin-bottom: 24px;
 	}
 
 	.wp-block-post-excerpt p {
