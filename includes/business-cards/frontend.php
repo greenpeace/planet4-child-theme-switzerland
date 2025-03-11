@@ -32,24 +32,48 @@ function gpch_business_card_query_vars($query_vars)
 }
 add_filter('query_vars', 'gpch_business_card_query_vars');
 
+
 /**
  * Handles the display of a custom virtual page based on the 'business_card_id' query variable.
  *
  * @return void
  */
-function custom_virtual_page() {
+function custom_virtual_page($template) {
 	$business_card_id = get_query_var('business_card_id');
 	$pagename = get_query_var('pagename');
 
 	// Check if the query variable is set
 	if ($business_card_id && $pagename === 'business-card') {
-		// Load the default page template
-		include get_template_directory() . '/page.php';
+		status_header(200);
 
-		exit;
+		// Load the default page template
+		return get_template_directory() . '/page.php';
 	}
+
+	return $template;
 }
-add_action('template_redirect', 'custom_virtual_page');
+add_action('template_include', 'custom_virtual_page');
+
+
+function gpch_change_page_title($title	) {
+	$business_card_id = get_query_var('business_card_id');
+
+	if ($business_card_id) {
+
+		$user = get_user_by_business_card_id($business_card_id);
+
+		// Check if a valid user object is retrieved
+		if ($user && !is_wp_error($user)) {
+			// Get all ACF fields for the user
+			$bc_name = get_field('bc_name', 'user_' . $user->ID); // ACF function to get all fields
+
+			return $bc_name;
+		}
+	}
+
+	return $title;
+};
+add_filter( 'wp_title', 'gpch_change_page_title', 100 );
 
 /**
  * Outputs the frontend content for a business card page.
