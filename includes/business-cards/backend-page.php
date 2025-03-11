@@ -19,7 +19,7 @@ function gpch_add_business_card_submenu()
 	add_users_page(
 		__('My Business Card', 'textdomain'), // Page title
 		__('My Business Card', 'textdomain'), // Menu title
-		'read',                         // Capability required to view this page
+		'edit_business_card',                         // Capability required to view this page
 		'business-card',                      // Slug for the submenu
 		'gpch_render_business_card_page'      // Callback function to display the page
 	);
@@ -77,7 +77,7 @@ function gpch_render_business_card_page()
 		<h1><?php _e('Manage My Business Card', 'textdomain'); ?></h1>
 		<p><?php _e('Your personal business card that will be published on the website.', 'textdomain'); ?></p>
 		<hr>
-		<?php if ($user_acf_fields['enable_business_card']): ?>
+		<?php if (isset($user_acf_fields['enable_business_card'])): ?>
 			<h2><?php _e('Congratulations, your Business card is published!', 'textdomain'); ?></h2>
 			<p><?php _e('Link to your business card', 'textdomain'); ?>: <a href="<?php echo $bc_link ?>"><?php echo $bc_link ?></a></p>
 			<p><?php _e('You can also use a QR code:', 'textdomain'); ?>:<br> <img src="<?php echo generate_qr_code($bc_link) ?>" style="max-width:180px;"></p>

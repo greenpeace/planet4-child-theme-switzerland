@@ -37,6 +37,34 @@ add_action( 'acf/include_fields', function() {
 				'custom_choice_button_text' => 'Add new choice',
 			),
 			array(
+				'key' => 'field_6772b21f60d0c',
+				'label' => 'Business Card ID',
+				'name' => 'business_card_id',
+				'aria-label' => '',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => array(
+					array(
+						array(
+							'field' => 'field_6772a98936fdd',
+							'operator' => '!=empty',
+						),
+					),
+				),
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'maxlength' => '',
+				'allow_in_bindings' => 1,
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+			),
+			array(
 				'key' => 'field_6772ab67904b9',
 				'label' => 'Personal Data',
 				'name' => '',
@@ -389,106 +417,40 @@ add_action( 'acf/include_fields', function() {
 				'prepend' => '',
 				'append' => '',
 			),
-			array(
-				'key' => 'field_6772b146bf677',
-				'label' => 'Share your business card',
-				'name' => '',
-				'aria-label' => '',
-				'type' => 'tab',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => array(
-					array(
-						array(
-							'field' => 'field_6772a98936fdd',
-							'operator' => '!=empty',
-						),
-					),
-				),
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'placement' => 'top',
-				'endpoint' => 0,
-				'selected' => 0,
-			),
-			array(
-				'key' => 'field_6772b21f60d0c',
-				'label' => 'Business Card ID',
-				'name' => 'business_card_id',
-				'aria-label' => '',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => array(
-					array(
-						array(
-							'field' => 'field_6772a98936fdd',
-							'operator' => '!=empty',
-						),
-					),
-				),
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'maxlength' => '',
-				'allow_in_bindings' => 1,
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-			),
-			array(
-				'key' => 'field_6778011d05453',
-				'label' => 'Business Card URL',
-				'name' => 'bc_url',
-				'aria-label' => '',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => array(
-					array(
-						array(
-							'field' => 'field_6772a98936fdd',
-							'operator' => '!=empty',
-						),
-					),
-				),
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'maxlength' => '',
-				'allow_in_bindings' => 1,
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-			),
 		),
 		'location' => array(
 			array(
 				array(
+					'param' => 'current_user_role',
+					'operator' => '==',
+					'value' => 'administrator',
+				),
+				array(
 					'param' => 'user_form',
 					'operator' => '==',
-					'value' => 'edit',
+					'value' => 'all',
 				),
 			),
 		),
-		'menu_order' => -20,
-		'position' => 'acf_after_title',
+		'menu_order' => 0,
+		'position' => 'normal',
 		'style' => 'default',
 		'label_placement' => 'top',
 		'instruction_placement' => 'field',
 		'hide_on_screen' => '',
-		'active' => false,
+		'active' => true,
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
 } );
 
+function gpch_bc_prepare_id_field( $field ) {
+	// Change the field to read-only for everyone except admins
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return false;
+	}
+
+	return $field;
+}
+
+add_filter( 'acf/prepare_field/name=business_card_id', 'gpch_bc_prepare_id_field' );
