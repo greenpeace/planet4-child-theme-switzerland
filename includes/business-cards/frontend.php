@@ -49,6 +49,7 @@ function gpch_business_card_virtual_page( $template ) {
 
 		if ( $is_enabled ) {
 			status_header( 200 );
+			add_filter( 'wp_robots', 'wp_robots_no_robots' );
 
 			// Load the default page template
 			return get_template_directory() . '/page.php';
