@@ -66,48 +66,39 @@
 			<!-- wp:column -->
 			<div class="wp-block-column">
 				<!-- wp:heading -->
-				<h2 class="wp-block-heading">Find me on:</h2>
+				<h2 class="wp-block-heading has-text-align-center">Find me on:</h2>
 				<!-- /wp:heading -->
 
-				<!-- wp:columns {"isStackedOnMobile":false} -->
-				<div class="wp-block-columns is-not-stacked-on-mobile business-card-socials">
+				<div class="business-card-socials">
 					{% if(user.bc_linkedin) %}
-						<!-- wp:column -->
-						<div class="wp-block-column"><!-- wp:html -->
-							<a href="{{ user.bc_linkedin }}">
+						<div class="business-card-socials-icon">
+							<a href="{{ user.bc_linkedin }}" title="LinkedIn">
 								<svg viewBox="0 0 32 32" class="icon"><use xlink:href="/wp-content/themes/planet4-master-theme/assets/build/sprite.symbol.svg#linkedin"></use></svg>
-								<!-- /wp:html --></a></div>
-						<!-- /wp:column -->
+							</a></div>
 					{% endif %}
 
 					{% if(user.bc_bluesky) %}
-						<!-- wp:column -->
-						<div class="wp-block-column"><!-- wp:html -->
-							<a href="{{ user.bc_bluesky }}">
+						<div class="business-card-socials-icon">
+							<a href="{{ user.bc_bluesky }}" title="Bluesky">
 								<svg viewBox="0 0 32 32" class="icon"><use xlink:href="/wp-content/themes/planet4-master-theme/assets/build/sprite.symbol.svg#bluesky"></use></svg>
-								<!-- /wp:html --></a></div>
-						<!-- /wp:column -->
+							</a></div>
 					{% endif %}
 
 					{% if(user.bc_instagram) %}
-						<!-- wp:column -->
-						<div class="wp-block-column"><!-- wp:html -->
-							<a href="{{ user.bc_instagram }}">
+						<div class="business-card-socials-icon">
+							<a href="{{ user.bc_instagram }}" title="Instagram">
 								<svg viewBox="0 0 32 32" class="icon"><use xlink:href="/wp-content/themes/planet4-master-theme/assets/build/sprite.symbol.svg#instagram"></use></svg>
-								<!-- /wp:html --></a></div>
-						<!-- /wp:column -->
+							</a></div>
 					{% endif %}
 
 					{% if(user.bc_facebook) %}
-						<!-- wp:column -->
-						<div class="wp-block-column"><!-- wp:html -->
-							<a href="{{ user.bc_facebook }}">
+						<div class="business-card-socials-icon">
+							<a href="{{ user.bc_facebook }}" title="Facebook">
 								<svg viewBox="0 0 32 32" class="icon"><use xlink:href="/wp-content/themes/planet4-master-theme/assets/build/sprite.symbol.svg#facebook-square"></use></svg>
-								<!-- /wp:html --></a></div>
-						<!-- /wp:column -->
+							</a>
+						</div>
 					{% endif %}
 				</div>
-				<!-- /wp:columns -->
 				{% endif %}
 		</div>
 		<!-- /wp:column -->

@@ -3,11 +3,30 @@
 		margin-bottom: 28px;
 	}
 
+	h2 {
+		font-size: 32px;
+	}
+
+	.wp-block-group {
+		margin-bottom: 2rem;
+	}
+
 	.wp-block-buttons {
 		margin-top: 2rem;
 	}
 
+	.wp-block-column {
+		margin-bottom: 2rem;
+	}
+
 	.business-card-socials {
+		text-align: center;
+
+		.business-card-socials-icon {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
 		.icon {
 			height: 40px;
 			width: 40px;
