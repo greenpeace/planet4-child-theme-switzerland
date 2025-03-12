@@ -5,18 +5,19 @@
  *
  * @return void
  */
-function gpch_add_business_card_rewrite_rules()
-{
+function gpch_add_business_card_rewrite_rules() {
 	add_rewrite_rule(
 		'business-card/([a-zA-Z0-9]*)/?$',
 		'index.php?pagename=business-card&business_card_id=$matches[1]',
-		'top');
+		'top'
+	);
 	add_rewrite_rule(
 		'business-card/vcard/([a-zA-Z0-9]*)/?$',
 		'index.php?pagename=business-card-vcard&business_card_id=$matches[1]',
-		'top');
+		'top'
+	);
 }
-add_action('init', 'gpch_add_business_card_rewrite_rules');
+add_action( 'init', 'gpch_add_business_card_rewrite_rules' );
 
 
 /**
@@ -25,26 +26,26 @@ add_action('init', 'gpch_add_business_card_rewrite_rules');
  * @param array $query_vars An array of existing query variables.
  * @return array The modified array of query variables.
  */
-function gpch_business_card_query_vars($query_vars)
-{
+function gpch_business_card_query_vars( $query_vars ) {
 	$query_vars[] = 'business_card_id';
 	return $query_vars;
 }
-add_filter('query_vars', 'gpch_business_card_query_vars');
+add_filter( 'query_vars', 'gpch_business_card_query_vars' );
 
 
 /**
- * Handles the display of a custom virtual page based on the 'business_card_id' query variable.
+ * Handles virtual page rendering for business card URLs.
  *
- * @return void
+ * @param string $template The path to the current template being used.
+ * @return string The path to the appropriate template file for the virtual page or the original template.
  */
-function custom_virtual_page($template) {
-	$business_card_id = get_query_var('business_card_id');
-	$pagename = get_query_var('pagename');
+function gpch_business_card_virtual_page( $template ) {
+	$business_card_id = get_query_var( 'business_card_id' );
+	$pagename         = get_query_var( 'pagename' );
 
 	// Check if the query variable is set
-	if ($business_card_id && $pagename === 'business-card') {
-		status_header(200);
+	if ( $business_card_id && $pagename === 'business-card' ) {
+		status_header( 200 );
 
 		// Load the default page template
 		return get_template_directory() . '/page.php';
@@ -52,28 +53,34 @@ function custom_virtual_page($template) {
 
 	return $template;
 }
-add_action('template_include', 'custom_virtual_page');
+add_action( 'template_include', 'gpch_business_card_virtual_page' );
 
 
-function gpch_change_page_title($title	) {
-	$business_card_id = get_query_var('business_card_id');
+/**
+ * Modifies the page title for a business card page.
+ *
+ * @param string $title The original page title.
+ * @return string The modified page title if a valid business card ID and associated user are found; otherwise, the original title.
+ */
+function gpch_business_card_change_page_title( $title ) {
+	$business_card_id = get_query_var( 'business_card_id' );
 
-	if ($business_card_id) {
+	if ( $business_card_id ) {
 
-		$user = get_user_by_business_card_id($business_card_id);
+		$user = gpch_get_user_by_business_card_id( $business_card_id );
 
 		// Check if a valid user object is retrieved
-		if ($user && !is_wp_error($user)) {
+		if ( $user && ! is_wp_error( $user ) ) {
 			// Get all ACF fields for the user
-			$bc_name = get_field('bc_name', 'user_' . $user->ID); // ACF function to get all fields
+			$bc_name = get_field( 'bc_name', 'user_' . $user->ID ); // ACF function to get all fields
 
 			return $bc_name;
 		}
 	}
 
 	return $title;
-};
-add_filter( 'wp_title', 'gpch_change_page_title', 100 );
+}
+add_filter( 'wp_title', 'gpch_business_card_change_page_title', 100 );
 
 /**
  * Outputs the frontend content for a business card page.
@@ -81,27 +88,27 @@ add_filter( 'wp_title', 'gpch_change_page_title', 100 );
  * @param string $content The original page content.
  * @return string The modified content with custom business card details or the original content for non-business card pages.
  */
-function custom_business_card_content($content) {
-	$business_card_id = get_query_var('business_card_id');
+function gpch_custom_business_card_content( $content ) {
+	$business_card_id = get_query_var( 'business_card_id' );
 
-	if ($business_card_id) {
+	if ( $business_card_id ) {
 		$context = [
 			'business_card_id' => $business_card_id,
-			'user' => [],
+			'user'             => [],
 		];
 
-		$user = get_user_by_business_card_id($business_card_id);
+		$user = gpch_get_user_by_business_card_id( $business_card_id );
 
 		// Check if a valid user object is retrieved
-		if ($user && !is_wp_error($user)) {
+		if ( $user && ! is_wp_error( $user ) ) {
 			// Get all ACF fields for the user
-			$user_acf_fields = get_fields('user_' . $user->ID); // ACF function to get all fields
+			$user_acf_fields = get_fields( 'user_' . $user->ID ); // ACF function to get all fields
 
 			// Add user ACF fields starting with "bc_" to the context
-			if (!empty($user_acf_fields)) {
-				foreach ($user_acf_fields as $field_key => $field_value) {
-					if (strpos($field_key, 'bc_') === 0) {
-						$context['user'][$field_key] = $field_value;
+			if ( ! empty( $user_acf_fields ) ) {
+				foreach ( $user_acf_fields as $field_key => $field_value ) {
+					if ( strpos( $field_key, 'bc_' ) === 0 ) {
+						$context['user'][ $field_key ] = $field_value;
 					}
 				}
 			}
@@ -110,11 +117,10 @@ function custom_business_card_content($content) {
 			$context['vcard_link'] = get_site_url() . '/business-card/vcard/' . $user_acf_fields['business_card_id'];
 
 			// Render the Twig template
-			return Timber::compile('templates/business-card.twig', $context);
+			return Timber::compile( 'templates/business-card.twig', $context );
 		}
 	}
 
 	return $content;
 }
-add_filter('the_content', 'custom_business_card_content');
-
+add_filter( 'the_content', 'gpch_custom_business_card_content' );

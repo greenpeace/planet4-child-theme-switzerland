@@ -313,7 +313,6 @@ function gpch_user_roles() {
 
 		// Business cards
 		$admin_role->add_cap( 'edit_business_card', true );
-		$admin_role->add_cap( 'admin_business_card', true );
 	}
 }
 

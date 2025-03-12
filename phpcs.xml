@@ -76,6 +76,14 @@
 		</properties>
 	</rule>
 
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="edit_business_card"/>
+			</property>
+		</properties>
+	</rule>
+
 
 	<!--
 	#############################################################################
