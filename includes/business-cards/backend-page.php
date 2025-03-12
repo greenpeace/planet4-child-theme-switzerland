@@ -76,12 +76,14 @@ function gpch_render_business_card_page() {
 	$user_acf_fields = get_fields( 'user_' . get_current_user_id() );
 
 	$bc_link = get_site_url() . '/business-card/' . $user_acf_fields['business_card_id'];
+
+	$bc_is_enabled = gpch_get_is_business_card_enabled_by_id( $user_acf_fields['business_card_id'] );
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Manage My Business Card', 'planet4-child-theme-switzerland' ); ?></h1>
-		<p><?php esc_html_e( 'Your personal business card that will be published on the website.', 'planet4-child-theme-switzerland' ); ?></p>
+		<p><?php esc_html_e( 'Your personal digital business card.', 'planet4-child-theme-switzerland' ); ?></p>
 		<hr>
-		<?php if ( isset( $user_acf_fields['enable_business_card'] ) ) : ?>
+		<?php if ( $bc_is_enabled ) : ?>
 			<h2><?php esc_html_e( 'Congratulations, your Business card is published!', 'planet4-child-theme-switzerland' ); ?></h2>
 			<p><?php esc_html_e( 'Link to your business card', 'planet4-child-theme-switzerland' ); ?>: <a href="<?php echo esc_html( $bc_link ); ?>"><?php echo esc_html( $bc_link ); ?></a></p>
 			<p><?php esc_html_e( 'You can also use a QR code:', 'planet4-child-theme-switzerland' ); ?>:<br> <img src="<?php echo esc_html( gpch_generate_qr_code( $bc_link ) ); ?>" style="max-width:180px;"></p>

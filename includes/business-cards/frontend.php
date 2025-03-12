@@ -45,10 +45,14 @@ function gpch_business_card_virtual_page( $template ) {
 
 	// Check if the query variable is set
 	if ( $business_card_id && $pagename === 'business-card' ) {
-		status_header( 200 );
+		$is_enabled = gpch_get_is_business_card_enabled_by_id( $business_card_id );
 
-		// Load the default page template
-		return get_template_directory() . '/page.php';
+		if ( $is_enabled ) {
+			status_header( 200 );
+
+			// Load the default page template
+			return get_template_directory() . '/page.php';
+		}
 	}
 
 	return $template;
@@ -66,15 +70,17 @@ function gpch_business_card_change_page_title( $title ) {
 	$business_card_id = get_query_var( 'business_card_id' );
 
 	if ( $business_card_id ) {
+		$is_enabled = gpch_get_is_business_card_enabled_by_id( $business_card_id );
 
-		$user = gpch_get_user_by_business_card_id( $business_card_id );
+		if ( $is_enabled ) {
+			$user = gpch_get_user_by_business_card_id( $business_card_id );
 
-		// Check if a valid user object is retrieved
-		if ( $user && ! is_wp_error( $user ) ) {
-			// Get all ACF fields for the user
-			$bc_name = get_field( 'bc_name', 'user_' . $user->ID ); // ACF function to get all fields
+			// Check if a valid user object is retrieved
+			if ( $user && ! is_wp_error( $user ) ) {
+				$bc_name = get_field( 'bc_name', 'user_' . $user->ID );
 
-			return $bc_name;
+				return $bc_name;
+			}
 		}
 	}
 
@@ -92,32 +98,36 @@ function gpch_custom_business_card_content( $content ) {
 	$business_card_id = get_query_var( 'business_card_id' );
 
 	if ( $business_card_id ) {
-		$context = [
-			'business_card_id' => $business_card_id,
-			'user'             => [],
-		];
+		$is_enabled = gpch_get_is_business_card_enabled_by_id( $business_card_id );
 
-		$user = gpch_get_user_by_business_card_id( $business_card_id );
+		if ( $is_enabled ) {
+			$context = [
+				'business_card_id' => $business_card_id,
+				'user'             => [],
+			];
 
-		// Check if a valid user object is retrieved
-		if ( $user && ! is_wp_error( $user ) ) {
-			// Get all ACF fields for the user
-			$user_acf_fields = get_fields( 'user_' . $user->ID ); // ACF function to get all fields
+			$user = gpch_get_user_by_business_card_id( $business_card_id );
 
-			// Add user ACF fields starting with "bc_" to the context
-			if ( ! empty( $user_acf_fields ) ) {
-				foreach ( $user_acf_fields as $field_key => $field_value ) {
-					if ( strpos( $field_key, 'bc_' ) === 0 ) {
-						$context['user'][ $field_key ] = $field_value;
+			// Check if a valid user object is retrieved
+			if ( $user && ! is_wp_error( $user ) ) {
+				// Get all ACF fields for the user
+				$user_acf_fields = get_fields( 'user_' . $user->ID ); // ACF function to get all fields
+
+				// Add user ACF fields starting with "bc_" to the context
+				if ( ! empty( $user_acf_fields ) ) {
+					foreach ( $user_acf_fields as $field_key => $field_value ) {
+						if ( strpos( $field_key, 'bc_' ) === 0 ) {
+							$context['user'][ $field_key ] = $field_value;
+						}
 					}
 				}
+
+				// vCard file link
+				$context['vcard_link'] = get_site_url() . '/business-card/vcard/' . $user_acf_fields['business_card_id'];
+
+				// Render the Twig template
+				return Timber::compile( 'templates/business-card.twig', $context );
 			}
-
-			// vCard file link
-			$context['vcard_link'] = get_site_url() . '/business-card/vcard/' . $user_acf_fields['business_card_id'];
-
-			// Render the Twig template
-			return Timber::compile( 'templates/business-card.twig', $context );
 		}
 	}
 

@@ -32,6 +32,27 @@ function gpch_get_user_by_business_card_id( $business_card_id ) {
 
 
 /**
+ * Checks if the business card feature is enabled for a user by their business card ID.
+ *
+ * @param string $business_card_id The unique identifier of the business card.
+ * @return bool True if the business card is enabled, false otherwise.
+ */
+function gpch_get_is_business_card_enabled_by_id( $business_card_id ) {
+	$user = gpch_get_user_by_business_card_id( $business_card_id );
+
+	if ( $user ) {
+		$bc_is_enabled_field = get_field( 'enable_business_card', 'user_' . $user->ID );
+
+		if ( $bc_is_enabled_field && $bc_is_enabled_field[0] === 'enabled' ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+/**
  * Hooks into saving a profile page in the WordPress admin.
  * If the ACF field 'business_card_id' is empty, generates a 12-character random string and saves it to the field.
  *
