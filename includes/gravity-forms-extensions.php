@@ -257,6 +257,37 @@ add_action( 'gform_after_submission', 'gpch_gf_increment_form_entry_counter', 10
 
 
 /**
+ * Format phone numbers in Gravity Forms phone fields before saving.
+ *
+ * @param string      $value The current value of the field.
+ * @param array       $entry The entry object containing form submission values.
+ * @param GF_Field    $field The current field being processed.
+ * @param Form_Object $form The current form object.
+ * @param string      $input_id The specific input ID of the field.
+ *
+ * @return string The formatted phone number if matched, otherwise the original value.
+ */
+function gpch_gf_format_phone_number( $value, $entry, $field, $form, $input_id ) {
+	if ( $field->get_input_type() === 'phone' ) {
+		// Remove whitespace
+		$new_value = preg_replace( '/\s+/', '', $value );
+
+		// Normalize
+		$pattern = '/^(0041|041|\+41|\+\+41|41)?(0|\(0\))?([1-9]\d{1})(\d{3})(\d{2})(\d{2})$/';
+
+		if ( preg_match( $pattern, $new_value, $matches ) ) {
+			$new_value = '+41' . $matches[3] . $matches[4] . $matches[5] . $matches[6];
+
+			return $new_value;
+		}
+	}
+
+	return $value;
+}
+add_filter( 'gform_save_field_value', 'gpch_gf_format_phone_number', 10, 5 );
+
+
+/**
  * Set HTTP headers to allow embedding of gravity forms
  *
  * @param array $allowlist The allowlist for domains that can ambed our forms.
