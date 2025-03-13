@@ -70,7 +70,7 @@ function gpch_form_submission_event_parameters( $parameters, $form, $entry ) {
 	// Find the newsletter field
 	// Convention: use an admin label in the form field settings that contains "newsletter"
 	foreach ( $form['fields'] as $field ) {
-		if ( $field['type'] == 'checkbox' && strpos( $field['adminLabel'], 'newsletter' ) !== false ) {
+		if ( $field['type'] === 'checkbox' && strpos( $field['adminLabel'], 'newsletter' ) !== false ) {
 			$newsletter_type     = $field['adminLabel'];
 			$newsletter_field_id = $field['inputs'][0]['id'];
 
@@ -91,9 +91,9 @@ function gpch_form_submission_event_parameters( $parameters, $form, $entry ) {
 	$address_field_used = 0;
 	$phone_field_used   = 0;
 	foreach ( $form['fields'] as $field ) {
-		if ( $field['type'] == 'address' ) {
+		if ( $field['type'] === 'address' ) {
 			$address_field_used = 1;
-		} elseif ( $field['type'] == 'phone' ) {
+		} elseif ( $field['type'] === 'phone' ) {
 			$phone_field_used = 1;
 		}
 	}
@@ -298,7 +298,7 @@ function gpch_gravityforms_embed_whitelist( $allowlist ) {
 	global $wp;
 
 	// Only modify the whitelist if the requested page is an Gravity Form to embed
-	if ( $wp->request == 'gfembed' ) {
+	if ( $wp->request === 'gfembed' ) {
 		$options = get_option( 'gpch_child_options' );
 
 		$allowed_ancestors = preg_split( '/\r\n|\r|\n/', $options['gpch_child_field_gf_embed_whitelist'] );
@@ -354,28 +354,15 @@ add_filter( 'gform_field_validation', 'gpch_custom_address_validation', 10, 4 );
  * @param string|bool $allowable_tags The allowed html tags.
  *
  * @return string
+ *
+ * @phpcs:ignore(Generic.CodeAnalysis.UnusedFunctionParameter)
  */
-function gpch_set_allowed_form_submission_tags( $allowable_tags ) {
+function gpch_set_allowed_form_submission_tags( $allowable_tags ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
 	// Return an empty string to disallow all html tags.
 	return '';
 }
 
 add_filter( 'gform_allowable_tags', 'gpch_set_allowed_form_submission_tags', 10, 1 );
-
-/**
- * Forces all GravityForms to use AJAX submission, overwriting the block level setting.
- *
- * @param array $form_args The arguments for the current form.
- *
- * @return array $form_args
- */
-function gpch_gform_arguments( $form_args ) {
-	$form_args['ajax'] = true;
-
-	return $form_args;
-}
-
-// add_filter( 'gform_form_args', 'gpch_gform_arguments', 10, 1 );
 
 
 /**
@@ -401,7 +388,7 @@ add_action( 'init', 'gpch_fix_gform_chosen_mobile', 11 );
  * @return array
  */
 function gpch_spam_entry_filter( $result, $value, $form, $field ) {
-	if ( $field->type == 'text' || $field->type == 'textarea' ) {
+	if ( $field->type === 'text' || $field->type === 'textarea' ) {
 		$contains_characters = gpch_contains_forbidden_characters( $value );
 
 		if ( $contains_characters ) {
@@ -473,9 +460,9 @@ function gpch_contains_forbidden_characters( $text ): bool {
 function gpch_salesforce_id_check( $form ) {
 	if ( current_user_can( 'edit_posts' ) ) {
 		foreach ( $form['fields'] as &$field ) {
-			if ( $field->label == 'salesforce_campaign_id' ) {
+			if ( $field->label === 'salesforce_campaign_id' ) {
 				//phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				if ( strlen( $field->defaultValue ) < 16 || $field->defaultValue == '701090000005gMWAAY' ) {
+				if ( strlen( $field->defaultValue ) < 16 || $field->defaultValue === '701090000005gMWAAY' ) {
 					echo "<div class=\"editor-warning\" style=\"border: 5px solid red; margin: 1em 0; padding: 1em;\"><span style=\"font-weight: bold;\">The Salesform Campaign ID in this form is missing or still using the default. Are you sure that's correct? </span><br>(This warning is only shown to editors.)</div>";
 				}
 			}
@@ -488,23 +475,18 @@ function gpch_salesforce_id_check( $form ) {
 add_filter( 'gform_pre_render', 'gpch_salesforce_id_check' );
 
 /**
- * Enable default meta parameters for Gravity forms.
+ * Enable default meta parameters for Gravity forms. Overwrite parameters from master theme.
  *
  * @param array $meta Associative array containing all form properties.
- *
- * [carndt] copy of the function in the master theme
- *
  */
-function gpch_gf_enable_default_meta_settings(array $meta): array {
+function gpch_gf_enable_default_meta_settings( array $meta ): array {
 	$meta['personalData']['preventIP'] = false;
-	// $meta['personalData']['retention']['policy'] = 'delete';
-	// $meta['personalData']['retention']['retain_entries_days'] = 90;
-	// $meta['personalData']['exportingAndErasing']['enabled'] = true;
+
 	return $meta;
 }
 
-// [carndt] apply only for specific forms
+// Apply only for specific forms
 // ACT: CFC Finanzplatz-Initiative DE
-add_filter('gform_form_post_get_meta_443', 'gpch_gf_enable_default_meta_settings', 10, 1);
+add_filter( 'gform_form_post_get_meta_443', 'gpch_gf_enable_default_meta_settings', 10, 1 );
 // ACT: CFC Finanzplatz-Initiative FR
-add_filter('gform_form_post_get_meta_450', 'gpch_gf_enable_default_meta_settings', 10, 1);
+add_filter( 'gform_form_post_get_meta_450', 'gpch_gf_enable_default_meta_settings', 10, 1 );
