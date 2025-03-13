@@ -272,7 +272,8 @@ function gpch_gf_format_phone_number( $value, $entry, $field, $form, $input_id )
 		// Remove whitespace
 		$new_value = preg_replace( '/\s+/', '', $value );
 
-		// Normalize
+		// Documentation for regular expression:
+		// https://app.gitbook.com/o/-LMm4Q4AuKcwl38JYrxF/s/-MRaHo4A9E_PAHGTGMWQ/npsp-documentation/admin-stuff/phone-number-cleanup
 		$pattern = '/^(0041|041|\+41|\+\+41|41)?(0|\(0\))?([1-9]\d{1})(\d{3})(\d{2})(\d{2})$/';
 
 		if ( preg_match( $pattern, $new_value, $matches ) ) {
