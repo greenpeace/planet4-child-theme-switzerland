@@ -1,11 +1,10 @@
 <?php
 
+add_action( 'admin_init', 'gpch_user_roles' );
 
-	add_action( 'admin_init', 'gpch_user_roles' );
-
-	/**
-	 * Adds additional user roles and manages capabilities
-	 */
+/**
+ * Adds additional user roles and manages capabilities
+ */
 function gpch_user_roles() {
 	// New role for HR
 	// Add the role with basic capabilities
@@ -41,6 +40,9 @@ function gpch_user_roles() {
 		$hr_role->add_cap( 'edit_others_jobs', true );
 		$hr_role->add_cap( 'publish_jobs', true );
 		$hr_role->add_cap( 'read_private_jobs', true );
+
+		// Business cards
+		$hr_role->add_cap( 'edit_business_card', true );
 	}
 
 	// New role for Events
@@ -125,6 +127,9 @@ function gpch_user_roles() {
 		$event_formexports_role->add_cap( 'gravityforms_view_entry_notes', true );
 		$event_formexports_role->add_cap( 'gravityforms_edit_entry_notes', true );
 		$event_formexports_role->add_cap( 'gravityforms_export_entries', true );
+
+		// Business cards
+		$event_formexports_role->add_cap( 'edit_business_card', true );
 	}
 
 	// New role for content feedback
@@ -170,6 +175,33 @@ function gpch_user_roles() {
 		$hr_role->add_cap( 'read_job', true );
 		$hr_role->add_cap( 'edit_jobs', true );
 		$hr_role->add_cap( 'edit_others_jobs', true );
+	}
+
+	add_role(
+		'gpch-businesscard',
+		__( 'GPCH Business Card', 'planet4-child-theme-switzerland' ),
+		array(
+			// General
+			'read'         => true,
+
+			// Media upload
+			'upload_files' => true,
+		)
+	);
+
+	// Add capabilities to business card role
+	// These capabilities are added even when the role already exists
+	// Be aware that capabilities are persistent. Removing a line below won't revoke an already granted permission.
+	// To revoke a capability, change the lines below to use remove_cap() instead of add_cap().
+	$businesscard_role = get_role( 'gpch-businesscard' );
+
+	if ( $businesscard_role ) {
+		// General
+		$businesscard_role->add_cap( 'read', true );
+		$businesscard_role->add_cap( 'upload_files', true );
+
+		// Business cards
+		$businesscard_role->add_cap( 'edit_business_card', true );
 	}
 
 	// Add capabilities to editor role
@@ -232,6 +264,9 @@ function gpch_user_roles() {
 		$editor_role->add_cap( 'gravityforms_preview_forms', true );
 		$editor_role->add_cap( 'gravityforms_system_status', false );
 		$editor_role->add_cap( 'gravityforms_logging', false );
+
+		// Business cards
+		$editor_role->add_cap( 'edit_business_card', true );
 	}
 
 	// Add capabilities to admin role
@@ -275,6 +310,9 @@ function gpch_user_roles() {
 		$admin_role->add_cap( 'edit_others_magredirects', true );
 		$admin_role->add_cap( 'publish_magredirects', true );
 		$admin_role->add_cap( 'read_private_magredirects', true );
+
+		// Business cards
+		$admin_role->add_cap( 'edit_business_card', true );
 	}
 }
 
