@@ -16,3 +16,8 @@
 	top: calc(50% - 9px);
 }
 
+/* Hide character counter for name fields */
+input[autocomplete="given-name"] + div.charleft,
+input[autocomplete="family-name"] + div.charleft {
+	display: none;
+}
