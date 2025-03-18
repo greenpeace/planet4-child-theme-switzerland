@@ -75,23 +75,75 @@ function gpch_render_business_card_page() {
 	// Get all ACF fields for the user
 	$user_acf_fields = get_fields( 'user_' . get_current_user_id() );
 
-	$bc_link = get_site_url() . '/business-card/' . $user_acf_fields['business_card_id'];
+	$bc_link_de = get_site_url() . '/de/business-card/' . $user_acf_fields['business_card_id'];
+	$bc_link_fr = get_site_url() . '/fr/business-card/' . $user_acf_fields['business_card_id'];
+
+	$qr_de_svg = gpch_generate_qr_code( $bc_link_de );
+	$qr_de_png = gpch_generate_qr_code( $bc_link_de, 'png' );
+	$qr_fr_svg = gpch_generate_qr_code( $bc_link_fr );
+	$qr_fr_png = gpch_generate_qr_code( $bc_link_fr, 'png' );
 
 	$bc_is_enabled = gpch_get_is_business_card_enabled_by_id( $user_acf_fields['business_card_id'] );
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Manage My Business Card', 'planet4-child-theme-switzerland' ); ?></h1>
 		<p><?php esc_html_e( 'Your personal digital business card.', 'planet4-child-theme-switzerland' ); ?></p>
+		<p><a href="https://www.greenpeace.ch/internal-business-cards-documentation"><?php esc_html_e( 'Visit the documentation for more information.', 'planet4-child-theme-switzerland' ); ?></a></p>
 		<hr>
 		<?php if ( $bc_is_enabled ) : ?>
-			<h2><?php esc_html_e( 'Congratulations, your Business card is published!', 'planet4-child-theme-switzerland' ); ?></h2>
-			<p><?php esc_html_e( 'Link to your business card', 'planet4-child-theme-switzerland' ); ?>: <a href="<?php echo esc_html( $bc_link ); ?>"><?php echo esc_html( $bc_link ); ?></a></p>
-			<p><?php esc_html_e( 'You can also use a QR code:', 'planet4-child-theme-switzerland' ); ?>:<br> <img src="<?php echo esc_html( gpch_generate_qr_code( $bc_link ) ); ?>" style="max-width:180px;"></p>
+			<p><b><?php esc_html_e( 'Congratulations, your Business card is published!', 'planet4-child-theme-switzerland' ); ?></b></p>
+			<p><?php esc_html_e( 'Your business card is available in German or French.', 'planet4-child-theme-switzerland' ); ?></p>
+			<h2 style="margin-top: 2em;"><?php esc_html_e( 'Links', 'planet4-child-theme-switzerland' ); ?></h2>
+			<p><?php esc_html_e( 'German link:', 'planet4-child-theme-switzerland' ); ?> <a href="<?php echo esc_html( $bc_link_de ); ?>"><?php echo esc_html( $bc_link_de ); ?></a><br>
+				<?php esc_html_e( 'French link:', 'planet4-child-theme-switzerland' ); ?> <a href="<?php echo esc_html( $bc_link_fr ); ?>"><?php echo esc_html( $bc_link_fr ); ?></a>
+			</p>
+			<h2 style="margin-top: 2em;"><?php esc_html_e( 'QR codes', 'planet4-child-theme-switzerland' ); ?></h2>
+		<div class="bc-qr-codes" style="display:flex;flex-wrap:wrap;gap: 2em;">
+			<div class="bc-qr-code" style="">
+				<p><b><?php esc_html_e( 'German SVG', 'planet4-child-theme-switzerland' ); ?></b>
+					<?php esc_html_e( '(use for printing)', 'planet4-child-theme-switzerland' ); ?><br>
+					<a download="business-card-qr-de.svg" href="<?php echo esc_html( $qr_de_svg ); ?>">
+						Download
+					</a>
+				</p>
+				<img src="<?php echo esc_html( $qr_de_svg ); ?>" style="max-width:180px;">
+			</div>
+
+			<div class="bc-qr-code" style="">
+				<p><b><?php esc_html_e( 'German PNG', 'planet4-child-theme-switzerland' ); ?></b>
+					<?php esc_html_e( '(use on screens)', 'planet4-child-theme-switzerland' ); ?><br>
+					<a download="business-card-qr-de.png" href="<?php echo esc_html( $qr_de_png ); ?>">
+						Download
+					</a>
+				</p>
+				<img src="<?php echo esc_html( $qr_de_png ); ?>" style="max-width:180px;">
+			</div>
+
+			<div class="bc-qr-code" style="">
+				<p><b><?php esc_html_e( 'French SVG', 'planet4-child-theme-switzerland' ); ?></b>
+					<?php esc_html_e( '(use for printing)', 'planet4-child-theme-switzerland' ); ?><br>
+					<a download="business-card-qr-fr.svg" href="<?php echo esc_html( $qr_fr_svg ); ?>">
+						Download
+					</a>
+				</p>
+				<img src="<?php echo esc_html( $qr_fr_svg ); ?>" style="max-width:180px;">
+			</div>
+
+			<div class="bc-qr-code" style="">
+				<p><b><?php esc_html_e( 'French PNG', 'planet4-child-theme-switzerland' ); ?></b>
+					<?php esc_html_e( '(use on screens)', 'planet4-child-theme-switzerland' ); ?><br>
+					<a download="business-card-qr-fr.png" href="<?php echo esc_html( $qr_fr_png ); ?>">
+						Download
+					</a>
+				</p>
+				<img src="<?php echo esc_html( $qr_fr_png ); ?>" style="max-width:180px;">
+			</div>
+		</div>
 		<?php else : ?>
 			<p><?php esc_html_e( 'Your business card is deactivated. Activate it and save to start using it.', 'planet4-child-theme-switzerland' ); ?></p>
 		<?php endif; ?>
 		<hr>
-		<h2><?php esc_html_e( 'Settings', 'planet4-child-theme-switzerland' ); ?></h2>
+		<h2 style="margin-top: 2em;"><?php esc_html_e( 'Settings', 'planet4-child-theme-switzerland' ); ?></h2>
 		<form method="post" action="">
 			<?php
 			// Security nonce for saving fields
@@ -122,28 +174,46 @@ function gpch_render_business_card_page() {
  * This function uses the `endroid/qr-code` library, which must be installed via Composer.
  *
  * @param string $url The URL for which the QR code should be generated.
+ * @param string $format The file format to generate, either 'svg' (default) or 'png'.
  * @return string The base64-encoded image source for the QR code.
  */
-function gpch_generate_qr_code( $url ) {
+function gpch_generate_qr_code( $url, $format = 'svg' ) {
 	if ( ! class_exists( \Endroid\QrCode\QrCode::class ) ) {
 		return 'Error: QR Code library is not installed. Run "composer require endroid/qr-code".';
 	}
 
-	$result = Builder::create()
-		->writer( new SvgWriter() )
-		->writerOptions( [] )
-		->data( $url )
-		->encoding( new Encoding( 'UTF-8' ) )
-		->errorCorrectionLevel( ErrorCorrectionLevel::High )
-		->size( 300 )
-		->margin( 10 )
-		->roundBlockSizeMode( RoundBlockSizeMode::Margin )
-		->logoPath( __DIR__ . '/../../images/gp-g-green-white-bg.png' )
-		->logoResizeToWidth( 80 )
-		->logoPunchoutBackground( false )
-		->validateResult( false )
-		->build();
+	if ( $format === 'png' ) {
+		$result = Builder::create()
+			->writer( new PngWriter() )
+			->writerOptions( [] )
+			->data( $url )
+			->encoding( new Encoding( 'UTF-8' ) )
+			->errorCorrectionLevel( ErrorCorrectionLevel::High )
+			->size( 600 )
+			->margin( 20 )
+			->roundBlockSizeMode( RoundBlockSizeMode::Margin )
+			->logoPath( __DIR__ . '/../../images/gp-g-green-white-bg.png' )
+			->logoResizeToWidth( 160 )
+			->logoPunchoutBackground( false )
+			->validateResult( false )
+			->build();
+	} else {
+		$result = Builder::create()
+			->writer( new SvgWriter() )
+			->writerOptions( [] )
+			->data( $url )
+			->encoding( new Encoding( 'UTF-8' ) )
+			->errorCorrectionLevel( ErrorCorrectionLevel::High )
+			->size( 300 )
+			->margin( 10 )
+			->roundBlockSizeMode( RoundBlockSizeMode::Margin )
+			->logoPath( __DIR__ . '/../../images/gp-g-green-white-bg.png' )
+			->logoResizeToWidth( 80 )
+			->logoPunchoutBackground( false )
+			->validateResult( false )
+			->build();
+	}
 
-	// Output as a PNG data URI
+	// Output as a data URI
 	return $result->getDataUri();
 }
