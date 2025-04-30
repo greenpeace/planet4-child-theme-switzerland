@@ -78,6 +78,7 @@ if ('yes' === $post->include_articles) {
 	foreach ($post->terms('category') as $category) {
 		$category_id_array[] = $category->id;
 	}
+	$page_type_array = [ $page_terms_data->term_id ];
 
 	$post->showArticlesForPostTypes =[
 		'story',
@@ -94,6 +95,7 @@ if ('yes' === $post->include_articles) {
 			'post_type' => 'post',
 			'taxQuery' => [
 				'post_tag' => $tag_id_array,
+				'p4-page-type' => $page_type_array,
 				'category' => $category_id_array,
 			],
 			'exclude' => [$post->ID],
