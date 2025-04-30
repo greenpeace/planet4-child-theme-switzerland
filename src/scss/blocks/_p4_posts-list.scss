@@ -32,6 +32,17 @@
 	}
 }
 
+/* Related posts */
+body.single section.post-articles-block .posts-list.is-custom-layout-list {
+	.taxonomy-category {
+		display: none;
+	}
+
+	.taxonomy-post_tag:before {
+		display: none;
+	}
+}
+
 @media (max-width: 767px) {
 	.posts-list.is-custom-layout-grid {
 		 .wp-block-post-template {
