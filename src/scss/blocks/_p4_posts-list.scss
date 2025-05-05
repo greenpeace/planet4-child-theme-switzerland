@@ -35,6 +35,15 @@
 	}
 }
 
+.posts-list.is-custom-layout-list {
+	.article-list-item-author {
+		&::after {
+			margin-top: -.5rem;
+			line-height: 1em;
+		}
+	}
+}
+
 /* Related posts */
 body.single section.post-articles-block .posts-list.is-custom-layout-list {
 	.taxonomy-category {
