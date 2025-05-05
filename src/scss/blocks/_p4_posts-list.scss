@@ -14,6 +14,10 @@
 		.taxonomy-category {
 			display: none;
 		}
+
+		.taxonomy-post_tag::before {
+			display: none;
+		}
 	}
 
 	.wp-block-post-title {
@@ -26,8 +30,27 @@
 		--webkit-line-clamp: 5;
 	}
 
+	.article-list-item-author {
+		display: none;
+	}
+}
 
-	.wp-block-post-author-name {
+.posts-list.is-custom-layout-list {
+	.article-list-item-author {
+		&::after {
+			margin-top: -.5rem;
+			line-height: 1em;
+		}
+	}
+}
+
+/* Related posts */
+body.single section.post-articles-block .posts-list.is-custom-layout-list {
+	.taxonomy-category {
+		display: none;
+	}
+
+	.taxonomy-post_tag:before {
 		display: none;
 	}
 }
