@@ -1,3 +1,12 @@
+.posts-list .wp-block-query-pagination {
+	a {
+		/* External link icons after page numbers in pagination */
+		&.page-numbers:after {
+			display: none;
+		}
+	}
+}
+
 .posts-list.is-custom-layout-grid {
 	.wp-block-post-featured-image a {
 		height: 375px;
