@@ -27,6 +27,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/cookies";
 @import "layout/page_header";
 @import "layout/business_card";
+@import "layout/listing-pages";
 
 /*--------------------------------------------------------------
 # Blocks
@@ -43,7 +44,6 @@ Text Domain: planet4-child-theme-switzerland
 
 @import "blocks/gravityforms";
 
-@import "blocks/p4_articles";
 @import "blocks/p4_covers";
 @import "blocks/p4_posts-list";
 @import "blocks/p4_take-action-boxout";
