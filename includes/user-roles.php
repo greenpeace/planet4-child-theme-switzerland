@@ -325,3 +325,37 @@ function gpch_redirection_access_to_editor_role() {
 }
 
 add_filter( 'redirection_role', 'gpch_redirection_access_to_editor_role' );
+
+
+/**
+ * Allows editor to edit the privacy page.
+ * Because of a bug, the capability manage_privacy_options can not be added to roles in the usual way. This function
+ * lets editors bypass the capability by giving them temporary manage_options capabilities when the
+ * manage_privacy_options is checked.
+ * Bug ticket: https://core.trac.wordpress.org/ticket/44176
+ *
+ * @param array $caps An array of the user's capabilities.
+ * @param string $cap Capability name that is being checked.
+ * @param int $user_id ID of the user being checked.
+ * @param array $args Additional arguments passed to the capability check.
+ *
+ * @return array Modified capabilities array after evaluating the given conditions.
+ */
+function gpch_manage_privacy_options( $caps, $cap, $user_id, $args ) {
+	if ( ! is_user_logged_in() ) {
+		return $caps;
+	}
+
+	$user_meta = get_userdata( $user_id );
+
+	if ( array_intersect( [ 'editor', 'administrator' ], $user_meta->roles ) ) {
+		if ( 'manage_privacy_options' === $cap ) {
+			$caps = array_diff( $caps, [ 'manage_options' ] );
+		}
+	}
+
+	return $caps;
+}
+
+add_filter( 'map_meta_cap', 'gpch_manage_privacy_options', 1, 4 );
+
