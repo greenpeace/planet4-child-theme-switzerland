@@ -5,7 +5,7 @@ Description: Child theme for the swiss website in the Planet 4 project
 Author: Greenpeace Switzerland
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
-Version: 2.0.24
+Version: 2.0.25
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
@@ -27,6 +27,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "layout/cookies";
 @import "layout/page_header";
 @import "layout/business_card";
+@import "layout/listing-pages";
 
 /*--------------------------------------------------------------
 # Blocks
@@ -43,11 +44,9 @@ Text Domain: planet4-child-theme-switzerland
 
 @import "blocks/gravityforms";
 
-@import "blocks/p4_articles";
-@import "blocks/p4_covers";
+@import "blocks/p4_actions-list";
 @import "blocks/p4_posts-list";
 @import "blocks/p4_take-action-boxout";
-@import "blocks/p4_take-action-covers";
 @import "blocks/p4_timeline";
 
 /*--------------------------------------------------------------

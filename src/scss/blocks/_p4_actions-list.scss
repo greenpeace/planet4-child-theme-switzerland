@@ -1,0 +1,17 @@
+.actions-list {
+	/* Remove title if empty */
+	> h2:empty {
+		display: none;
+	}
+
+	li h2 {
+		&:after {
+			display: none !important;
+		}
+	}
+
+	.wp-block-post-excerpt p {
+		line-clamp: 4;
+		-webkit-line-clamp: 4;
+	}
+}

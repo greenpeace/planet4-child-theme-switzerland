@@ -9,6 +9,21 @@ function copyTextareaToClipboard() {
 	document.execCommand( "copy" );
 }
 
+
+// Wait for the DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+	// Replace the layout class in the listing page of publications
+	if (document.body.classList.contains("tax-p4-page-type") &&
+		(document.body.classList.contains("term-publikation") || document.body.classList.contains("term-publication"))) {
+		const listingPageContent = document.getElementById("listing-page-content");
+
+		if (listingPageContent) {
+			listingPageContent.classList.replace("wp-block-query--list", "wp-block-query--grid");
+		}
+	}
+});
+
+
 /**
  * Measure Analytics/Tag Manager blocking
  * See: https://www.simoahava.com/analytics/measure-ad-blocker-impact-server-side-gtm/
