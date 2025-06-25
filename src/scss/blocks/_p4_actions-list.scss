@@ -4,6 +4,14 @@
 		display: none;
 	}
 
+	.wp-block-post-terms {
+		display: none;
+	}
+
+	.wp-block-post-featured-image + .wp-block-group {
+		padding-top: 8px;
+	}
+
 	li h2 {
 		&:after {
 			display: none !important;
@@ -11,7 +19,11 @@
 	}
 
 	.wp-block-post-excerpt p {
-		line-clamp: 4;
-		-webkit-line-clamp: 4;
+		line-clamp: 5;
+		-webkit-line-clamp: 5;
+	}
+
+	.read-more-nav {
+		margin-bottom: 0;
 	}
 }
