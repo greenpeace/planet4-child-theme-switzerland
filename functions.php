@@ -20,6 +20,9 @@ add_action( 'wp_enqueue_scripts', 'gpch_enqueue_child_styles', 99 );
 // Helpers
 require_once 'includes/helpers.php';
 
+// 1-Click Forms
+require_once 'includes/1-click-forms.php';
+
 // GP user ID
 require_once 'includes/gp-user-id.php';
 
