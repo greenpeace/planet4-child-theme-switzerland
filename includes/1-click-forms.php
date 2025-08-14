@@ -6,8 +6,7 @@
  * @return void
  */
 function gpch_1_click_form() {
-	if ( isset( $_GET['pageId'], $_GET['formId'], $_GET['formData'] ) ) {
-		$page_id             = sanitize_text_field( $_GET['pageId'] );
+	if ( isset( $_GET['1ClickForm'], $_GET['formId'], $_GET['formData'] ) ) {
 		$form_id             = intval( $_GET['formId'] );
 		$encrypted_form_data = sanitize_text_field( $_GET['formData'] );
 
@@ -15,7 +14,7 @@ function gpch_1_click_form() {
 
 		if ( $result !== false ) {
 			$data = json_decode( $result, true );
-			
+
 			// By convention, we expect at least the keys 'l', 'f', and 'e' in the array (last name, first name, email)
 			if ( is_array( $data ) && isset( $data['l'], $data['f'], $data['e'] ) ) {
 				$form_data = [
