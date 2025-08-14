@@ -9,3 +9,12 @@
 .listing-page-title .layout-button-ctn {
 	display: none;
 }
+
+/* Posts page */
+.listing-page-title {
+	.listing-page-filters {
+		.listing-page-select:nth-child(2) {
+			display: none;
+		}
+	}
+}
