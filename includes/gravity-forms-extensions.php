@@ -434,6 +434,36 @@ add_filter( 'gform_field_validation', 'gpch_spam_entry_filter', 10, 4 );
 
 
 /**
+ * Validates name fields in a Gravity Form, ensuring they do not contain numbers.
+ *
+ * @param array $result The validation result for the field, including 'is_valid' and 'message'.
+ * @param string $value The value entered into the field.
+ * @param array $form The current form object.
+ * @param array $field The field currently being validated.
+ *
+ * @return array The updated validation result.
+ */
+function gpch_name_validation( $result, $value, $form, $field ) {
+	// Check field with the following admin labels
+	$labels_to_check = array( 'first_name', 'last_name' );
+	$admin_label     = rgar( $field, 'adminLabel' );
+
+	if ( $result['is_valid'] && $admin_label && in_array( $admin_label, $labels_to_check, true ) ) {
+
+		// Check if the value contains numbers
+		if ( preg_match( '/\d/', (string) $value ) ) {
+			$result['is_valid'] = false;
+			$result['message']  = __( 'Please don\'t use numbers in this field', 'planet4-child-theme-switzerland' );
+		}
+	}
+
+	return $result;
+}
+
+add_filter( 'gform_field_validation', 'gpch_name_validation', 10, 4 );
+
+
+/**
  * Checks strings for forbidden characters in form submissions.
  *
  * @param string $text Input to string to check.
