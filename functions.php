@@ -172,6 +172,15 @@ function gpch_enqueue_scripts() {
 	}
 
 	wp_localize_script( 'gpch-child-theme-js', 'gpchData', $script_params );
+
+	// Content personalization script
+	wp_enqueue_script(
+		'personalize-content',
+		get_stylesheet_directory_uri() . '/js/personalize-content.js',
+		[],
+		'1.0.0',
+		false // im Footer laden
+	);
 }
 
 add_action( 'wp_enqueue_scripts', 'gpch_enqueue_scripts' );
