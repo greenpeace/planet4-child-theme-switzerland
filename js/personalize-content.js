@@ -1,49 +1,44 @@
 /**
  * Replace placeholders in page content with URL parameters.
- * Expects placeholders like {{firstName|Freund}} ({{parameter|fallback}})
+ * Supports:
+ *  - {{param}}                      → value or empty
+ *  - {{param|Fallback}}             → value or Fallback
+ *  - {{param?IFSET|IFNOT}}          → conditional; use [[value]] inside IFSET
  */
 (function () {
-	const params = new URLSearchParams(window.location.search);
+	const params = new URLSearchParams(location.search);
 
-	// Regex for {{paramName|Fallback}}, fallback is optional
-	const RX = /\{\{\s*([a-zA-Z0-9_-]+)(?:\|([^}]*))?\s*\}\}/g;
+	// Robust regex: erlaubt fast alles in IFSET/IFNOT, endet erst an nächstem "}}"
+	const RX =
+		/\{\{\s*([a-zA-Z0-9_-]+)(?:\?((?:(?!\}\}|\|)[\s\S])*)(?:\|((?:(?!\}\})[\s\S])*))?|\|((?:(?!\}\})[\\s\S])*))?\s*\}\}/g;
 
-	function escapeHTML(input) {
-		return input
-			.replace(/&/g, "&amp;")
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;")
-			.replace(/"/g, "&quot;")
-			.replace(/'/g, "&#39;");
-	}
+	function resolvePlaceholder(_, name, ifSet, ifNotSet1, ifNotSet2) {
+		const raw = params.get(name);
+		const hasVal = raw != null && raw.trim() !== "";
+		// Clean the URL parameter value from html
+		const safeVal = hasVal ? raw.replace(/[<>\u0000-\u001F]/g, "") : "";
 
-	function resolvePlaceholder(_, name, fallback) {
-		let val = params.get(name);
-
-		// Empty strings or spaces are treated as not set
-		if (val && val.trim() !== "") {
-			// Clean text (prevent code from getting inserted)
-			return escapeHTML(val.replace(/[<>\u0000-\u001F]/g, ""));
+		if (hasVal) {
+			if (ifSet !== undefined) {
+				// Replace all [[value]]-tokens
+				return ifSet.replace(/\[\[value\]\]/g, safeVal);
+			}
+			return safeVal;
+		} else {
+			const fb = ifNotSet1 !== undefined ? ifNotSet1 : ifNotSet2;
+			return (fb || "").trim();
 		}
-
-		return (fallback !== undefined ? fallback : "").trim();
 	}
 
 	function replaceInTextNodes(root) {
-		// Search text nodes
 		const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-		const todo = [];
-		let node;
-		while ((node = walker.nextNode())) {
-			if (RX.test(node.nodeValue)) {
-				todo.push(node);
-			}
-			RX.lastIndex = 0; // Reset für nächsten Check
+		const nodes = [];
+		let n;
+		while ((n = walker.nextNode())) {
+			if (RX.test(n.nodeValue)) nodes.push(n);
+			RX.lastIndex = 0;
 		}
-		// Replace
-		for (const n of todo) {
-			n.nodeValue = n.nodeValue.replace(RX, resolvePlaceholder);
-		}
+		for (const t of nodes) t.nodeValue = t.nodeValue.replace(RX, resolvePlaceholder);
 	}
 
 	if (document.readyState === "loading") {
