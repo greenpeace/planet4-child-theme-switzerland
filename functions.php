@@ -68,6 +68,9 @@ require_once 'includes/wordpress.php';
 // CCC Campaign city nomination customization
 require_once 'includes/campaign-city-nomination.php';
 
+// Cache
+require_once 'includes/cache.php';
+
 
 /**
  * Load Javascript for further Gutenberg customizations
