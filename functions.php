@@ -65,6 +65,8 @@ require_once 'includes/hubspot.php';
 // WordPress
 require_once 'includes/wordpress.php';
 
+// Cache
+require_once 'includes/cache.php';
 
 /**
  * Load Javascript for further Gutenberg customizations

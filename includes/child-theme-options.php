@@ -8,6 +8,25 @@ function gpch_child_settings_init() {
 	register_setting( 'gpch_child', 'gpch_child_options' );
 
 	add_settings_section(
+		'gpch_cache',
+		__( 'Cache Settings', 'planet4-child-theme-switzerland' ),
+		'gpch_child_section_cache_callback',
+		'gpch_child'
+	);
+
+	add_settings_field(
+		'gpch_child_field_cache_clear_page_ids',
+		__( 'IDs of pages to clear on publish', 'planet4-child-theme-switzerland' ),
+		'gpch_child_field_text_callback',
+		'gpch_child',
+		'gpch_cache',
+		array(
+			'label_for' => 'gpch_child_cache_pages_ids',
+			'class'     => 'gpch_child_row',
+		)
+	);
+
+	add_settings_section(
 		'gpch_child_content_embed',
 		__( 'Allowlist for websites to embed our content', 'planet4-child-theme-switzerland' ),
 		'gpch_child_section_content_embed_callback',
@@ -210,6 +229,18 @@ function gpch_child_fields_twilio_callback( $args ) {
 
 
 /**
+ * CacheSection callback function.
+ *
+ * @param array $args The settings array, defining title, id, callback.
+ */
+function gpch_child_section_cache_callback( $args ) {
+	?>
+	<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'A whitelist of domains that are allowed to embed any of our content. One per line, wildcard allowed.', 'planet4-child-theme-switzerland' ); ?></p>
+	<?php
+}
+
+
+/**
  * Gravity Forms Embed Section callback function.
  *
  * @param array $args The settings array, defining title, id, callback.
@@ -281,6 +312,20 @@ function gpch_child_fields_raisenow_callback( $args ) {
 	<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
 			name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
 			value="<?php echo esc_attr( $options[ $args['label_for'] ] ); ?>">
+	<?php
+}
+
+/**
+ * Text fields callback function.
+ *
+ * @param array $args The arguments used for building the form field.
+ */
+function gpch_child_field_text_callback( $args ) {
+	$options = get_option( 'gpch_child_options' );
+	?>
+	<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>"
+		   name="gpch_child_options[<?php echo esc_attr( $args['label_for'] ); ?>]"
+		   value="<?php echo esc_attr( $options[ $args['label_for'] ] ); ?>">
 	<?php
 }
 
