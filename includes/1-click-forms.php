@@ -124,7 +124,6 @@ function gpch_base64url_decode( $data ) {
 function gpch_add_1click_form_entry( $form_id, $data ) {
 	// Add a new entry to the Gravity Form
 	if ( class_exists( 'GFAPI' ) ) {
-
 		$form = GFAPI::get_form( $form_id );
 
 		if ( $form !== false ) {
@@ -139,6 +138,13 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				'utm_term',
 				'utm_content'
 			];
+
+			// Hiddden fields we need to transfer the default values of into the entry
+			$hidden_values = [
+				'form_type',
+				'salesforce_campaign_id'
+			];
+
 			$form_entry_values = [];
 
 			foreach ( $form['fields'] as $field ) {
@@ -152,6 +158,13 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				if ( $field['label'] == 'is_1_click' ) {
 					// Mark this entry as 1 click submission if the hidden field exists
 					$form_entry_values[ 'input_' . $field['id'] ] = 1;
+				}
+
+				// Apply default values of hidden fields in the form
+				if ($field['type'] === 'hidden') {
+					if ( in_array( $field['label'], $hidden_values ) ) {
+						$form_entry_values[ 'input_' . $field['id'] ] = $field['defaultValue'];
+					}
 				}
 			}
 
