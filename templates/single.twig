@@ -4,11 +4,11 @@
 
 	<div class="clearfix"></div>
 
-	<main id="post-{{ post.ID }}">
+	<article id="post-{{ post.ID }}">
 
-		<article class="container narrow-container">
+		<div class="container">
 			<header class="page-header">
-				<nav class="top-page-tags">
+				<div class="top-page-tags">
 					{% if ( page_type ) %}
 						<a
 							class="tag-item tag-item--main page-type"
@@ -20,35 +20,44 @@
 						</a>
 					{% endif %}
 
-					{% if ( page_type and post.issues_nav_data ) %}
-						<span class="main-tag-chevron" aria-hidden="true"></span>
+					{% if ( page_type and ( gpch_article_types or post.tags ) ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
 					{% endif %}
 
-					{% if ( post.issues_nav_data ) %}
-						<div class="tag-wrap issues">
-							{% for issue in post.issues_nav_data %}
-								<a
-									class="tag-item tag-item--main"
-									href="{{ issue.link|default('#') }}"
-									data-ga-category="Header"
-									data-ga-action="Category Tag"
-									data-ga-label="n/a">
-									{{ issue.name|e('wp_kses_post')|raw }}
+					{% if (gpch_article_types) %}
+						<div class="tag-wrap article-types">
+							{% for article_type in gpch_article_types %}
+								<a class="tag-item tag" href="{{ article_type.link }}">{{ article_type.name|e('wp_kses_post')|raw }}{% if gpch_article_types|length > loop.index %},{% endif %}
 								</a>
-
-								{% if ( loop.last == false ) %}
-									<span class="category-separator" aria-hidden="true">|</span>
-								{% endif %}
-
 							{% endfor %}
 						</div>
 					{% endif %}
-				</nav>
+
+					{% if ( gpch_article_types and post.tags ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
+					{% endif %}
+
+					{% if (post.tags) %}
+						<div class="tag-wrap tags">
+							{% for tag in post.tags %}
+								<a
+										class="tag-item tag"
+										href="{{ tag.link }}"
+										data-ga-category="Header"
+										data-ga-action="Navigation Tag"
+										data-ga-label="n/a">
+									<span aria-label="hashtag">#<span>{{ tag.name|e('wp_kses_post')|raw }}
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
+				{% if post.post_type != "gpch_archived_post" %}
 				<div class="single-post-meta">
 					{% if not post.get_author_override and post.author.avatar %}
 						<img itemprop="image" class="author-pic"
-							 src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': default_avatar}) }}"
+							 src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': 'mm'}) }}"
 							 alt="{{ post.author.avatar }}">
 					{% endif %}
 					<div class="d-inline-block">
@@ -78,11 +87,27 @@
 						{% endif %}
 					</div>
 				</div>
-				{% include "blocks/share_buttons.twig" with {
-					social: post.share_meta,
-					utm_medium: 'share',
-					share_platforms: post.social_share_platforms,
-				} %}
+				{% endif %}
+				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
+				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
+					{% if post.thumbnail.src is defined %}
+						<figure class="header-image wp-block-image">
+							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
+									 alt="{{ post.title }}" srcset="{{ function( 'wp_get_attachment_image_srcset', post.thumbnail.id, 'large' )  }}" sizes="{{ function( 'wp_get_attachment_image_sizes', post.thumbnail.id, 'large' )  }}"/>
+							{% if post.thumbnail.post_content != '' or post.thumbnail.image_meta.credit != '' or post.thumbnail._credit_text != ''  %}
+								<figcaption>
+									{{ post.thumbnail.post_content }}
+
+									{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
+										© {{ post.thumbnail._credit_text }}
+									{% else %}
+										{{ post.thumbnail.image_meta.credit }}
+									{% endif %}
+								</figcaption>
+							{% endif %}
+							</figure>
+					{% endif %}
+				{% endif %}
 
 				{% if old_posts_archive_notice.show_notice %}
 					<div class="single-post-old-posts-archive-notice">
@@ -100,29 +125,20 @@
 					</div>
 				{% endif %}
 			</header>
+		</div>
+
+		<!-- Post Block Start -->
+		<div class="container">
 			<div class="post-content" id="content">
-				<div class="post-details clearfix">
+				<article class="post-details clearfix">
 					{{ post.content|raw }}
 					{% if ( post.take_action_boxout ) %}
 						{{ fn('do_blocks', post.take_action_boxout )|raw }}
 					{% endif %}
-				</div>
+				</article>
 			</div>
-			<div class="post-tags">
-				{% if ( post.tags ) %}
-					{% for tag in post.tags %}
-						<a
-							class="btn post-tag-button btn-small"
-							href="{{ tag.link }}"
-							data-ga-category="Post"
-							data-ga-action="Navigation Tag"
-						>
-							<span aria-label="hashtag">#</span><span>{{ tag.name|e('wp_kses_post')|raw }}</span>
-						</a>
-					{% endfor %}
-				{% endif %}
-			</div>
-		</article>
+		</div>
+		<!-- Post Page Block End -->
 
 		{% include "blocks/author_profile.twig" with {post:post} %}
 
@@ -134,5 +150,5 @@
 		{% if ( show_comments ) %}
 			{% include "comments_section.twig" with {comments:post.get_comments()} %}
 		{% endif %}
-	</main>
+	</article>
 {% endblock %}
