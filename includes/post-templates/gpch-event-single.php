@@ -1,6 +1,9 @@
 <?php
 // Leave this file in Planet4 code style for easier upstream comparison
 // phpcs:ignoreFile
+
+global $post;
+
 /**
  * The Template for displaying all single posts
  *
@@ -11,49 +14,130 @@
  * @since    Timber 0.1
  */
 
+use P4\MasterTheme\Context;
 use Timber\Timber;
 
 // Initializing variables.
-$context = Timber::get_context();
-/**
- * P4 Post Object
- *
- * @var P4_Post $post
- */
-$post            = Timber::query_post( false, 'P4_Post' );
-$context['post'] = $post;
+
+$context         = Timber::context();
+$timber_post     = Timber::get_post( $post->ID );
+$context['post'] = $timber_post;
 
 // Set Navigation Issues links.
-$post->set_issues_links();
+$timber_post->set_issues_links();
 
 // Get the cmb2 custom fields data
-// Articles block parameters to populate the articles block
+// Articles block parameters to populate the related-posts block(previously known as articles block)
 // p4_take_action_page parameter to populate the take action boxout block
 // Author override parameter. If this is set then the author profile section will not be displayed.
-$page_meta_data  = get_post_meta( $post->ID );
-$page_terms_data = get_the_terms( $post, 'p4-page-type' );
-//$context['background_image']    = $page_meta_data['p4_background_image_override'][0] ?? '';
-$take_action_page = $page_meta_data['p4_take_action_page'][0] ?? '';
-//$context['page_type']           = $page_terms_data[0]->name ?? '';
-//$context['page_term_id']        = $page_terms_data[0]->term_id ?? '';
-//$context['page_category']       = 'Post Page';
-//$context['page_type_slug']      = $page_terms_data[0]->slug ?? '';
-//$context['social_accounts']     = $post->get_social_accounts( $context['footer_social_menu'] );
-$context['og_title']            = $post->get_og_title();
-$context['og_description']      = $post->get_og_description();
-$context['og_image_data']       = $post->get_og_image();
+$page_meta_data = get_post_meta($timber_post->ID);
+$page_meta_data = array_map(fn($v) => reset($v), $page_meta_data);
+$page_terms_data = get_the_terms($timber_post, 'p4-page-type');
+$page_terms_data = is_array($page_terms_data) ? reset($page_terms_data) : null;
+$context['background_image'] = $page_meta_data['p4_background_image_override'] ?? '';
+$take_action_page = $page_meta_data['p4_take_action_page'] ?? '';
+$context['page_type'] = $page_terms_data->name ?? '';
+$context['page_term_id'] = $page_terms_data->term_id ?? '';
 $context['custom_body_classes'] = 'white-bg';
+$context['page_type_slug'] = $page_terms_data->slug ?? '';
+$context['social_accounts'] = $timber_post->get_social_accounts($context['footer_social_menu'] ?: []);
+$context['page_category'] = 'Post Page';
+$context['post_tags'] = implode(', ', $timber_post->tags());
+$context['post_categories'] = implode(', ', $timber_post->categories());
+// We need the explode because we want to remove "+00:00" at the end of the string.
+$context['page_date'] = explode('+', get_the_date('c', $timber_post->ID))[0];
+$context['old_posts_archive_notice'] = $timber_post->get_old_posts_archive_notice();
 
-$context['post_tags'] = implode( ', ', $post->tags() );
+Context::set_og_meta_fields($context, $timber_post);
+Context::set_campaign_datalayer($context, $page_meta_data);
+Context::set_utm_params($context, $timber_post);
+Context::set_reading_time_datalayer($context, $timber_post);
 
-if ( post_password_required( $post->ID ) ) {
+$context['filter_url'] = add_query_arg(
+	[
+		's' => ' ',
+		'orderby' => 'relevant',
+		'f[ptype][' . $context['page_type'] . ']' => $context['page_term_id'],
+	],
+	get_home_url()
+);
+
+// Build the shortcode for related-posts block.
+if ('yes' === $timber_post->include_articles) {
+	$tag_id_array = [];
+	foreach ($timber_post->tags() as $timber_post_tag) {
+		$tag_id_array[] = $timber_post_tag->id;
+	}
+	$category_id_array = [];
+	foreach ($timber_post->terms('category') as $category) {
+		$category_id_array[] = $category->id;
+	}
+	$page_type_array = [ $page_terms_data->term_id ];
+
+	$timber_post->showArticlesForPostTypes = [
+		'story',
+		'story-fr',
+		'publikation',
+		'publication',
+		'hintergrund',
+		'article-de-magazine'
+	];
+
+	$block_attributes = [
+		'query' => [
+			'perPage' => 3,
+			'post_type' => 'post',
+			'taxQuery' => [
+				'post_tag' => $tag_id_array,
+				'p4-page-type' => $page_type_array,
+				'category' => $category_id_array,
+			],
+			'exclude' => [$timber_post->ID],
+		],
+		'className' => 'posts-list p4-query-loop is-custom-layout-list',
+		'hasPassword' => false,
+		'layout' => [
+			'type' => 'default',
+			'columnCount' => 3,
+		],
+		'namespace' => 'planet4-blocks/posts-list',
+	];
+
+	$timber_post->articles = '<!-- wp:p4/related-posts {"query_attributes" : '
+	                         . wp_json_encode($block_attributes) .
+	                         '} /-->';
+}
+
+if (! empty($take_action_page) && ! has_block('planet4-blocks/take-action-boxout')) {
+	$timber_post->take_action_page = $take_action_page;
+
+	$block_attributes = [
+		'take_action_page' => $take_action_page,
+	];
+
+	$timber_post->take_action_boxout = '<!-- wp:planet4-blocks/take-action-boxout '
+	                                   . wp_json_encode($block_attributes, JSON_UNESCAPED_SLASHES)
+	                                   . ' /-->';
+}
+
+
+Context::set_p4_blocks_datalayer($context, $timber_post);
+
+if (post_password_required($timber_post->ID)) {
+	// Password protected form validation.
+	$context['is_password_valid'] = $timber_post->is_password_valid();
+
+	// Hide the post title from links to the extra feeds.
+	remove_action('wp_head', 'feed_links_extra', 3);
+
 	$context['login_url'] = wp_login_url();
 
-	Timber::render( 'single-password.twig', $context );
+	do_action('enqueue_google_tag_manager_script', $context);
+	Timber::render('single-password.twig', $context);
 } else {
-	Timber::render( [
-		'single-' . $post->ID . '.twig',
-		'single-' . $post->post_type . '.twig',
-		'single.twig'
-	], $context );
+	do_action('enqueue_google_tag_manager_script', $context);
+	Timber::render(
+		[ 'single-' . $timber_post->ID . '.twig', 'single-' . $timber_post->post_type . '.twig', 'single.twig' ],
+		$context
+	);
 }
