@@ -1,5 +1,7 @@
 <?php
 
+use Timber\Timber;
+
 /**
  * Adds custom rewrite rules for business card URLs.
  *
@@ -51,8 +53,8 @@ function gpch_business_card_virtual_page( $template ) {
 			status_header( 200 );
 			add_filter( 'wp_robots', 'wp_robots_no_robots' );
 
-			// Load the default page template
-			return get_template_directory() . '/page.php';
+			// Load the page template
+			return get_stylesheet_directory() . '/includes/business-cards/template.php';
 		}
 	}
 
@@ -88,50 +90,3 @@ function gpch_business_card_change_page_title( $title ) {
 	return $title;
 }
 add_filter( 'wp_title', 'gpch_business_card_change_page_title', 100 );
-
-/**
- * Outputs the frontend content for a business card page.
- *
- * @param string $content The original page content.
- * @return string The modified content with custom business card details or the original content for non-business card pages.
- */
-function gpch_custom_business_card_content( $content ) {
-	$business_card_id = get_query_var( 'business_card_id' );
-
-	if ( $business_card_id ) {
-		$is_enabled = gpch_get_is_business_card_enabled_by_id( $business_card_id );
-
-		if ( $is_enabled ) {
-			$context = [
-				'business_card_id' => $business_card_id,
-				'user'             => [],
-			];
-
-			$user = gpch_get_user_by_business_card_id( $business_card_id );
-
-			// Check if a valid user object is retrieved
-			if ( $user && ! is_wp_error( $user ) ) {
-				// Get all ACF fields for the user
-				$user_acf_fields = get_fields( 'user_' . $user->ID ); // ACF function to get all fields
-
-				// Add user ACF fields starting with "bc_" to the context
-				if ( ! empty( $user_acf_fields ) ) {
-					foreach ( $user_acf_fields as $field_key => $field_value ) {
-						if ( strpos( $field_key, 'bc_' ) === 0 ) {
-							$context['user'][ $field_key ] = $field_value;
-						}
-					}
-				}
-
-				// vCard file link
-				$context['vcard_link'] = get_site_url() . '/business-card/vcard/' . $user_acf_fields['business_card_id'];
-
-				// Render the Twig template
-				return Timber::compile( 'templates/business-card.twig', $context );
-			}
-		}
-	}
-
-	return $content;
-}
-add_filter( 'the_content', 'gpch_custom_business_card_content' );
