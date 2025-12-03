@@ -190,24 +190,6 @@ add_action( 'wp_enqueue_scripts', 'gpch_enqueue_scripts' );
 
 
 /**
- * Modify the behavior of tag pages when a redirect is set. The master theme will just load the content of the page,
- * we'll redirect instead.
- *
- * @param string $redirect_page The page URL to redirect to.
- */
-function gpch_tag_page_redirect( $redirect_page ) {
-	$permalink = get_permalink( $redirect_page );
-
-	if ( $permalink !== false ) {
-		wp_safe_redirect( $permalink, 301 );
-		exit;
-	}
-}
-
-add_action( 'p4_action_tag_page_redirect', 'gpch_tag_page_redirect' );
-
-
-/**
  * Change default sort order of pages in WordPress admin
  *
  * @param WP_Query $wp_query The current WordPress Qqery object.
