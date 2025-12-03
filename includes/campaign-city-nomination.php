@@ -66,7 +66,7 @@ function gpch_validate_happiness_city( $result, $value, $form, $field ) {
 		// For cities that are too large
 		if ( ! in_array( $value, $cities_de_small, true ) ) {
 			$result['is_valid'] = false;
-			$result['message']  = __( 'Wir möchten kleineren Orten eine Chance geben. Deshalb sind Gemeinden mit höchstens 20’000 Einwohner:innen gesucht.', 'planet4-child-theme-switzerland' );
+			$result['message']  = __( 'Wir möchten kleineren Orten eine Chance geben. Deshalb sind Gemeinden mit höchstens 20’500 Einwohner:innen gesucht.', 'planet4-child-theme-switzerland' );
 		}
 	}
 
