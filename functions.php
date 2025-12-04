@@ -35,7 +35,7 @@ require_once 'includes/business-cards.php';
 // Child theme options
 require_once 'includes/child-theme-options.php';
 
-// Custom Post Types: gpch_job & gpch_archived_post & gpch_magredirect
+// Custom Post Types: gpch_job & gpch_magredirect
 require_once 'includes/custom-post-types.php';
 
 // Roles, Usergroups & Capabilities
