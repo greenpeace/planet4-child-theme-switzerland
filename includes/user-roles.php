@@ -228,14 +228,6 @@ function gpch_user_roles() {
 		$editor_role->add_cap( 'publish_gpch_events', true );
 		$editor_role->add_cap( 'read_private_gpch_events', true );
 
-		// Archived Posts
-		$editor_role->add_cap( 'edit_archived_post', true );
-		$editor_role->add_cap( 'read_archived_post', true );
-		$editor_role->add_cap( 'delete_archived_posts', true );
-		$editor_role->add_cap( 'edit_archived_posts', true );
-		$editor_role->add_cap( 'edit_others_archived_posts', true );
-		$editor_role->add_cap( 'publish_archived_posts', true );
-
 		// Magazine Redirects
 		$editor_role->add_cap( 'edit_magredirect', true );
 		$editor_role->add_cap( 'read_magredirect', true );
@@ -292,15 +284,6 @@ function gpch_user_roles() {
 		$admin_role->add_cap( 'edit_others_gpch_events', true );
 		$admin_role->add_cap( 'publish_gpch_events', true );
 		$admin_role->add_cap( 'read_private_gpch_events', true );
-
-		// Archived Posts
-		$admin_role->add_cap( 'edit_archived_post', true );
-		$admin_role->add_cap( 'read_archived_post', true );
-		$admin_role->add_cap( 'delete_archived_posts', true );
-		$admin_role->add_cap( 'edit_archived_posts', true );
-		$admin_role->add_cap( 'edit_others_archived_posts', true );
-		$admin_role->add_cap( 'publish_archived_posts', true );
-		$admin_role->add_cap( 'read_private_archived_posts', true );
 
 		// Magazine Redirects
 		$admin_role->add_cap( 'edit_magredirect', true );
