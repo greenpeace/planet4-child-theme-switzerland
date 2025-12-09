@@ -180,6 +180,16 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				'p4_gf_custom_confirmation_redirect'
 			), 11 );
 
+			// Add a filter that disables Turnstile captcha validation, otherwise the captcha will fail form validation
+			add_filter( 'gform_field_validation', function ( $result, $value, $form, $field ) {
+				if ( $field->type === 'turnstile' ) {
+					$result['is_valid'] = true;
+					$result['message']  = '';
+				}
+
+				return $result;
+			}, 10, 4 );
+
 
 			$result = GFAPI::submit_form( $form_id, $form_entry_values );
 
