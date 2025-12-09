@@ -161,12 +161,25 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				}
 
 				// Apply default values of hidden fields in the form
-				if ($field['type'] === 'hidden') {
+				if ( $field['type'] === 'hidden' ) {
 					if ( in_array( $field['label'], $hidden_values ) ) {
 						$form_entry_values[ 'input_' . $field['id'] ] = $field['defaultValue'];
 					}
 				}
 			}
+
+			// Get an instance of the P4\MasterTheme\GravityFormsExtensions class
+			$P4_Loader = P4\MasterTheme\Loader::get_instance();
+			$services  = $P4_Loader->get_services();
+
+			$P4_GravityFormsExtensions = $services['P4\MasterTheme\GravityFormsExtensions'];
+
+			// Remove the filter it sets that adds a frontend redirect for GravityForms confirmations.
+			$remove = remove_filter( 'gform_confirmation', array(
+				$P4_GravityFormsExtensions,
+				'p4_gf_custom_confirmation_redirect'
+			), 11 );
+
 
 			$result = GFAPI::submit_form( $form_id, $form_entry_values );
 
@@ -191,9 +204,9 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				return;
 			}
 
-			// Planet4 modifies GravityForms' redirection behavior by replacing the redirect with a message that sends
-			// data to Tag Manager before redirecting in the frontend. As long as those modifications are in place, the
-			// code below will not be executed even if a redirect is set in the form.
+			// Redircect to the confirmation page of the form.
+			// Code is only executed when the filter in P4 is disabled that replaces the GravityForms redirect with a
+			// frontend redirect (see above).
 			if ( rgar( $result, 'confirmation_type' ) === 'redirect' ) {
 				$redirect_url = rgar( $result, 'confirmation_redirect' );
 
