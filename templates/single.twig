@@ -99,7 +99,11 @@
 									{{ post.thumbnail.post_content }}
 
 									{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
-										© {{ post.thumbnail._credit_text }}
+                                        {% if '©' in post.thumbnail._credit_text %}
+										    {{ post.thumbnail._credit_text }}
+                                        {% else %}
+										    © {{ post.thumbnail._credit_text }}
+                                        {% endif %}
 									{% else %}
 										{{ post.thumbnail.image_meta.credit }}
 									{% endif %}
