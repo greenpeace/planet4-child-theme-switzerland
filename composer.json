@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-child-theme-switzerland",
-	"description": "Child theme for the Switzerland website of the Planet 4 Wordpress project",
+	"description": "Child theme for the swiss website in the Planet 4 project.",
 	"type":"wordpress-theme",
 	"minimum-stability" : "stable",
 	"authors": [
