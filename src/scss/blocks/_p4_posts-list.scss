@@ -1,7 +1,6 @@
 /* Standard P4 posts list block */
 .posts-list {
-	.post .wp-block-columns > .wp-block-group  {
-
+	.post .wp-block-columns > .wp-block-group {
 		> .wp-block-group:first-child {
 			margin-top: 0;
 			margin-bottom: 4px;
@@ -15,7 +14,7 @@
 	.wp-block-query-pagination {
 		a {
 			/* External link icons after page numbers in pagination */
-			&.page-numbers:after {
+			&.page-numbers::after {
 				display: none;
 			}
 		}
@@ -63,8 +62,8 @@
 .posts-list.is-custom-layout-list {
 	.article-list-item-author {
 		&::after {
-			margin-top: -.5rem;
-			line-height: 1em;
+			margin-top: -0.5rem;
+			line-height: 1;
 		}
 	}
 }
@@ -126,16 +125,16 @@ body.single section.post-articles-block .posts-list.is-custom-layout-list {
 		display: none;
 	}
 
-	.taxonomy-post_tag:before {
+	.taxonomy-post_tag::before {
 		display: none;
 	}
 }
 
 @media (max-width: 767px) {
 	.posts-list.is-custom-layout-grid {
-		 .wp-block-post-template {
-			 grid-template-columns: repeat(2,minmax(0,1fr));
-		 }
+		.wp-block-post-template {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 
 		.posts-list-meta,
 		.wp-block-post-excerpt {

@@ -1,13 +1,13 @@
 body .boxout {
 	min-height: 15rem;
 
-    .boxout-content {
-        .boxout-excerpt {
-            -webkit-line-clamp: 4;
-            margin-bottom: 0;
+	.boxout-content {
+		.boxout-excerpt {
+			-webkit-line-clamp: 4;
+			margin-bottom: 0;
 
-            font-size: var(--gpch-font-size-smaller);
-            line-height: var(--gpch-line-height-standard);
-        }
-    }
+			font-size: var(--gpch-font-size-smaller);
+			line-height: var(--gpch-line-height-standard);
+		}
+	}
 }

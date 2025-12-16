@@ -1,46 +1,47 @@
 h3 {
-    margin-top: 1em;
+	margin-top: 1em;
 }
 
 h4 {
-    margin-top: 1em;
-    font-size: var(--text--x-large-and-up--font-size,var(--font-size-xl--font-family-secondary));
-    line-height: var(--text--x-large-and-up--line-height,var(--line-height-xl--font-family-secondary));
+	margin-top: 1em;
+	font-size: var(--text--x-large-and-up--font-size, var(--font-size-xl--font-family-secondary));
+	line-height: var(--text--x-large-and-up--line-height, var(--line-height-xl--font-family-secondary));
 }
 
 /* Remove margin when the heading is the first element in a column */
 .wp-block-column h2:first-child,
 .wp-block-column h3:first-child {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 /* Remove margin for headers inside a Planet4 block */
 .articles-block h2.page-section-header,
 .covers-block h2.page-section-header {
-    margin-top: 0;
+	margin-top: 0;
 }
+
 /* Add the margin to the block */
 div[data-hydrate="planet4-blocks/covers"],
 div[data-hydrate="planet4-blocks/articles"] {
-    margin-top: 2.5rem;
+	margin-top: 2.5rem;
 }
 
 /* Underline for h2 */
-:not(.submenu-block, .gpch-taskforce-content, .gform_validation_errors) > h2:not(.is-style-no-underline):after {
-    content: "";
-    display: block;
-    position: relative;
-    top: .8rem;
-    left: -80px;
-    height: 4px;
-    width: 160px;
-    margin-bottom: 2rem;
-    background-color: var(--gp-green-400);
+:not(.submenu-block, .gpch-taskforce-content, .gform_validation_errors) > h2:not(.is-style-no-underline)::after {
+	content: "";
+	display: block;
+	position: relative;
+	top: 0.8rem;
+	left: -80px;
+	height: 4px;
+	width: 160px;
+	margin-bottom: 2rem;
+	background-color: var(--gp-green-400);
 }
 
 /* Don't show underline in posts and columns */
-.single-post h2:after,
-.wp-block-columns h2:after {
-    display: none !important;
+.single-post h2::after,
+.wp-block-columns h2::after {
+	display: none !important;
 }
 
