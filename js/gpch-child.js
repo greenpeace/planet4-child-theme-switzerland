@@ -2,6 +2,14 @@
  * Contains frontend JS for planet4-child-theme-switzerland
  */
 
+// Helper function for copy to clipboard in forms
+function copyTextareaToClipboard() {
+	var copyText = document.querySelector( '#clipboard-copy-text' );
+	copyText.select();
+	document.execCommand( 'copy' );
+}
+
+// Wait for the DOM to be fully loaded
 document.addEventListener( 'DOMContentLoaded', function () {
 	// Replace the layout class in the listing page of publications
 	if (
@@ -28,8 +36,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
  */
 ( function () {
 	// Set these to the endpoints configured in the Client template
-	const baitPath = 'https://sst.greenpeace.ch/ads-min.js';
-	const pixelPath = 'https://sst.greenpeace.ch/4dchk';
+	var baitPath = 'https://sst.greenpeace.ch/ads-min.js';
+	var pixelPath = 'https://sst.greenpeace.ch/4dchk';
 
 	// Prevent the script from running multiple times per session
 	if (
@@ -59,7 +67,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			} )
 			.finally( function () {
 				// Build the GA4 parameters, add additional parameters at your leisure
-				const params = {
+				var params = {
 					ads_blocked: ! document.querySelector( '#GxsCRdhiJi' ), // Detect if the bait file was blocked
 					gtm_blocked: ! (
 						window.google_tag_manager &&
@@ -69,11 +77,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				};
 
 				// Build the pixel request with a unique, random Client ID
-				const cid =
+				var cid =
 					Math.floor( Math.random() * 1000000 + 1 ) +
 					'_' +
 					new Date().getTime();
-				const img = document.createElement( 'img' );
+				var img = document.createElement( 'img' );
 				img.style = 'width: 1; height: 1; display: none;';
 				img.src =
 					pixelPath +
@@ -89,10 +97,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 				// Save to session storage
 				if ( window.sessionStorage ) {
-					global.sessionStorage.setItem(
-						'gpch_blocker_checked',
-						'1'
-					);
+					sessionStorage.setItem( 'gpch_blocker_checked', '1' );
 				}
 			} );
 	} );

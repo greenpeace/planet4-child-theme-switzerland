@@ -1,24 +1,24 @@
 {
-  "name": "planet4-child-theme-switzerland",
-  "description": "Child theme for the swiss website in the Planet 4 project.",
-  "repository": "git@github.com:greenpeace/planet4-child-theme-switzerland.git",
-  "author": "Greenpeace Switzerland",
-  "license": "GPL-3.0",
-  "main": "build/index.js",
-  "scripts": {
-    "build": "wp-scripts build",
-    "format": "wp-scripts format",
-    "format:php": "vendor/bin/phpcbf --standard=WordPress --extensions=php ./includes/ functions.php",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "lint:md": "wp-scripts lint-md-docs",
-    "lint:php": "vendor/bin/phpcs -ps --extensions=php ./includes/ functions.php",
-    "fix:js": "wp-scripts lint-js --fix",
-    "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start"
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "^31.1.0"
-  }
+	"name": "planet4-child-theme-switzerland",
+	"description": "Child theme for the swiss website in the Planet 4 project.",
+	"repository": "git@github.com:greenpeace/planet4-child-theme-switzerland.git",
+	"author": "Greenpeace Switzerland",
+	"license": "GPL-3.0",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"format:php": "vendor/bin/phpcbf --standard=WordPress --extensions=php ./includes/ functions.php",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md": "wp-scripts lint-md-docs",
+		"lint:php": "vendor/bin/phpcs -ps --extensions=php ./includes/ functions.php",
+		"fix:js": "wp-scripts lint-js --fix",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.1.0"
+	}
 }
