@@ -116,7 +116,7 @@ function gpch_base64url_decode( $data ) {
 /**
  * Adds a new entry to the specified Gravity Form with data provided.
  *
- * @param int $form_id The ID of the Gravity Form to which the entry will be added.
+ * @param int   $form_id The ID of the Gravity Form to which the entry will be added.
  * @param array $data The data to be saved in the form entry. Keys should match the form's admin labels or field labels.
  *
  * @return bool|void Returns false if the form submission is invalid or fails. Otherwise, the function performs the operation without returning a value.
@@ -128,7 +128,7 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 
 		if ( $form !== false ) {
 			// Match the data to the field input names using admin labels and labels
-			$field_names       = [
+			$field_names = [
 				'first_name',
 				'last_name',
 				'email',
@@ -136,13 +136,13 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				'utm_medium',
 				'utm_campaign',
 				'utm_term',
-				'utm_content'
+				'utm_content',
 			];
 
 			// Hiddden fields we need to transfer the default values of into the entry
 			$hidden_values = [
 				'form_type',
-				'salesforce_campaign_id'
+				'salesforce_campaign_id',
 			];
 
 			$form_entry_values = [];
@@ -151,7 +151,7 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				// Check the field admin label and alternatively the label if it's in the list if values we need to save
 				if ( in_array( $field['adminLabel'], $field_names ) && array_key_exists( $field['adminLabel'], $data ) ) {
 					$form_entry_values[ 'input_' . $field['id'] ] = $data[ $field['adminLabel'] ];
-				} else if ( in_array( $field['label'], $field_names ) && array_key_exists( $field['label'], $data ) ) {
+				} elseif ( in_array( $field['label'], $field_names ) && array_key_exists( $field['label'], $data ) ) {
 					$form_entry_values[ 'input_' . $field['id'] ] = $data[ $field['label'] ];
 				}
 
@@ -175,21 +175,29 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 			$P4_GravityFormsExtensions = $services['P4\MasterTheme\GravityFormsExtensions'];
 
 			// Remove the filter it sets that adds a frontend redirect for GravityForms confirmations.
-			$remove = remove_filter( 'gform_confirmation', array(
-				$P4_GravityFormsExtensions,
-				'p4_gf_custom_confirmation_redirect'
-			), 11 );
+			$remove = remove_filter(
+				'gform_confirmation',
+				array(
+					$P4_GravityFormsExtensions,
+					'p4_gf_custom_confirmation_redirect',
+				),
+				11
+			);
 
 			// Add a filter that disables Turnstile captcha validation, otherwise the captcha will fail form validation
-			add_filter( 'gform_field_validation', function ( $result, $value, $form, $field ) {
-				if ( $field->type === 'turnstile' ) {
-					$result['is_valid'] = true;
-					$result['message']  = '';
-				}
+			add_filter(
+				'gform_field_validation',
+				function ( $result, $value, $form, $field ) {
+					if ( $field->type === 'turnstile' ) {
+						$result['is_valid'] = true;
+						$result['message']  = '';
+					}
 
-				return $result;
-			}, 10, 4 );
-
+					return $result;
+				},
+				10,
+				4
+			);
 
 			$result = GFAPI::submit_form( $form_id, $form_entry_values );
 
@@ -226,9 +234,7 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 			} else {
 				$confirmation_message = rgar( $result, 'confirmation_message' );
 			}
-
 		}
-
 	}
 
 	return false;

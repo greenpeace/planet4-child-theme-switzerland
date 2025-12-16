@@ -225,7 +225,8 @@ add_filter(
  * @return void
  */
 function gpch_enqueue_youtube_api() {
-	$id         = get_the_ID();
+	$id = get_the_ID();
+
 	$has_yt_block = gpch_has_block_embed_by_provider( 'youtube', $id );
 
 	if ( $has_yt_block ) {
@@ -271,7 +272,7 @@ add_filter( 'planet4_youtube_embed_parameters', 'gpch_change_youtube_embed_param
  * @return array $args
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
-	if ( $request->get_param( 'context' ) == 'edit' && is_array($args['post_status']) ) {
+	if ( $request->get_param( 'context' ) == 'edit' && is_array( $args['post_status'] ) ) {
 		$show_statuses = [ 'publish', 'draft', 'private', 'future', 'pending' ];
 
 		foreach ( $show_statuses as $status ) {
