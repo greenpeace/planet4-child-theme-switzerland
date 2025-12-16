@@ -155,7 +155,7 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 				// Check the field admin label and alternatively the label if it's in the list if values we need to save
 				if ( in_array( $field['adminLabel'], $field_names, true ) && array_key_exists( $field['adminLabel'], $data ) ) {
 					$form_entry_values[ 'input_' . $field['id'] ] = $data[ $field['adminLabel'] ];
-				} elseif ( in_array( $field['label'], $field_names, true ) && array_key_exists( $field['label'], $data ) ) {
+				} elseif ( in_array( $field['label'], $field_names ) && array_key_exists( $field['label'], $data ) ) {
 					$form_entry_values[ 'input_' . $field['id'] ] = $data[ $field['label'] ];
 				}
 
@@ -182,7 +182,7 @@ function gpch_add_1click_form_entry( $form_id, $data ) {
 			$remove = remove_filter(
 				'gform_confirmation',
 				array(
-					$p4_gravity_forms_extensions,
+					$P4_GravityFormsExtensions,
 					'p4_gf_custom_confirmation_redirect',
 				),
 				11
