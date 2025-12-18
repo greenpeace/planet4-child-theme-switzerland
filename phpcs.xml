@@ -61,6 +61,14 @@
 	https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
 	-->
 	<config name="minimum_wp_version" value="6.4"/>
+	<rule ref="WordPress.WP.DeprecatedFunctions"/>
+  	<rule ref="WordPress.WP.DeprecatedClasses"/>
+  	<rule ref="WordPress.WP.DeprecatedParameters"/>
+  	<rule ref="WordPress.WP.DeprecatedParameterValues"/>
+
+	<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
+  	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+  	<rule ref="Generic.PHP.DeprecatedFunctions"/>
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
