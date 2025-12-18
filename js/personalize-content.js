@@ -6,7 +6,7 @@
  *  - {{param?IFSET|IFNOT}}          → conditional; use [[value]] inside IFSET
  */
 ( function () {
-	const params = new URLSearchParams( location.search );
+	const params = new URLSearchParams( window.location.search );
 
 	// Robust regex: erlaubt fast alles in IFSET/IFNOT, endet erst an nächstem "}}"
 	const RX =
@@ -14,7 +14,7 @@
 
 	function resolvePlaceholder( _, name, ifSet, ifNotSet1, ifNotSet2 ) {
 		const raw = params.get( name );
-		const hasVal = raw != null && raw.trim() !== '';
+		const hasVal = raw !== null && raw.trim() !== '';
 		// Clean the URL parameter value from html
 		const safeVal = hasVal ? raw.replace( /[<>\u0000-\u001F]/g, '' ) : '';
 
@@ -39,11 +39,14 @@
 		const nodes = [];
 		let n;
 		while ( ( n = walker.nextNode() ) ) {
-			if ( RX.test( n.nodeValue ) ) nodes.push( n );
+			if ( RX.test( n.nodeValue ) ) {
+				nodes.push( n );
+			}
 			RX.lastIndex = 0;
 		}
-		for ( const t of nodes )
+		for ( const t of nodes ) {
 			t.nodeValue = t.nodeValue.replace( RX, resolvePlaceholder );
+		}
 	}
 
 	if ( document.readyState === 'loading' ) {

@@ -90,7 +90,7 @@ const addGravityFormsBlockFilter = () => {
 			return settings;
 		}
 
-		settings.attributes[ 'ajax' ][ 'default' ] = false;
+		settings.attributes.ajax.default = false;
 
 		return settings;
 	};
