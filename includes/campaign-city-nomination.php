@@ -43,10 +43,10 @@ add_filter( 'gform_admin_pre_render', 'gpch_populate_happiness_cities' );
 /**
  * Validates if the selected city is german speaking and not too big.
  *
- * @param array  $result The validation result array
- * @param mixed  $value The field value to validate
- * @param array  $form The form object
- * @param object $field The field object
+ * @param array  $result The validation result array.
+ * @param mixed  $value The field value to validate.
+ * @param array  $form The form object.
+ * @param object $field The field object.
  *
  * @return array The modified validation result
  */
