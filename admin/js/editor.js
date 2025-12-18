@@ -1,27 +1,4 @@
 wp.domReady( () => {
-	// Allow styles in columns block without crashing the editor
-	// The crash happens because the preview in the style menu doesn't work if the block uses inner blocks
-	// https://github.com/WordPress/gutenberg/issues/9897#issuecomment-478362380
-	var el = wp.element.createElement;
-	var allowColumnStyle = wp.compose.createHigherOrderComponent( function (
-		BlockEdit
-	) {
-		return function ( props ) {
-			var content = el( BlockEdit, props );
-
-			if (
-				props.name === 'core/columns' &&
-				typeof props.insertBlocksAfter === 'undefined'
-			) {
-				content = el( 'div', {} );
-			}
-
-			return el( wp.element.Fragment, {}, content );
-		};
-	}, 'allowColumnStyle' );
-
-	wp.hooks.addFilter( 'editor.BlockEdit', 'my/gutenberg', allowColumnStyle );
-
 	/**
 	 * Remove unwanted block default styles and add our own where needed
 	 *
