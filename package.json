@@ -6,7 +6,7 @@
 	"license": "GPL-3.0",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "wp-scripts build --blocks-manifest",
 		"format:js": "wp-scripts format",
 		"format:php": "vendor/bin/phpcbf --extensions=php ./ functions.php",
 		"format:css": "wp-scripts lint-style --fix",
