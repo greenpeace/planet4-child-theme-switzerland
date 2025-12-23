@@ -1,0 +1,26 @@
+.food-quiz__editor {
+	border: 1px dashed #ddd;
+	padding: 12px;
+	background: #fff;
+}
+
+.food-quiz__editor-item {
+	margin-bottom: 16px;
+}
+.food-quiz__meal-times {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
+	margin-bottom: 12px;
+}
+.food-quiz__option img {
+	width: 48px;
+	height: 48px;
+	object-fit: cover;
+}
+
+.food-quiz__tiers-editor .food-quiz__tier-editor {
+	border-top: 1px solid #eee;
+	padding-top: 8px;
+	margin-top: 8px;
+}

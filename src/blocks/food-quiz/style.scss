@@ -1,0 +1,90 @@
+/* Frontend styles for the Food Quiz block */
+
+.food-quiz {
+	.food-quiz__meal-times {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 48px;
+		margin-bottom: 12px;
+	}
+
+	.food-quiz__meal {
+		text-align: center;
+
+		h3 {
+			margin-bottom: .5em;
+		}
+
+		.food-quiz__meal-options {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 8px;
+			margin-bottom: 8px;
+
+			.fq-option {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				gap: 8px;
+
+				margin-bottom: 6px;
+				padding: 8px;
+
+				border: solid 2px #000;
+
+				cursor: pointer;
+
+				transition: background-color 0.2s, border-color 0.2s;
+
+				&:hover {
+					background-color: #F6F4EF;
+				}
+
+				&:has( input[type="radio"]:checked ) {
+					border-color: #198700;
+					background-color: #F6F4EF;
+				}
+
+				input[type="radio"] {
+					visibility: hidden;
+					position: absolute;
+				}
+
+				.fq-option-title {
+					margin-bottom: 4px;
+					min-height: 2.7em;
+					
+					font-weight: bold;
+					font-size: var(--gpch-font-size-smaller);
+					
+					line-height: 1.2;
+				}
+
+				.fq-option-img img {
+					width: 100%;
+					aspect-ratio: 1/1;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+
+
+
+
+
+	.fq-drink-row {
+		margin-bottom: 8px;
+	}
+
+	.food-quiz__result {
+		margin-top: 12px;
+	}
+
+	.food-quiz__result-output .food-quiz__tier {
+		display: none;
+	}
+
+
+}
