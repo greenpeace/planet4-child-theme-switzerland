@@ -21,88 +21,11 @@
 			const calculateButton = root.querySelector( '.food-quiz__calculate' );
 			const outputContainer = root.querySelector( '.food-quiz__result-output' );
 
-			// Debounced auto-calc helper — only active after first manual Calculate
-			let debounceTimer = null;
-			const DEBOUNCE_DELAY = 300;
-			let autoCalcEnabled = false;
-
-			// Show a spinner inside the calculate button for a short delay,
-			// then run the calculation. Safe to call repeatedly; it will
-			// not append duplicate spinner nodes.
-			function showSpinnerThenCalculate() {
-				if ( ! calculateButton ) {
-					// fallback: call directly
-					calculateAndShow();
-					return;
-				}
-
-				// If a spinner is already present, don't add another
-				if ( calculateButton.querySelector( '.fq-spinner' ) ) {
-					// still enforce a short delay before recalculation
-					setTimeout( () => {
-						calculateAndShow();
-					}, 500 );
-					return;
-				}
-
-				// Build inline SVG spinner
-				const spinner = document.createElement( 'span' );
-				spinner.className = 'fq-spinner';
-				spinner.setAttribute( 'aria-hidden', 'true' );
-				spinner.style.display = 'inline-block';
-				spinner.style.marginLeft = '0.5rem';
-				spinner.innerHTML = `
-					<svg width="16" height="16" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.4 31.4">
-							<animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.7s" repeatCount="indefinite" />
-						</circle>
-					</svg>
-				`;
-
-				calculateButton.appendChild( spinner );
-				calculateButton.setAttribute( 'aria-busy', 'true' );
-
-				setTimeout( () => {
-					try {
-						calculateAndShow();
-					} finally {
-						// Remove spinner
-						const s = calculateButton.querySelector( '.fq-spinner' );
-						if ( s ) {
-							s.remove();
-						}
-						calculateButton.removeAttribute( 'aria-busy' );
-						calculateButton.disabled = true;
-					}
-				}, 500 );
-			}
-
-			function debouncedCalculateAndShow() {
-				if ( ! autoCalcEnabled ) {
-					return;
-				} // Gate: do nothing until user manually triggers calc for the first time
-
-				if ( debounceTimer ) {
-					clearTimeout( debounceTimer );
-				}
-
-				debounceTimer = setTimeout( () => {
-					try {
-						// Show spinner then calculate
-						showSpinnerThenCalculate();
-					} catch ( e ) {
-						// ignore
-					}
-				}, DEBOUNCE_DELAY );
-			}
-
 			function render() {
-				if ( ! mealContainer ) {
-					return;
-				}
+				if ( ! mealContainer ) return;
 
 				// render meal options for each time
-				mealTimes.forEach( time => {
+				mealTimes.forEach( ( time ) => {
 					const el = mealContainer.querySelector( `.food-quiz__meal[data-time="${ time }"]` );
 
 					if ( ! el ) {
@@ -115,7 +38,6 @@
 					optionWrapper.className = 'food-quiz__meal-options';
 					el.appendChild( optionWrapper );
 
-					/* eslint-disable-next-line no-nested-ternary */
 					const set = time === 'breakfast' ? breakfastMeals : time === 'lunch' ? lunchMeals : dinnerMeals;
 					set.forEach( ( m, idx ) => {
 						const label = document.createElement( 'label' );
@@ -126,23 +48,6 @@
 								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
 							`;
 						optionWrapper.appendChild( label );
-
-						// Auto-recalculate when a meal option changes
-						const radio = label.querySelector( 'input[type="radio"]' );
-
-						if ( radio ) {
-							radio.addEventListener( 'change', () => {
-								if ( calculateButton ) {
-									// User changed an input -> allow manual recalc
-									calculateButton.disabled = false;
-								}
-
-								// Only trigger auto-recalc if user has pressed Calculate at least once
-								if ( autoCalcEnabled ) {
-									debouncedCalculateAndShow();
-								}
-							} );
-						}
 					} );
 				} );
 
@@ -190,40 +95,19 @@
 								inputEl.dispatchEvent( new Event( 'input', { bubbles: true } ) );
 							} );
 						}
-
-						// Auto-recalculate when drink input changes
-						if ( inputEl ) {
-							inputEl.addEventListener( 'input', () => {
-								if ( calculateButton ) {
-									// User changed an input -> allow manual recalc
-									calculateButton.disabled = false;
-								}
-
-								// Only trigger auto-recalc if user has pressed Calculate at least once
-								if ( autoCalcEnabled ) {
-									debouncedCalculateAndShow();
-								}
-							} );
-						}
 					} );
 				}
 			}
 
 			// Create result scale / arrow UI
 			function ensureResultScale() {
-				if ( ! outputContainer ) {
-					return null;
-				}
+				if ( ! outputContainer ) return null;
 
-				const scaleRoot = outputContainer.querySelector( '.result-scale' );
+				let scaleRoot = outputContainer.querySelector( '.result-scale' );
 
-				if ( ! scaleRoot ) {
-					return null;
-				}
+				if ( ! scaleRoot ) return null;
 
-				if ( scaleRoot.dataset.fqScaleInit ) {
-					return scaleRoot;
-				}
+				if ( scaleRoot.dataset.fqScaleInit ) return scaleRoot;
 
 				scaleRoot.dataset.fqScaleInit = '1';
 
@@ -237,7 +121,7 @@
 					t.className = `result-scale__tier result-scale__tier--${ i }`;
 					t.setAttribute( 'data-tier', String( i ) );
 					t.setAttribute( 'aria-hidden', 'true' );
-					const labelText = Array.isArray( tierLabels ) && tierLabels[ i ] ? tierLabels[ i ] : `Tier ${ i + 1 }`;
+					const labelText = ( Array.isArray( tierLabels ) && tierLabels[ i ] ) ? tierLabels[ i ] : `Tier ${ i + 1 }`;
 					const span = document.createElement( 'span' );
 					span.className = 'result-scale__label';
 					span.textContent = labelText;
@@ -258,23 +142,19 @@
 			function moveArrowToTier( tier ) {
 				const scaleRoot = outputContainer && outputContainer.querySelector( '.result-scale' );
 
-				if ( ! scaleRoot ) {
-					return;
-				}
+				if ( ! scaleRoot ) return;
 
 				const tiers = scaleRoot.querySelectorAll( '.result-scale__tier' );
 				const arrow = scaleRoot.querySelector( '.result-scale__arrow' );
-
-				if ( ! tiers.length || ! arrow ) {
-					return;
-				}
+				
+				if ( ! tiers.length || ! arrow ) return;
 
 				const target = tiers[ Math.max( 0, Math.min( tiers.length - 1, tier ) ) ];
 
 				// compute center x relative to scaleRoot
 				const rootRect = scaleRoot.getBoundingClientRect();
 				const targetRect = target.getBoundingClientRect();
-				const center = targetRect.left - rootRect.left + targetRect.width / 2;
+				const center = ( targetRect.left - rootRect.left ) + targetRect.width / 2;
 
 				// adjust so arrow center aligns; arrow has no width, but transform translateX will move it
 				arrow.style.transform = `translateX(${ Math.round( center ) }px)`;
@@ -287,13 +167,12 @@
 
 			function calculateAndShow() {
 				let total = 0;
-
-				mealTimes.forEach( time => {
+				
+				mealTimes.forEach( ( time ) => {
 					const checked = root.querySelector( `input[name="fq-${ time }"]:checked` );
-
+					
 					if ( checked ) {
 						const idx = parseInt( checked.value, 10 );
-						/* eslint-disable-next-line no-nested-ternary */
 						const set = time === 'breakfast' ? breakfastMeals : time === 'lunch' ? lunchMeals : dinnerMeals;
 
 						if ( set[ idx ] && set[ idx ].score ) {
@@ -302,7 +181,7 @@
 					}
 				} );
 
-				root.querySelectorAll( '.fq-drink-input' ).forEach( input => {
+				root.querySelectorAll( '.fq-drink-input' ).forEach( ( input ) => {
 					const idx = parseInt( input.getAttribute( 'data-index' ), 10 );
 					const servings = Number( input.value ) || 0;
 
@@ -311,10 +190,11 @@
 					}
 				} );
 
+
 				// Compute thresholds based on max possible
-				const breakfastMax = Math.max( 0, ...breakfastMeals.map( m => Number( m.score ) || 0 ) );
-				const lunchMax = Math.max( 0, ...lunchMeals.map( m => Number( m.score ) || 0 ) );
-				const dinnerMax = Math.max( 0, ...dinnerMeals.map( m => Number( m.score ) || 0 ) );
+				const breakfastMax = Math.max( 0, ...breakfastMeals.map( ( m ) => Number( m.score ) || 0 ) );
+				const lunchMax = Math.max( 0, ...lunchMeals.map( ( m ) => Number( m.score ) || 0 ) );
+				const dinnerMax = Math.max( 0, ...dinnerMeals.map( ( m ) => Number( m.score ) || 0 ) );
 				const drinkMax = drinks.reduce( ( sum, d ) => sum + ( Number( d.score ) || 0 ), 0 );
 
 				const maxPossible = breakfastMax + lunchMax + dinnerMax + drinkMax * 10; // assume max 10 servings per drink
@@ -340,7 +220,7 @@
 
 				// validate that at least one option for each meal is selected
 				let allMealsSelected = true;
-				mealTimes.forEach( time => {
+				mealTimes.forEach( ( time ) => {
 					const checked = root.querySelector( `input[name="fq-${ time }"]:checked` );
 					if ( ! checked ) {
 						allMealsSelected = false;
@@ -349,7 +229,7 @@
 
 				if ( outputContainer ) {
 					// hide all tiers first
-					outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
+					outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( ( el ) => ( el.style.display = 'none' ) );
 
 					const errorElement = outputContainer.querySelector( '.error-message' );
 					const scaleElement = outputContainer.querySelector( '.result-scale' );
@@ -361,12 +241,7 @@
 						if ( scaleElement ) {
 							scaleElement.style.display = 'none';
 						}
-
-						if ( calculateButton ) {
-							calculateButton.disabled = false;
-						}
-
-						// don't show any tier
+						return; // don't show any tier
 					} else {
 						if ( errorElement ) {
 							errorElement.style.display = 'none';
@@ -386,34 +261,20 @@
 						} catch ( e ) {
 							// ignore
 						}
-
-						if ( calculateButton ) {
-							calculateButton.disabled = true;
-						}
 					}
 				}
 			}
 
 			if ( calculateButton ) {
-				calculateButton.addEventListener( 'click', () => {
-					// Enable auto-calc from now on
-					autoCalcEnabled = true;
-
-					if ( debounceTimer ) {
-						clearTimeout( debounceTimer );
-					}
-
-					// show spinner then calculate (also used by auto-calc)
-					showSpinnerThenCalculate();
-				} );
+				calculateButton.addEventListener( 'click', calculateAndShow );
 			}
 
 			// initial hide all tiers
 			if ( outputContainer ) {
-				outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
+				outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( ( el ) => ( el.style.display = 'none' ) );
 			}
 		} catch ( e ) {
-			// ignore
+			console.error( 'Food Quiz error', e );
 		}
 	}
 
@@ -429,12 +290,10 @@
 	}
 
 	// Auto-init blocks that are dynamically inserted (editor preview, AJAX, etc.)
-	const observer = new MutationObserver( mutations => {
-		mutations.forEach( mutation => {
-			mutation.addedNodes.forEach( node => {
-				if ( node.nodeType !== 1 ) {
-					return;
-				} // ELEMENT_NODE
+	const observer = new MutationObserver( ( mutations ) => {
+		mutations.forEach( ( mutation ) => {
+			mutation.addedNodes.forEach( ( node ) => {
+				if ( node.nodeType !== 1 ) return; // ELEMENT_NODE
 
 				// If the added node itself is a block root
 				if ( node.matches && ( node.matches( '.wp-block-planet4-child-theme-switzerland-food-quiz' ) || node.matches( '.food-quiz' ) ) ) {
