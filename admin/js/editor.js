@@ -95,11 +95,7 @@ const addGravityFormsBlockFilter = () => {
 		return settings;
 	};
 
-	addFilter(
-		'blocks.registerBlockType',
-		'planet4-blocks/filters/file',
-		setAJAXToggleDefaultTrue
-	);
+	addFilter( 'blocks.registerBlockType', 'planet4-blocks/filters/file', setAJAXToggleDefaultTrue );
 };
 
 addGravityFormsBlockFilter();
