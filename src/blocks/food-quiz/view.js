@@ -21,6 +21,79 @@
 			const calculateButton = root.querySelector( '.food-quiz__calculate' );
 			const outputContainer = root.querySelector( '.food-quiz__result-output' );
 
+			// Debounced auto-calc helper — only active after first manual Calculate
+			let debounceTimer = null;
+			const DEBOUNCE_DELAY = 300;
+			let autoCalcEnabled = false;
+
+			// Show a spinner inside the calculate button for a short delay,
+			// then run the calculation. Safe to call repeatedly; it will
+			// not append duplicate spinner nodes.
+			function showSpinnerThenCalculate() {
+				if ( ! calculateButton ) {
+					// fallback: call directly
+					calculateAndShow();
+					return;
+				}
+
+				// If a spinner is already present, don't add another
+				if ( calculateButton.querySelector( '.fq-spinner' ) ) {
+					// still enforce a short delay before recalculation
+					setTimeout( () => {
+						calculateAndShow();
+					}, 500 );
+					return;
+				}
+
+				// Build inline SVG spinner
+				const spinner = document.createElement( 'span' );
+				spinner.className = 'fq-spinner';
+				spinner.setAttribute( 'aria-hidden', 'true' );
+				spinner.style.display = 'inline-block';
+				spinner.style.marginLeft = '0.5rem';
+				spinner.innerHTML = `
+					<svg width="16" height="16" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.4 31.4">
+							<animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.7s" repeatCount="indefinite" />
+						</circle>
+					</svg>
+				`;
+
+				calculateButton.appendChild( spinner );
+				calculateButton.setAttribute( 'aria-busy', 'true' );
+				
+
+				setTimeout( () => {
+					try {
+						calculateAndShow();
+					} finally {
+						// Remove spinner
+						const s = calculateButton.querySelector( '.fq-spinner' );
+						if ( s ) s.remove();
+						calculateButton.removeAttribute( 'aria-busy' );
+						calculateButton.disabled = true;
+					}
+				}, 500 );
+			}
+
+			function debouncedCalculateAndShow() {
+				if ( ! autoCalcEnabled ) return; // Gate: do nothing until user manually triggers calc for the first time
+
+				if ( debounceTimer ) {
+					clearTimeout( debounceTimer );
+				}
+
+				debounceTimer = setTimeout( () => {
+					try {
+						// Show spinner then calculate
+						showSpinnerThenCalculate();
+					} catch ( e ) {
+						// ignore
+					}
+
+				}, DEBOUNCE_DELAY );
+			}
+
 			function render() {
 				if ( ! mealContainer ) return;
 
@@ -48,6 +121,23 @@
 								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
 							`;
 						optionWrapper.appendChild( label );
+
+						// Auto-recalculate when a meal option changes
+						const radio = label.querySelector( 'input[type="radio"]' );
+
+						if ( radio ) {
+							radio.addEventListener( 'change', () => {
+								if ( calculateButton ) {
+									// User changed an input -> allow manual recalc
+									calculateButton.disabled = false;
+								}
+
+								// Only trigger auto-recalc if user has pressed Calculate at least once
+								if ( autoCalcEnabled ) {
+									debouncedCalculateAndShow();
+								}
+							} );
+						}
 					} );
 				} );
 
@@ -93,6 +183,21 @@
 								v = Math.min( 10, v + 1 );
 								inputEl.value = v;
 								inputEl.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+							} );
+						}
+
+						// Auto-recalculate when drink input changes
+						if ( inputEl ) {
+							inputEl.addEventListener( 'input', () => {
+								if ( calculateButton ) {
+									// User changed an input -> allow manual recalc
+									calculateButton.disabled = false;
+								}
+								
+								// Only trigger auto-recalc if user has pressed Calculate at least once
+								if ( autoCalcEnabled ) {
+									debouncedCalculateAndShow();
+								}
 							} );
 						}
 					} );
@@ -241,6 +346,11 @@
 						if ( scaleElement ) {
 							scaleElement.style.display = 'none';
 						}
+
+						if ( calculateButton ) {
+							calculateButton.disabled = false;
+						}
+
 						return; // don't show any tier
 					} else {
 						if ( errorElement ) {
@@ -261,12 +371,26 @@
 						} catch ( e ) {
 							// ignore
 						}
+
+						if ( calculateButton ) {
+							calculateButton.disabled = true;
+						}
 					}
 				}
 			}
 
 			if ( calculateButton ) {
-				calculateButton.addEventListener( 'click', calculateAndShow );
+				calculateButton.addEventListener( 'click', () => {
+					// Enable auto-calc from now on
+					autoCalcEnabled = true;
+
+					if ( debounceTimer ) {
+						clearTimeout( debounceTimer );
+					}
+
+					// show spinner then calculate (also used by auto-calc)
+					showSpinnerThenCalculate();
+				} );
 			}
 
 			// initial hide all tiers
