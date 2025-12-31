@@ -9,8 +9,7 @@
 	const params = new URLSearchParams( window.location.search );
 
 	// Robust regex: erlaubt fast alles in IFSET/IFNOT, endet erst an nächstem "}}"
-	const RX =
-		/\{\{\s*([a-zA-Z0-9_-]+)(?:\?((?:(?!\}\}|\|)[\s\S])*)(?:\|((?:(?!\}\})[\s\S])*))?|\|((?:(?!\}\})[\\s\S])*))?\s*\}\}/g;
+	const RX = /\{\{\s*([a-zA-Z0-9_-]+)(?:\?((?:(?!\}\}|\|)[\s\S])*)(?:\|((?:(?!\}\})[\s\S])*))?|\|((?:(?!\}\})[\\s\S])*))?\s*\}\}/g;
 
 	function resolvePlaceholder( _, name, ifSet, ifNotSet1, ifNotSet2 ) {
 		const raw = params.get( name );
@@ -31,11 +30,7 @@
 	}
 
 	function replaceInTextNodes( root ) {
-		const walker = document.createTreeWalker(
-			root,
-			NodeFilter.SHOW_TEXT,
-			null
-		);
+		const walker = document.createTreeWalker( root, NodeFilter.SHOW_TEXT, null );
 		const nodes = [];
 		let n;
 		while ( ( n = walker.nextNode() ) ) {
@@ -50,9 +45,7 @@
 	}
 
 	if ( document.readyState === 'loading' ) {
-		document.addEventListener( 'DOMContentLoaded', () =>
-			replaceInTextNodes( document.body )
-		);
+		document.addEventListener( 'DOMContentLoaded', () => replaceInTextNodes( document.body ) );
 	} else {
 		replaceInTextNodes( document.body );
 	}
