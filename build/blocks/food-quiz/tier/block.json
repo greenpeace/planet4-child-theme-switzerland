@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "planet4-child-theme-switzerland/food-quiz-tier",
+  "version": "0.1.0",
+  "title": "Food Quiz Tier",
+  "parent": [
+    "planet4-child-theme-switzerland/food-quiz"
+  ],
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "tierIndex": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style.css",
+  "style": "file:./style-index.css"
+}
