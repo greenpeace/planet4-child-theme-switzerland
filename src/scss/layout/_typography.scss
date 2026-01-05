@@ -1,28 +1,36 @@
-
 /* Letter-spacing, used for secondary font */
 body,
 .cookies-buttons {
-    letter-spacing: var(--gpch--letter-spacing--secondary-font);
+	letter-spacing: var(--gpch--letter-spacing--secondary-font);
 }
 
-h1, h2, h3, h4, h5,
+h1,
+h2,
+h3,
+h4,
+h5,
 .take-action-covers-block .cover .cover-card-content .cover-card-heading {
-    letter-spacing: 0;
+	letter-spacing: 0;
 }
 
 /* bold */
-b, strong {
-    font-weight: var(--gpch--font-weight--bold);
+b,
+strong {
+	font-weight: var(--gpch--font-weight--bold);
 }
 
 
 /* Don't apply <strong> and <b> to headings */
-h1 b, h1 strong,
-h2 b, h2 strong,
-h3 b, h3 strong,
-h4 b, h4 strong,
-h5 b, h5 strong {
-    font-weight: var(--gpch--font-weight--normal);
+h1 b,
+h1 strong,
+h2 b,
+h2 strong,
+h3 b,
+h3 strong,
+h4 b,
+h4 strong,
+h5 b,
+h5 strong {
+	font-weight: var(--gpch--font-weight--normal);
 }
-
 

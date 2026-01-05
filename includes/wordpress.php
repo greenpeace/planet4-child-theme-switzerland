@@ -9,7 +9,7 @@
  */
 function gpch_search_more_menu_pages( $q ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Missing
-	if ( isset( $_POST['action'] ) && $_POST['action'] == 'menu-quick-search' && isset( $_POST['menu-settings-column-nonce'] ) ) {
+	if ( isset( $_POST['action'] ) && $_POST['action'] === 'menu-quick-search' && isset( $_POST['menu-settings-column-nonce'] ) ) {
 		if ( is_a( $q->query_vars['walker'], 'Walker_Nav_Menu_Checklist' ) ) {
 			$q->query_vars['posts_per_page'] = 100;
 		}

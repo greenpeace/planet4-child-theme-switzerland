@@ -199,7 +199,8 @@ add_action( 'wp_enqueue_scripts', 'gpch_enqueue_scripts' );
 function gpch_set_post_order_in_admin( $wp_query ) {
 	global $pagenow;
 
-	if ( is_admin() && 'edit.php' == $pagenow && array_key_exists( 'post_type', $_GET ) && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( is_admin() && 'edit.php' === $pagenow && array_key_exists( 'post_type', $_GET ) && $_GET['post_type'] === 'page' && ! isset( $_GET['orderby'] ) ) {
 		$wp_query->set( 'orderby', 'post_modified' );
 		$wp_query->set( 'order', 'DESC' );
 	}
@@ -225,7 +226,8 @@ add_filter(
  * @return void
  */
 function gpch_enqueue_youtube_api() {
-	$id         = get_the_ID();
+	$id = get_the_ID();
+
 	$has_yt_block = gpch_has_block_embed_by_provider( 'youtube', $id );
 
 	if ( $has_yt_block ) {
@@ -271,15 +273,16 @@ add_filter( 'planet4_youtube_embed_parameters', 'gpch_change_youtube_embed_param
  * @return array $args
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
-	if ( $request->get_param( 'context' ) == 'edit' && is_array($args['post_status']) ) {
+	if ( $request->get_param( 'context' ) === 'edit' && is_array( $args['post_status'] ) ) {
 		$show_statuses = [ 'publish', 'draft', 'private', 'future', 'pending' ];
 
 		foreach ( $show_statuses as $status ) {
-			if ( ! in_array( $status, $args['post_status'] ) ) {
+			if ( ! in_array( $status, $args['post_status'], true ) ) {
 				$args['post_status'][] = $status;
 			}
 		}
 
+		/* phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page */
 		$args['posts_per_page'] = 500; // Default was 100
 		$args['cache_results']  = false;
 
@@ -319,7 +322,7 @@ add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elasti
  *
  * @return string
  */
-function gpch_change_email_sender( $sender_email ) {
+function gpch_change_email_sender( $sender_email ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 	return 'noreply@greenpeace.ch';
 }
 

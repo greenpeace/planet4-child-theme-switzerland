@@ -317,10 +317,10 @@ add_filter( 'redirection_role', 'gpch_redirection_access_to_editor_role' );
  * manage_privacy_options is checked.
  * Bug ticket: https://core.trac.wordpress.org/ticket/44176
  *
- * @param array $caps An array of the user's capabilities.
+ * @param array  $caps An array of the user's capabilities.
  * @param string $cap Capability name that is being checked.
- * @param int $user_id ID of the user being checked.
- * @param array $args Additional arguments passed to the capability check.
+ * @param int    $user_id ID of the user being checked.
+ * @param array  $args Additional arguments passed to the capability check.
  *
  * @return array Modified capabilities array after evaluating the given conditions.
  */
@@ -341,4 +341,3 @@ function gpch_manage_privacy_options( $caps, $cap, $user_id, $args ) {
 }
 
 add_filter( 'map_meta_cap', 'gpch_manage_privacy_options', 1, 4 );
-

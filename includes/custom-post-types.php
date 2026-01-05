@@ -94,7 +94,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 	 * @return mixed|string
 	 */
 	function gpch_include_gpchevents_template( $template_path ) {
-		if ( get_post_type() == 'gpch_event' ) {
+		if ( get_post_type() === 'gpch_event' ) {
 			if ( is_single() ) {
 				$template_path = get_stylesheet_directory() . '/includes/post-templates/gpch-event-single.php';
 			}
@@ -112,12 +112,14 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 	 * @return void
 	 */
 	function gpch_events_redirect() {
-		if ( get_post_type() == 'gpch_event' ) {
+		if ( get_post_type() === 'gpch_event' ) {
 			if ( is_single() ) {
 				$url = get_field( 'redirect_url' );
 
 				if ( ! empty( $url ) && filter_var( $url, FILTER_VALIDATE_URL ) !== false ) {
+					/* phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect */
 					wp_redirect( $url, 301, 'GPCHEvent' );
+					exit;
 				}
 			}
 		}
@@ -322,7 +324,7 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_magredirect' ) ) {
 	 * @param string $template_path The path to the template of a post of type gpch_magredirect.
 	 */
 	function gpch_include_gpmagredirect_template( $template_path ) {
-		if ( get_post_type() == 'gpch_magredirect' ) {
+		if ( get_post_type() === 'gpch_magredirect' ) {
 			if ( is_single() ) {
 				$template_path = get_stylesheet_directory() . '/includes/post-templates/gpch-magredirect-single.php';
 			}

@@ -24,7 +24,7 @@ input[autocomplete="family-name"] + div.charleft {
 
 /* Styles for multistep forms */
 .gform_wrapper.gravity-theme {
-	.gf_progressbar{
+	.gf_progressbar {
 		background-color: var(--grey-200);
 		border-radius: 4px;
 
@@ -36,35 +36,35 @@ input[autocomplete="family-name"] + div.charleft {
 
 	.gform-theme-button {
 		/* Planet4 button styles */
-		background: var(--button-secondary--background,var(--white));
-		border-color: var(--button-secondary--border-color,var(--color-border-button--secondary));
-		color: var(--button-secondary--color,var(--color-text-button--secondary)) !important;
-		border-radius: var(--button--border-radius,4px);
-		font-family: var(--button--font-family,var(--font-family-button));
-		font-size: var(--button--font-size,1rem);
-		font-weight: var(--button--font-weight,bold);
-		padding: var(--button--padding,12px 28px);
-		text-align: var(--button--text-align,center);
-		transition-duration: var(--button--transition-duration,.15s);
-		transition-property: var(--button--transition-property,color,background-color,border-color);
-		transition-timing-function: var(--button--transition-timing-function,linear);
+		background: var(--button-secondary--background, var(--white));
+		border-color: var(--button-secondary--border-color, var(--color-border-button--secondary));
+		color: var(--button-secondary--color, var(--color-text-button--secondary)) !important;
+		border-radius: var(--button--border-radius, 4px);
+		font-family: var(--button--font-family, var(--font-family-button));
+		font-size: var(--button--font-size, 1rem);
+		font-weight: var(--button--font-weight, bold);
+		padding: var(--button--padding, 12px 28px);
+		text-align: var(--button--text-align, center);
+		transition-duration: var(--button--transition-duration, 0.15s);
+		transition-property: var(--button--transition-property, color, background-color, border-color);
+		transition-timing-function: var(--button--transition-timing-function, linear);
 
 		&:hover {
-			background: var(--button-secondary--hover--background,var(--color-background-button--secondary-hover));
-			border-color: var(--button-secondary--hover--border-color,var(--p4-dark-green-800));
-			color: var(--button-secondary--hover--color,var(--white)) !important;
+			background: var(--button-secondary--hover--background, var(--color-background-button--secondary-hover));
+			border-color: var(--button-secondary--hover--border-color, var(--p4-dark-green-800));
+			color: var(--button-secondary--hover--color, var(--white)) !important;
 		}
 	}
 
 	.gform_next_button {
-		background: var(--button-primary--hover--background,var(--color-background-button--primary-hover));
-		border: var(--button-primary--hover--border,1px solid transparent);
-		color: var(--button-primary--hover--color,var(--color-text-button--cta)) !important;
+		background: var(--button-primary--hover--background, var(--color-background-button--primary-hover));
+		border: var(--button-primary--hover--border, 1px solid transparent);
+		color: var(--button-primary--hover--color, var(--color-text-button--cta)) !important;
 
 		&:hover {
-			background: var(--button-primary--hover--background,var(--color-background-button--primary-hover));
-			border: var(--button-primary--hover--border,1px solid transparent);
-			color: var(--button-primary--hover--color,var(--color-text-button--cta)) !important;
+			background: var(--button-primary--hover--background, var(--color-background-button--primary-hover));
+			border: var(--button-primary--hover--border, 1px solid transparent);
+			color: var(--button-primary--hover--color, var(--color-text-button--cta)) !important;
 		}
 	}
 }
@@ -91,7 +91,7 @@ input[autocomplete="family-name"] + div.charleft {
 
 				a {
 					color: inherit;
-					font-weight: bold;
+					font-weight: 700;
 				}
 			}
 		}
@@ -102,15 +102,15 @@ input[autocomplete="family-name"] + div.charleft {
 		pointer-events: none;
 		opacity: 0;
 
-		&:focus:focus-visible ~ label:before,
-		&:focus:focus-visible ~ .custom-control-description:before {
+		&:focus:focus-visible ~ label::before,
+		&:focus:focus-visible ~ .custom-control-description::before {
 			outline: 2px solid #99c3ff;
 			outline-offset: 1px;
 			border-radius: 4px;
 		}
 
-		&:not(:disabled) ~ .custom-control-description:hover:before,
-		&:not(:disabled) ~ label:hover:before {
+		&:not(:disabled) ~ .custom-control-description:hover::before,
+		&:not(:disabled) ~ label:hover::before {
 			border-color: var(--grey-900);
 		}
 
@@ -118,7 +118,7 @@ input[autocomplete="family-name"] + div.charleft {
 		& ~ label {
 			_-- {
 				font-size: 1rem;
-				line-height: 1.25rem;
+				line-height: 1.25;
 			}
 
 			font-family: var(--font-family-paragraph-secondary);
@@ -128,10 +128,10 @@ input[autocomplete="family-name"] + div.charleft {
 
 			a {
 				color: inherit;
-				font-weight: bold;
+				font-weight: 700;
 			}
 
-			&:before {
+			&::before {
 				content: "";
 				width: 20px;
 				height: 20px;
@@ -149,8 +149,8 @@ input[autocomplete="family-name"] + div.charleft {
 			}
 		}
 
-		&:checked ~ .custom-control-description:before,
-		&:checked ~ label:before {
+		&:checked ~ .custom-control-description::before,
+		&:checked ~ label::before {
 			background: var(--grey-900);
 			box-shadow: inset 0 0 0 2px var(--white);
 			border-color: var(--grey-900);

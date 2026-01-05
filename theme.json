@@ -1,78 +1,78 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 3,
-  "settings": {
-    "border": {
-      "color": false,
-      "radius": false,
-      "style": false,
-      "width": false
-    },
-    "color": {
-      "background": false,
-      "custom": false,
-      "customDuotone": false,
-      "customGradient": false,
-      "defaultDuotone": false,
-      "defaultGradients": false,
-      "defaultPalette": false,
-      "duotone": [],
-      "gradients": [],
-      "link": false,
-      "text": false
-    },
-    "typography": {
-      "customFontSize": false,
-      "dropCap": false,
-      "fluid": false,
-      "fontStyle": true,
-      "fontWeight": false,
-      "letterSpacing": false,
-      "lineHeight": false,
-      "textDecoration": true,
-      "textTransform": false
-    },
-    "blocks": {
-      "core/button": {
-        "border": {
-          "radius": false
-        }
-      },
-      "core/heading": {
-        "spacing": {
-          "margin": false
-        }
-      },
-      "core/group": {
-        "spacing": {
-          "padding": true
-        },
-        "border": {
-          "radius": false
-        }
-      },
-      "core/table": {
-        "color": {
-          "text": false,
-          "palette": [
-            {
-              "color": "#f5f7f8",
-              "name": "Grey",
-              "slug": "grey"
-            },
-            {
-              "color": "#eafee7",
-              "name": "Green",
-              "slug": "green"
-            },
-            {
-              "color": "#e7f5fe",
-              "name": "Blue",
-              "slug": "blue"
-            }
-          ]
-        }
-      }
-    }
-  }
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"border": {
+			"color": false,
+			"radius": false,
+			"style": false,
+			"width": false
+		},
+		"color": {
+			"background": false,
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"duotone": [],
+			"gradients": [],
+			"link": false,
+			"text": false
+		},
+		"typography": {
+			"customFontSize": false,
+			"dropCap": false,
+			"fluid": false,
+			"fontStyle": true,
+			"fontWeight": false,
+			"letterSpacing": false,
+			"lineHeight": false,
+			"textDecoration": true,
+			"textTransform": false
+		},
+		"blocks": {
+			"core/button": {
+				"border": {
+					"radius": false
+				}
+			},
+			"core/heading": {
+				"spacing": {
+					"margin": false
+				}
+			},
+			"core/group": {
+				"spacing": {
+					"padding": true
+				},
+				"border": {
+					"radius": false
+				}
+			},
+			"core/table": {
+				"color": {
+					"text": false,
+					"palette": [
+						{
+							"color": "#f5f7f8",
+							"name": "Grey",
+							"slug": "grey"
+						},
+						{
+							"color": "#eafee7",
+							"name": "Green",
+							"slug": "green"
+						},
+						{
+							"color": "#e7f5fe",
+							"name": "Blue",
+							"slug": "blue"
+						}
+					]
+				}
+			}
+		}
+	}
 }
