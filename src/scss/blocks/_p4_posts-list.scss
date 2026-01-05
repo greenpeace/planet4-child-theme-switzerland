@@ -150,3 +150,9 @@ body.single section.post-articles-block .posts-list.is-custom-layout-list {
 		height: auto;
 	}
 }
+
+@media (min-width: 992px) {
+	.posts-list.is-custom-layout-grid .wp-block-post-template li {
+    	height: auto;
+  	}
+}
