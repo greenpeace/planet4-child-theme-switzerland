@@ -332,3 +332,32 @@ add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
 // Disable auto translations in WPML. Might be cause for a bug that changes translated pages back to the original language.
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 define( 'WPML_TRANSLATION_AUTO_UPDATE_ENABLED', false );
+
+
+/**
+ * Registers the blocks using a `blocks-manifest.php` file using the new block registration APIs introduced in WordPress 6.7 and 6.8, with a fallback to the classic `register_block_type()` function.
+ *
+ * @return void
+ */
+function gpch_register_blocks() {
+	// Use the new function in WP 6.8 and later.
+	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/blocks', __DIR__ . '/build/blocks-manifest.php' );
+
+		return;
+	}
+
+	// Use the blocks' metadata from the manifest file in WP 6.7 and later.
+	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
+		wp_register_block_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
+	}
+
+	// Use the classic registration method as a fallback.
+	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
+
+	foreach ( array_keys( $manifest_data ) as $block_type ) {
+		$result = register_block_type( __DIR__ . "/build/blocks/{$block_type}" );
+	}
+}
+
+add_action( 'init', 'gpch_register_blocks' );
