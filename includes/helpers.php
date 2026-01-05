@@ -43,7 +43,7 @@ function gpch_has_block_embed_by_provider( $provider, $post = null ) {
  * @return $data
  */
 function gpch_search_array_key_value( $data, $key, $value ) {
-	$results = data();
+	$results = array();
 
 	if ( is_array( $data ) ) {
 		if ( isset( $data[ $key ] ) && $data[ $key ] === $value ) {

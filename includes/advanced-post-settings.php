@@ -80,7 +80,7 @@ function gpch_noindex_tag_output() {
 	$noindex_setting = get_field( 'setting_noindex' );
 
 	if ( $noindex_setting ) {
-		wp_robots_no_robots();
+		wp_no_robots();
 	}
 }
 add_action( 'wp_head', 'gpch_noindex_tag_output' );
