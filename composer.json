@@ -1,8 +1,8 @@
 {
 	"name": "greenpeace/planet4-child-theme-switzerland",
-	"description": "Child theme for the Switzerland website of the Planet 4 Wordpress project",
-	"type":"wordpress-theme",
-	"minimum-stability" : "stable",
+	"description": "Child theme for the swiss website in the Planet 4 project.",
+	"type": "wordpress-theme",
+	"minimum-stability": "stable",
 	"authors": [
 		{
 			"name": "Stefan Dürrenberger",
@@ -37,8 +37,8 @@
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
 	},
-    "scripts": {
-        "fixes": "vendor/bin/phpcbf",
-        "sniffs": "vendor/bin/phpcs -ps"
-    }
+	"scripts": {
+		"fixes": "vendor/bin/phpcbf",
+		"sniffs": "vendor/bin/phpcs -ps"
+	}
 }

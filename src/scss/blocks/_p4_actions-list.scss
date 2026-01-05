@@ -13,7 +13,7 @@
 	}
 
 	li h2 {
-		&:after {
+		&::after {
 			display: none !important;
 		}
 	}
@@ -27,7 +27,7 @@
 		margin-bottom: 0;
 	}
 
-    .load-more-actions-container {
-        margin-top: 1em;
-    }
+	.load-more-actions-container {
+		margin-top: 1em;
+	}
 }

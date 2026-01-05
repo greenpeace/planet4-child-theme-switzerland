@@ -436,10 +436,10 @@ add_filter( 'gform_field_validation', 'gpch_spam_entry_filter', 10, 4 );
 /**
  * Validates name fields in a Gravity Form, ensuring they do not contain numbers.
  *
- * @param array $result The validation result for the field, including 'is_valid' and 'message'.
+ * @param array  $result The validation result for the field, including 'is_valid' and 'message'.
  * @param string $value The value entered into the field.
- * @param array $form The current form object.
- * @param array $field The field currently being validated.
+ * @param array  $form The current form object.
+ * @param array  $field The field currently being validated.
  *
  * @return array The updated validation result.
  */

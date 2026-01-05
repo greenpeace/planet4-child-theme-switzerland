@@ -199,7 +199,8 @@ add_action( 'wp_enqueue_scripts', 'gpch_enqueue_scripts' );
 function gpch_set_post_order_in_admin( $wp_query ) {
 	global $pagenow;
 
-	if ( is_admin() && 'edit.php' == $pagenow && array_key_exists( 'post_type', $_GET ) && $_GET['post_type'] == 'page' && ! isset( $_GET['orderby'] ) ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( is_admin() && 'edit.php' === $pagenow && array_key_exists( 'post_type', $_GET ) && $_GET['post_type'] === 'page' && ! isset( $_GET['orderby'] ) ) {
 		$wp_query->set( 'orderby', 'post_modified' );
 		$wp_query->set( 'order', 'DESC' );
 	}
@@ -225,7 +226,8 @@ add_filter(
  * @return void
  */
 function gpch_enqueue_youtube_api() {
-	$id         = get_the_ID();
+	$id = get_the_ID();
+
 	$has_yt_block = gpch_has_block_embed_by_provider( 'youtube', $id );
 
 	if ( $has_yt_block ) {
@@ -271,15 +273,16 @@ add_filter( 'planet4_youtube_embed_parameters', 'gpch_change_youtube_embed_param
  * @return array $args
  */
 function gpch_show_drafts_as_parent_pages( array $args, WP_REST_Request $request ) {
-	if ( $request->get_param( 'context' ) == 'edit' && is_array($args['post_status']) ) {
+	if ( $request->get_param( 'context' ) === 'edit' && is_array( $args['post_status'] ) ) {
 		$show_statuses = [ 'publish', 'draft', 'private', 'future', 'pending' ];
 
 		foreach ( $show_statuses as $status ) {
-			if ( ! in_array( $status, $args['post_status'] ) ) {
+			if ( ! in_array( $status, $args['post_status'], true ) ) {
 				$args['post_status'][] = $status;
 			}
 		}
 
+		/* phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page */
 		$args['posts_per_page'] = 500; // Default was 100
 		$args['cache_results']  = false;
 
@@ -319,7 +322,7 @@ add_filter( 'ep_indexable_post_status', 'gpch_show_drafts_as_parent_pages_elasti
  *
  * @return string
  */
-function gpch_change_email_sender( $sender_email ) {
+function gpch_change_email_sender( $sender_email ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 	return 'noreply@greenpeace.ch';
 }
 
@@ -329,3 +332,32 @@ add_filter( 'planet4_sendgrid_sender', 'gpch_change_email_sender' );
 // Disable auto translations in WPML. Might be cause for a bug that changes translated pages back to the original language.
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 define( 'WPML_TRANSLATION_AUTO_UPDATE_ENABLED', false );
+
+
+/**
+ * Registers the blocks using a `blocks-manifest.php` file using the new block registration APIs introduced in WordPress 6.7 and 6.8, with a fallback to the classic `register_block_type()` function.
+ *
+ * @return void
+ */
+function gpch_register_blocks() {
+	// Use the new function in WP 6.8 and later.
+	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/blocks', __DIR__ . '/build/blocks-manifest.php' );
+
+		return;
+	}
+
+	// Use the blocks' metadata from the manifest file in WP 6.7 and later.
+	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
+		wp_register_block_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
+	}
+
+	// Use the classic registration method as a fallback.
+	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
+
+	foreach ( array_keys( $manifest_data ) as $block_type ) {
+		$result = register_block_type( __DIR__ . "/build/blocks/{$block_type}" );
+	}
+}
+
+add_action( 'init', 'gpch_register_blocks' );

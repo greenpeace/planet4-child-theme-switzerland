@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "planet4-child-theme-switzerland/food-quiz",
+	"version": "0.1.0",
+	"title": "Food Quiz",
+	"category": "media",
+	"icon": "carrot",
+	"description": "CCC Interactive Food Quiz",
+	"keywords": ["food", "quiz", "interactive"],
+	"example": {},
+	"supports": {
+		"inserter": true,
+		"html": false,
+		"anchor": true,
+		"color": {
+			"background": false,
+			"text": false
+		},
+		"multiple": false
+	},
+	"textdomain": "planet4-child-theme-switzerland",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+
+	"attributes": {
+		"breakfastMeals": {
+			"type": "array",
+			"default": [
+				{ "title": "Breakfast 1", "score": 10, "imageUrl": "" },
+				{ "title": "Breakfast 2", "score": 20, "imageUrl": "" },
+				{ "title": "Breakfast 3", "score": 30, "imageUrl": "" },
+				{ "title": "Breakfast 4", "score": 40, "imageUrl": "" }
+			]
+		},
+		"lunchMeals": {
+			"type": "array",
+			"default": [
+				{ "title": "Lunch 1", "score": 20, "imageUrl": "" },
+				{ "title": "Lunch 2", "score": 40, "imageUrl": "" },
+				{ "title": "Lunch 3", "score": 60, "imageUrl": "" },
+				{ "title": "Lunch 4", "score": 80, "imageUrl": "" }
+			]
+		},
+		"dinnerMeals": {
+			"type": "array",
+			"default": [
+				{ "title": "Dinner 1", "score": 20, "imageUrl": "" },
+				{ "title": "Dinner 2", "score": 40, "imageUrl": "" },
+				{ "title": "Dinner 3", "score": 60, "imageUrl": "" },
+				{ "title": "Dinner 4", "score": 80, "imageUrl": "" }
+			]
+		},
+		"drinks": {
+			"type": "array",
+			"default": [
+				{ "title": "Drink 1", "score": 3 },
+				{ "title": "Drink 2", "score": 5 },
+				{ "title": "Drink 3", "score": 5 },
+				{ "title": "Drink 4", "score": 8 }
+			]
+		},
+		"tierLabels": {
+			"type": "array",
+			"default": ["Low", "Low-Medium", "Medium", "Medium-High", "High"]
+		}
+		,
+		"tierThresholds": {
+			"type": "array",
+			"default": [100, 200, 300, 400, null]
+		}
+	}
+}

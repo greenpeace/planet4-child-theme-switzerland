@@ -5,13 +5,13 @@ Description: Child theme for the swiss website in the Planet 4 project
 Author: Greenpeace Switzerland
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
-Version: 2.0.40
+Version: 2.0.41
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
 Text Domain: planet4-child-theme-switzerland
 */
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap);
 
 /*--------------------------------------------------------------
 # General Imports
@@ -41,9 +41,7 @@ Text Domain: planet4-child-theme-switzerland
 @import "blocks/core_paragraph";
 @import "blocks/core_quote";
 @import "blocks/core_separator";
-
 @import "blocks/gravityforms";
-
 @import "blocks/p4_actions-list";
 @import "blocks/p4_posts-list";
 @import "blocks/p4_take-action-boxout";
@@ -70,5 +68,4 @@ Text Domain: planet4-child-theme-switzerland
 # Things we don't talk about in public
 --------------------------------------------------------------*/
 @import "specials";
-
 

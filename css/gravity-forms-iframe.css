@@ -20,7 +20,7 @@ input {
 	color: #fff;
 	background-color: #00573a;
 	border: 0;
-	padding: .6rem 1.2rem;
+	padding: 0.6rem 1.2rem;
 	font-weight: 700;
 	cursor: pointer;
 }
@@ -30,17 +30,21 @@ input {
 	background-color: #dbebbe;
 }
 
-.gform_wrapper .gfield_checkbox li input[type="checkbox"], .gform_wrapper .gfield_radio li input[type="radio"], .gform_wrapper .gfield_checkbox li input {
+.gform_wrapper .gfield_checkbox li input[type="checkbox"],
+.gform_wrapper .gfield_radio li input[type="radio"],
+.gform_wrapper .gfield_checkbox li input {
 	vertical-align: top;
 }
 
 /* Required markers */
-body .gform_wrapper .gfield.privacy-field label::after, body #gforms_confirmation_message .gfield.privacy-field label::after {
+body .gform_wrapper .gfield.privacy-field label::after,
+body #gforms_confirmation_message .gfield.privacy-field label::after {
 	content: " *";
 	color: #790000;
 }
 
-body .gform_wrapper .gfield.privacy-field .gfield_label, body #gforms_confirmation_message .gfield.privacy-field .gfield_label {
+body .gform_wrapper .gfield.privacy-field .gfield_label,
+body #gforms_confirmation_message .gfield.privacy-field .gfield_label {
 	display: none;
 }
 
@@ -57,13 +61,14 @@ body .gform_wrapper .top_label div.ginput_container {
 	margin-top: 2px;
 }
 
-.gform_wrapper .gfield_checkbox li, .gform_wrapper .gfield_radio li {
+.gform_wrapper .gfield_checkbox li,
+.gform_wrapper .gfield_radio li {
 	margin-bottom: 8px;
 }
 
 /* Media queries of Gravity Forms stlyes */
 @media only screen and (max-width: 641px) {
-	.gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=image]):not([type=file]) {
+	.gform_wrapper input:not([type="radio"]):not([type="checkbox"]):not([type="image"]):not([type="file"]) {
 		line-height: normal;
 		min-height: auto;
 	}

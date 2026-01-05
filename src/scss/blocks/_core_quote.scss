@@ -1,18 +1,18 @@
 blockquote.wp-block-quote {
-    padding-left: 1em;
-    border-left: solid 4px var(--gp-green-400);
+	padding-left: 1em;
+	border-left: solid 4px var(--gp-green-400);
 
 	font-size: 1.125rem !important;
-    font-weight: var(--gpch--font-weight--normal);
+	font-weight: var(--gpch--font-weight--normal);
 
-    > p {
-        font-size: 1.125rem !important;
-        font-weight: var(--gpch--font-weight--bold);
+	> p {
+		font-size: 1.125rem !important;
+		font-weight: var(--gpch--font-weight--bold);
 		line-height: 1.5;
 
-		&:before,
-		&:after {
+		&::before,
+		&::after {
 			content: none !important;
 		}
-    }
+	}
 }

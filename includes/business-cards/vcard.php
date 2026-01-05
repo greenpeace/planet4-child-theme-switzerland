@@ -99,7 +99,7 @@ function gpch_generate_vcard( $business_card_id ) {
 			$vcard .= "END:VCARD\r\n";
 
 			// Output the vCard content
-			echo $vcard;
+			echo esc_html( $vcard );
 
 			// Stop further script execution after outputting the vCard
 			exit;
