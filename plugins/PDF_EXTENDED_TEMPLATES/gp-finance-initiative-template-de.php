@@ -1,19 +1,19 @@
 <?php
 /**
-* Template Name: Finance Initiative - DE
-* Version: 1.0
-* Description: tde template for tde finance initiative 2024/25
-* Author: Greenpeace Switzerland
-* Author URI: https://www.greenpeace.ch
-* Group: GreenpeaceCH
-* License: GPLv2
-* Required PDF Version: 4.0
-* Tags: Initiative, Greenpeace, Finance
-*/
+ * Template Name: Finance Initiative - DE
+ * Version: 1.0
+ * Description: tde template for tde finance initiative 2024/25
+ * Author: Greenpeace Switzerland
+ * Author URI: https://www.greenpeace.ch
+ * Group: GreenpeaceCH
+ * License: GPLv2
+ * Required PDF Version: 4.0
+ * Tags: Initiative, Greenpeace, Finance
+ */
 
 /* Prevent direct access to tde template (always good to include tdis) */
 if ( ! class_exists( 'GFForms' ) ) {
-return;
+	return;
 }
 
 /**
@@ -30,12 +30,12 @@ return;
 ?>
 
 <?php
-//Form Fields
-$kanton = $form_data['field'][36] ?? '';
+// Form Fields
+$kanton              = $form_data['field'][36] ?? '';
 $politische_gemeinde = $form_data['field'][32] ?? '';
-$plz = $form_data['field'][21]['zip'] ?? '';
-$adresse = $form_data['field'][21]['street'] ?? '';
-$geburtsdatum = $form_data['field'][26] ?? '';
+$plz                 = $form_data['field'][21]['zip'] ?? '';
+$adresse             = $form_data['field'][21]['street'] ?? '';
+$geburtsdatum        = $form_data['field'][26] ?? '';
 ?>
 
 <style>
@@ -46,7 +46,7 @@ $geburtsdatum = $form_data['field'][26] ?? '';
 		height: 297mm;
 	}
 	body, @page {
-	 	text-rendering: optimizeLegibility !important;
+		text-rendering: optimizeLegibility !important;
 		-webkit-font-smoothing: antialiased !important;
 		-moz-osx-font-smoothing: grayscale;
 	}
@@ -58,7 +58,7 @@ body,@page {
 	font-family:  Inter, sans-serif;
 }
 .font-inter {
-  font-family: Inter, sans-serif;
+	font-family: Inter, sans-serif;
 }
 h1 {
 	font-size: 24px;
@@ -217,9 +217,9 @@ table.initiative-bv-content {
 	border-collapse: collapse;
 	table-layout: fixed;
 	width: 950px;
-    border: 0.5px solid black;
-    margin-top: 5px;
-    margin-bottom: 5px;
+	border: 0.5px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 table.initiative-bv-content td {
 	padding-top: 5px;
@@ -237,19 +237,19 @@ table.initiative-signatures {
 	table-layout: fixed;
 	width: 950px;
 	margin-top: 5px;
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 table.initiative-signatures, 
 table.initiative-signatures th, 
 table.initiative-signatures td.border,{
-  border: 0.5px solid black;
+	border: 0.5px solid black;
 
 }
 table.initiative-signatures, 
 table.initiative-signatures th, 
 table.initiative-signatures td {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 table.initiative-signatures .angaben-region td {
 	height: 22px;
@@ -287,12 +287,12 @@ table.initiative-beglaubigung {
 table.initiative-beglaubigung, 
 table.initiative-beglaubigung th, 
 table.initiative-beglaubigung td {
-  vertical-align: top;
+	vertical-align: top;
 }
 table.initiative-beglaubigung,
 table.initiative-beglaubigung th,
 table.initiative-beglaubigung td.border {
-  border: 0.5px solid black;
+	border: 0.5px solid black;
 
 }
 table.initiative-beglaubigung td,
@@ -323,21 +323,21 @@ Section Code
 <!--- Informationsteil obere Seitenhälfte --->
 <div class="info-section font-inter">
 	<h1 class="main-title">Kein Geld <br/>für Zerstörung</h1>
-	 	<img class="main-image" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-image-button-de.png"/>
-	 	<h3 class="main-cta">Jetzt Initiative unterschreiben!</h3>
-	 	<div class="info-text">
+		<img class="main-image" src="<?php echo get_stylesheet_directory(); ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-image-button-de.png"/>
+		<h3 class="main-cta">Jetzt Initiative unterschreiben!</h3>
+		<div class="info-text">
 		<p class="font-size-l description-text"><strong>Der Schweizer Finanzplatz ist ein globales Schwergewicht. Die Milliarden, die hierzulande verwaltet oder als Kredite vergeben werden, richten woanders grossen Schaden an und fliessen beispielsweise in die Abholzung des Regenwalds oder den Abbau von Kohle. Mit der Finanzplatz-Initiative wird dieses Geld künftig nicht mehr in Klimaerhitzung und die Zerstörung der Umwelt investiert.</strong></p>
-	  <table class="additional-info">
-	    <tr>
-	      <td style="width: 20%"><img class="qr-code" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-qr-de.png"/></td>
-	      <td style="width: 80%"><p class="font-size-l">Mehr erfahren:<br /> www.finanzplatz-initiative.ch</p></td>
-	    </tr>
-	  </table>
+		<table class="additional-info">
+		<tr>
+			<td style="width: 20%"><img class="qr-code" src="<?php echo get_stylesheet_directory(); ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-qr-de.png"/></td>
+			<td style="width: 80%"><p class="font-size-l">Mehr erfahren:<br /> www.finanzplatz-initiative.ch</p></td>
+		</tr>
+		</table>
 		</div>
-	<img class="initiative-logo" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-footer-logo-de.png"/>
+	<img class="initiative-logo" src="<?php echo get_stylesheet_directory(); ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-footer-logo-de.png"/>
 </div>
 <div class="frankatur">
-	<img class="initiative-frankatur" src="<?php echo get_stylesheet_directory() ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-frankatur-de.png"/>
+	<img class="initiative-frankatur" src="<?php echo get_stylesheet_directory(); ?>/plugins/PDF_EXTENDED_TEMPLATES/img/finance-initiative/finance-initiative-frankatur-de.png"/>
 </div>
 <div class="anschrift font-inter">
 	<p class="font-size-xl">Finanzplatz-Initiative<br/>Postfach 6094<br/>2500 Biel 6</p>
@@ -362,94 +362,94 @@ Section Code
 	<p class="intro font-size-m">Im Bundesblatt veröffentlicht am <strong>26.11.2024</strong>. Die unterzeichnenden stimmberechtigten Schweizer Bürgerinnen und Bürger stellen hiermit, gestützt auf Art. 34, 136, 139 und 194 der Bundesverfassung und nach dem Bundesgesetz vom 17. Dezember 1976 über die politischen Rechte, Art. 68ff., folgendes Begehren:</p>
 			<!--- Änderungen Bundesverfassung bzw. Initiativtext --->
 	<table class="initiative-bv-content">
-	  <tr>
-	    <td style="vertical-align: top; width: 475px;">
-	      <p class="font-size-s"><strong>Die Bundesverfassung<sup>1</sup> wird wie folgt geändert:</strong></p>
-	      <p class="font-size-s"><strong><em>Art. 98a</em>&nbsp;&nbsp;&nbsp;Nachhaltiger Finanzplatz</strong></p>
-	      <p class="font-size-s"><sup>1</sup> Der Bund setzt sich für eine ökologisch nachhaltige Ausrichtung des Schweizer Finanzplatzes ein. Er trifft Massnahmen zur entsprechenden Ausrichtung der Finanzmittelflüsse; die Massnahmen müssen im Einklang stehen mit den internationalen Standards und völkerrechtlichen Verpflichtungen der Schweiz zur Klimaverträglichkeit und zum Schutz und zur Wiederherstellung der biologischen Vielfalt.</p>	
-	      <p class="font-size-s"><sup>2</sup> Schweizer Finanzmarktteilnehmende wie Banken, Versicherungsunternehmen, Finanzinstitute sowie Vorsorge- und Sozialversicherungseinrichtungen richten ihre Geschäftstätigkeiten mit Umweltauswirkungen im Ausland, insbesondere aufgrund von Treibhausgasemissionen, auf das nach dem aktuellen Stand der Wissenschaft international vereinbarte Temperaturziel und auf die internationalen Biodiversitätsziele aus; dabei berücksichtigen sie direkte und indirekte Emissionen sowie die Auswirkungen auf die Biodiversität entlang der gesamten Wertschöpfungskette. Das Gesetz sieht Ausnahmen vor für Finanzmarktteilnehmende, deren Tätigkeiten mit geringen Umweltauswirkungen verbunden sind.</p>
-	    </td>
-	    <td style="vertical-align: top; width: 475px;">
-	      <p class="font-size-s"><sup>3</sup> Schweizer Finanzmarktteilnehmende erbringen keine Finanzierungs- und Versicherungsdienstleistungen, die der Erschliessung und der Förderung neuer sowie der Ausweitung des Abbaus bestehender fossiler Energievorkommen dienen; das Gesetz legt die entsprechenden Einschränkungen fest.</p>
-	      <p class="font-size-s"> <sup>4</sup> Zur Durchsetzung dieser Vorgaben wird eine Aufsicht vorgesehen; diese hat Verfügungs- und Sanktionskompetenzen.</p>
-	      <p class="font-size-xs">&nbsp;</p>
-	      <p class="font-size-s"><strong><em>Art. 197 Ziff. 17&thinsp;</em><sup>2</sup></strong></p>
+		<tr>
+		<td style="vertical-align: top; width: 475px;">
+			<p class="font-size-s"><strong>Die Bundesverfassung<sup>1</sup> wird wie folgt geändert:</strong></p>
+			<p class="font-size-s"><strong><em>Art. 98a</em>&nbsp;&nbsp;&nbsp;Nachhaltiger Finanzplatz</strong></p>
+			<p class="font-size-s"><sup>1</sup> Der Bund setzt sich für eine ökologisch nachhaltige Ausrichtung des Schweizer Finanzplatzes ein. Er trifft Massnahmen zur entsprechenden Ausrichtung der Finanzmittelflüsse; die Massnahmen müssen im Einklang stehen mit den internationalen Standards und völkerrechtlichen Verpflichtungen der Schweiz zur Klimaverträglichkeit und zum Schutz und zur Wiederherstellung der biologischen Vielfalt.</p>    
+			<p class="font-size-s"><sup>2</sup> Schweizer Finanzmarktteilnehmende wie Banken, Versicherungsunternehmen, Finanzinstitute sowie Vorsorge- und Sozialversicherungseinrichtungen richten ihre Geschäftstätigkeiten mit Umweltauswirkungen im Ausland, insbesondere aufgrund von Treibhausgasemissionen, auf das nach dem aktuellen Stand der Wissenschaft international vereinbarte Temperaturziel und auf die internationalen Biodiversitätsziele aus; dabei berücksichtigen sie direkte und indirekte Emissionen sowie die Auswirkungen auf die Biodiversität entlang der gesamten Wertschöpfungskette. Das Gesetz sieht Ausnahmen vor für Finanzmarktteilnehmende, deren Tätigkeiten mit geringen Umweltauswirkungen verbunden sind.</p>
+		</td>
+		<td style="vertical-align: top; width: 475px;">
+			<p class="font-size-s"><sup>3</sup> Schweizer Finanzmarktteilnehmende erbringen keine Finanzierungs- und Versicherungsdienstleistungen, die der Erschliessung und der Förderung neuer sowie der Ausweitung des Abbaus bestehender fossiler Energievorkommen dienen; das Gesetz legt die entsprechenden Einschränkungen fest.</p>
+			<p class="font-size-s"> <sup>4</sup> Zur Durchsetzung dieser Vorgaben wird eine Aufsicht vorgesehen; diese hat Verfügungs- und Sanktionskompetenzen.</p>
+			<p class="font-size-xs">&nbsp;</p>
+			<p class="font-size-s"><strong><em>Art. 197 Ziff. 17&thinsp;</em><sup>2</sup></strong></p>
 				<p class="font-size-s"><strong><em>17. Übergangsbestimmung zu Art. 98a (Nachhaltiger Finanzplatz)</em></strong></p>
 				<p class="font-size-s">Die Bundesversammlung erlässt die Ausführungsbestimmungen zu Artikel 98a spätestens drei Jahre nach dessen Annahme durch Volk und Stände. Treten die Ausführungsbestimmungen innerhalb dieser Frist nicht in Kraft, so erlässt der Bundesrat die Ausführungsbestimmungen in Form einer Verordnung und setzt sie innerhalb eines Jahres in Kraft. Die Verordnung gilt bis zum Inkrafttreten der von der Bundesversammlung erlassenen Ausführungsbestimmungen.</p>
 			</td>
-	   </tr>
-	  <tr>
-	    <td class="fussnoten" colspan="2" style="vertical-align: middle;">
-	      <hr>
-	      <p class="font-size-s"><sup>1</sup> SR <strong>101</strong></p>
+		</tr>
+		<tr>
+		<td class="fussnoten" colspan="2" style="vertical-align: middle;">
+			<hr>
+			<p class="font-size-s"><sup>1</sup> SR <strong>101</strong></p>
 				<p class="font-size-s"><sup>2</sup> Die endgültige Ziffer dieser übergangsbestimmung wird nach der Volksabstimmung von der Bundeskanzlei festgelegt.</p>
-	    </td>
-	  </tr>
+		</td>
+		</tr>
 	</table>
 
 	<p class="font-size-s">Auf dieser Liste können nur Stimmberechtigte unterzeichnen, die in der genannten politischen Gemeinde in eidgenössischen Angelegenheiten stimmberechtigt sind. Bürgerinnen und Bürger, die das Begehren unterstützen, mögen es handschriftlich unterzeichnen. Wer bei einer Unterschriftensammlung besticht oder sich bestechen lässt oder wer das Ergebnis einer Unterschriftensammlung für eine Volksinitiative fälscht, macht sich strafbar nach Art. 281 beziehungsweise nach Art. 282 des Strafgesetzbuches.</p>
 
-	  <!--- Tabelle für Unterschriften --->
- 	<table class="initiative-signatures">
-	  <tbody>
-	    <tr class="angaben-region">
-			  <td colspan="2" class="plz border font-size-m"><span class="label">Kanton: </span><?php echo esc_html( $kanton ); ?></td>
-			  <td colspan="1" class="gemeinde border font-size-m"><span class="label">PLZ: </span><?php echo esc_html( $plz ); ?></td>
-			  <td colspan="3" class="kanton border font-size-m"><span class="label">Politische Gemeinde: </span><?php echo esc_html( $politische_gemeinde ); ?></td>
-		  </tr>
-		  <tr class="heading-unterzeichner">
-			  <td class="nr leave-empty border"><span class="font-size-l leave-empty">Nr.</span></td>
-			  <td class="name leave-empty border"><span class="label font-size-m leave-empty">Name/Vornamen</span><br/><span class="font-size-s">(eigenhändig in Blockschrift)</span></td>
-			 	<td class="geburtsdatum leave-empty border"><span class="label font-size-m leave-empty">Geburtsdatum</span><br/><span class="font-size-s">(Tag/Monat/Jahr)</span></td>
-			  <td class="adresse leave-empty border"><span class="label font-size-m leave-empty">Wohnadresse</span><br/><span class="font-size-s">(Strasse und Hausnummer)</span></td>
-			  <td class="unterschrift leave-empty border"><span class="label font-size-m leave-empty">Eigenhändige Unterschrift</span></td>
-			  <td class="kontrolle leave-empty border"><span class="label font-size-m leave-empty">Kontrolle</span><br/><span class="font-size-s">(leer lassen)</span></td>
-		  </tr> 	
-	   	<tr class="angaben-unterzeichner">
-			  <td style="width:60px;" class="nr border font-size-l">1.</td>
-			  <td style="width:220px;" class="name border font-size-m"></td>
-			  <td style="width:150px;" class="geburtsdatum-tag border font-size-m"><?php echo esc_html( $geburtsdatum ); ?></td>
-			  <td style="width:220px;" class="adresse border font-size-m"><?php echo esc_html( $adresse ); ?></td>
-			  <td style="width:220px" class="unterschrift border font-size-m"></td>
-			  <td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
-		  </tr>
-		  <tr class="angaben-unterzeichner">
-			  <td style="width:60px;" class="nr border font-size-l">2.</td>
-			  <td style="width:220px;" class="name border font-size-m"></td>
-			  <td style="width:150px;" class="geburtsdatum-tag border font-size-m"></td>
-			  <td style="width:220px;" class="adresse border font-size-m"></td>
-			  <td style="width:220px" class="unterschrift border font-size-m"></td>
-			  <td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
-		  </tr>
-		  <tr class="angaben-unterzeichner">
-			  <td style="width:60px;" class="nr border font-size-l">3.</td>
-			  <td style="width:220px;" class="name border font-size-m"></td>
-			  <td style="width:150px;" class="geburtsdatum-tag border font-size-m"></td>
-			  <td style="width:220px;" class="adresse border font-size-m"></td>
-			  <td style="width:220px" class="unterschrift border font-size-m"></td>
-			  <td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
-		  </tr> 
-	  </tbody>
+		<!--- Tabelle für Unterschriften --->
+	<table class="initiative-signatures">
+		<tbody>
+		<tr class="angaben-region">
+				<td colspan="2" class="plz border font-size-m"><span class="label">Kanton: </span><?php echo esc_html( $kanton ); ?></td>
+				<td colspan="1" class="gemeinde border font-size-m"><span class="label">PLZ: </span><?php echo esc_html( $plz ); ?></td>
+				<td colspan="3" class="kanton border font-size-m"><span class="label">Politische Gemeinde: </span><?php echo esc_html( $politische_gemeinde ); ?></td>
+			</tr>
+			<tr class="heading-unterzeichner">
+				<td class="nr leave-empty border"><span class="font-size-l leave-empty">Nr.</span></td>
+				<td class="name leave-empty border"><span class="label font-size-m leave-empty">Name/Vornamen</span><br/><span class="font-size-s">(eigenhändig in Blockschrift)</span></td>
+				<td class="geburtsdatum leave-empty border"><span class="label font-size-m leave-empty">Geburtsdatum</span><br/><span class="font-size-s">(Tag/Monat/Jahr)</span></td>
+				<td class="adresse leave-empty border"><span class="label font-size-m leave-empty">Wohnadresse</span><br/><span class="font-size-s">(Strasse und Hausnummer)</span></td>
+				<td class="unterschrift leave-empty border"><span class="label font-size-m leave-empty">Eigenhändige Unterschrift</span></td>
+				<td class="kontrolle leave-empty border"><span class="label font-size-m leave-empty">Kontrolle</span><br/><span class="font-size-s">(leer lassen)</span></td>
+			</tr>     
+			<tr class="angaben-unterzeichner">
+				<td style="width:60px;" class="nr border font-size-l">1.</td>
+				<td style="width:220px;" class="name border font-size-m"></td>
+				<td style="width:150px;" class="geburtsdatum-tag border font-size-m"><?php echo esc_html( $geburtsdatum ); ?></td>
+				<td style="width:220px;" class="adresse border font-size-m"><?php echo esc_html( $adresse ); ?></td>
+				<td style="width:220px" class="unterschrift border font-size-m"></td>
+				<td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
+			</tr>
+			<tr class="angaben-unterzeichner">
+				<td style="width:60px;" class="nr border font-size-l">2.</td>
+				<td style="width:220px;" class="name border font-size-m"></td>
+				<td style="width:150px;" class="geburtsdatum-tag border font-size-m"></td>
+				<td style="width:220px;" class="adresse border font-size-m"></td>
+				<td style="width:220px" class="unterschrift border font-size-m"></td>
+				<td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
+			</tr>
+			<tr class="angaben-unterzeichner">
+				<td style="width:60px;" class="nr border font-size-l">3.</td>
+				<td style="width:220px;" class="name border font-size-m"></td>
+				<td style="width:150px;" class="geburtsdatum-tag border font-size-m"></td>
+				<td style="width:220px;" class="adresse border font-size-m"></td>
+				<td style="width:220px" class="unterschrift border font-size-m"></td>
+				<td style="width:80px;" class="kontrolle border font-size-m leave-empty"></td>
+			</tr> 
+		</tbody>
 	</table>
 
-	   <!--- Initiativkomitee --->
+		<!--- Initiativkomitee --->
 	<p class="font-size-xs"><strong>Das Initiativkomitee, bestehend aus nachstehenden Urheberinnen und Urhebern, ist berechtigt, diese Volksinitiative mit absoluter Mehrheit seiner noch stimmberechtigten Mitglieder zurückzuziehen:</strong> <br/><strong>Gerhard Andrey</strong>, Chablioux-Parc 16, 1763 Granges-Paccot, <strong>Nicole Bardet</strong>, En Bouley 39, 1680 Romont, <strong>Samuel Bendahan</strong>, Route des Plaines-du-Loup 41, 1018 Lausanne, <strong>Kathrin Bertschy</strong>, Länggassstr. 10, 3012 Bern, <strong>Peter Bosshard</strong>, Feldgüetliweg 71, 8706 Meilen, <strong>Elgin Brunner</strong>, Zeunerstr. 17, 8037 Zürich, <strong>Sasha Cisar</strong>, Juliastr. 5, 8032 Zürich, <strong>Raphaël Comte</strong>, Postfach 76, 2035 Corcelles, <strong>Melanie Gajowski</strong>, Trittligasse 26, 8001 Zürich, <strong>Susanne Hochuli</strong>, Im Winkel 10, 5057 Reitnau, <strong>Marc Jost</strong>, Hohmadstr. 29, 3600 Thun, <strong>Konrad Langhart</strong>, Breitenweg 1, 8477 Oberstammheim, <strong>Michaël Malquarti</strong>, Av. De Champel 59, 1206 Genf, <strong>Yvan Maillard Ardenti</strong>, Ch. des Cossettes 41, 1723 Marly, <strong>Lisa Mazzone</strong>, Av. Ernest-Pictet 5, 1203 Genf, <strong>Mattea Meyer</strong>, Unterrütiweg 3, 8400 Winterthur, <strong>Stefan Müller-Altermatt</strong>, Dorfstr. 6, 4715 Herbetswil, <strong>Jon Pult</strong>, Engadinstr. 19, 7000 Chur, <strong>Marc Rüdisüli</strong>, Hochwachtstr. 24, 8370 Sirnach, <strong>Barbara Schaffner</strong>, Riedstr. 4, 8112 Otelfingen, <strong>Frédéric Steimer</strong>, Av. Louis-Ruchonnet 24, 1003 Lausanne, <strong>Maya Tharian</strong>, Birkenstr. 44, 8107 Buchs, <strong>Thomas Vellacott</strong>, Gladiolenweg 3, 8048 Zürich, <strong>Natascha Wey</strong>, Waffenplatzstr. 95, 8002 Zürich, <strong>Céline Widmer</strong>, Anwandstr. 28, 8004 Zürich, <strong>Marc Wuarin</strong>, Ch. Du Pré-du-Couvent 3f, 1224 Chêne-Bougeries, <strong>Kurt Zaugg-Ott</strong>, Melchtalstr. 15, 3014 Bern</p>
-	  <p class="font-size-s" style="margin-top:5px;">Ablauf der Sammelfrist: <strong>26.05.2026</strong></p>
-	  <p class="font-size-s" style="margin-top:5px;">Die unterzeichnende Amtsperson bescheinigt hiermit, dass obenstehende _______ (Anzahl) Unterzeichnerinnen und Unterzeichner der Volksinitiative in eidgenössischen Angelegenheiten stimmberechtigt sind und ihre politischen Rechte in der erwähnten Gemeinde ausüben.</p>
+		<p class="font-size-s" style="margin-top:5px;">Ablauf der Sammelfrist: <strong>26.05.2026</strong></p>
+		<p class="font-size-s" style="margin-top:5px;">Die unterzeichnende Amtsperson bescheinigt hiermit, dass obenstehende _______ (Anzahl) Unterzeichnerinnen und Unterzeichner der Volksinitiative in eidgenössischen Angelegenheiten stimmberechtigt sind und ihre politischen Rechte in der erwähnten Gemeinde ausüben.</p>
 
-	  <!--- Tabelle für Beglaubigung Amtsperson --->
+		<!--- Tabelle für Beglaubigung Amtsperson --->
 	<table class="initiative-beglaubigung">
-	  <tbody>
-	  	<tr class="angaben-amtsperson">
-	     	<td style="width:260px;" class="border font-size-s"><span>Ort:</span></td>
-	     	<td style="width:340px;" class="border font-size-s"><span>Eigenhändige Unterschrift: </span></td>
-	     	<td style="width:220px;" class="border font-size-s" rowspan="2">Amtsstempel:</td>
-	    </tr>
-	    <tr class="angaben-amtsperson">
-	     	<td class="border font-size-s"><span>Datum: </span></td>
-	     	<td class="border font-size-s"><span>Amtliche Eigenschaft: </span></span></td>
-	    </tr>
-	  </tbody>
+		<tbody>
+			<tr class="angaben-amtsperson">
+			<td style="width:260px;" class="border font-size-s"><span>Ort:</span></td>
+			<td style="width:340px;" class="border font-size-s"><span>Eigenhändige Unterschrift: </span></td>
+			<td style="width:220px;" class="border font-size-s" rowspan="2">Amtsstempel:</td>
+		</tr>
+		<tr class="angaben-amtsperson">
+			<td class="border font-size-s"><span>Datum: </span></td>
+			<td class="border font-size-s"><span>Amtliche Eigenschaft: </span></span></td>
+		</tr>
+		</tbody>
 	</table>
 
 	<!--- Abschlissende Info --->   

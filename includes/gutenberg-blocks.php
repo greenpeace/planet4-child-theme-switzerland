@@ -25,6 +25,7 @@ function gpch_blocks_allowlist( $allowed_blocks, $context ) {
 		'planet4-gpch-plugin-blocks/form-entries',
 		'planet4-blocks/accordion',
 		'planet4-gpch-tamaro/tamaro-widget',
+		'planet4-child-theme-switzerland/food-quiz',
 
 		// allow on all content types
 		'planet4-blocks/take-action-boxout',

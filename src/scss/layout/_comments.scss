@@ -1,15 +1,15 @@
 #comments {
-    max-width: 776px;
+	max-width: 776px;
 
-    .logged-in-as {
-        position: relative;
-        top: auto;
-        right: auto;
-    }
+	.logged-in-as {
+		position: relative;
+		top: auto;
+		right: auto;
+	}
 }
 
-@include media('<=desktop') {
-    #comments {
-        max-width: none;
-    }
+@include media("<=desktop") {
+	#comments {
+		max-width: none;
+	}
 }

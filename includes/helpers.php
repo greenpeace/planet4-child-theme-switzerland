@@ -36,21 +36,21 @@ function gpch_has_block_embed_by_provider( $provider, $post = null ) {
 /**
  * Searches multidimensional arrays for key/value pairs
  *
- * @param array  $array The array to search.
+ * @param array  $data  $data The array to search.
  * @param string $key The key name to search for.
  * @param string $value The value to search for.
  *
- * @return array
+ * @return $data
  */
-function gpch_search_array_key_value( $array, $key, $value ) {
+function gpch_search_array_key_value( $data, $key, $value ) {
 	$results = array();
 
-	if ( is_array( $array ) ) {
-		if ( isset( $array[ $key ] ) && $array[ $key ] == $value ) {
-			$results[] = $array;
+	if ( is_array( $data ) ) {
+		if ( isset( $data[ $key ] ) && $data[ $key ] === $value ) {
+			$results[] = $data;
 		}
 
-		foreach ( $array as $subarray ) {
+		foreach ( $data as $subarray ) {
 			$results = array_merge( $results, gpch_search_array_key_value( $subarray, $key, $value ) );
 		}
 	}

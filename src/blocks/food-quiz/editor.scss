@@ -1,0 +1,46 @@
+.food-quiz__editor {
+	border: 1px dashed #ddd;
+	padding: 12px;
+	background: #fff;
+}
+
+.food-quiz__editor-item {
+	margin-bottom: 16px;
+}
+
+/* Tabs for tiers (editor only) */
+.food-quiz__tiers-tabs {
+	display: flex;
+	gap: 6px;
+	margin: 12px 0;
+}
+
+.food-quiz__tiers-tabs .fq-tab {
+	background: #f3f3f3;
+	border: 1px solid #ddd;
+	padding: 6px 10px;
+	cursor: pointer;
+}
+
+.food-quiz__tiers-tabs .fq-tab.is-active {
+	background: #fff;
+	border-bottom: 2px solid #0073aa;
+}
+
+/* Hide all inner blocks, show only the active one (1-based nth-child) */
+.food-quiz__tiers-inner .wp-block.food-quiz__tier-editor {
+	display: none;
+
+	padding: 12px;
+	border: 1px solid #eee;
+	background: #fff;
+}
+
+.food-quiz__tiers-inner.active-tier-0 .wp-block.food-quiz__tier-editor:nth-child(1),
+.food-quiz__tiers-inner.active-tier-1 .wp-block.food-quiz__tier-editor:nth-child(2),
+.food-quiz__tiers-inner.active-tier-2 .wp-block.food-quiz__tier-editor:nth-child(3),
+.food-quiz__tiers-inner.active-tier-3 .wp-block.food-quiz__tier-editor:nth-child(4),
+.food-quiz__tiers-inner.active-tier-4 .wp-block.food-quiz__tier-editor:nth-child(5) {
+	display: block;
+}
+
