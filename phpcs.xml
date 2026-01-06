@@ -9,6 +9,9 @@
 	<!-- Exclude the Composer Vendor directory. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
+	<!-- Exclude the build directory. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+
 	<!-- Exclude the Node Modules directory. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
