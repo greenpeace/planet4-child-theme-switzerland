@@ -1,0 +1,21 @@
+name: Lint-CSS (Stylelint)
+
+on:
+  pull_request:
+
+jobs:
+  stylelint:
+    name: Run stylelint scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Ensure .stylelintrc.js from stylelint.config.js
+        run: |
+          if [ -f stylelint.config.js ] && [ ! -f .stylelintrc.js ]; then
+            printf "module.exports = require('./stylelint.config.js');\n" > .stylelintrc.js
+          fi
+
+      - name: stylelint
+        uses: actions-hub/stylelint@master
