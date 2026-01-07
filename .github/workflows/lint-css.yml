@@ -10,12 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
-      - name: Ensure .stylelintrc.js from stylelint.config.js
-        run: |
-          if [ -f stylelint.config.js ] && [ ! -f .stylelintrc.js ]; then
-            printf "module.exports = require('./stylelint.config.js');\n" > .stylelintrc.js
-          fi
 
       - name: stylelint
         uses: actions-hub/stylelint@master
+        env:
+            CONFIG_PATH: ./
