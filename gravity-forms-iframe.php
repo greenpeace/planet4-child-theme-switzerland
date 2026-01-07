@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+/**
+ * Gravity Forms Iframe Template
+ *
+ * @package Planet4_Child_Theme_Switzerland
+ */
+
+?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
