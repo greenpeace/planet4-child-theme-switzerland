@@ -27,4 +27,4 @@ jobs:
         run: npm ci
 
       - name: Run stylelint (fail on warnings)
-        run: npx stylelint "src/**/*.scss" "admin/css/**/*.css" "style.css" --config .stylelintrc --max-warnings 0 --formatter verbose
+        run: npx stylelint "src/**/*.scss" "admin/css/**/*.css" "style.css" --config stylelint.config.js --max-warnings 0
