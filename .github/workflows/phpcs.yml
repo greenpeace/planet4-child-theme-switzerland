@@ -1,0 +1,26 @@
+name: Lint-PHP (PHPCS)
+
+on:
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: Run PHPCS scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring,xml
+
+      - name: Composer install
+        uses: php-actions/composer@v6
+
+      - name: Run PHPCS (composer-installed)
+        run: |
+          vendor/bin/phpcs ./ --standard=phpcs.xml --report=full --extensions=php,inc
+
