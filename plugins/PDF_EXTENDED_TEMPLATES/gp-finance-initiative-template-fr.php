@@ -9,6 +9,9 @@
  * License: GPLv2
  * Required PDF Version: 4.0
  * Tags: Initiative, Greenpeace, Finance
+ *
+ * phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+ * phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
  */
 
 /* Prevent direct access to tde template (always good to include tdis) */
