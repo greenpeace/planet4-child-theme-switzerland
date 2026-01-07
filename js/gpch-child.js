@@ -6,18 +6,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// Replace the layout class in the listing page of publications
 	if (
 		document.body.classList.contains( 'tax-p4-page-type' ) &&
-		( document.body.classList.contains( 'term-publikation' ) ||
-			document.body.classList.contains( 'term-publication' ) )
+		( document.body.classList.contains( 'term-publikation' ) || document.body.classList.contains( 'term-publication' ) )
 	) {
-		const listingPageContent = document.getElementById(
-			'listing-page-content'
-		);
+		const listingPageContent = document.getElementById( 'listing-page-content' );
 
 		if ( listingPageContent ) {
-			listingPageContent.classList.replace(
-				'wp-block-query--list',
-				'wp-block-query--grid'
-			);
+			listingPageContent.classList.replace( 'wp-block-query--list', 'wp-block-query--grid' );
 		}
 	}
 } );
@@ -32,10 +26,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	const pixelPath = 'https://sst.greenpeace.ch/4dchk';
 
 	// Prevent the script from running multiple times per session
-	if (
-		typeof window.sessionStorage !== 'object' ||
-		window.sessionStorage.getItem( 'gpch_blocker_checked' ) === '1'
-	) {
+	if ( typeof window.sessionStorage !== 'object' || window.sessionStorage.getItem( 'gpch_blocker_checked' ) === '1' ) {
 		return;
 	}
 
@@ -61,18 +52,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				// Build the GA4 parameters, add additional parameters at your leisure
 				const params = {
 					ads_blocked: ! document.querySelector( '#GxsCRdhiJi' ), // Detect if the bait file was blocked
-					gtm_blocked: ! (
-						window.google_tag_manager &&
-						window.google_tag_manager.dataLayer
-					), // Detect if gtm.js was blocked
+					gtm_blocked: ! ( window.google_tag_manager && window.google_tag_manager.dataLayer ), // Detect if gtm.js was blocked
 					ga_blocked: gaBlocked, // Detect if analytics.js was blocked
 				};
 
 				// Build the pixel request with a unique, random Client ID
-				const cid =
-					Math.floor( Math.random() * 1000000 + 1 ) +
-					'_' +
-					new Date().getTime();
+				const cid = Math.floor( Math.random() * 1000000 + 1 ) + '_' + new Date().getTime();
 				const img = document.createElement( 'img' );
 				img.style = 'width: 1; height: 1; display: none;';
 				img.src =
@@ -89,10 +74,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 				// Save to session storage
 				if ( window.sessionStorage ) {
-					global.sessionStorage.setItem(
-						'gpch_blocker_checked',
-						'1'
-					);
+					global.sessionStorage.setItem( 'gpch_blocker_checked', '1' );
 				}
 			} );
 	} );

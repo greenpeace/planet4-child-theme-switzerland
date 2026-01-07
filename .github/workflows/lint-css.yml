@@ -1,0 +1,30 @@
+name: Lint-CSS (Stylelint)
+
+on:
+  pull_request:
+
+jobs:
+  stylelint:
+    name: Run Stylelint scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json', 'package.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run stylelint (fail on warnings)
+        run: npx stylelint "src/**/*.scss" "admin/css/**/*.css" "style.css" --config stylelint.config.js --max-warnings 0
