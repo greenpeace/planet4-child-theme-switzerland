@@ -1,10 +1,11 @@
-name: PHPCS
+name: Lint-PHP (PHPCS)
 
 on:
   pull_request:
 
 jobs:
   build-and-test:
+    name: Run PHPCS scan
     runs-on: ubuntu-latest
 
     steps:

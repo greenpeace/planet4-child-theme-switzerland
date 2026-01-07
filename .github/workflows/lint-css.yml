@@ -5,7 +5,7 @@ on:
 
 jobs:
   stylelint:
-    name: Run stylelint scan
+    name: Run Stylelint scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
