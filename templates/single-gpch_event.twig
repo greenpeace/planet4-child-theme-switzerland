@@ -4,55 +4,82 @@
 	<div class="clearfix"></div>
 
 	<article id="post-{{ post.ID }}">
-		<header class="page-header">
-			<div class="page-header-background">
-				{#<img src="{{ background_image }}" class="page-header-image" alt="Image alt data"/>#}
-			</div>
-			<div class="container">
-				<div class="top-page-tags">
+		<div class="container">
+			<header class="page-header">
+				<nav class="top-page-tags">
+					<a
+						class="tag-item tag-item--main page-type"
+						href="{{ archive_link }}"
+						data-ga-category="Header"
+						data-ga-action="Post Type Tag"
+						data-ga-label="n/a">
+							{{ __('Event', 'planet4-gpch-blocks') }}
+					</a>
+
+					{% if ( post.tags ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
+					{% endif %}
+
 					{% if (post.tags) %}
 						<div class="tag-wrap tags">
 							{% for tag in post.tags %}
-								<a class="tag-item tag" href="{{ tag.link }}">#{{ tag.name|e('wp_kses_post')|raw }}</a>
+								<a
+										class="tag-item tag"
+										href="{{ tag.link }}"
+										data-ga-category="Header"
+										data-ga-action="Navigation Tag"
+										data-ga-label="n/a">
+									<span aria-label="hashtag">#<span>{{ tag.name|e('wp_kses_post')|raw }}
+								</a>
 							{% endfor %}
 						</div>
 					{% endif %}
-				</div>
+				</nav>
 
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
 
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="event-meta">
-							<li class="date">
-								<span class="title">{{ __('Date', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.event_date|date("l, d. F Y") }}
-							</li>
-							{% if (post.start_time) %}
-							<li class="time">
-								<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time }}
-							</li>
-							{% endif %}
-							<li class="place">
-								<span class="title">{{ __('Place', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.place }}
-							</li>
-						</ul>
-					</div>
-				</div>
+				<ul class="event-meta">
+					<li class="date">
+						<span class="title">{{ __('Date', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.event_date|date("l, d. F Y") }}
+					</li>
+					{% if (post.start_time) %}
+					<li class="time">
+						<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time }}
+					</li>
+					{% endif %}
+					<li class="place">
+						<span class="title">{{ __('Place', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.place }}
+					</li>
+				</ul>
+					
 
 				{% if post.thumbnail.src is defined %}
-					<div class="row">
-						<div class="col-md-12">
-							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
-								 alt="{{ post.title }}"/>
-						</div>
-					</div>
+					<figure class="header-image wp-block-image">
+						<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
+									alt="{{ post.title }}" srcset="{{ function( 'wp_get_attachment_image_srcset', post.thumbnail.id, 'large' )  }}" sizes="{{ function( 'wp_get_attachment_image_sizes', post.thumbnail.id, 'large' )  }}"/>
+						{% if post.thumbnail.post_content != '' or post.thumbnail.image_meta.credit != '' or post.thumbnail._credit_text != ''  %}
+							<figcaption>
+								{{ post.thumbnail.post_content }}
+
+								{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
+									{% if '©' in post.thumbnail._credit_text %}
+										{{ post.thumbnail._credit_text }}
+									{% else %}
+										© {{ post.thumbnail._credit_text }}
+									{% endif %}
+								{% else %}
+									{{ post.thumbnail.image_meta.credit }}
+								{% endif %}
+							</figcaption>
+						{% endif %}
+						</figure>
 				{% endif %}
-			</div>
-		</header>
+			</header>
+		</div>
 
 		<!-- Post Block Start -->
 		<div class="container">
-			<div class="post-content">
+			<div id="content" class="post-content">
 				<div class="post-content-lead">
 					<article class="post-details clearfix">
 						{{ post.content|raw }}
