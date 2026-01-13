@@ -75,12 +75,17 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
 
 /**
  * Output a noindex tag in the page when the option is set
+ *
+ * @param array $robots Associative array of robots directives.
+ * @return array $robots
  */
-function gpch_noindex_tag_output() {
+function gpch_noindex_tag_output( array $robots ) {
 	$noindex_setting = get_field( 'setting_noindex' );
 
 	if ( $noindex_setting ) {
-		wp_robots_no_robots();
+		return wp_robots_no_robots( $robots );
 	}
+
+	return $robots;
 }
-add_action( 'wp_head', 'gpch_noindex_tag_output' );
+add_action( 'wp_robots', 'gpch_noindex_tag_output' );
