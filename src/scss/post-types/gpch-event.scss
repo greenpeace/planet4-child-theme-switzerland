@@ -1,0 +1,26 @@
+.single-gpch_event {
+	.event-meta {
+		list-style-type: none;
+		padding: 0;
+		padding-bottom: 16px;
+
+		border-bottom: 1px solid hsla(210, 2%, 65%, 0.5);
+
+		.title {
+			font-weight: 700;
+		}
+	}
+
+	.post-content {
+		max-width: 736px;
+	}
+}
+
+@media (max-width: 991px) {
+	.single-gpch_event {
+		.page-header-title {
+			max-width: none;
+		}
+	}
+
+}
