@@ -4,8 +4,8 @@ h3 {
 
 h4 {
     margin-top: 1em;
-    font-size: var(--text--x-large-and-up--font-size,var(--font-size-xl--font-family-secondary));
-    line-height: var(--text--x-large-and-up--line-height,var(--line-height-xl--font-family-secondary));
+    font-size: var(--font-size-xl--font-family-secondary);
+    line-height: var(--line-height-xl--font-family-secondary);
 }
 
 /* Remove margin when the heading is the first element in a column */

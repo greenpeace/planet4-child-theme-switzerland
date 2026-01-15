@@ -41,7 +41,7 @@ input[autocomplete="family-name"] + div.charleft {
 		color: var(--button-secondary--color,var(--color-text-button--secondary)) !important;
 		border-radius: var(--button--border-radius,4px);
 		font-family: var(--button--font-family,var(--font-family-button));
-		font-size: var(--button--font-size,1rem);
+		font-size: var(--button--font-size);
 		font-weight: var(--button--font-weight,bold);
 		padding: var(--button--padding,12px 28px);
 		text-align: var(--button--text-align,center);
@@ -57,12 +57,12 @@ input[autocomplete="family-name"] + div.charleft {
 	}
 
 	.gform_next_button {
-		background: var(--button-primary--hover--background,var(--color-background-button--primary-hover));
+		background: var(--button-primary--hover--background);
 		border: var(--button-primary--hover--border,1px solid transparent);
 		color: var(--button-primary--hover--color,var(--color-text-button--cta)) !important;
 
 		&:hover {
-			background: var(--button-primary--hover--background,var(--color-background-button--primary-hover));
+			background: var(--button-primary--hover--background);
 			border: var(--button-primary--hover--border,1px solid transparent);
 			color: var(--button-primary--hover--color,var(--color-text-button--cta)) !important;
 		}

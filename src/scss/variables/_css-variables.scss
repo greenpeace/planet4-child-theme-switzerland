@@ -13,20 +13,15 @@
 
     /* Overall GPCH font-family definitions */
     --gpch--font-family-standard: "Work Sans";
-    --gpch--font-family-header: "GreenpeaceSans";
+    --gpch--font-family-header: var(--font-family-primary);
 
     /* Master theme font overwrites */
-    --font-family-primary: "GreenpeaceSans"; /* Existing */
     --font-family-secondary: "Work Sans"; /* Changed from SourceSerifPro */
     --font-family-tertiary: "Work Sans"; /* Changed from Source Sans */
 
     --font-family-button: var(--font-family-secondary); /* Changed from --font-family-primary */
-    --font-family-heading: var(--font-family-primary); /* Existing */
-    --font-family-paragraph-primary: var(--font-family-secondary); /* Existing */
-    --font-family-paragraph-secondary: var(--font-family-tertiary); /* Existing */
 
     --gpch--letter-spacing--secondary-font: -0.02em;
-
 
     /* Overall GPCH font weights */
     --gpch--font-weight--normal: 400;
@@ -35,7 +30,6 @@
     --gpch--font-weight-boldest: 700;
 
     /* Font weights */
-    --font-weight-regular: 400;
     --font-weight-semibold: 500;
     --font-weight-bold: 600;
     --nav-item--font-weight: 600;
@@ -77,6 +71,7 @@
     /* Buttons */
     --button-donate--background: var(--color-background-button--cta);
 
+	--button-primary--hover--background: var(--p4-action-yellow-600);
 
     /* Font weights */
 
