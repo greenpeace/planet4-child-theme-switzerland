@@ -22,7 +22,18 @@
 	}
 
 	.nav-item {
+		font-size: 20px;
 		font-weight: var(--gpch--font-weight--bold);
+	}
+
+	.btn-donate {
+		background-color: var(--p4-action-yellow-500);
+		font-family: var(--gpch--font-family-standard);
+		font-weight: var(--button--font-weight, bold);
+
+		&:hover {
+			background-color: var(--p4-action-yellow-600);
+		}
 	}
 }
 
