@@ -29,10 +29,10 @@
 			// Show a spinner inside the calculate button for a short delay,
 			// then run the calculation. Safe to call repeatedly; it will
 			// not append duplicate spinner nodes.
-			function showSpinnerThenCalculate() {
+			function showSpinnerThenCalculate( isManual = false ) {
 				if ( ! calculateButton ) {
 					// fallback: call directly
-					calculateAndShow();
+					calculateAndShow( isManual );
 					return;
 				}
 
@@ -40,7 +40,7 @@
 				if ( calculateButton.querySelector( '.fq-spinner' ) ) {
 					// still enforce a short delay before recalculation
 					setTimeout( () => {
-						calculateAndShow();
+						calculateAndShow( isManual );
 					}, 500 );
 					return;
 				}
@@ -64,7 +64,7 @@
 
 				setTimeout( () => {
 					try {
-						calculateAndShow();
+						calculateAndShow( isManual );
 					} finally {
 						// Remove spinner
 						const s = calculateButton.querySelector( '.fq-spinner' );
@@ -285,7 +285,7 @@
 
 			render();
 
-			function calculateAndShow() {
+			function calculateAndShow( isManual = false ) {
 				let total = 0;
 
 				// Track selected meals for datalayer
@@ -412,11 +412,11 @@
 
 						// Send tracking event to dataLayer
 						if ( typeof window.dataLayer !== 'undefined' ) {
-							// Build drink parameters as drink_1, drink_2, etc.
+							// Build drink parameters as drinks_1, drinks_2, etc.
 							const drinkParams = {};
 
 							drinkCounts.forEach( ( count, index ) => {
-								drinkParams[ `drink_${ index + 1 }` ] = count || 0;
+								drinkParams[ `drinks_${ index + 1 }` ] = count || 0;
 							} );
 
 							window.dataLayer.push( {
@@ -427,6 +427,7 @@
 									breakfast_meal: selectedMeals.breakfast,
 									lunch_meal: selectedMeals.lunch,
 									dinner_meal: selectedMeals.dinner,
+									trigger_type: isManual ? 'manual' : 'automatic',
 									...drinkParams,
 								},
 							} );
@@ -444,8 +445,8 @@
 						clearTimeout( debounceTimer );
 					}
 
-					// show spinner then calculate (also used by auto-calc)
-					showSpinnerThenCalculate();
+					// show spinner then calculate (manual trigger)
+					showSpinnerThenCalculate( true );
 				} );
 			}
 
