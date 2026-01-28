@@ -288,6 +288,13 @@
 			function calculateAndShow() {
 				let total = 0;
 
+				// Track selected meals for datalayer
+				const selectedMeals = {
+					breakfast: null,
+					lunch: null,
+					dinner: null,
+				};
+
 				mealTimes.forEach( time => {
 					const checked = root.querySelector( `input[name="fq-${ time }"]:checked` );
 
@@ -296,18 +303,30 @@
 						/* eslint-disable-next-line no-nested-ternary */
 						const set = time === 'breakfast' ? breakfastMeals : time === 'lunch' ? lunchMeals : dinnerMeals;
 
-						if ( set[ idx ] && set[ idx ].score ) {
-							total += Number( set[ idx ].score );
+						if ( set[ idx ] ) {
+							// Store selected meal title for tracking
+							selectedMeals[ time ] = set[ idx ].title || `Option ${ idx + 1 }`;
+
+							if ( set[ idx ].score ) {
+								total += Number( set[ idx ].score );
+							}
 						}
 					}
 				} );
+
+				// Track drink counts for datalayer (indexed by drink number)
+				const drinkCounts = [];
 
 				root.querySelectorAll( '.fq-drink-input' ).forEach( input => {
 					const idx = parseInt( input.getAttribute( 'data-index' ), 10 );
 					const servings = Number( input.value ) || 0;
 
-					if ( drinks[ idx ] && drinks[ idx ].score ) {
-						total += servings * Number( drinks[ idx ].score );
+					if ( drinks[ idx ] ) {
+						drinkCounts[ idx ] = servings;
+
+						if ( drinks[ idx ].score ) {
+							total += servings * Number( drinks[ idx ].score );
+						}
 					}
 				} );
 
@@ -389,6 +408,28 @@
 
 						if ( calculateButton ) {
 							calculateButton.disabled = true;
+						}
+
+						// Send tracking event to dataLayer
+						if ( typeof window.dataLayer !== 'undefined' ) {
+							// Build drink parameters as drink_1, drink_2, etc.
+							const drinkParams = {};
+
+							drinkCounts.forEach( ( count, index ) => {
+								drinkParams[ `drink_${ index + 1 }` ] = count || 0;
+							} );
+
+							window.dataLayer.push( {
+								event: 'food_quiz_calculated',
+								food_quiz: {
+									total_score: total,
+									result_tier: tier + 1,
+									breakfast_meal: selectedMeals.breakfast,
+									lunch_meal: selectedMeals.lunch,
+									dinner_meal: selectedMeals.dinner,
+									...drinkParams,
+								},
+							} );
 						}
 					}
 				}
