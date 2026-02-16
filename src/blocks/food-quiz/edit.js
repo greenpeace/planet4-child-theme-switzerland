@@ -141,9 +141,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 										onChange={ v => updateMealSet( setName, i, 'title', v ) }
 									/>
 									<RangeControl
-										label={ __( 'Climate impact score', 'planet4-child-theme-switzerland' ) }
+										label={ __( 'Grams of CO2 (per serving)', 'planet4-child-theme-switzerland' ) }
 										min={ 0 }
-										max={ 100 }
+										max={ 5000 }
 										value={ meal.score }
 										onChange={ v => updateMealSet( setName, i, 'score', v ) }
 									/>
@@ -216,9 +216,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 								onChange={ v => updateDrink( i, 'title', v ) }
 							/>
 							<RangeControl
-								label={ __( 'Climate impact score (per serving)', 'planet4-child-theme-switzerland' ) }
+								label={ __( 'Grams of CO2 (per serving)', 'planet4-child-theme-switzerland' ) }
 								min={ 0 }
-								max={ 100 }
+								max={ 1000 }
 								value={ drink.score }
 								onChange={ v => updateDrink( i, 'score', v ) }
 							/>
@@ -273,9 +273,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							/>
 							{ i < 4 ? (
 								<RangeControl
-									label={ __( 'Upper threshold (show this tier when score ≤)', 'planet4-child-theme-switzerland' ) }
+									label={ __( 'Upper threshold (show this tier when grams of CO2 ≤)', 'planet4-child-theme-switzerland' ) }
 									min={ 1 }
-									max={ 1000 }
+									max={ 10000 }
 									value={ typeof tierThresholds[ i ] === 'number' ? tierThresholds[ i ] : 0 }
 									onChange={ v => {
 										const len = Math.max( 5, tierThresholds.length || 0 );

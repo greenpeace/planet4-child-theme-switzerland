@@ -434,7 +434,7 @@ add_filter( 'gform_field_validation', 'gpch_spam_entry_filter', 10, 4 );
 
 
 /**
- * Validates name fields in a Gravity Form, ensuring they do not contain numbers.
+ * Validates name fields in a Gravity Form, ensuring they do not contain prohibited characters.
  *
  * @param array  $result The validation result for the field, including 'is_valid' and 'message'.
  * @param string $value The value entered into the field.
@@ -447,13 +447,39 @@ function gpch_name_validation( $result, $value, $form, $field ) {
 	// Check field with the following admin labels
 	$labels_to_check = array( 'first_name', 'last_name' );
 	$admin_label     = rgar( $field, 'adminLabel' );
+	$invalid_pattern = '/[\d.!?,;:"@#$%^&*(){}[\]<>+=|\\~`_]/u';
 
-	if ( $result['is_valid'] && $admin_label && in_array( $admin_label, $labels_to_check, true ) ) {
+	if ( ! $result['is_valid'] ) {
+		return $result;
+	}
 
-		// Check if the value contains numbers
-		if ( preg_match( '/\d/', (string) $value ) ) {
+	// Validate the Gravity Forms Name field (multi-input).
+	if ( 'name' === $field->type ) {
+		$name_inputs = array(
+			'2' => rgar( $value, $field->id . '.2' ), // Prefix.
+			'3' => rgar( $value, $field->id . '.3' ), // First.
+			'4' => rgar( $value, $field->id . '.4' ), // Middle.
+			'6' => rgar( $value, $field->id . '.6' ), // Last.
+			'8' => rgar( $value, $field->id . '.8' ), // Suffix.
+		);
+
+		foreach ( $name_inputs as $input_number => $input_value ) {
+			if ( ! $field->get_input_property( $input_number, 'isHidden' ) && preg_match( $invalid_pattern, (string) $input_value ) ) {
+				$field->set_input_validation_state( $input_number, false );
+				$result['is_valid'] = false;
+				$result['message']  = __( 'Please don\'t use numbers, punctuation, or special characters in this field', 'planet4-child-theme-switzerland' );
+			}
+		}
+
+		return $result;
+	}
+
+	// Validate single-input name fields by admin label.
+	if ( $admin_label && in_array( $admin_label, $labels_to_check, true ) ) {
+		// Block digits and common punctuation/special characters (except hyphen and apostrophe which are valid in names)
+		if ( preg_match( $invalid_pattern, (string) $value ) ) {
 			$result['is_valid'] = false;
-			$result['message']  = __( 'Please don\'t use numbers in this field', 'planet4-child-theme-switzerland' );
+			$result['message']  = __( 'Please don\'t use numbers, punctuation, or special characters in this field', 'planet4-child-theme-switzerland' );
 		}
 	}
 
