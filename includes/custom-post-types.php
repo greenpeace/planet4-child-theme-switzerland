@@ -156,6 +156,23 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 							'first_day'         => 1,
 						),
 						array(
+							'key'               => 'field_p4_gpch_events_end_date',
+							'label'             => 'Event End Date',
+							'name'              => 'event_end_date',
+							'type'              => 'date_picker',
+							'instructions'      => 'Optional. Leave empty for one-day events.',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'display_format'    => 'd. m. Y',
+							'return_format'     => 'Y-m-d',
+							'first_day'         => 1,
+						),
+						array(
 							'key'               => 'field_p4_gpch_events_start_time',
 							'label'             => 'Event Start Time',
 							'name'              => 'start_time',
@@ -165,11 +182,24 @@ if ( ! function_exists( 'p4_child_theme_gpch_custom_post_gpch_event' ) ) {
 							'conditional_logic' => 0,
 							'wrapper'           => array(
 								'width' => '',
-								'class' => '',
+								'class' => 'hidden visually-hidden', // This is an old field that we keep for backwards compatibility.
 								'id'    => '',
 							),
 							'display_format'    => 'H:i',
 							'return_format'     => 'H:i',
+						),
+						array(
+							'key'               => 'field_p4_gpch_events_start_time_freeform',
+							'label'             => 'Event Start Time',
+							'name'              => 'start_time_freeform',
+							'type'              => 'text',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
 						),
 						array(
 							'key'               => 'field_p4_gpch_events_place',
