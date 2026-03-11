@@ -1,8 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks';
-import './result-tier-title';
+import metadata from './block.json';
 import edit from './edit';
 import save from './save';
-import metadata from './block.json';
+import './style.scss';
 
 registerBlockType( metadata.name, {
 	edit,

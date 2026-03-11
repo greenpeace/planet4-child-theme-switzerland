@@ -1,0 +1,40 @@
+.food-quiz__tier-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 0.8rem;
+	border-radius: 6px;
+	margin-bottom: 0.9rem;
+}
+
+.food-quiz__tier-title-label {
+	margin: 0;
+	padding: 1.2rem 1.5rem;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #000;
+	font-weight: 600;
+	font-size: var(--gpch-font-size-smaller);
+	line-height: 1;
+}
+
+
+.food-quiz__tier-title.result-scale__tier--0 {
+	background: var(--p4-dark-green-800);
+}
+
+.food-quiz__tier-title.result-scale__tier--1 {
+	background: var(--gp-green-500);
+}
+
+.food-quiz__tier-title.result-scale__tier--2 {
+	background: var(--p4-action-yellow-500);
+}
+
+.food-quiz__tier-title.result-scale__tier--3 {
+	background: var(--p4-action-yellow-700);
+}
+
+.food-quiz__tier-title.result-scale__tier--4 {
+	background: var(--red-500);
+}

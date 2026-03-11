@@ -209,6 +209,33 @@
 				}
 			}
 
+			// Sync tier labels and class names from context to the result scale and tier titles
+			function syncTierTitles() {
+				if ( ! outputContainer || ! Array.isArray( tierLabels ) ) {
+					return;
+				}
+
+				outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( tierEl => {
+					const tier = parseInt( tierEl.getAttribute( 'data-tier' ), 10 );
+
+					if ( Number.isNaN( tier ) ) {
+						return;
+					}
+
+					const titleEl = tierEl.querySelector( '.food-quiz__tier-title' );
+					if ( titleEl ) {
+						const tierClassPattern = /result-scale__tier--\d+/g;
+						titleEl.className = titleEl.className.replace( tierClassPattern, '' ).replace( /\s+/g, ' ' ).trim();
+						titleEl.classList.add( `result-scale__tier--${ tier }` );
+					}
+
+					const labelEl = tierEl.querySelector( '.food-quiz__tier-title-label' );
+					if ( labelEl ) {
+						labelEl.textContent = tierLabels[ tier ] || '';
+					}
+				} );
+			}
+
 			// Create result scale / arrow UI
 			function ensureResultScale() {
 				if ( ! outputContainer ) {
@@ -284,6 +311,7 @@
 			ensureResultScale();
 
 			render();
+			syncTierTitles();
 
 			function calculateAndShow( isManual = false ) {
 				let total = 0;

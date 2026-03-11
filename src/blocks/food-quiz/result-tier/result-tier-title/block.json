@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "planet4-child-theme-switzerland/food-quiz-result-tier-title",
+	"version": "0.1.0",
+	"title": "Food Quiz Result Tier Title",
+	"parent": ["planet4-child-theme-switzerland/food-quiz-result-tier"],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"usesContext": [
+		"planet4-child-theme-switzerland/food-quiz-tier-index",
+		"planet4-child-theme-switzerland/food-quiz-tier-labels"
+	],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./style.css",
+	"style": "file:./style-index.css",
+    "icon": "button"
+}
