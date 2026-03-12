@@ -156,7 +156,7 @@ import { __ } from '@wordpress/i18n';
 						const label = document.createElement( 'label' );
 						label.className = 'fq-option';
 						label.innerHTML = `
-								<input type="radio" name="fq-${ time }" value="${ idx }" ${ idx === 0 && time === 'breakfast' ? 'checked' : '' } />
+								<input type="radio" name="fq-${ time }" value="${ idx }" />
 								<p class="fq-option-title">${ m.title }</p>
 								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
 							`;
