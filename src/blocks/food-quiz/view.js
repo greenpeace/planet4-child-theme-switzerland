@@ -1,4 +1,19 @@
+import { __ } from '@wordpress/i18n';
+
 ( function () {
+	const getMealTitle = time => {
+		switch ( time ) {
+			case 'breakfast':
+				return __( 'Breakfast', 'planet4-child-theme-switzerland' );
+			case 'lunch':
+				return __( 'Lunch', 'planet4-child-theme-switzerland' );
+			case 'dinner':
+				return __( 'Dinner', 'planet4-child-theme-switzerland' );
+			default:
+				return time;
+		}
+	};
+
 	function initFoodQuiz( root ) {
 		if ( ! root || root.dataset.fqInitialized ) {
 			return;
@@ -21,6 +36,23 @@
 			const calculateButton = root.querySelector( '.food-quiz__calculate' );
 			const resetButton = root.querySelector( '.food-quiz__reset' );
 			const outputContainer = root.querySelector( '.food-quiz__result-output' );
+			const errorElement = outputContainer && outputContainer.querySelector( '.error-message' );
+
+			if ( calculateButton ) {
+				const label = __( 'Calculate', 'planet4-child-theme-switzerland' );
+				calculateButton.textContent = label;
+				calculateButton.setAttribute( 'aria-label', label );
+			}
+
+			if ( resetButton ) {
+				const label = __( 'Reset', 'planet4-child-theme-switzerland' );
+				resetButton.textContent = label;
+				resetButton.setAttribute( 'aria-label', label );
+			}
+
+			if ( errorElement ) {
+				errorElement.textContent = __( 'Please select at least one of each meal.', 'planet4-child-theme-switzerland' );
+			}
 
 			// Debounced auto-calc helper — only active after first manual Calculate
 			let debounceTimer = null;
@@ -110,7 +142,9 @@
 						return;
 					}
 
-					el.innerHTML = '<h3>' + el.dataset.title + '</h3>';
+					const title = getMealTitle( time );
+					el.setAttribute( 'aria-label', title );
+					el.innerHTML = '<h3>' + title + '</h3>';
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__meal-options';
@@ -149,7 +183,8 @@
 
 				// render drinks
 				if ( drinksContainer ) {
-					drinksContainer.innerHTML = '<h3>' + drinksContainer.dataset.title + '</h3>';
+					const drinksTitle = __( 'Drinks', 'planet4-child-theme-switzerland' );
+					drinksContainer.innerHTML = '<h3>' + drinksTitle + '</h3>';
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__drink-options';
@@ -162,9 +197,9 @@
 							<label class="fq-drink-label">
 								<p class="fq-option-title">${ d.title }</p>
 								<div class="fq-drink-controls">
-									<button type="button" class="fq-drink-decrease" aria-label="Decrease">−</button>
+									<button type="button" class="fq-drink-decrease" aria-label="${ __( 'Decrease', 'planet4-child-theme-switzerland' ) }">−</button>
 									<input type="number" min="0" max="5" value="0" data-index="${ idx }" class="fq-drink-input" />
-									<button type="button" class="fq-drink-increase" aria-label="Increase">+</button>
+									<button type="button" class="fq-drink-increase" aria-label="${ __( 'Increase', 'planet4-child-theme-switzerland' ) }">+</button>
 								</div>
 							</label>`;
 

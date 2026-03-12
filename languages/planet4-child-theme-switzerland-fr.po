@@ -1,0 +1,810 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPML_EXPORT_planet4-child-theme-switzerland\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language: fr\n"
+
+#: src/blocks/food-quiz/view.js:202
+msgid "Increase"
+msgstr "Augmenter"
+
+#: src/blocks/food-quiz/view.js:200
+msgid "Decrease"
+msgstr "Dimiuer"
+
+#: src/blocks/food-quiz/save.js:39
+#: src/blocks/food-quiz/view.js:54
+msgid "Please select at least one of each meal."
+msgstr "Veuillez sélectionner au moins un choix pour chaque repas."
+
+#: src/blocks/food-quiz/save.js:34
+#: src/blocks/food-quiz/save.js:35
+#: src/blocks/food-quiz/view.js:48
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: src/blocks/food-quiz/save.js:31
+#: src/blocks/food-quiz/save.js:32
+#: src/blocks/food-quiz/view.js:42
+msgid "Calculate"
+msgstr "Calculer"
+
+#: src/blocks/food-quiz/edit.js:207
+#: src/blocks/food-quiz/edit.js:330
+#: src/blocks/food-quiz/save.js:28
+#: src/blocks/food-quiz/view.js:186
+msgid "Drinks"
+msgstr "Boissons"
+
+#: src/blocks/food-quiz/save.js:26
+#: src/blocks/food-quiz/view.js:11
+msgid "Dinner"
+msgstr "Souper"
+
+#: src/blocks/food-quiz/save.js:25
+#: src/blocks/food-quiz/view.js:9
+msgid "Lunch"
+msgstr "Dîner"
+
+#: src/blocks/food-quiz/save.js:22
+#: src/blocks/food-quiz/view.js:7
+msgid "Breakfast"
+msgstr "Déjeuner"
+
+#: includes/gravity-forms-extensions.php:470
+#: includes/gravity-forms-extensions.php:482
+msgid "Please don't use numbers, punctuation, or special characters in this field"
+msgstr "Veuillez ne pas utiliser de chiffres ni de caractères spéciaux dans ce champ."
+
+#: includes/campaign-city-nomination.php:72
+msgid "Wir möchten kleineren Orten eine Chance geben. Deshalb sind Gemeinden mit höchstens 20’500 Einwohner:innen gesucht."
+msgstr ""
+
+#: includes/campaign-city-nomination.php:64
+msgid "Wir suchen eine deutschsprachige Gemeinde, damit wir sie mit unseren vorhandenen Ressourcen bestmöglich begleiten können."
+msgstr ""
+
+#: src/blocks/food-quiz/block.json
+msgctxt "block keyword"
+msgid "interactive"
+msgstr ""
+
+#: src/blocks/food-quiz/block.json
+msgctxt "block keyword"
+msgid "quiz"
+msgstr ""
+
+#: src/blocks/food-quiz/block.json
+msgctxt "block keyword"
+msgid "food"
+msgstr ""
+
+#: src/blocks/food-quiz/block.json
+msgctxt "block description"
+msgid "CCC Interactive Food Quiz"
+msgstr ""
+
+#: src/blocks/food-quiz/block.json
+msgctxt "block title"
+msgid "Food Quiz"
+msgstr ""
+
+#: includes/campaign-city-nomination.php:30
+msgid "Select a city"
+msgstr "Sélectionner une ville"
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/greenpeace/planet4-child-theme-switzerland"
+msgstr ""
+
+#. Theme Name of the theme
+#: style.css
+msgid "Greenpeace Planet 4 Child Theme Switzerland"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Child theme for the swiss website in the Planet 4 project"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://github.com/greenpeace"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Greenpeace Switzerland"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Grey"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:133
+msgid "French PNG"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:123
+msgid "French SVG"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:114
+#: includes/business-cards/backend-page.php:134
+msgid "(use on screens)"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:113
+msgid "German PNG"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:104
+#: includes/business-cards/backend-page.php:124
+msgid "(use for printing)"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:103
+msgid "German SVG"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:100
+msgid "QR codes"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:98
+msgid "French link:"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:97
+msgid "German link:"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:96
+msgid "Links"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:95
+msgid "Your business card is available in German or French."
+msgstr ""
+
+#: includes/business-cards/backend-page.php:91
+msgid "Visit the documentation for more information."
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:396
+msgid "Instagram Handle"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:371
+msgid "Facebook Profile URL"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:346
+msgid "Bluesky Profile URL"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:321
+msgid "LinkedIn Profile URL"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:296
+msgid "Social Media"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:268
+msgid "Mobile"
+msgstr "Téléphone portable "
+
+#: includes/business-cards/field-definitions.php:240
+msgid "Phone"
+msgstr "Téléphone"
+
+#: includes/business-cards/field-definitions.php:213
+msgid "Email"
+msgstr "Courriel"
+
+#: includes/business-cards/field-definitions.php:185
+msgid "Organisation"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:157
+msgid "Job Title"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:129
+msgid "Name"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:96
+msgid "Profile picture"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:71
+msgid "Personal Data"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:43
+msgid "Business Card ID"
+msgstr ""
+
+#: includes/business-cards/field-definitions.php:17
+#: includes/business-cards/field-definitions.php:30
+msgid "Enable Business Card"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:146
+msgid "Settings"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:143
+msgid "Your business card is deactivated. Activate it and save to start using it."
+msgstr ""
+
+#: includes/business-cards/backend-page.php:94
+msgid "Congratulations, your Business card is published!"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:90
+msgid "Your personal digital business card."
+msgstr ""
+
+#: includes/business-cards/backend-page.php:89
+msgid "Manage My Business Card"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:159
+msgid "Save Business Card"
+msgstr ""
+
+#: includes/business-cards/backend-page.php:64
+msgid "Nonce verification failed."
+msgstr ""
+
+#: includes/business-cards/backend-page.php:55
+msgid "Business Card updated successfully."
+msgstr ""
+
+#: includes/business-cards/backend-page.php:19
+#: includes/business-cards/backend-page.php:20
+msgid "My Business Card"
+msgstr ""
+
+#: includes/user-roles.php:182
+msgid "GPCH Business Card"
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:397
+#: includes/gravity-forms-extensions.php:424
+msgid "Please don't use cyrillic characters."
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:341
+msgid "Please enter a valid zip code."
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:227
+msgid "Please only use numbers >=0 in this field."
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:222
+msgid "GPCH Form Entry Counter"
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:136
+msgid "GPCH Form Type"
+msgstr ""
+
+#: includes/gravity-forms-extensions.php:29
+#: includes/gravity-forms-extensions.php:36
+msgid "Use only numbers, spaces, parentheses and \"+\""
+msgstr "N'utilise que des chiffres, des espaces, des parenthèses et des « + »."
+
+#: includes/advanced-post-settings.php:32
+msgid "Blocks popups from appearing on this post/page."
+msgstr ""
+
+#: includes/advanced-post-settings.php:29
+msgid "Block Popups on this page"
+msgstr ""
+
+#: includes/advanced-post-settings.php:13
+msgid "Outputs a \"noindex\" meta tag on the page. Search enignes like google will exclude the page from its search results. Use for landing pages, thank you pages and similar that don't need to be found through search engines."
+msgstr ""
+
+#: includes/advanced-post-settings.php:10
+msgid "Hide page in search engines"
+msgstr ""
+
+#: includes/custom-post-types.php:242
+msgctxt "Post Type Singular Name"
+msgid "Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:241
+msgctxt "Post Type General Name"
+msgid "Magazine Redirects"
+msgstr ""
+
+#: includes/custom-post-types.php:10
+msgctxt "Post Type Singular Name"
+msgid "Event"
+msgstr ""
+
+#: includes/custom-post-types.php:9
+msgctxt "Post Type General Name"
+msgid "Events"
+msgstr ""
+
+#: includes/custom-post-types.php:411
+msgid "Enter author name if you want to override the author"
+msgstr ""
+
+#: includes/custom-post-types.php:410
+msgid "Author Override"
+msgstr ""
+
+#: includes/custom-post-types.php:403
+msgid "Post Articles Element Fields"
+msgstr ""
+
+#: includes/custom-post-types.php:354
+msgid "The URL of the magazine article where the user is redirected."
+msgstr ""
+
+#: includes/custom-post-types.php:351
+msgid "Magazin URL"
+msgstr ""
+
+#: includes/custom-post-types.php:286
+msgid "Magazine Redirect postings"
+msgstr ""
+
+#: includes/custom-post-types.php:267
+msgid "Filter magredirects list"
+msgstr ""
+
+#: includes/custom-post-types.php:266
+msgid "Magazine Redirects list navigation"
+msgstr ""
+
+#: includes/custom-post-types.php:265
+msgid "Magazine Redirects list"
+msgstr ""
+
+#: includes/custom-post-types.php:263
+msgid "Insert into magredirect"
+msgstr ""
+
+#: includes/custom-post-types.php:256
+msgid "Search Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:255
+msgid "View Magazine Redirects"
+msgstr ""
+
+#: includes/custom-post-types.php:254
+msgid "View Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:253
+msgid "Update Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:252
+msgid "Edit Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:250
+#: includes/custom-post-types.php:251
+msgid "New Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:249
+msgid "Add New Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:248
+msgid "All Magazine Redirects"
+msgstr ""
+
+#: includes/custom-post-types.php:247
+msgid "Parent Magazine Redirect:"
+msgstr ""
+
+#: includes/custom-post-types.php:246
+msgid "Magazine Redirect Attributes"
+msgstr ""
+
+#: includes/custom-post-types.php:245
+msgid "Magazine Redirects Archives"
+msgstr ""
+
+#: includes/custom-post-types.php:244
+#: includes/custom-post-types.php:285
+msgid "Magazine Redirect"
+msgstr ""
+
+#: includes/custom-post-types.php:243
+msgid "Magazine Redirects"
+msgstr ""
+
+#: includes/custom-post-types.php:35
+msgid "Filter Events list"
+msgstr ""
+
+#: includes/custom-post-types.php:34
+msgid "Events list navigation"
+msgstr ""
+
+#: includes/custom-post-types.php:33
+msgid "Events list"
+msgstr ""
+
+#: includes/custom-post-types.php:32
+#: includes/custom-post-types.php:264
+msgid "Uploaded to this item"
+msgstr ""
+
+#: includes/custom-post-types.php:31
+msgid "Insert into Events"
+msgstr ""
+
+#: includes/custom-post-types.php:30
+#: includes/custom-post-types.php:262
+msgid "Use as featured image"
+msgstr ""
+
+#: includes/custom-post-types.php:29
+#: includes/custom-post-types.php:261
+msgid "Remove featured image"
+msgstr ""
+
+#: includes/custom-post-types.php:28
+#: includes/custom-post-types.php:260
+msgid "Set featured image"
+msgstr ""
+
+#: includes/custom-post-types.php:27
+#: includes/custom-post-types.php:259
+msgid "Featured Image"
+msgstr ""
+
+#: includes/custom-post-types.php:26
+#: includes/custom-post-types.php:258
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/custom-post-types.php:25
+#: includes/custom-post-types.php:257
+msgid "Not found"
+msgstr ""
+
+#: includes/custom-post-types.php:24
+msgid "Search Event"
+msgstr ""
+
+#: includes/custom-post-types.php:23
+msgid "View Events"
+msgstr ""
+
+#: includes/custom-post-types.php:22
+msgid "View Event"
+msgstr ""
+
+#: includes/custom-post-types.php:21
+msgid "Update Event"
+msgstr ""
+
+#: includes/custom-post-types.php:20
+msgid "Edit Event"
+msgstr ""
+
+#: includes/custom-post-types.php:18
+#: includes/custom-post-types.php:19
+msgid "New Event"
+msgstr ""
+
+#: includes/custom-post-types.php:17
+msgid "Add New Event"
+msgstr ""
+
+#: includes/custom-post-types.php:16
+msgid "All Events"
+msgstr ""
+
+#: includes/custom-post-types.php:15
+msgid "Parent Event:"
+msgstr ""
+
+#: includes/custom-post-types.php:14
+msgid "Event Attributes"
+msgstr ""
+
+#: includes/custom-post-types.php:13
+msgid "Events Archives"
+msgstr ""
+
+#: includes/custom-post-types.php:12
+#: includes/custom-post-types.php:53
+msgid "Event"
+msgstr ""
+
+#: includes/custom-post-types.php:11
+#: includes/custom-post-types.php:54
+msgid "Events"
+msgstr ""
+
+#: includes/user-roles.php:140
+msgid "GPCH Content Feedback"
+msgstr ""
+
+#: includes/user-roles.php:91
+msgid "GPCH Events & Form Exports"
+msgstr ""
+
+#: includes/user-roles.php:53
+msgid "GPCH Events"
+msgstr ""
+
+#: includes/user-roles.php:14
+msgid "Human Resources"
+msgstr ""
+
+#: includes/child-theme-options.php:269
+msgid "The RaiseNow API is used in the blocks plugin, for example for the donations progress bar. A read-only user is recommended."
+msgstr ""
+
+#: includes/child-theme-options.php:244
+msgid "A whitelist of domains that are allowed to embed Gravity Forms. One per line, wildcard allowed."
+msgstr ""
+
+#: includes/child-theme-options.php:219
+msgid "A whitelist of domains that are allowed to embed any of our content. One per line, wildcard allowed."
+msgstr ""
+
+#: includes/child-theme-options.php:193
+msgid "Twilio is used to send SMS."
+msgstr ""
+
+#: includes/child-theme-options.php:167
+msgid "Bitly is used to shorten links."
+msgstr ""
+
+#: includes/child-theme-options.php:143
+msgid "Raisenow API URL"
+msgstr ""
+
+#: includes/child-theme-options.php:131
+msgid "Raisenow API password"
+msgstr ""
+
+#: includes/child-theme-options.php:119
+msgid "Raisenow API user"
+msgstr ""
+
+#: includes/child-theme-options.php:112
+msgid "RaiseNow API"
+msgstr ""
+
+#: includes/child-theme-options.php:100
+msgid "Twilio sender number with SMS capability"
+msgstr ""
+
+#: includes/child-theme-options.php:88
+msgid "Twilio Auth Token"
+msgstr ""
+
+#: includes/child-theme-options.php:76
+msgid "Twilio Account SID"
+msgstr ""
+
+#: includes/child-theme-options.php:69
+msgid "Twilio SMS"
+msgstr ""
+
+#: includes/child-theme-options.php:57
+msgid "Bitly API token"
+msgstr ""
+
+#: includes/child-theme-options.php:50
+msgid "Bitly API"
+msgstr ""
+
+#: includes/child-theme-options.php:38
+msgid "List of websites that are allowed to embed our Gravity Forms."
+msgstr ""
+
+#: includes/child-theme-options.php:31
+msgid "Allowlist websites that can embed our Gravity Forms"
+msgstr ""
+
+#: includes/child-theme-options.php:19
+msgid "List of website domains that are allowed to embed ANY of our content."
+msgstr ""
+
+#: includes/child-theme-options.php:12
+msgid "Allowlist for websites to embed our content"
+msgstr ""
+
+#: includes/background-taxonomy.php:11
+msgctxt "taxonomy singular name"
+msgid "Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:10
+msgctxt "taxonomy general name"
+msgid "Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:20
+msgid "Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:19
+msgid "New Background Article Type Name"
+msgstr ""
+
+#: includes/background-taxonomy.php:18
+msgid "Add New Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:17
+msgid "Update Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:16
+msgid "Edit Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:15
+msgid "Parent Background Article Type:"
+msgstr ""
+
+#: includes/background-taxonomy.php:14
+msgid "Parent Background Article Type"
+msgstr ""
+
+#: includes/background-taxonomy.php:13
+msgid "All Background Article Types"
+msgstr ""
+
+#: includes/background-taxonomy.php:12
+msgid "Search Background Article Types"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Magazine Redirects single"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Finance Initiative - DE"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Finance Initiative - FR"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:123
+msgid "Add at least 2 options for each meal time to make the quiz meaningful."
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:136
+msgid "Meal"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:139
+#: src/blocks/food-quiz/edit.js:214
+msgid "Title"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:144
+#: src/blocks/food-quiz/edit.js:219
+msgid "Grams of CO2 (per serving)"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:178
+#: src/blocks/food-quiz/edit.js:231
+msgid "Move up"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:185
+#: src/blocks/food-quiz/edit.js:238
+msgid "Move down"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:192
+#: src/blocks/food-quiz/edit.js:245
+#: src/components/ConfirmModal.js:11
+msgid "Remove"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:201
+msgid "Add meal"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:211
+msgid "Drink"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:254
+msgid "Add drink"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:258
+msgid "Result Tier Settings"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:262
+msgid "Tier"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:276
+msgid "Upper threshold (show this tier when grams of CO2 ≤)"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:290
+msgid "Upper threshold: Infinite"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:301
+msgid "Confirm removal"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:304
+msgid "Are you sure you want to remove this drink?"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:305
+msgid "Are you sure you want to remove this meal?"
+msgstr ""
+
+#: src/blocks/food-quiz/edit.js:350
+msgid "Result descriptions (edit each tier below)"
+msgstr ""
+
+#: src/components/ConfirmModal.js:9
+msgid "Confirm"
+msgstr ""
+
+#: src/components/ConfirmModal.js:10
+msgid "Are you sure?"
+msgstr ""
+
+#: src/components/ConfirmModal.js:12
+msgid "Cancel"
+msgstr ""
+
+#: src/blocks/food-quiz/result-tier/block.json
+msgctxt "block title"
+msgid "Food Quiz Result Tier"
+msgstr ""
+
+#: src/blocks/food-quiz/result-tier/result-tier-title/block.json
+msgctxt "block title"
+msgid "Food Quiz Result Tier Title"
+msgstr ""
+
+#: src/blocks/food-quiz/tier/block.json
+msgctxt "block title"
+msgid "Food Quiz Tier"
+msgstr ""
