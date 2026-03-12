@@ -28,7 +28,7 @@ sass src/scss/editor-style.scss admin/css/editor-style.css --style=compressed
 
 1. Export a pot file using wp-cli (Don't use WPML for the .pot file, it will not contain the references where the strings are used). When used inside the dev environment: `npx wp-env run cli wp i18n make-pot wp-content/themes/planet4-child-theme-switzerland/ wp-content/themes/planet4-child-theme-switzerland/languages/planet4-child-theme-switzerland.pot`
 
-If your most most up to date translation is in WPML:
+If your most up to date translation is in WPML:
 
 1. Scan the theme using for new translation strings using WPML. Make sure the scanning of Javascript is enabled if you need to find strings in JS.
 2. Update the translations in WPML string translation
