@@ -19,6 +19,7 @@
 			const mealContainer = root.querySelector( '.food-quiz__meal-times' );
 			const drinksContainer = root.querySelector( '.food-quiz__drinks' );
 			const calculateButton = root.querySelector( '.food-quiz__calculate' );
+			const resetButton = root.querySelector( '.food-quiz__reset' );
 			const outputContainer = root.querySelector( '.food-quiz__result-output' );
 
 			// Debounced auto-calc helper — only active after first manual Calculate
@@ -475,6 +476,42 @@
 
 					// show spinner then calculate (manual trigger)
 					showSpinnerThenCalculate( true );
+				} );
+			}
+
+			if ( resetButton ) {
+				resetButton.addEventListener( 'click', () => {
+					// Clear all meal radio selections
+					root.querySelectorAll( 'input[type="radio"]' ).forEach( radio => {
+						radio.checked = false;
+					} );
+
+					// Reset all drink inputs to 0
+					root.querySelectorAll( '.fq-drink-input' ).forEach( input => {
+						input.value = 0;
+					} );
+
+					// Hide result output
+					if ( outputContainer ) {
+						outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
+						const errorElement = outputContainer.querySelector( '.error-message' );
+						if ( errorElement ) {
+							errorElement.style.display = 'none';
+						}
+						const scaleElement = outputContainer.querySelector( '.result-scale' );
+						if ( scaleElement ) {
+							scaleElement.style.display = 'none';
+						}
+					}
+
+					// Stop auto-calc and re-enable Calculate button
+					autoCalcEnabled = false;
+					if ( debounceTimer ) {
+						clearTimeout( debounceTimer );
+					}
+					if ( calculateButton ) {
+						calculateButton.disabled = false;
+					}
 				} );
 			}
 

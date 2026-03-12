@@ -155,9 +155,15 @@
 
 
 		.food-quiz__calculate {
+			font-weight: bold;
+
 			&:hover {
 				background-color: var(--p4-action-yellow-600);
 			}
+		}
+
+		.food-quiz__reset {
+			margin-left: 1rem;
 		}
 
 		.result-scale {

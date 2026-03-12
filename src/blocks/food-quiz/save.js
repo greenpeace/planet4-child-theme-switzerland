@@ -28,8 +28,11 @@ export default function save( { attributes } ) {
 			<div className="food-quiz__drinks" data-title={ __( 'Drinks', 'planet4-child-theme-switzerland' ) }></div>
 			<div className="food-quiz__result">
 				<div className="wp-block-group read-more-nav is-layout-flow wp-block-group-is-layout-flow">
-					<button type="button" className="btn btn-primary food-quiz__calculate" aria-label="{__('Calculate', 'planet4-child-theme-switzerland')}">
+					<button type="button" className="btn btn-primary food-quiz__calculate" aria-label={ __( 'Calculate', 'planet4-child-theme-switzerland' ) }>
 						{ __( 'Calculate', 'planet4-child-theme-switzerland' ) }
+					</button>
+					<button type="button" className="btn btn-secondary food-quiz__reset" aria-label={ __( 'Reset', 'planet4-child-theme-switzerland' ) }>
+						{ __( 'Reset', 'planet4-child-theme-switzerland' ) }
 					</button>
 				</div>
 				<div className="food-quiz__result-output">
