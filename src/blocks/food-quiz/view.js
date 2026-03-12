@@ -191,15 +191,17 @@ import { __ } from '@wordpress/i18n';
 					drinksContainer.appendChild( optionWrapper );
 
 					drinks.forEach( ( d, idx ) => {
+						const decreaseLabel = __( 'Decrease', 'planet4-child-theme-switzerland' );
+						const increaseLabel = __( 'Increase', 'planet4-child-theme-switzerland' );
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
 						drinkOption.innerHTML = `
 							<label class="fq-drink-label">
 								<p class="fq-option-title">${ d.title }</p>
 								<div class="fq-drink-controls">
-									<button type="button" class="fq-drink-decrease" aria-label="${ __( 'Decrease', 'planet4-child-theme-switzerland' ) }">−</button>
+									<button type="button" class="fq-drink-decrease" aria-label="${ decreaseLabel }">−</button>
 									<input type="number" min="0" max="5" value="0" data-index="${ idx }" class="fq-drink-input" />
-									<button type="button" class="fq-drink-increase" aria-label="${ __( 'Increase', 'planet4-child-theme-switzerland' ) }">+</button>
+									<button type="button" class="fq-drink-increase" aria-label="${ increaseLabel }">+</button>
 								</div>
 							</label>`;
 
@@ -434,12 +436,12 @@ import { __ } from '@wordpress/i18n';
 					// hide all tiers first
 					outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
 
-					const errorElement = outputContainer.querySelector( '.error-message' );
+					const outputErrorElement = outputContainer.querySelector( '.error-message' );
 					const scaleElement = outputContainer.querySelector( '.result-scale' );
 
 					if ( ! allMealsSelected ) {
-						if ( errorElement ) {
-							errorElement.style.display = 'block';
+						if ( outputErrorElement ) {
+							outputErrorElement.style.display = 'block';
 						}
 						if ( scaleElement ) {
 							scaleElement.style.display = 'none';
@@ -451,8 +453,8 @@ import { __ } from '@wordpress/i18n';
 
 						// don't show any tier
 					} else {
-						if ( errorElement ) {
-							errorElement.style.display = 'none';
+						if ( outputErrorElement ) {
+							outputErrorElement.style.display = 'none';
 						}
 						if ( scaleElement ) {
 							scaleElement.style.display = 'block';
@@ -529,9 +531,9 @@ import { __ } from '@wordpress/i18n';
 					// Hide result output
 					if ( outputContainer ) {
 						outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
-						const errorElement = outputContainer.querySelector( '.error-message' );
-						if ( errorElement ) {
-							errorElement.style.display = 'none';
+						const resetErrorElement = outputContainer.querySelector( '.error-message' );
+						if ( resetErrorElement ) {
+							resetErrorElement.style.display = 'none';
 						}
 						const scaleElement = outputContainer.querySelector( '.result-scale' );
 						if ( scaleElement ) {
