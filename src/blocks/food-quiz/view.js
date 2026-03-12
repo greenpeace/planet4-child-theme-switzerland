@@ -144,7 +144,9 @@ import { __ } from '@wordpress/i18n';
 
 					const title = getMealTitle( time );
 					el.setAttribute( 'aria-label', title );
-					el.innerHTML = '<h3>' + title + '</h3>';
+					const mealH3 = document.createElement( 'h3' );
+					mealH3.textContent = title;
+					el.appendChild( mealH3 );
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__meal-options';
@@ -155,15 +157,38 @@ import { __ } from '@wordpress/i18n';
 					set.forEach( ( m, idx ) => {
 						const label = document.createElement( 'label' );
 						label.className = 'fq-option';
-						label.innerHTML = `
-								<input type="radio" name="fq-${ time }" value="${ idx }" />
-								<p class="fq-option-title">${ m.title }</p>
-								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
-							`;
+
+						const radio = document.createElement( 'input' );
+						radio.type = 'radio';
+						radio.name = `fq-${ time }`;
+						radio.value = String( idx );
+						label.appendChild( radio );
+
+						const titleP = document.createElement( 'p' );
+						titleP.className = 'fq-option-title';
+						titleP.textContent = m.title;
+						label.appendChild( titleP );
+
+						const imgDiv = document.createElement( 'div' );
+						imgDiv.className = 'fq-option-img';
+						if ( m.imageUrl ) {
+							try {
+								const parsedUrl = new URL( m.imageUrl );
+								if ( parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:' ) {
+									const img = document.createElement( 'img' );
+									img.src = parsedUrl.href;
+									img.alt = '';
+									imgDiv.appendChild( img );
+								}
+							} catch ( e ) {
+								// Invalid URL, skip image
+							}
+						}
+						label.appendChild( imgDiv );
+
 						optionWrapper.appendChild( label );
 
 						// Auto-recalculate when a meal option changes
-						const radio = label.querySelector( 'input[type="radio"]' );
 
 						if ( radio ) {
 							radio.addEventListener( 'change', () => {
@@ -184,7 +209,9 @@ import { __ } from '@wordpress/i18n';
 				// render drinks
 				if ( drinksContainer ) {
 					const drinksTitle = __( 'Drinks', 'planet4-child-theme-switzerland' );
-					drinksContainer.innerHTML = '<h3>' + drinksTitle + '</h3>';
+					const drinksH3 = document.createElement( 'h3' );
+					drinksH3.textContent = drinksTitle;
+					drinksContainer.appendChild( drinksH3 );
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__drink-options';
@@ -195,22 +222,45 @@ import { __ } from '@wordpress/i18n';
 						const increaseLabel = __( 'Increase', 'planet4-child-theme-switzerland' );
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
-						drinkOption.innerHTML = `
-							<label class="fq-drink-label">
-								<p class="fq-option-title">${ d.title }</p>
-								<div class="fq-drink-controls">
-									<button type="button" class="fq-drink-decrease" aria-label="${ decreaseLabel }">−</button>
-									<input type="number" min="0" max="5" value="0" data-index="${ idx }" class="fq-drink-input" />
-									<button type="button" class="fq-drink-increase" aria-label="${ increaseLabel }">+</button>
-								</div>
-							</label>`;
+
+						const drinkLabelEl = document.createElement( 'label' );
+						drinkLabelEl.className = 'fq-drink-label';
+
+						const drinkTitleP = document.createElement( 'p' );
+						drinkTitleP.className = 'fq-option-title';
+						drinkTitleP.textContent = d.title;
+						drinkLabelEl.appendChild( drinkTitleP );
+
+						const controlsDiv = document.createElement( 'div' );
+						controlsDiv.className = 'fq-drink-controls';
+
+						const dec = document.createElement( 'button' );
+						dec.type = 'button';
+						dec.className = 'fq-drink-decrease';
+						dec.setAttribute( 'aria-label', decreaseLabel );
+						dec.textContent = '−';
+						controlsDiv.appendChild( dec );
+
+						const inputEl = document.createElement( 'input' );
+						inputEl.type = 'number';
+						inputEl.min = '0';
+						inputEl.max = '5';
+						inputEl.value = '0';
+						inputEl.dataset.index = String( idx );
+						inputEl.className = 'fq-drink-input';
+						controlsDiv.appendChild( inputEl );
+
+						const inc = document.createElement( 'button' );
+						inc.type = 'button';
+						inc.className = 'fq-drink-increase';
+						inc.setAttribute( 'aria-label', increaseLabel );
+						inc.textContent = '+';
+						controlsDiv.appendChild( inc );
+
+						drinkLabelEl.appendChild( controlsDiv );
+						drinkOption.appendChild( drinkLabelEl );
 
 						optionWrapper.appendChild( drinkOption );
-
-						// wire up +/- buttons
-						const inputEl = drinkOption.querySelector( '.fq-drink-input' );
-						const dec = drinkOption.querySelector( '.fq-drink-decrease' );
-						const inc = drinkOption.querySelector( '.fq-drink-increase' );
 
 						if ( dec && inputEl ) {
 							dec.addEventListener( 'click', () => {
