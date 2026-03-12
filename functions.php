@@ -44,6 +44,9 @@ require_once 'includes/user-roles.php';
 // Filter available Gutenberg standard blocks
 require_once 'includes/gutenberg-blocks.php';
 
+// Food quiz block frontend translations/localization.
+require_once 'includes/blocks-i18n.php';
+
 // Customize/extend Gravity Forms
 require_once 'includes/gravity-forms-extensions.php';
 

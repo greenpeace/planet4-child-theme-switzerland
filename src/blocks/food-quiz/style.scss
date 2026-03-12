@@ -66,20 +66,12 @@
 
 				&:hover {
 					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-					/*border: solid 1px var(--gp-green-800);*/
 				}
 
 				&:has(input[type="radio"]:checked) {
 					border-color: var(--gp-green-800);
 
-					/*background-color: var(--beige-100);*/
-
 					border-color: var(--gp-green-800);
-
-					.fq-option-title {
-						/*color: var(--gp-green-800);*/
-					}
 				}
 			}
 		}
@@ -155,9 +147,15 @@
 
 
 		.food-quiz__calculate {
+			font-weight: 700;
+
 			&:hover {
 				background-color: var(--p4-action-yellow-600);
 			}
+		}
+
+		.food-quiz__reset {
+			margin-left: 1rem;
 		}
 
 		.result-scale {
@@ -245,6 +243,10 @@
 	}
 }
 
+.food-quiz__tier {
+	max-width: 980px;
+	margin: 0 auto;
+}
 
 @media (max-width: 767px) {
 	.food-quiz {

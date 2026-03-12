@@ -1,4 +1,19 @@
+import { __ } from '@wordpress/i18n';
+
 ( function () {
+	const getMealTitle = time => {
+		switch ( time ) {
+			case 'breakfast':
+				return __( 'Breakfast', 'planet4-child-theme-switzerland' );
+			case 'lunch':
+				return __( 'Lunch', 'planet4-child-theme-switzerland' );
+			case 'dinner':
+				return __( 'Dinner', 'planet4-child-theme-switzerland' );
+			default:
+				return time;
+		}
+	};
+
 	function initFoodQuiz( root ) {
 		if ( ! root || root.dataset.fqInitialized ) {
 			return;
@@ -19,7 +34,25 @@
 			const mealContainer = root.querySelector( '.food-quiz__meal-times' );
 			const drinksContainer = root.querySelector( '.food-quiz__drinks' );
 			const calculateButton = root.querySelector( '.food-quiz__calculate' );
+			const resetButton = root.querySelector( '.food-quiz__reset' );
 			const outputContainer = root.querySelector( '.food-quiz__result-output' );
+			const errorElement = outputContainer && outputContainer.querySelector( '.error-message' );
+
+			if ( calculateButton ) {
+				const label = __( 'Calculate', 'planet4-child-theme-switzerland' );
+				calculateButton.textContent = label;
+				calculateButton.setAttribute( 'aria-label', label );
+			}
+
+			if ( resetButton ) {
+				const label = __( 'Reset', 'planet4-child-theme-switzerland' );
+				resetButton.textContent = label;
+				resetButton.setAttribute( 'aria-label', label );
+			}
+
+			if ( errorElement ) {
+				errorElement.textContent = __( 'Please select at least one of each meal.', 'planet4-child-theme-switzerland' );
+			}
 
 			// Debounced auto-calc helper — only active after first manual Calculate
 			let debounceTimer = null;
@@ -109,7 +142,9 @@
 						return;
 					}
 
-					el.innerHTML = '<h3>' + el.dataset.title + '</h3>';
+					const title = getMealTitle( time );
+					el.setAttribute( 'aria-label', title );
+					el.innerHTML = '<h3>' + title + '</h3>';
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__meal-options';
@@ -121,7 +156,7 @@
 						const label = document.createElement( 'label' );
 						label.className = 'fq-option';
 						label.innerHTML = `
-								<input type="radio" name="fq-${ time }" value="${ idx }" ${ idx === 0 && time === 'breakfast' ? 'checked' : '' } />
+								<input type="radio" name="fq-${ time }" value="${ idx }" />
 								<p class="fq-option-title">${ m.title }</p>
 								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
 							`;
@@ -148,22 +183,25 @@
 
 				// render drinks
 				if ( drinksContainer ) {
-					drinksContainer.innerHTML = '<h3>' + drinksContainer.dataset.title + '</h3>';
+					const drinksTitle = __( 'Drinks', 'planet4-child-theme-switzerland' );
+					drinksContainer.innerHTML = '<h3>' + drinksTitle + '</h3>';
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__drink-options';
 					drinksContainer.appendChild( optionWrapper );
 
 					drinks.forEach( ( d, idx ) => {
+						const decreaseLabel = __( 'Decrease', 'planet4-child-theme-switzerland' );
+						const increaseLabel = __( 'Increase', 'planet4-child-theme-switzerland' );
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
 						drinkOption.innerHTML = `
 							<label class="fq-drink-label">
 								<p class="fq-option-title">${ d.title }</p>
 								<div class="fq-drink-controls">
-									<button type="button" class="fq-drink-decrease" aria-label="Decrease">−</button>
-									<input type="number" min="0" max="5" value="0" data-index="${ idx }" class="fq-drink-input" />
-									<button type="button" class="fq-drink-increase" aria-label="Increase">+</button>
+									<button type="button" class="fq-drink-decrease" aria-label="${ decreaseLabel }">−</button>
+									<input type="number" min="0" max="10" value="0" data-index="${ idx }" class="fq-drink-input" />
+									<button type="button" class="fq-drink-increase" aria-label="${ increaseLabel }">+</button>
 								</div>
 							</label>`;
 
@@ -207,6 +245,33 @@
 						}
 					} );
 				}
+			}
+
+			// Sync tier labels and class names from context to the result scale and tier titles
+			function syncTierTitles() {
+				if ( ! outputContainer || ! Array.isArray( tierLabels ) ) {
+					return;
+				}
+
+				outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( tierEl => {
+					const tier = parseInt( tierEl.getAttribute( 'data-tier' ), 10 );
+
+					if ( Number.isNaN( tier ) ) {
+						return;
+					}
+
+					const titleEl = tierEl.querySelector( '.food-quiz__tier-title' );
+					if ( titleEl ) {
+						const tierClassPattern = /result-scale__tier--\d+/g;
+						titleEl.className = titleEl.className.replace( tierClassPattern, '' ).replace( /\s+/g, ' ' ).trim();
+						titleEl.classList.add( `result-scale__tier--${ tier }` );
+					}
+
+					const labelEl = tierEl.querySelector( '.food-quiz__tier-title-label' );
+					if ( labelEl ) {
+						labelEl.textContent = tierLabels[ tier ] || '';
+					}
+				} );
 			}
 
 			// Create result scale / arrow UI
@@ -284,6 +349,7 @@
 			ensureResultScale();
 
 			render();
+			syncTierTitles();
 
 			function calculateAndShow( isManual = false ) {
 				let total = 0;
@@ -370,12 +436,12 @@
 					// hide all tiers first
 					outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
 
-					const errorElement = outputContainer.querySelector( '.error-message' );
+					const outputErrorElement = outputContainer.querySelector( '.error-message' );
 					const scaleElement = outputContainer.querySelector( '.result-scale' );
 
 					if ( ! allMealsSelected ) {
-						if ( errorElement ) {
-							errorElement.style.display = 'block';
+						if ( outputErrorElement ) {
+							outputErrorElement.style.display = 'block';
 						}
 						if ( scaleElement ) {
 							scaleElement.style.display = 'none';
@@ -387,8 +453,8 @@
 
 						// don't show any tier
 					} else {
-						if ( errorElement ) {
-							errorElement.style.display = 'none';
+						if ( outputErrorElement ) {
+							outputErrorElement.style.display = 'none';
 						}
 						if ( scaleElement ) {
 							scaleElement.style.display = 'block';
@@ -447,6 +513,42 @@
 
 					// show spinner then calculate (manual trigger)
 					showSpinnerThenCalculate( true );
+				} );
+			}
+
+			if ( resetButton ) {
+				resetButton.addEventListener( 'click', () => {
+					// Clear all meal radio selections
+					root.querySelectorAll( 'input[type="radio"]' ).forEach( radio => {
+						radio.checked = false;
+					} );
+
+					// Reset all drink inputs to 0
+					root.querySelectorAll( '.fq-drink-input' ).forEach( input => {
+						input.value = 0;
+					} );
+
+					// Hide result output
+					if ( outputContainer ) {
+						outputContainer.querySelectorAll( '.food-quiz__tier' ).forEach( el => ( el.style.display = 'none' ) );
+						const resetErrorElement = outputContainer.querySelector( '.error-message' );
+						if ( resetErrorElement ) {
+							resetErrorElement.style.display = 'none';
+						}
+						const scaleElement = outputContainer.querySelector( '.result-scale' );
+						if ( scaleElement ) {
+							scaleElement.style.display = 'none';
+						}
+					}
+
+					// Stop auto-calc and re-enable Calculate button
+					autoCalcEnabled = false;
+					if ( debounceTimer ) {
+						clearTimeout( debounceTimer );
+					}
+					if ( calculateButton ) {
+						calculateButton.disabled = false;
+					}
 				} );
 			}
 
