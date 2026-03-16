@@ -24,5 +24,13 @@
 	},
 	"dependencies": {
 		"@wordpress/icons": "^11.6.0"
+	},
+	"peerDependencies": {
+		"@wordpress/block-editor": "*",
+		"@wordpress/blocks": "*",
+		"@wordpress/components": "*",
+		"@wordpress/data": "*",
+		"@wordpress/element": "*",
+		"@wordpress/i18n": "*"
 	}
 }
