@@ -10,6 +10,12 @@
   "supports": {
     "html": false
   },
+  "usesContext": [
+    "planet4-child-theme-switzerland/food-quiz-tier-labels"
+  ],
+  "providesContext": {
+    "planet4-child-theme-switzerland/food-quiz-tier-index": "tierIndex"
+  },
   "attributes": {
     "tierIndex": {
       "type": "number",
