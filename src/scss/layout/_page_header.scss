@@ -3,6 +3,10 @@
 	scroll-margin-top: 80px;
 }
 
+.wp-block-group:has(.is-pattern-p4-page-header) {
+	margin-top: 0;
+}
+
 .page-header {
 	&.page-header-hidden {
 		display: none;

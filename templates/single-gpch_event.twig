@@ -40,11 +40,20 @@
 
 				<ul class="event-meta">
 					<li class="date">
-						<span class="title">{{ __('Date', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.event_date|date("l, d. F Y") }}
+						<span class="title">{{ __('Date', 'planet4-child-theme-switzerland' ) }}:</span>
+						{% if (post.event_end_date and post.event_end_date != post.event_date) %}
+							{{ post.event_date|date("l, d. F Y") }} - {{ post.event_end_date|date("l, d. F Y") }}
+						{% else %}
+							{{ post.event_date|date("l, d. F Y") }}
+						{% endif %}
 					</li>
 					{% if (post.start_time) %}
 					<li class="time">
-						<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time }}
+						{% if post.start_time_freeform %}
+							<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time_freeform }}
+						{% else %}
+							<span class="title">{{ __('Time', 'planet4-child-theme-switzerland' ) }}:</span> {{ post.start_time }}
+						{% endif %}
 					</li>
 					{% endif %}
 					<li class="place">

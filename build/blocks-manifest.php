@@ -28,6 +28,9 @@ return array(
 			),
 			'multiple' => false
 		),
+		'providesContext' => array(
+			'planet4-child-theme-switzerland/food-quiz-tier-labels' => 'tierLabels'
+		),
 		'textdomain' => 'planet4-child-theme-switzerland',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
@@ -164,6 +167,12 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
+		'usesContext' => array(
+			'planet4-child-theme-switzerland/food-quiz-tier-labels'
+		),
+		'providesContext' => array(
+			'planet4-child-theme-switzerland/food-quiz-tier-index' => 'tierIndex'
+		),
 		'attributes' => array(
 			'tierIndex' => array(
 				'type' => 'number',
@@ -195,5 +204,27 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./style.css',
 		'style' => 'file:./style-index.css'
+	),
+	'result-tier-title' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'planet4-child-theme-switzerland/food-quiz-result-tier-title',
+		'version' => '0.1.0',
+		'title' => 'Food Quiz Result Tier Title',
+		'parent' => array(
+			'planet4-child-theme-switzerland/food-quiz-result-tier'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'usesContext' => array(
+			'planet4-child-theme-switzerland/food-quiz-tier-index',
+			'planet4-child-theme-switzerland/food-quiz-tier-labels'
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./style.css',
+		'style' => 'file:./style-index.css',
+		'icon' => 'button'
 	)
 );
