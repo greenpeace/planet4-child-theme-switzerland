@@ -144,7 +144,9 @@ import { __ } from '@wordpress/i18n';
 
 					const title = getMealTitle( time );
 					el.setAttribute( 'aria-label', title );
-					el.innerHTML = '<h3>' + title + '</h3>';
+					const mealH3 = document.createElement( 'h3' );
+					mealH3.textContent = title;
+					el.appendChild( mealH3 );
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__meal-options';
@@ -155,15 +157,38 @@ import { __ } from '@wordpress/i18n';
 					set.forEach( ( m, idx ) => {
 						const label = document.createElement( 'label' );
 						label.className = 'fq-option';
-						label.innerHTML = `
-								<input type="radio" name="fq-${ time }" value="${ idx }" />
-								<p class="fq-option-title">${ m.title }</p>
-								<div class="fq-option-img">${ m.imageUrl ? `<img src="${ m.imageUrl }" alt=""/>` : '' }</div>
-							`;
+
+						const radio = document.createElement( 'input' );
+						radio.type = 'radio';
+						radio.name = `fq-${ time }`;
+						radio.value = String( idx );
+						label.appendChild( radio );
+
+						const titleP = document.createElement( 'p' );
+						titleP.className = 'fq-option-title';
+						titleP.textContent = m.title;
+						label.appendChild( titleP );
+
+						const imgDiv = document.createElement( 'div' );
+						imgDiv.className = 'fq-option-img';
+						if ( m.imageUrl ) {
+							try {
+								const parsedUrl = new URL( m.imageUrl );
+								if ( parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:' ) {
+									const img = document.createElement( 'img' );
+									img.src = parsedUrl.href;
+									img.alt = '';
+									imgDiv.appendChild( img );
+								}
+							} catch ( e ) {
+								// Invalid URL, skip image
+							}
+						}
+						label.appendChild( imgDiv );
+
 						optionWrapper.appendChild( label );
 
 						// Auto-recalculate when a meal option changes
-						const radio = label.querySelector( 'input[type="radio"]' );
 
 						if ( radio ) {
 							radio.addEventListener( 'change', () => {
@@ -184,7 +209,9 @@ import { __ } from '@wordpress/i18n';
 				// render drinks
 				if ( drinksContainer ) {
 					const drinksTitle = __( 'Drinks', 'planet4-child-theme-switzerland' );
-					drinksContainer.innerHTML = '<h3>' + drinksTitle + '</h3>';
+					const drinksH3 = document.createElement( 'h3' );
+					drinksH3.textContent = drinksTitle;
+					drinksContainer.appendChild( drinksH3 );
 
 					const optionWrapper = document.createElement( 'div' );
 					optionWrapper.className = 'food-quiz__drink-options';
