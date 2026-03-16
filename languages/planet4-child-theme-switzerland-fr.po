@@ -17,7 +17,7 @@ msgstr "Augmenter"
 
 #: src/blocks/food-quiz/view.js:200
 msgid "Decrease"
-msgstr "Dimiuer"
+msgstr "Diminuer"
 
 #: src/blocks/food-quiz/save.js:39
 #: src/blocks/food-quiz/view.js:54
