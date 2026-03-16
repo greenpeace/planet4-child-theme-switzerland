@@ -223,42 +223,42 @@ import { __ } from '@wordpress/i18n';
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
 
-						const drinkLabelEl = document.createElement( 'label' );
-						drinkLabelEl.className = 'fq-drink-label';
+						const drinkLabel = document.createElement( 'label' );
+						drinkLabel.className = 'fq-drink-label';
 
-						const drinkTitleP = document.createElement( 'p' );
-						drinkTitleP.className = 'fq-option-title';
-						drinkTitleP.textContent = d.title;
-						drinkLabelEl.appendChild( drinkTitleP );
+						const titleP = document.createElement( 'p' );
+						titleP.className = 'fq-option-title';
+						titleP.textContent = d.title;
 
-						const controlsDiv = document.createElement( 'div' );
-						controlsDiv.className = 'fq-drink-controls';
+						const drinkControls = document.createElement( 'div' );
+						drinkControls.className = 'fq-drink-controls';
 
 						const dec = document.createElement( 'button' );
 						dec.type = 'button';
 						dec.className = 'fq-drink-decrease';
 						dec.setAttribute( 'aria-label', decreaseLabel );
 						dec.textContent = '−';
-						controlsDiv.appendChild( dec );
 
 						const inputEl = document.createElement( 'input' );
 						inputEl.type = 'number';
 						inputEl.min = '0';
-						inputEl.max = '5';
+						inputEl.max = '10';
 						inputEl.value = '0';
-						inputEl.dataset.index = String( idx );
+						inputEl.dataset.index = idx;
 						inputEl.className = 'fq-drink-input';
-						controlsDiv.appendChild( inputEl );
 
 						const inc = document.createElement( 'button' );
 						inc.type = 'button';
 						inc.className = 'fq-drink-increase';
 						inc.setAttribute( 'aria-label', increaseLabel );
 						inc.textContent = '+';
-						controlsDiv.appendChild( inc );
 
-						drinkLabelEl.appendChild( controlsDiv );
-						drinkOption.appendChild( drinkLabelEl );
+						drinkControls.appendChild( dec );
+						drinkControls.appendChild( inputEl );
+						drinkControls.appendChild( inc );
+						drinkLabel.appendChild( titleP );
+						drinkLabel.appendChild( drinkControls );
+						drinkOption.appendChild( drinkLabel );
 
 						optionWrapper.appendChild( drinkOption );
 
