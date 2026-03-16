@@ -200,7 +200,7 @@ import { __ } from '@wordpress/i18n';
 								<p class="fq-option-title">${ d.title }</p>
 								<div class="fq-drink-controls">
 									<button type="button" class="fq-drink-decrease" aria-label="${ decreaseLabel }">−</button>
-									<input type="number" min="0" max="5" value="0" data-index="${ idx }" class="fq-drink-input" />
+									<input type="number" min="0" max="10" value="0" data-index="${ idx }" class="fq-drink-input" />
 									<button type="button" class="fq-drink-increase" aria-label="${ increaseLabel }">+</button>
 								</div>
 							</label>`;
