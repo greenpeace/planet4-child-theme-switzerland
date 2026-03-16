@@ -223,7 +223,7 @@ import { __ } from '@wordpress/i18n';
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
 
-						const drinkLabel = document.createElement( 'label' );
+						const drinkLabel = document.createElement( 'div' );
 						drinkLabel.className = 'fq-drink-label';
 
 						const titleP = document.createElement( 'p' );
