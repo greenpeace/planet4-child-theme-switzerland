@@ -195,22 +195,45 @@ import { __ } from '@wordpress/i18n';
 						const increaseLabel = __( 'Increase', 'planet4-child-theme-switzerland' );
 						const drinkOption = document.createElement( 'div' );
 						drinkOption.className = 'fq-drink-wrapper';
-						drinkOption.innerHTML = `
-							<label class="fq-drink-label">
-								<p class="fq-option-title">${ d.title }</p>
-								<div class="fq-drink-controls">
-									<button type="button" class="fq-drink-decrease" aria-label="${ decreaseLabel }">−</button>
-									<input type="number" min="0" max="10" value="0" data-index="${ idx }" class="fq-drink-input" />
-									<button type="button" class="fq-drink-increase" aria-label="${ increaseLabel }">+</button>
-								</div>
-							</label>`;
+
+						const drinkLabel = document.createElement( 'label' );
+						drinkLabel.className = 'fq-drink-label';
+
+						const titleP = document.createElement( 'p' );
+						titleP.className = 'fq-option-title';
+						titleP.textContent = d.title;
+
+						const drinkControls = document.createElement( 'div' );
+						drinkControls.className = 'fq-drink-controls';
+
+						const dec = document.createElement( 'button' );
+						dec.type = 'button';
+						dec.className = 'fq-drink-decrease';
+						dec.setAttribute( 'aria-label', decreaseLabel );
+						dec.textContent = '−';
+
+						const inputEl = document.createElement( 'input' );
+						inputEl.type = 'number';
+						inputEl.min = '0';
+						inputEl.max = '10';
+						inputEl.value = '0';
+						inputEl.dataset.index = idx;
+						inputEl.className = 'fq-drink-input';
+
+						const inc = document.createElement( 'button' );
+						inc.type = 'button';
+						inc.className = 'fq-drink-increase';
+						inc.setAttribute( 'aria-label', increaseLabel );
+						inc.textContent = '+';
+
+						drinkControls.appendChild( dec );
+						drinkControls.appendChild( inputEl );
+						drinkControls.appendChild( inc );
+						drinkLabel.appendChild( titleP );
+						drinkLabel.appendChild( drinkControls );
+						drinkOption.appendChild( drinkLabel );
 
 						optionWrapper.appendChild( drinkOption );
-
-						// wire up +/- buttons
-						const inputEl = drinkOption.querySelector( '.fq-drink-input' );
-						const dec = drinkOption.querySelector( '.fq-drink-decrease' );
-						const inc = drinkOption.querySelector( '.fq-drink-increase' );
 
 						if ( dec && inputEl ) {
 							dec.addEventListener( 'click', () => {
