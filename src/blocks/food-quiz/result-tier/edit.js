@@ -6,7 +6,13 @@ export default function Edit( { attributes } ) {
 		<>
 			<div { ...useBlockProps( { className: 'food-quiz__tier-editor' } ) }>
 				<InnerBlocks
-					allowedBlocks={ [ 'planet4-child-theme-switzerland/food-quiz-result-tier-title', 'core/paragraph', 'core/heading', 'core/image' ] }
+					allowedBlocks={ [
+						'planet4-child-theme-switzerland/food-quiz-result-tier-title',
+						'core/paragraph',
+						'core/heading',
+						'core/image',
+						'planet4-blocks/take-action-boxout',
+					] }
 					template={ [
 						[ 'planet4-child-theme-switzerland/food-quiz-result-tier-title', { lock: { remove: true, move: false } } ],
 						[ 'core/heading', { content: 'Result Tier ' + ( tierIndex + 1 ), className: 'is-style-no-underline' } ],
