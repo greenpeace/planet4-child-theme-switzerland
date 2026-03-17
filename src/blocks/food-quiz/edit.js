@@ -218,7 +218,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							<RangeControl
 								label={ __( 'Grams of CO2 (per serving)', 'planet4-child-theme-switzerland' ) }
 								min={ 0 }
-								max={ 1000 }
+								max={ 3000 }
 								value={ drink.score }
 								onChange={ v => updateDrink( i, 'score', v ) }
 							/>
