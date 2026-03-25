@@ -58,6 +58,8 @@ import { __ } from '@wordpress/i18n';
 			let debounceTimer = null;
 			const DEBOUNCE_DELAY = 300;
 			let autoCalcEnabled = false;
+			let activeTier = null;
+			let resizeRafId = null;
 
 			// Show a spinner inside the calculate button for a short delay,
 			// then run the calculation. Safe to call repeatedly; it will
@@ -395,8 +397,39 @@ import { __ } from '@wordpress/i18n';
 				arrow.style.transform = `translateX(${ Math.round( center ) }px)`;
 			}
 
+			function realignArrowIfNeeded() {
+				if ( activeTier === null || activeTier === undefined ) {
+					return;
+				}
+
+				if ( ! outputContainer ) {
+					return;
+				}
+
+				const scaleElement = outputContainer.querySelector( '.result-scale' );
+				if ( ! scaleElement || scaleElement.style.display === 'none' ) {
+					return;
+				}
+
+				moveArrowToTier( activeTier );
+			}
+
+			// Schedule an arrow realign on the next animation frame, cancelling any previously scheduled realign. This is used to debounce realigns during window resizing.
+			function scheduleArrowRealign() {
+				if ( resizeRafId ) {
+					cancelAnimationFrame( resizeRafId );
+				}
+
+				resizeRafId = requestAnimationFrame( () => {
+					resizeRafId = null;
+					realignArrowIfNeeded();
+				} );
+			}
+
 			// initialize scale now so it exists before first calculation
 			ensureResultScale();
+			window.addEventListener( 'resize', scheduleArrowRealign );
+			window.addEventListener( 'orientationchange', scheduleArrowRealign );
 
 			render();
 			syncTierTitles();
@@ -490,6 +523,7 @@ import { __ } from '@wordpress/i18n';
 					const scaleElement = outputContainer.querySelector( '.result-scale' );
 
 					if ( ! allMealsSelected ) {
+						activeTier = null;
 						if ( outputErrorElement ) {
 							outputErrorElement.style.display = 'block';
 						}
@@ -517,6 +551,7 @@ import { __ } from '@wordpress/i18n';
 
 						// move arrow to the resulting tier (animated)
 						try {
+							activeTier = tier;
 							moveArrowToTier( tier );
 						} catch ( e ) {
 							// ignore
@@ -590,6 +625,8 @@ import { __ } from '@wordpress/i18n';
 							scaleElement.style.display = 'none';
 						}
 					}
+
+					activeTier = null;
 
 					// Stop auto-calc and re-enable Calculate button
 					autoCalcEnabled = false;
