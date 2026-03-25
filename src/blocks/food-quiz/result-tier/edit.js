@@ -11,6 +11,7 @@ export default function Edit( { attributes } ) {
 						'core/paragraph',
 						'core/heading',
 						'core/image',
+						'core/separator',
 						'planet4-blocks/take-action-boxout',
 					] }
 					template={ [
