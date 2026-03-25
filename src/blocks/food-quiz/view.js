@@ -414,7 +414,8 @@ import { __ } from '@wordpress/i18n';
 				moveArrowToTier( activeTier );
 			}
 
-			// Schedule an arrow realign on the next animation frame, cancelling any previously scheduled realign. This is used to debounce realigns during window resizing.
+			// Schedule an arrow realign on the next animation frame, cancelling any previously scheduled realign.
+			// This is used to debounce realigns during window resizing.
 			function scheduleArrowRealign() {
 				if ( resizeRafId ) {
 					cancelAnimationFrame( resizeRafId );
