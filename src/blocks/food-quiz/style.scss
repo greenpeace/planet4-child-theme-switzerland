@@ -251,11 +251,25 @@
 	margin: 0 auto;
 }
 
+@media (max-width: 991px) {
+	.food-quiz {
+		.fq-option-title {
+			font-size: 12px;
+			hyphens: auto;
+		}
+	}
+}
+
 @media (max-width: 767px) {
 	.food-quiz {
 		.food-quiz__meal-times {
 			grid-template-columns: 1fr;
 			gap: 16px;
+		}
+
+		.fq-option-title {
+			font-size: var(--gpch-font-size-small);
+			hyphens: none;
 		}
 
 		.food-quiz__drinks .food-quiz__drink-options {
