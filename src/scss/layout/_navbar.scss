@@ -40,3 +40,13 @@
 #search_form {
 	margin-bottom: 0;
 }
+
+.burger-menu-footer .btn-donate {
+	background-color: var(--p4-action-yellow-500);
+	font-family: var(--gpch--font-family-standard);
+	font-weight: var(--button--font-weight, bold);
+
+	&:hover {
+		background-color: var(--p4-action-yellow-600);
+	}
+}
