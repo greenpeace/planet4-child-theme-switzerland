@@ -87,7 +87,9 @@
 					</div>
 				</div>
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
-				{% if ( post.page_types.0.slug == 'story' ) or ( post.page_types.0.slug == 'story-fr' ) or ( post.page_types.0.slug == 'medienmitteilung' ) or ( post.page_types.0.slug == 'communique-de-presse' ) or ( post.page_types.0.slug == 'hintergrund' ) or (post.page_types.0.slug == 'article-de-magazine') %}
+				{% set first_page_type = post.page_types|first %}
+				{% set first_page_type_slug = first_page_type.slug|default('') %}
+				{% if first_page_type_slug in ['story', 'story-fr', 'medienmitteilung', 'communique-de-presse', 'hintergrund', 'article-de-magazine'] %}
 					{% if post.thumbnail.src is defined %}
 						<figure class="header-image wp-block-image">
 							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
