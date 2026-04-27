@@ -74,7 +74,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 				// Save to session storage
 				if ( window.sessionStorage ) {
-					global.sessionStorage.setItem( 'gpch_blocker_checked', '1' );
+					window.sessionStorage.setItem( 'gpch_blocker_checked', '1' );
 				}
 			} );
 	} );
