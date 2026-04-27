@@ -69,6 +69,9 @@ add_filter( 'gform_address_display_format', 'gpch_gf_address_format', 10, 2 );
 function gpch_form_submission_event_parameters( $parameters, $form, $entry ) {
 	// Find the newsletter field
 	// Convention: use an admin label in the form field settings that contains "newsletter"
+	$newsletter_subscription = 0;
+	$newsletter_type         = '';
+
 	foreach ( $form['fields'] as $field ) {
 		if ( $field['type'] === 'checkbox' && strpos( $field['adminLabel'], 'newsletter' ) !== false ) {
 			$newsletter_type     = $field['adminLabel'];
