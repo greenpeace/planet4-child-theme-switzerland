@@ -60,7 +60,7 @@ require_once 'includes/background-taxonomy.php';
 require_once 'includes/advanced-post-settings.php';
 
 // GPCH CSP headers
-require_once 'includes/csp.php';
+require_once 'includes/headers.php';
 
 // Hubspot
 require_once 'includes/hubspot.php';
