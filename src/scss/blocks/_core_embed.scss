@@ -1,0 +1,12 @@
+.wp-block-embed-issuu {
+	.wp-block-embed__wrapper {
+		height: auto;
+		padding-bottom: 0;
+	}
+
+	iframe {
+		width: 100% !important;
+		height: 80vh !important;
+		min-height: 350px;
+	}
+}
