@@ -43,6 +43,25 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
 					'ui_on_text'        => 'Yes',
 					'ui_off_text'       => 'No',
 				),
+				array(
+					'key'               => 'gpch_advanced_settings_hide_default_share_buttons',
+					'label'             => __( 'Hide default share buttons', 'planet4-child-theme-switzerland' ),
+					'name'              => 'hide_default_share_buttons',
+					'aria-label'        => '',
+					'type'              => 'true_false',
+					'instructions'      => __( 'Removes the default share buttons from the page (for example on thank you pages, where custom buttons are used).', 'planet4-child-theme-switzerland' ),
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'default_value'     => 0,
+					'ui'                => 1,
+					'ui_on_text'        => 'Yes',
+					'ui_off_text'       => 'No',
+				),
 			),
 			'location'              => array(
 				array(
@@ -89,3 +108,24 @@ function gpch_noindex_tag_output( array $robots ) {
 	return $robots;
 }
 add_action( 'wp_robots', 'gpch_noindex_tag_output' );
+
+/**
+ * Add a body class to hide default share buttons when enabled per post/page.
+ *
+ * @param array $classes Array of CSS classes for the body element.
+ * @return array
+ */
+function gpch_add_hide_default_share_buttons_body_class( array $classes ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return $classes;
+	}
+
+	$hide_default_share_buttons = get_field( 'hide_default_share_buttons' );
+
+	if ( $hide_default_share_buttons ) {
+		$classes[] = 'hide-default-share-buttons';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'gpch_add_hide_default_share_buttons_body_class' );
