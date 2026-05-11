@@ -12,9 +12,12 @@
 		flex-shrink: 1;
 	}
 
-	.nav-languages-toggle {
+	.nav-languages-wrapper {
 		flex-shrink: 0;
-		text-transform: uppercase;
+
+		.nav-languages-toggle {
+			text-transform: uppercase;
+		}
 
 		.nav-languages {
 			text-transform: none;
@@ -48,5 +51,11 @@
 
 	&:hover {
 		background-color: var(--p4-action-yellow-600);
+	}
+}
+
+@media (min-width: 992px) {
+	.nav-languages .current-language a::after {
+		margin-left: 4px;
 	}
 }
