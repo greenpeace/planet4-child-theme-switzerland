@@ -24,6 +24,9 @@ input[autocomplete="family-name"] + div.charleft {
 
 /* Styles for multistep forms */
 .gform_wrapper.gravity-theme {
+	padding: 2rem 1rem;
+	background-color: var(--beige-100);
+
 	.gf_progressbar {
 		background-color: var(--grey-200);
 		border-radius: 4px;
