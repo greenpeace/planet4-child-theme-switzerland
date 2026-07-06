@@ -45,3 +45,24 @@ div[data-hydrate="planet4-blocks/articles"] {
 	display: none !important;
 }
 
+
+/*@include media("<=tablet") {*/
+@media (max-width: 1199px) {
+	.page-header-title {
+		max-width: 100%;
+	}
+}
+
+/* Master theme corrections */
+@media (min-width: 768px) {
+	.page-header .container > :not(.row) {
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 992px) {
+	.page-header .container > :not(.row) {
+		max-width: 100%;
+	}
+}
+
