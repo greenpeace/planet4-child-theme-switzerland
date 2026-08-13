@@ -91,6 +91,20 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
 	);
 }
 
+register_post_meta(
+	'post',
+	'gpch_hide_header_image',
+	array(
+		'type'          => 'boolean',
+		'single'        => true,
+		'show_in_rest'  => true,
+		'default'       => false,
+		'auth_callback' => function ( $allowed, $meta_key, $post_id ) {
+			return current_user_can( 'edit_post', $post_id );
+		},
+	)
+);
+
 
 /**
  * Output a noindex tag in the page when the option is set

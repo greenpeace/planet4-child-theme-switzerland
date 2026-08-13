@@ -89,7 +89,7 @@
 				{# Show post image in stories, press releases,  hintergrund, magazine articles: #}
 				{% set first_page_type = post.page_types|first %}
 				{% set first_page_type_slug = first_page_type.slug|default('') %}
-				{% if first_page_type_slug in ['story', 'story-fr', 'medienmitteilung', 'communique-de-presse', 'hintergrund', 'article-de-magazine'] %}
+				{% if first_page_type_slug in ['story', 'story-fr', 'medienmitteilung', 'communique-de-presse', 'hintergrund', 'article-de-magazine'] and not post.meta('gpch_hide_header_image') %}
 					{% if post.thumbnail.src is defined %}
 						<figure class="header-image wp-block-image">
 							<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
