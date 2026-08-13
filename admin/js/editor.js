@@ -1,3 +1,5 @@
+/* global gpchUserData */
+
 wp.domReady( () => {
 	/**
 	 * Remove unwanted block default styles and add our own where needed
@@ -82,6 +84,44 @@ wp.domReady( () => {
 } );
 
 const { addFilter } = wp.hooks;
+
+// Add a checkbox to the post settings panel to hide the header image
+const { CheckboxControl } = wp.components;
+const { useDispatch, useSelect } = wp.data;
+const { registerPlugin } = wp.plugins;
+const { PluginDocumentSettingPanel } = wp.editPost;
+const { __ } = wp.i18n;
+
+const HeaderImageSetting = () => {
+	const meta = useSelect( select => select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {}, [] );
+	const { editPost } = useDispatch( 'core/editor' );
+
+	if ( 'post' !== gpchUserData.post_type ) {
+		return null;
+	}
+
+	return wp.element.createElement(
+		PluginDocumentSettingPanel,
+		{
+			name: 'gpch-header-image-settings',
+			title: __( 'General settings', 'planet4-child-theme-switzerland' ),
+		},
+		wp.element.createElement( CheckboxControl, {
+			label: __( 'Hide post header image', 'planet4-child-theme-switzerland' ),
+			checked: Boolean( meta.gpch_hide_header_image ),
+			onChange: value => {
+				editPost( {
+					meta: {
+						...meta,
+						gpch_hide_header_image: value,
+					},
+				} );
+			},
+		} )
+	);
+};
+
+registerPlugin( 'gpch-header-image-settings', { render: HeaderImageSetting } );
 
 // Remove AJAX toggle default introduced by planet4-plugin-gutenberg-block that causes issues
 const addGravityFormsBlockFilter = () => {
