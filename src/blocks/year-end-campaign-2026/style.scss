@@ -1,0 +1,275 @@
+.year-end-campaign-2026 {
+	--year-end-campaign-background: #081112;
+	--year-end-campaign-panel: #102020;
+	--year-end-campaign-line: #3c6864;
+	--year-end-campaign-text: #f2f7f2;
+	--year-end-campaign-muted: #a8c4bf;
+	--year-end-campaign-accent: var(--p4-action-yellow-500, #ffe500);
+	--year-end-campaign-status-missing: var(--p4-action-yellow-500, #ffe500);
+	--year-end-campaign-status-endangered: #ff6b5f;
+	--year-end-campaign-status-unknown: #6dc7de;
+	background: var(--year-end-campaign-background);
+	color: var(--year-end-campaign-text);
+	padding: 2.5rem clamp(1rem, 4vw, 3rem) 3rem;
+
+	&__header {
+		margin: 0 auto 2.5rem;
+		max-width: 44rem;
+		text-align: center;
+
+		h2 {
+			color: inherit;
+			margin: 0 0 0.5rem;
+		}
+
+		p:last-child {
+			color: var(--year-end-campaign-muted);
+			margin: 0;
+		}
+	}
+
+	&__eyebrow,
+	&__dossier-label,
+	&__case-number,
+	&__status,
+	&__dossier dt,
+	&__dossier-aside > p {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	&__eyebrow,
+	&__dossier-label {
+		color: var(--year-end-campaign-accent);
+		margin: 0 0 0.75rem;
+	}
+
+	&__grid {
+		display: grid;
+		gap: 0.75rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin: 0 auto 1.75rem;
+		max-width: 56rem;
+	}
+
+	&__card {
+		appearance: none;
+		background: var(--year-end-campaign-panel);
+		border: 1px solid var(--year-end-campaign-line);
+		color: inherit;
+		cursor: pointer;
+		min-width: 0;
+		padding: 0 0 1rem;
+		position: relative;
+		text-align: left;
+		transition: border-color 160ms ease, transform 160ms ease;
+
+		&:hover,
+		&:focus-visible,
+		&.is-selected {
+			border-color: var(--year-end-campaign-accent);
+			outline: none;
+			transform: translateY(-2px);
+		}
+
+		h3,
+		p,
+		span:not(.year-end-campaign-2026__image) {
+			display: block;
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+
+		h3 {
+			font-size: 1.1rem;
+            color: var(--year-end-campaign-text);
+            font-family: var(--body--font-family);
+            font-weight: 700;
+            text-transform: uppercase;
+			margin-bottom: 0.25rem;
+			margin-top: 0.75rem;
+		}
+
+		p {
+			color: var(--year-end-campaign-muted);
+			font-size: 0.875rem;
+			margin-bottom: 0.3rem;
+			margin-top: 0;
+		}
+	}
+
+	&__image {
+		align-items: center;
+		background-color: #050b0c;
+		background-image: linear-gradient(rgba(126, 195, 183, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(126, 195, 183, 0.1) 1px, transparent 1px);
+		background-size: 1.25rem 1.25rem;
+		display: flex;
+		height: 11rem;
+		justify-content: center;
+		overflow: hidden;
+
+		img {
+			height: 100%;
+			object-fit: contain;
+			width: 100%;
+		}
+
+		span {
+			color: var(--year-end-campaign-muted);
+		}
+	}
+
+	&__case-number,
+	&__status {
+		margin-top: 0.75rem;
+	}
+
+	&__case-number {
+		color: var(--year-end-campaign-accent);
+	}
+
+	&__status {
+		border: 1px solid currentcolor;
+		display: inline-block;
+		font-size: 0.65rem;
+		letter-spacing: 0.08em;
+		padding: 0.2rem 0.4rem;
+		width: fit-content;
+
+		&--missing {
+			color: var(--year-end-campaign-status-missing);
+		}
+
+		&--endangered {
+			color: var(--year-end-campaign-status-endangered);
+		}
+
+		&--unknown {
+			color: var(--year-end-campaign-status-unknown);
+		}
+	}
+
+	&__dossier-output {
+		margin: 0 auto;
+		max-width: 56rem;
+	}
+
+	&__dossier {
+		background: var(--year-end-campaign-panel);
+		border: 2px solid var(--year-end-campaign-accent);
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: minmax(0, 1fr) 12rem;
+		padding: clamp(1rem, 3vw, 1.5rem);
+
+		h2 {
+			color: inherit;
+			margin: 0;
+		}
+
+		p {
+			line-height: 1.55;
+		}
+
+		dl {
+			display: grid;
+			gap: 0.75rem;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			margin: 1.25rem 0;
+		}
+
+		dt {
+			color: var(--year-end-campaign-muted);
+		}
+
+		dd {
+			margin: 0.2rem 0 0;
+
+			&.year-end-campaign-2026__status {
+				margin-top: 0.4rem;
+			}
+		}
+	}
+
+	&__dossier-aside {
+		align-self: start;
+		text-align: center;
+
+		img {
+			aspect-ratio: 1;
+			background: #050b0c;
+			border: 1px solid var(--year-end-campaign-line);
+			display: block;
+			margin-bottom: 0.75rem;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		> p {
+			color: var(--year-end-campaign-muted);
+			font-size: 0.65rem;
+			margin: 0.5rem 0 0;
+		}
+	}
+
+	&__cta {
+		background: var(--year-end-campaign-accent);
+		border: 2px solid var(--year-end-campaign-accent);
+		color: #111;
+		cursor: pointer;
+		font-weight: 700;
+		padding: 0.85rem 0.75rem;
+		width: 100%;
+
+		&:hover,
+		&:focus-visible {
+			background: transparent;
+			color: var(--year-end-campaign-accent);
+			outline: none;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+	}
+
+	&__empty {
+		color: var(--year-end-campaign-muted);
+		margin: 0 auto;
+		max-width: 56rem;
+		text-align: center;
+	}
+
+	@media (max-width: 1000px) {
+		&__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 767px) {
+        &__grid {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+
+		&__dossier {
+			grid-template-columns: 1fr;
+		}
+
+		&__dossier-aside {
+			img {
+				max-width: 12rem;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&__card {
+			transition: none;
+		}
+	}
+}
