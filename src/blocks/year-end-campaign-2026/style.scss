@@ -1,5 +1,5 @@
-.year-end-campaign-2026 {
-	--year-end-campaign-background: #081112;
+.page-style-ocean .year-end-campaign-2026 {
+	--year-end-campaign-background: transparent;
 	--year-end-campaign-panel: #102020;
 	--year-end-campaign-line: #3c6864;
 	--year-end-campaign-text: #f2f7f2;
@@ -40,8 +40,8 @@
 		text-transform: uppercase;
 	}
 
-	&__eyebrow,
-	&__dossier-label {
+	p.year-end-campaign-2026__eyebrow,
+	p.year-end-campaign-2026__dossier-label{
 		color: var(--year-end-campaign-accent);
 		margin: 0 0 0.75rem;
 	}
@@ -84,10 +84,10 @@
 
 		h3 {
 			font-size: 1.1rem;
-            color: var(--year-end-campaign-text);
-            font-family: var(--body--font-family);
-            font-weight: 700;
-            text-transform: uppercase;
+			color: var(--year-end-campaign-text);
+			font-family: var(--body--font-family);
+			font-weight: 700;
+			text-transform: uppercase;
 			margin-bottom: 0.25rem;
 			margin-top: 0.75rem;
 		}
@@ -250,7 +250,7 @@
 	}
 
 	@media (max-width: 767px) {
-        &__grid {
+		&__grid {
 			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
 

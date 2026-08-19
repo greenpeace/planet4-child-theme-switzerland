@@ -148,7 +148,7 @@ import { __ } from '@wordpress/i18n';
 				const name = createElement( 'h3', '', creature.name || '' );
 				const family = createElement( 'p' );
 				family.appendChild( createElement( 'em', '', creature.family || '' ) );
-				const depth = createElement( 'p', '', creature.depth || '' );
+				const depth = createElement( 'p', '', "↓ " + (creature.depth || '') );
 				card.append( imageWrapper, caseNumber, status, name, family, depth );
 				card.addEventListener( 'click', () => {
 					selectedId = selectedId === creature.id ? null : creature.id;
