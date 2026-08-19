@@ -69,11 +69,26 @@ import { __ } from '@wordpress/i18n';
 		const ctaTemplate = root.dataset.ctaTemplate || '{{name}}';
 		const donationNote = root.dataset.donationNote || '';
 		const tamaroAnchorId = root.dataset.tamaroAnchorId || '';
+		const tamaroForm = tamaroAnchorId ? document.getElementById( tamaroAnchorId ) : null;
+
+		if ( tamaroForm ) {
+			tamaroForm.hidden = true;
+		}
+
+		function setDonationFormAnimal( name ) {
+			const config = window.rnw && window.rnw.tamaro && window.rnw.tamaro.instance && window.rnw.tamaro.instance.config;
+			if ( ! config ) {
+				return;
+			}
+			config.paymentFormPrefill = config.paymentFormPrefill || {};
+			config.paymentFormPrefill.stored_animal = name || '';
+		}
 
 		function scrollToDossier() {
 			const reducedMotion = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
 			const headerOffset = 120;
 			const dossierTop = window.scrollY + dossierOutput.getBoundingClientRect().top - headerOffset;
+
 			window.scrollTo( { top: Math.max( 0, dossierTop ), behavior: reducedMotion ? 'auto' : 'smooth' } );
 		}
 
@@ -115,8 +130,8 @@ import { __ } from '@wordpress/i18n';
 			const cta = createElement( 'button', 'year-end-campaign-2026__cta', ctaTemplate.replace( '{{name}}', creature.name || '' ) );
 			cta.type = 'button';
 			cta.addEventListener( 'click', () => {
-				const tamaroForm = tamaroAnchorId ? document.getElementById( tamaroAnchorId ) : null;
 				if ( tamaroForm ) {
+					tamaroForm.hidden = false;
 					tamaroForm.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 				}
 			} );
@@ -159,7 +174,9 @@ import { __ } from '@wordpress/i18n';
 				} );
 				grid.appendChild( card );
 			} );
-			renderDossier( creatures.find( creature => creature.id === selectedId ) );
+			const selectedCreature = creatures.find( creature => creature.id === selectedId );
+			setDonationFormAnimal( selectedCreature ? selectedCreature.name : '' );
+			renderDossier( selectedCreature );
 		}
 
 		render();
