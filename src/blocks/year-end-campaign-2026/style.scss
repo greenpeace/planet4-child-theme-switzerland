@@ -1,3 +1,14 @@
+@keyframes year-end-campaign-2026-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
 .page-style-ocean .year-end-campaign-2026 {
 	--year-end-campaign-background: transparent;
 	--year-end-campaign-panel: #102020;
@@ -111,6 +122,7 @@
 		overflow: hidden;
 
 		img {
+			animation: year-end-campaign-2026-float 5s ease-in-out infinite;
 			height: 100%;
 			object-fit: contain;
 			width: 100%;
@@ -119,6 +131,24 @@
 		span {
 			color: var(--year-end-campaign-muted);
 		}
+	}
+
+	// Offsets mirror the reference prototype so cards don't bob in sync
+	// (using the literal class here since "&" would re-expand the full parent selector)
+	&__card:nth-child(2) .year-end-campaign-2026__image img {
+		animation-delay: -1.5s;
+	}
+
+	&__card:nth-child(3) .year-end-campaign-2026__image img {
+		animation-delay: -3s;
+	}
+
+	&__card:nth-child(4) .year-end-campaign-2026__image img {
+		animation-delay: -0.8s;
+	}
+
+	&__card:nth-child(5) .year-end-campaign-2026__image img {
+		animation-delay: -2.5s;
 	}
 
 	&__case-number,
@@ -197,20 +227,26 @@
 		align-self: start;
 		text-align: center;
 
-		img {
-			aspect-ratio: 1;
-			background: #050b0c;
-			border: 1px solid var(--year-end-campaign-line);
-			display: block;
-			margin-bottom: 0.75rem;
-			object-fit: cover;
-			width: 100%;
-		}
-
 		> p {
 			color: var(--year-end-campaign-muted);
 			font-size: 0.65rem;
 			margin: 0.5rem 0 0;
+		}
+	}
+
+	&__dossier-image {
+		aspect-ratio: 1;
+		background: #050b0c;
+		border: 1px solid var(--year-end-campaign-line);
+		margin-bottom: 0.75rem;
+		overflow: hidden;
+
+		img {
+			animation: year-end-campaign-2026-float 5s ease-in-out infinite;
+			display: block;
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
 		}
 	}
 
@@ -258,18 +294,21 @@
 			grid-template-columns: 1fr;
 		}
 
-		&__dossier-aside {
-			img {
-				max-width: 12rem;
-				margin-left: auto;
-				margin-right: auto;
-			}
+		&__dossier-image {
+			max-width: 12rem;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		&__card {
 			transition: none;
+		}
+
+		&__image img,
+		&__dossier-image img {
+			animation: none;
 		}
 	}
 }

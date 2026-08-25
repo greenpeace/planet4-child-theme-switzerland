@@ -125,7 +125,9 @@ import { __ } from '@wordpress/i18n';
 			const aside = createElement( 'div', 'year-end-campaign-2026__dossier-aside' );
 			const image = createImage( creature, '' );
 			if ( image ) {
-				aside.appendChild( image );
+				const imageWrapper = createElement( 'div', 'year-end-campaign-2026__dossier-image' );
+				imageWrapper.appendChild( image );
+				aside.appendChild( imageWrapper );
 			}
 			const cta = createElement( 'button', 'year-end-campaign-2026__cta', ctaTemplate.replace( '{{name}}', creature.name || '' ) );
 			cta.type = 'button';
