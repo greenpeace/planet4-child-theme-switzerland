@@ -200,6 +200,95 @@ add_filter( 'template_include', 'gpch_include_gpchmagazinearticle_template', 1 )
 
 
 /**
+ * Prevent publishing a Magazine Article without a title image (classic editor / quick edit / bulk edit).
+ *
+ * @param array $data    An array of slashed post data.
+ * @param array $postarr An array of sanitized, but otherwise unmodified post data.
+ *
+ * @return array
+ */
+function gpch_magazinearticle_require_title_image( $data, $postarr ) {
+	if ( $data['post_type'] !== 'gpch_magazinearticle' || $data['post_status'] !== 'publish' ) {
+		return $data;
+	}
+
+	$post_id = $postarr['ID'] ?? 0;
+
+	if ( ! $post_id || ! has_post_thumbnail( $post_id ) ) {
+		$data['post_status'] = 'draft';
+		add_filter( 'redirect_post_location', 'gpch_magazinearticle_missing_title_image_redirect' );
+	}
+
+	return $data;
+}
+
+add_filter( 'wp_insert_post_data', 'gpch_magazinearticle_require_title_image', 10, 2 );
+
+
+/**
+ * Add a query arg to the post edit redirect so an admin notice can be shown.
+ *
+ * @param string $location The destination URL.
+ *
+ * @return string
+ */
+function gpch_magazinearticle_missing_title_image_redirect( $location ) {
+	remove_filter( 'redirect_post_location', 'gpch_magazinearticle_missing_title_image_redirect' );
+
+	return add_query_arg( 'gpch_missing_title_image', '1', $location );
+}
+
+
+/**
+ * Show an admin notice when a Magazine Article was kept as draft due to a missing title image.
+ *
+ * @return void
+ */
+function gpch_magazinearticle_missing_title_image_notice() {
+	if ( isset( $_GET['gpch_missing_title_image'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		echo '<div class="notice notice-error is-dismissible"><p>' .
+			esc_html__( 'This Magazine Article was saved as a draft because it has no title image. Please add one before publishing.', 'planet4-child-theme-switzerland' ) .
+			'</p></div>';
+	}
+}
+
+add_action( 'admin_notices', 'gpch_magazinearticle_missing_title_image_notice' );
+
+
+/**
+ * Prevent publishing a Magazine Article without a title image via the block editor (REST API).
+ *
+ * @param stdClass        $prepared_post An object representing a single post prepared for inserting/updating the database.
+ * @param WP_REST_Request $request       The request object.
+ *
+ * @return stdClass|WP_Error
+ */
+function gpch_magazinearticle_require_title_image_rest( $prepared_post, $request ) {
+	if ( ( $prepared_post->post_status ?? '' ) !== 'publish' ) {
+		return $prepared_post;
+	}
+
+	$featured_media = $request->get_param( 'featured_media' );
+
+	if ( $featured_media === null && ! empty( $prepared_post->ID ) ) {
+		$featured_media = get_post_thumbnail_id( $prepared_post->ID );
+	}
+
+	if ( empty( $featured_media ) ) {
+		return new WP_Error(
+			'gpch_magazinearticle_missing_title_image',
+			__( 'A Magazine Article needs a title image before it can be published.', 'planet4-child-theme-switzerland' ),
+			array( 'status' => 400 )
+		);
+	}
+
+	return $prepared_post;
+}
+
+add_filter( 'rest_pre_insert_gpch_magazinearticle', 'gpch_magazinearticle_require_title_image_rest', 10, 2 );
+
+
+/**
  * Redirect to Event URL if available
  *
  * @return void
