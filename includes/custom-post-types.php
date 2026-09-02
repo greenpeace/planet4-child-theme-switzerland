@@ -106,6 +106,100 @@ add_filter( 'template_include', 'gpch_include_gpchevents_template', 1 );
 
 
 /**
+ * Register Custom Post Type for Magazine Article
+ */
+function gpch_custom_post_gpch_magazinearticle() {
+	$labels = array(
+		'name'                  => _x( 'Magazine Articles', 'Post Type General Name', 'planet4-child-theme-switzerland' ),
+		'singular_name'         => _x( 'Magazine Article', 'Post Type Singular Name', 'planet4-child-theme-switzerland' ),
+		'menu_name'             => __( 'Magazine Articles', 'planet4-child-theme-switzerland' ),
+		'name_admin_bar'        => __( 'Magazine Article', 'planet4-child-theme-switzerland' ),
+		'archives'              => __( 'Magazine Article Archives', 'planet4-child-theme-switzerland' ),
+		'attributes'            => __( 'Magazine Article Attributes', 'planet4-child-theme-switzerland' ),
+		'all_items'             => __( 'All Magazine Articles', 'planet4-child-theme-switzerland' ),
+		'add_new_item'          => __( 'Add New Magazine Article', 'planet4-child-theme-switzerland' ),
+		'add_new'               => __( 'New Magazine Article', 'planet4-child-theme-switzerland' ),
+		'new_item'              => __( 'New Magazine Article', 'planet4-child-theme-switzerland' ),
+		'edit_item'             => __( 'Edit Magazine Article', 'planet4-child-theme-switzerland' ),
+		'update_item'           => __( 'Update Magazine Article', 'planet4-child-theme-switzerland' ),
+		'view_item'             => __( 'View Magazine Article', 'planet4-child-theme-switzerland' ),
+		'view_items'            => __( 'View Magazine Articles', 'planet4-child-theme-switzerland' ),
+		'search_items'          => __( 'Search Magazine Article', 'planet4-child-theme-switzerland' ),
+		'not_found'             => __( 'Not found', 'planet4-child-theme-switzerland' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'planet4-child-theme-switzerland' ),
+		'featured_image'        => __( 'Title Image', 'planet4-child-theme-switzerland' ),
+		'set_featured_image'    => __( 'Set title image', 'planet4-child-theme-switzerland' ),
+		'remove_featured_image' => __( 'Remove title image', 'planet4-child-theme-switzerland' ),
+		'use_featured_image'    => __( 'Use as title image', 'planet4-child-theme-switzerland' ),
+		'insert_into_item'      => __( 'Insert into Magazine Article', 'planet4-child-theme-switzerland' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'planet4-child-theme-switzerland' ),
+		'items_list'            => __( 'Magazine Articles list', 'planet4-child-theme-switzerland' ),
+		'items_list_navigation' => __( 'Magazine Articles list navigation', 'planet4-child-theme-switzerland' ),
+		'filter_items_list'     => __( 'Filter Magazine Articles list', 'planet4-child-theme-switzerland' ),
+	);
+
+	$args = array(
+		'label'               => __( 'Magazine Article', 'planet4-child-theme-switzerland' ),
+		'description'         => __( 'Magazine Articles', 'planet4-child-theme-switzerland' ),
+		'labels'              => $labels,
+		'supports'            => array(
+			'title',
+			'editor',
+			'thumbnail',
+			'revisions',
+			'author',
+			'excerpt',
+			'custom-fields',
+		),
+		'taxonomies'          => array( 'gpch_magazine_issue', 'gpch_magazine_section', 'post_tag' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 13,
+		'menu_icon'           => 'dashicons-media-document',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'rewrite'             => array(
+			'slug'       => 'magazine-article',
+			'with_front' => true,
+			'pages'      => false,
+			'feeds'      => true,
+		),
+		'show_in_rest'        => true, // needed for Gutenberg editor
+	);
+
+	register_post_type( 'gpch_magazinearticle', $args );
+}
+
+add_action( 'init', 'gpch_custom_post_gpch_magazinearticle', 0 );
+
+
+/**
+ * Add a custom template for GPCH Magazine Articles
+ *
+ * @param string $template_path The path to the template of a post of type gpch_magazinearticle.
+ *
+ * @return mixed|string
+ */
+function gpch_include_gpchmagazinearticle_template( $template_path ) {
+	if ( get_post_type() === 'gpch_magazinearticle' ) {
+		if ( is_single() ) {
+			$template_path = get_stylesheet_directory() . '/includes/post-templates/gpch-magazinearticle-single.php';
+		}
+	}
+
+	return $template_path;
+}
+
+add_filter( 'template_include', 'gpch_include_gpchmagazinearticle_template', 1 );
+
+
+/**
  * Redirect to Event URL if available
  *
  * @return void

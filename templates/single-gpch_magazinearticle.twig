@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="clearfix"></div>
+
+	<article id="post-{{ post.ID }}">
+		<div class="container">
+			<header class="page-header">
+				<nav class="top-page-tags">
+					<a
+						class="tag-item tag-item--main page-type"
+						href="{{ archive_link }}"
+						data-ga-category="Header"
+						data-ga-action="Post Type Tag"
+						data-ga-label="n/a">
+							{{ __('Magazine Article', 'planet4-gpch-blocks') }}
+					</a>
+
+					{% if ( section ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
+						<a
+							class="tag-item tag-item--main section"
+							href="{{ section.link }}"
+							data-ga-category="Header"
+							data-ga-action="Section Tag"
+							data-ga-label="n/a">
+								{{ section.name }}
+						</a>
+					{% endif %}
+				</nav>
+
+				<h1 class="page-header-title">{{ post.title|raw }}</h1>
+
+				{% if ( issue ) %}
+					<ul class="magazinearticle-meta">
+						<li class="issue">
+							<span class="title">{{ __('Issue', 'planet4-child-theme-switzerland' ) }}:</span>
+							<a href="{{ issue.link }}">{{ issue.name }}</a>
+						</li>
+						{% if (issue.publication_date) %}
+							<li class="publication-date">
+								<span class="title">{{ __('Published', 'planet4-child-theme-switzerland' ) }}:</span>
+								{{ issue.publication_date|date("l, d. F Y") }}
+							</li>
+						{% endif %}
+					</ul>
+				{% endif %}
+
+				{% if post.thumbnail.src is defined %}
+					<figure class="header-image wp-block-image">
+						<img src="{{ post.thumbnail.src('large') }}" class="post-header-image"
+									alt="{{ post.title }}" srcset="{{ function( 'wp_get_attachment_image_srcset', post.thumbnail.id, 'large' )  }}" sizes="{{ function( 'wp_get_attachment_image_sizes', post.thumbnail.id, 'large' )  }}"/>
+						{% if post.thumbnail.post_content != '' or post.thumbnail.image_meta.credit != '' or post.thumbnail._credit_text != ''  %}
+							<figcaption>
+								{{ post.thumbnail.post_content }}
+
+								{% if post.thumbnail._credit_text is defined and post.thumbnail._credit_text != '' %}
+									{% if '©' in post.thumbnail._credit_text %}
+										{{ post.thumbnail._credit_text }}
+									{% else %}
+										© {{ post.thumbnail._credit_text }}
+									{% endif %}
+								{% else %}
+									{{ post.thumbnail.image_meta.credit }}
+								{% endif %}
+							</figcaption>
+						{% endif %}
+						</figure>
+				{% endif %}
+			</header>
+		</div>
+
+		<!-- Post Block Start -->
+		<div class="container">
+			<div id="content" class="post-content">
+				<div class="post-content-lead">
+					<article class="post-details clearfix">
+						{{ post.content|raw }}
+					</article>
+				</div>
+			</div>
+		</div>
+		<!-- Post Page Block End -->
+	</article>
+{% endblock %}
