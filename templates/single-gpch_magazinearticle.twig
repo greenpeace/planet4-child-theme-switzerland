@@ -16,6 +16,18 @@
 							{{ __('Magazine Article', 'planet4-gpch-blocks') }}
 					</a>
 
+					{% if ( issue ) %}
+						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
+						<a
+							class="tag-item tag-item--main issue"
+							href="{{ issue.link }}"
+							data-ga-category="Header"
+							data-ga-action="Issue Tag"
+							data-ga-label="n/a">
+								{{ __('Issue', 'planet4-child-theme-switzerland' ) }}: {{ issue.name }}
+						</a>
+					{% endif %}
+
 					{% if ( section ) %}
 						<span class="tag-wrap-bullet" aria-hidden="true">&#8226;</span>
 						<a
@@ -31,20 +43,11 @@
 
 				<h1 class="page-header-title">{{ post.title|raw }}</h1>
 
-				{% if ( issue ) %}
-					<ul class="magazinearticle-meta">
-						<li class="issue">
-							<span class="title">{{ __('Issue', 'planet4-child-theme-switzerland' ) }}:</span>
-							<a href="{{ issue.link }}">{{ issue.name }}</a>
-						</li>
-						{% if (issue.publication_date) %}
-							<li class="publication-date">
-								<span class="title">{{ __('Published', 'planet4-child-theme-switzerland' ) }}:</span>
-								{{ issue.publication_date|date("l, d. F Y") }}
-							</li>
-						{% endif %}
-					</ul>
+				<div class="single-post-meta">
+				{% if post.get_author_override %}
+					<address class="single-post-author">{{ post.author.name }}</address>
 				{% endif %}
+				</div>
 
 				{% if post.thumbnail.src is defined %}
 					<figure class="header-image wp-block-image">

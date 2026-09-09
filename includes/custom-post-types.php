@@ -112,7 +112,7 @@ function gpch_custom_post_gpch_magazinearticle() {
 	$labels = array(
 		'name'                  => _x( 'Magazine Articles', 'Post Type General Name', 'planet4-child-theme-switzerland' ),
 		'singular_name'         => _x( 'Magazine Article', 'Post Type Singular Name', 'planet4-child-theme-switzerland' ),
-		'menu_name'             => __( 'Magazine Articles', 'planet4-child-theme-switzerland' ),
+		'menu_name'             => __( 'Magazine', 'planet4-child-theme-switzerland' ),
 		'name_admin_bar'        => __( 'Magazine Article', 'planet4-child-theme-switzerland' ),
 		'archives'              => __( 'Magazine Article Archives', 'planet4-child-theme-switzerland' ),
 		'attributes'            => __( 'Magazine Article Attributes', 'planet4-child-theme-switzerland' ),
@@ -157,7 +157,7 @@ function gpch_custom_post_gpch_magazinearticle() {
 		'show_ui'             => true,
 		'show_in_menu'        => true,
 		'menu_position'       => 13,
-		'menu_icon'           => 'dashicons-media-document',
+		'menu_icon'           => 'dashicons-book',
 		'show_in_admin_bar'   => true,
 		'show_in_nav_menus'   => false,
 		'can_export'          => true,
@@ -198,6 +198,22 @@ function gpch_include_gpchmagazinearticle_template( $template_path ) {
 
 add_filter( 'template_include', 'gpch_include_gpchmagazinearticle_template', 1 );
 
+/**
+ * Map GPCH custom post types to the master theme's Timber Post class,
+ * so templates can use its methods (e.g. get_author_override(), author).
+ *
+ * @param array $classmap The existing Timber post classmap.
+ *
+ * @return array
+ */
+function gpch_timber_post_classmap( $classmap ) {
+	$classmap['gpch_magazinearticle'] = \P4\MasterTheme\Post::class;
+	$classmap['gpch_event']           = \P4\MasterTheme\Post::class;
+
+	return $classmap;
+}
+
+add_filter( 'timber/post/classmap', 'gpch_timber_post_classmap' );
 
 /**
  * Prevent publishing a Magazine Article without a title image (classic editor / quick edit / bulk edit).
@@ -286,6 +302,64 @@ function gpch_magazinearticle_require_title_image_rest( $prepared_post, $request
 }
 
 add_filter( 'rest_pre_insert_gpch_magazinearticle', 'gpch_magazinearticle_require_title_image_rest', 10, 2 );
+
+
+/**
+ * Create custom fields for Magazine Articles using ACF: layout size and ordering weight
+ * for the Issue overview (masonry) page.
+ */
+function gpch_magazinearticle_create_custom_fields() {
+	if ( function_exists( 'acf_add_local_field_group' ) ) {
+		acf_add_local_field_group(
+			array(
+				'key'      => 'group_gpch_magazinearticle',
+				'title'    => 'Issue Overview Layout',
+				'fields'   => array(
+					array(
+						'key'           => 'field_gpch_magazinearticle_layout_size',
+						'label'         => 'Layout Size',
+						'name'          => 'magazine_layout_size',
+						'type'          => 'select',
+						'instructions'  => 'How large this article appears on the Issue overview page.',
+						'required'      => 0,
+						'choices'       => array(
+							'1x1' => '1x1',
+							'1x2' => '1x2 (tall)',
+							'2x2' => '2x2 (large)',
+						),
+						'default_value' => '1x1',
+						'return_format' => 'value',
+					),
+					array(
+						'key'           => 'field_gpch_magazinearticle_article_position',
+						'label'         => 'Article Position',
+						'name'          => 'magazine_article_position',
+						'type'          => 'range',
+						'instructions'  => 'Lower values appear further up/first on the Issue overview page.',
+						'required'      => 0,
+						'default_value' => 0,
+						'min'           => 0,
+						'max'           => 100,
+						'step'          => 1,
+					),
+				),
+				'location' => array(
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'gpch_magazinearticle',
+						),
+					),
+				),
+				'position' => 'side',
+				'active'   => true,
+			)
+		);
+	}
+}
+
+add_action( 'init', 'gpch_magazinearticle_create_custom_fields' );
 
 
 /**
@@ -459,7 +533,7 @@ function gpch_create_custom_post_type_metabox() {
 			[
 				'id'           => $prefix . 'gpch_custom_post_type_metabox',
 				'title'        => __( 'Post Articles Element Fields', 'planet4-child-theme-switzerland' ),
-				'object_types' => [ 'gpch_event' ], // at the moment only for Events
+				'object_types' => [ 'gpch_magazinearticle' ], // at the moment only for Magazine Articles
 			]
 		);
 
@@ -476,3 +550,32 @@ function gpch_create_custom_post_type_metabox() {
 }
 
 add_action( 'cmb2_admin_init', 'gpch_create_custom_post_type_metabox' );
+
+
+/**
+ * Load the master theme's post styles on custom single templates it doesn't recognize as "post".
+ *
+ * @return void
+ */
+function gpch_enqueue_post_type_styles() {
+	if ( ! is_single() || ! in_array( get_post_type(), [ 'gpch_magazinearticle', 'gpch_event' ], true ) ) {
+		return;
+	}
+
+	$css_file = get_template_directory() . '/assets/build/post.min.css';
+
+	if ( ! file_exists( $css_file ) ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'post-type--post',
+		get_template_directory_uri() . '/assets/build/post.min.css',
+		[ 'parent-style' ],
+		filectime( $css_file )
+	);
+}
+
+// Priority 1: after the master theme enqueues its own styles (priority 0), but before this child
+// theme's stylesheet (priority 99), so the child theme's CSS variables still take precedence.
+add_action( 'wp_enqueue_scripts', 'gpch_enqueue_post_type_styles', 1 );
