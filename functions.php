@@ -35,7 +35,7 @@ require_once 'includes/business-cards.php';
 // Child theme options
 require_once 'includes/child-theme-options.php';
 
-// Custom Post Types: gpch_job & gpch_magredirect
+// Custom Post Types: gpch_event
 require_once 'includes/custom-post-types.php';
 
 // Roles, Usergroups & Capabilities
@@ -55,6 +55,9 @@ require_once 'includes/gravity-pdf.php';
 
 // Custom taxonomy for background articles
 require_once 'includes/background-taxonomy.php';
+
+// Custom taxonomies for Magazine Articles: Issue & Section
+require_once 'includes/magazine-taxonomies.php';
 
 // GPCH advanced post settings
 require_once 'includes/advanced-post-settings.php';

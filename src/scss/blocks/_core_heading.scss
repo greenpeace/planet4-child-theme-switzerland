@@ -41,6 +41,7 @@ div[data-hydrate="planet4-blocks/articles"] {
 
 /* Don't show underline in posts and columns */
 .single-post h2::after,
+.single-gpch_magazinearticle h2::after,
 .wp-block-columns h2::after {
 	display: none !important;
 }

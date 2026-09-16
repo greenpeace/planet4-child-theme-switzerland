@@ -32,15 +32,6 @@ function gpch_user_roles() {
 		$hr_role->add_cap( 'read', true );
 		$hr_role->add_cap( 'upload_files', true );
 
-		// Jobs
-		$hr_role->add_cap( 'edit_job', true );
-		$hr_role->add_cap( 'read_job', true );
-		$hr_role->add_cap( 'delete_jobs', true );
-		$hr_role->add_cap( 'edit_jobs', true );
-		$hr_role->add_cap( 'edit_others_jobs', true );
-		$hr_role->add_cap( 'publish_jobs', true );
-		$hr_role->add_cap( 'read_private_jobs', true );
-
 		// Business cards
 		$hr_role->add_cap( 'edit_business_card', true );
 	}
@@ -169,12 +160,6 @@ function gpch_user_roles() {
 		$event_formexports_role->add_cap( 'read_gpch_event', true );
 		$event_formexports_role->add_cap( 'edit_gpch_events', true );
 		$event_formexports_role->add_cap( 'edit_others_gpch_events', true );
-
-		// Jobs
-		$hr_role->add_cap( 'edit_job', true );
-		$hr_role->add_cap( 'read_job', true );
-		$hr_role->add_cap( 'edit_jobs', true );
-		$hr_role->add_cap( 'edit_others_jobs', true );
 	}
 
 	add_role(
@@ -210,15 +195,6 @@ function gpch_user_roles() {
 	$editor_role = get_role( 'editor' );
 
 	if ( $editor_role ) {
-		// Jobs
-		$editor_role->add_cap( 'edit_job', true );
-		$editor_role->add_cap( 'read_job', true );
-		$editor_role->add_cap( 'delete_jobs', true );
-		$editor_role->add_cap( 'edit_jobs', true );
-		$editor_role->add_cap( 'edit_others_jobs', true );
-		$editor_role->add_cap( 'publish_jobs', true );
-		$editor_role->add_cap( 'read_private_jobs', true );
-
 		// Events
 		$editor_role->add_cap( 'edit_gpch_event', true );
 		$editor_role->add_cap( 'read_gpch_event', true );
@@ -227,15 +203,6 @@ function gpch_user_roles() {
 		$editor_role->add_cap( 'edit_others_gpch_events', true );
 		$editor_role->add_cap( 'publish_gpch_events', true );
 		$editor_role->add_cap( 'read_private_gpch_events', true );
-
-		// Magazine Redirects
-		$editor_role->add_cap( 'edit_magredirect', true );
-		$editor_role->add_cap( 'read_magredirect', true );
-		$editor_role->add_cap( 'delete_magredirects', true );
-		$editor_role->add_cap( 'edit_magredirects', true );
-		$editor_role->add_cap( 'edit_others_magredirects', true );
-		$editor_role->add_cap( 'publish_magredirects', true );
-		$editor_role->add_cap( 'read_private_magredirects', true );
 
 		// Gravity forms
 		// see: https://docs.gravityforms.com/role-management-guide/#gravity-forms-core-capabilities
@@ -267,15 +234,6 @@ function gpch_user_roles() {
 	$admin_role = get_role( 'administrator' );
 
 	if ( $admin_role ) {
-		// Jobs
-		$admin_role->add_cap( 'edit_job', true );
-		$admin_role->add_cap( 'read_job', true );
-		$admin_role->add_cap( 'delete_jobs', true );
-		$admin_role->add_cap( 'edit_jobs', true );
-		$admin_role->add_cap( 'edit_others_jobs', true );
-		$admin_role->add_cap( 'publish_jobs', true );
-		$admin_role->add_cap( 'read_private_jobs', true );
-
 		// Events
 		$admin_role->add_cap( 'edit_gpch_event', true );
 		$admin_role->add_cap( 'read_gpch_event', true );
@@ -284,15 +242,6 @@ function gpch_user_roles() {
 		$admin_role->add_cap( 'edit_others_gpch_events', true );
 		$admin_role->add_cap( 'publish_gpch_events', true );
 		$admin_role->add_cap( 'read_private_gpch_events', true );
-
-		// Magazine Redirects
-		$admin_role->add_cap( 'edit_magredirect', true );
-		$admin_role->add_cap( 'read_magredirect', true );
-		$admin_role->add_cap( 'delete_magredirects', true );
-		$admin_role->add_cap( 'edit_magredirects', true );
-		$admin_role->add_cap( 'edit_others_magredirects', true );
-		$admin_role->add_cap( 'publish_magredirects', true );
-		$admin_role->add_cap( 'read_private_magredirects', true );
 
 		// Business cards
 		$admin_role->add_cap( 'edit_business_card', true );
