@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="clearfix"></div>
+
+	<div class="container magazine-issue-header">
+		{% if issue.title_image %}
+			<figure class="magazine-issue-header-image">
+				<img src="{{ issue.title_image.url }}" alt="{{ issue.title_image.alt|default(issue.title) }}">
+			</figure>
+		{% endif %}
+
+		<div class="magazine-title">{{ __('Greenpeace Magazin', 'planet4-child-theme-switzerland') }} {{ issue.name }}</div>
+
+		<h1 class="page-header-title">{{ issue.title|default(issue.name) }}</h1>
+
+		<ul class="magazine-issue-meta">
+			<li class="name">
+				<span class="title">{{ __('Issue', 'planet4-child-theme-switzerland' ) }}:</span> {{ issue.name }}
+			</li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<div class="magazine-issue-grid">
+			{% for article in articles %}
+				<a href="{{ article.link }}" class="magazine-grid-item magazine-grid-item--{{ article.layout_size }}"
+					{% if article.thumbnail.src is defined %}
+						style="background-image: url('{{ article.thumbnail.src('large') }}')"
+					{% endif %}>
+					<span class="magazine-grid-item-sections">
+						{% for section in article.sections %}
+							<span class="magazine-grid-item-section">{{ section.name }}</span>
+						{% endfor %}
+					</span>
+					<span class="magazine-grid-item-title">{{ article.title|raw }}</span>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

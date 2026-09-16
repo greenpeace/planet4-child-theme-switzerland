@@ -20,10 +20,10 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^34.1.0"
+		"@wordpress/scripts": "^35.0.0"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^15.4.0"
+		"@wordpress/icons": "^16.0.0"
 	},
 	"peerDependencies": {
 		"@wordpress/block-editor": "*",
