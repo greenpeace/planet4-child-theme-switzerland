@@ -56,6 +56,9 @@ require_once 'includes/gravity-pdf.php';
 // Custom taxonomy for background articles
 require_once 'includes/background-taxonomy.php';
 
+// Custom taxonomies for Magazine Articles: Issue & Section
+require_once 'includes/magazine-taxonomies.php';
+
 // GPCH advanced post settings
 require_once 'includes/advanced-post-settings.php';
 
