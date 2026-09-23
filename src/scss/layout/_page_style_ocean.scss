@@ -1,0 +1,60 @@
+.page-style-ocean {
+	background-color: #13181e;
+
+	.page-content {
+		padding-top: 300px;
+		padding-bottom: 300px;
+
+		color: #fff;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		p,
+		a {
+			color: #fff;
+		}
+	}
+
+	#content::before {
+		content: "";
+		position: absolute;
+		top: 68px;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-image: url(images/arctic-exp-header.jpeg);
+		background-size: cover;
+		background-position: left top;
+		z-index: -1;
+		background-repeat: no-repeat;
+	}
+
+
+	#content::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url(images/arctic-exp-footer.jpeg);
+		background-size: contain;
+		background-position: center bottom;
+		z-index: -1;
+		background-repeat: no-repeat;
+	}
+
+	@media (max-width: 991px) {
+		#content {
+			padding-top: 260px;
+		}
+
+		#content::before {
+			top: 60px;
+			background-position: right top;
+		}
+	}
+}
+

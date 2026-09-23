@@ -27,6 +27,7 @@ function gpch_blocks_allowlist( $allowed_blocks, $context ) {
 		'planet4-gpch-tamaro/tamaro-widget',
 		'planet4-child-theme-switzerland/food-quiz',
 		'planet4-child-theme-switzerland/food-quiz-result-tier-title',
+		'planet4-child-theme-switzerland/year-end-campaign-2026',
 
 		// allow on all content types
 		'planet4-blocks/take-action-boxout',

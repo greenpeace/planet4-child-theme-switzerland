@@ -62,6 +62,9 @@ require_once 'includes/magazine-taxonomies.php';
 // GPCH advanced post settings
 require_once 'includes/advanced-post-settings.php';
 
+// Native "Ocean" page style (Template dropdown)
+require_once 'includes/page-style-variations.php';
+
 // GPCH CSP headers
 require_once 'includes/headers.php';
 
