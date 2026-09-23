@@ -55,7 +55,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							imageId: media.id || 0,
 							imageUrl: media.url || '',
 							imageAlt: media.alt || '',
-					  }
+						}
 					: creature
 			),
 		} );
