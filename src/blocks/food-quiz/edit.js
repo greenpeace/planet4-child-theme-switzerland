@@ -267,7 +267,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 								onChange={ v => {
 									const len = Math.max( 5, tierLabels.length || 0 );
 									/* eslint-disable-next-line no-shadow */
-									const next = Array.from( { length: len } ).map( ( _, idx ) => ( idx === i ? v : tierLabels[ idx ] ?? '' ) );
+									const next = Array.from( { length: len } ).map( ( _, idx ) => ( idx === i ? v : ( tierLabels[ idx ] ?? '' ) ) );
 									setAttributes( { tierLabels: next } );
 								} }
 							/>
@@ -280,7 +280,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 									onChange={ v => {
 										const len = Math.max( 5, tierThresholds.length || 0 );
 										/* eslint-disable-next-line no-shadow */
-										const next = Array.from( { length: len } ).map( ( _, idx ) => ( idx === i ? v : tierThresholds[ idx ] ?? null ) );
+										const next = Array.from( { length: len } ).map( ( _, idx ) => ( idx === i ? v : ( tierThresholds[ idx ] ?? null ) ) );
 										setAttributes( { tierThresholds: next } );
 									} }
 								/>
