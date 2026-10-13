@@ -34,7 +34,7 @@
 		}
 
 		p:last-child {
-			color: var(--year-end-campaign-muted);
+			color: var(--year-end-campaign-muted) !important;
 			margin: 0;
 		}
 	}
@@ -53,7 +53,7 @@
 
 	p.year-end-campaign-2026__eyebrow,
 	p.year-end-campaign-2026__dossier-label{
-		color: var(--year-end-campaign-accent);
+		color: var(--year-end-campaign-accent) !important;
 		margin: 0 0 0.75rem;
 	}
 
