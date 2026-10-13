@@ -229,7 +229,8 @@ return array(
 						'name' => 'Glaskalmar',
 						'family' => 'Cranchia scabra',
 						'status' => 'missing',
-						'location' => 'Nordpazifik',
+						'depth' => '1.200 m',
+						'coordinates' => '15°N 145°W',
 						'caseNumber' => 'TT-004',
 						'description' => 'Nahezu vollständig transparent: Über seine Lebensweise ist fast nichts bekannt. Der Tiefseebergbau bedroht seinen Lebensraum, bevor wir ihn überhaupt kennen.'
 					),
@@ -241,7 +242,8 @@ return array(
 						'name' => 'Vampirtintenfisch',
 						'family' => 'Vampyroteuthis infernalis',
 						'status' => 'endangered',
-						'location' => 'Nordpazifik',
+						'depth' => '900 m',
+						'coordinates' => '8°S 122°E',
 						'caseNumber' => 'TT-007',
 						'description' => 'Mit leuchtenden Organen navigiert er durch absolute Dunkelheit. Ein fossiles Wunder, 300 Millionen Jahre alt und vom Aussterben bedroht.'
 					),
@@ -253,7 +255,8 @@ return array(
 						'name' => 'Fledermausfisch',
 						'family' => 'Ogcocephalus darwini',
 						'status' => 'unknown',
-						'location' => 'Südostpazifik',
+						'depth' => '700 m',
+						'coordinates' => '1°S 91°W',
 						'caseNumber' => 'TT-012',
 						'description' => 'Mit umgebauten Flossen stapft er über den Meeresgrund. Über seine Populationsgrösse wissen wir fast nichts.'
 					),
@@ -265,7 +268,8 @@ return array(
 						'name' => 'Meeresengel',
 						'family' => 'Clione limacina',
 						'status' => 'missing',
-						'location' => 'Arktische Tiefen',
+						'depth' => '500 m',
+						'coordinates' => '72°N 2°W',
 						'caseNumber' => 'TT-019',
 						'description' => 'Dieser Meeresengel treibt durch arktische Tiefen. Sein Habitat verschwindet schneller, als wir forschen können.'
 					),
@@ -277,7 +281,8 @@ return array(
 						'name' => 'Schwarzdrachenfisch',
 						'family' => 'Idiacanthus atlanticus',
 						'status' => 'endangered',
-						'location' => 'Nordatlantik',
+						'depth' => '2000 m',
+						'coordinates' => '72°N 2°W',
 						'caseNumber' => 'TT-028',
 						'description' => 'Tiefschwarz, unsichtbar im Dunkeln – mit einem leuchtenden Kinn-Anhängsel als Köder. Ein Meisterjäger, dessen Welt wir bereit sind zu zerstören.'
 					)
