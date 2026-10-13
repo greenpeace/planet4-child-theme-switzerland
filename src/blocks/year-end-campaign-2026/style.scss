@@ -9,8 +9,8 @@
 	}
 }
 
-.page-style-ocean .year-end-campaign-2026 {
-	--year-end-campaign-background: transparent;
+.year-end-campaign-2026 {
+	--year-end-campaign-background: #080c0c;
 	--year-end-campaign-panel: #102020;
 	--year-end-campaign-line: #3c6864;
 	--year-end-campaign-text: #f2f7f2;
@@ -311,4 +311,8 @@
 			animation: none;
 		}
 	}
+}
+
+.page-style-ocean .year-end-campaign-2026 {
+	--year-end-campaign-background: transparent;
 }

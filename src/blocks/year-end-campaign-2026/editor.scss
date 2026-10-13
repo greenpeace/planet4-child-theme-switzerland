@@ -10,3 +10,42 @@
 		width: 4rem;
 	}
 }
+
+.year-end-campaign-2026--editor {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.year-end-campaign-2026__card {
+		border-radius: 0;
+		box-shadow: none;
+		font-family: inherit;
+		letter-spacing: normal;
+		line-height: inherit;
+		text-align: left;
+		text-shadow: none;
+		white-space: normal;
+		width: 100%;
+
+		&:hover,
+		&:focus {
+			color: inherit;
+		}
+	}
+
+	.year-end-campaign-2026__image img,
+	.year-end-campaign-2026__dossier-image img {
+		display: block;
+		margin: 0;
+		max-width: 100%;
+	}
+
+	.year-end-campaign-2026__cta {
+		border-radius: 0;
+		box-shadow: none;
+		font-family: inherit;
+		text-shadow: none;
+	}
+}

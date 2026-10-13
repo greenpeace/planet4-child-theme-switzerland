@@ -255,7 +255,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							key={ creature.id }
 							type="button"
 							className={ `year-end-campaign-2026__card${ creature.id === selectedId ? ' is-selected' : '' }` }
-							onClick={ () => setSelectedId( creature.id ) }
+							aria-pressed={ creature.id === selectedId }
+							onClick={ () => setSelectedId( selectedId === creature.id ? null : creature.id ) }
 						>
 							<div className="year-end-campaign-2026__image">
 								{ creature.imageUrl ? (
@@ -276,11 +277,18 @@ export default function Edit( { attributes, setAttributes } ) {
 						</button>
 					) ) }
 				</div>
-				{ selectedCreature ? (
-					<Dossier creature={ selectedCreature } dossierLabel={ dossierLabel } ctaTemplate={ ctaTemplate } donationNote={ donationNote } isPreview />
-				) : (
-					<p className="year-end-campaign-2026__empty">{ emptyLabel }</p>
-				) }
+				<div className="year-end-campaign-2026__dossier-output" aria-live="polite">
+					{ selectedCreature && (
+						<Dossier
+							creature={ selectedCreature }
+							dossierLabel={ dossierLabel }
+							ctaTemplate={ ctaTemplate }
+							donationNote={ donationNote }
+							isPreview
+						/>
+					) }
+				</div>
+				{ ! selectedCreature && <p className="year-end-campaign-2026__empty">{ emptyLabel }</p> }
 			</div>
 		</>
 	);
@@ -292,7 +300,7 @@ function Dossier( { creature, dossierLabel, ctaTemplate, donationNote, isPreview
 		<div className="year-end-campaign-2026__dossier">
 			<div>
 				<p className="year-end-campaign-2026__dossier-label">{ `// ${ dossierLabel }` }</p>
-				<h2>{ creature.name }</h2>
+				<h2 className="is-style-no-underline">{ creature.name }</h2>
 				<p>
 					<em>{ creature.family }</em>
 				</p>
@@ -319,7 +327,11 @@ function Dossier( { creature, dossierLabel, ctaTemplate, donationNote, isPreview
 				<p>{ creature.description }</p>
 			</div>
 			<div className="year-end-campaign-2026__dossier-aside">
-				{ creature.imageUrl && <img src={ creature.imageUrl } alt={ creature.imageAlt } /> }
+				{ creature.imageUrl && (
+					<div className="year-end-campaign-2026__dossier-image">
+						<img src={ creature.imageUrl } alt={ creature.imageAlt } />
+					</div>
+				) }
 				<button type="button" className="year-end-campaign-2026__cta" disabled={ isPreview }>
 					{ ctaLabel }
 				</button>
