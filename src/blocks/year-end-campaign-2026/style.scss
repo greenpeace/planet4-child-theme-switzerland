@@ -67,7 +67,7 @@
 
 	&__card {
 		appearance: none;
-		background: var(--year-end-campaign-panel);
+		background: transparent;
 		border: 1px solid var(--year-end-campaign-line);
 		color: inherit;
 		cursor: pointer;
@@ -113,9 +113,6 @@
 
 	&__image {
 		align-items: center;
-		background-color: #050b0c;
-		background-image: linear-gradient(rgba(126, 195, 183, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(126, 195, 183, 0.1) 1px, transparent 1px);
-		background-size: 1.25rem 1.25rem;
 		display: flex;
 		height: 11rem;
 		justify-content: center;
@@ -187,7 +184,7 @@
 	}
 
 	&__dossier {
-		background: var(--year-end-campaign-panel);
+		background: transparent;
 		border: 2px solid var(--year-end-campaign-accent);
 		display: grid;
 		gap: 1.5rem;
