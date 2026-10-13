@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Greenpeace Planet 4 Child Theme Switzerland 2.0.46\n"
+"Project-Id-Version: Greenpeace Planet 4 Child Theme Switzerland 2.0.56\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/planet4-child-theme-switzerland\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-12T14:20:32+00:00\n"
+"POT-Creation-Date: 2026-10-13T09:35:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: planet4-child-theme-switzerland\n"
@@ -53,6 +53,14 @@ msgstr ""
 
 #: includes/advanced-post-settings.php:32
 msgid "Blocks popups from appearing on this post/page."
+msgstr ""
+
+#: includes/advanced-post-settings.php:48
+msgid "Hide default share buttons"
+msgstr ""
+
+#: includes/advanced-post-settings.php:52
+msgid "Removes the default share buttons from the page (for example on thank you pages, where custom buttons are used)."
 msgstr ""
 
 #: includes/background-taxonomy.php:10
@@ -206,6 +214,8 @@ msgid "Profile picture"
 msgstr ""
 
 #: includes/business-cards/field-definitions.php:129
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:170
 msgid "Name"
 msgstr ""
 
@@ -337,223 +347,231 @@ msgstr ""
 msgid "The RaiseNow API is used in the blocks plugin, for example for the donations progress bar. A read-only user is recommended."
 msgstr ""
 
-#: includes/custom-post-types.php:9
+#: includes/custom-post-types.php:8
 msgctxt "Post Type General Name"
 msgid "Events"
+msgstr ""
+
+#: includes/custom-post-types.php:9
+msgctxt "Post Type Singular Name"
+msgid "Event"
 msgstr ""
 
 #: includes/custom-post-types.php:10
-msgctxt "Post Type Singular Name"
-msgid "Event"
-msgstr ""
-
-#: includes/custom-post-types.php:11
-#: includes/custom-post-types.php:54
+#: includes/custom-post-types.php:53
 msgid "Events"
 msgstr ""
 
-#: includes/custom-post-types.php:12
-#: includes/custom-post-types.php:53
+#: includes/custom-post-types.php:11
+#: includes/custom-post-types.php:52
 msgid "Event"
 msgstr ""
 
-#: includes/custom-post-types.php:13
+#: includes/custom-post-types.php:12
 msgid "Events Archives"
 msgstr ""
 
-#: includes/custom-post-types.php:14
+#: includes/custom-post-types.php:13
 msgid "Event Attributes"
 msgstr ""
 
-#: includes/custom-post-types.php:15
+#: includes/custom-post-types.php:14
 msgid "Parent Event:"
 msgstr ""
 
-#: includes/custom-post-types.php:16
+#: includes/custom-post-types.php:15
 msgid "All Events"
 msgstr ""
 
-#: includes/custom-post-types.php:17
+#: includes/custom-post-types.php:16
 msgid "Add New Event"
 msgstr ""
 
+#: includes/custom-post-types.php:17
 #: includes/custom-post-types.php:18
-#: includes/custom-post-types.php:19
 msgid "New Event"
 msgstr ""
 
-#: includes/custom-post-types.php:20
+#: includes/custom-post-types.php:19
 msgid "Edit Event"
 msgstr ""
 
-#: includes/custom-post-types.php:21
+#: includes/custom-post-types.php:20
 msgid "Update Event"
 msgstr ""
 
-#: includes/custom-post-types.php:22
+#: includes/custom-post-types.php:21
 msgid "View Event"
 msgstr ""
 
-#: includes/custom-post-types.php:23
+#: includes/custom-post-types.php:22
 msgid "View Events"
 msgstr ""
 
-#: includes/custom-post-types.php:24
+#: includes/custom-post-types.php:23
 msgid "Search Event"
 msgstr ""
 
-#: includes/custom-post-types.php:25
-#: includes/custom-post-types.php:257
+#: includes/custom-post-types.php:24
+#: includes/custom-post-types.php:128
 msgid "Not found"
 msgstr ""
 
-#: includes/custom-post-types.php:26
-#: includes/custom-post-types.php:258
+#: includes/custom-post-types.php:25
+#: includes/custom-post-types.php:129
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/custom-post-types.php:27
-#: includes/custom-post-types.php:259
+#: includes/custom-post-types.php:26
 msgid "Featured Image"
 msgstr ""
 
-#: includes/custom-post-types.php:28
-#: includes/custom-post-types.php:260
+#: includes/custom-post-types.php:27
 msgid "Set featured image"
 msgstr ""
 
-#: includes/custom-post-types.php:29
-#: includes/custom-post-types.php:261
+#: includes/custom-post-types.php:28
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/custom-post-types.php:30
-#: includes/custom-post-types.php:262
+#: includes/custom-post-types.php:29
 msgid "Use as featured image"
 msgstr ""
 
-#: includes/custom-post-types.php:31
+#: includes/custom-post-types.php:30
 msgid "Insert into Events"
 msgstr ""
 
-#: includes/custom-post-types.php:32
-#: includes/custom-post-types.php:264
+#: includes/custom-post-types.php:31
+#: includes/custom-post-types.php:135
 msgid "Uploaded to this item"
 msgstr ""
 
-#: includes/custom-post-types.php:33
+#: includes/custom-post-types.php:32
 msgid "Events list"
 msgstr ""
 
-#: includes/custom-post-types.php:34
+#: includes/custom-post-types.php:33
 msgid "Events list navigation"
 msgstr ""
 
-#: includes/custom-post-types.php:35
+#: includes/custom-post-types.php:34
 msgid "Filter Events list"
 msgstr ""
 
-#: includes/custom-post-types.php:241
+#: includes/custom-post-types.php:113
 msgctxt "Post Type General Name"
-msgid "Magazine Redirects"
+msgid "Magazine Articles"
 msgstr ""
 
-#: includes/custom-post-types.php:242
+#: includes/custom-post-types.php:114
 msgctxt "Post Type Singular Name"
-msgid "Magazine Redirect"
+msgid "Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:243
-msgid "Magazine Redirects"
+#: includes/custom-post-types.php:115
+msgid "Magazine"
 msgstr ""
 
-#: includes/custom-post-types.php:244
-#: includes/custom-post-types.php:285
-msgid "Magazine Redirect"
+#: includes/custom-post-types.php:116
+#: includes/custom-post-types.php:142
+msgid "Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:245
-msgid "Magazine Redirects Archives"
+#: includes/custom-post-types.php:117
+msgid "Magazine Article Archives"
 msgstr ""
 
-#: includes/custom-post-types.php:246
-msgid "Magazine Redirect Attributes"
+#: includes/custom-post-types.php:118
+msgid "Magazine Article Attributes"
 msgstr ""
 
-#: includes/custom-post-types.php:247
-msgid "Parent Magazine Redirect:"
+#: includes/custom-post-types.php:119
+msgid "All Magazine Articles"
 msgstr ""
 
-#: includes/custom-post-types.php:248
-msgid "All Magazine Redirects"
+#: includes/custom-post-types.php:120
+msgid "Add New Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:249
-msgid "Add New Magazine Redirect"
+#: includes/custom-post-types.php:121
+#: includes/custom-post-types.php:122
+msgid "New Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:250
-#: includes/custom-post-types.php:251
-msgid "New Magazine Redirect"
+#: includes/custom-post-types.php:123
+msgid "Edit Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:252
-msgid "Edit Magazine Redirect"
+#: includes/custom-post-types.php:124
+msgid "Update Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:253
-msgid "Update Magazine Redirect"
+#: includes/custom-post-types.php:125
+msgid "View Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:254
-msgid "View Magazine Redirect"
+#: includes/custom-post-types.php:126
+msgid "View Magazine Articles"
 msgstr ""
 
-#: includes/custom-post-types.php:255
-msgid "View Magazine Redirects"
+#: includes/custom-post-types.php:127
+msgid "Search Magazine Article"
 msgstr ""
 
-#: includes/custom-post-types.php:256
-msgid "Search Magazine Redirect"
+#: includes/custom-post-types.php:130
+msgid "Title Image"
 msgstr ""
 
-#: includes/custom-post-types.php:263
-msgid "Insert into magredirect"
+#: includes/custom-post-types.php:131
+msgid "Set title image"
 msgstr ""
 
-#: includes/custom-post-types.php:265
-msgid "Magazine Redirects list"
+#: includes/custom-post-types.php:132
+msgid "Remove title image"
+msgstr ""
+
+#: includes/custom-post-types.php:133
+msgid "Use as title image"
+msgstr ""
+
+#: includes/custom-post-types.php:134
+msgid "Insert into Magazine Article"
+msgstr ""
+
+#: includes/custom-post-types.php:136
+msgid "Magazine Articles list"
+msgstr ""
+
+#: includes/custom-post-types.php:137
+msgid "Magazine Articles list navigation"
+msgstr ""
+
+#: includes/custom-post-types.php:138
+msgid "Filter Magazine Articles list"
+msgstr ""
+
+#: includes/custom-post-types.php:143
+msgid "Magazine Articles"
 msgstr ""
 
 #: includes/custom-post-types.php:266
-msgid "Magazine Redirects list navigation"
+msgid "This Magazine Article was saved as a draft because it has no title image. Please add one before publishing."
 msgstr ""
 
-#: includes/custom-post-types.php:267
-msgid "Filter magredirects list"
+#: includes/custom-post-types.php:296
+msgid "A Magazine Article needs a title image before it can be published."
 msgstr ""
 
-#: includes/custom-post-types.php:286
-msgid "Magazine Redirect postings"
-msgstr ""
-
-#: includes/custom-post-types.php:351
-msgid "Magazin URL"
-msgstr ""
-
-#: includes/custom-post-types.php:354
-msgid "The URL of the magazine article where the user is redirected."
-msgstr ""
-
-#: includes/custom-post-types.php:403
+#: includes/custom-post-types.php:535
 msgid "Post Articles Element Fields"
 msgstr ""
 
-#: includes/custom-post-types.php:410
+#: includes/custom-post-types.php:542
 msgid "Author Override"
 msgstr ""
 
-#: includes/custom-post-types.php:411
+#: includes/custom-post-types.php:543
 msgid "Enter author name if you want to override the author"
 msgstr ""
 
@@ -562,30 +580,126 @@ msgstr ""
 msgid "Use only numbers, spaces, parentheses and \"+\""
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:136
+#: includes/gravity-forms-extensions.php:139
 msgid "GPCH Form Type"
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:222
+#: includes/gravity-forms-extensions.php:225
 msgid "GPCH Form Entry Counter"
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:227
+#: includes/gravity-forms-extensions.php:230
 msgid "Please only use numbers >=0 in this field."
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:341
+#: includes/gravity-forms-extensions.php:344
 msgid "Please enter a valid zip code."
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:397
-#: includes/gravity-forms-extensions.php:424
+#: includes/gravity-forms-extensions.php:400
+#: includes/gravity-forms-extensions.php:427
 msgid "Please don't use cyrillic characters."
 msgstr ""
 
-#: includes/gravity-forms-extensions.php:470
-#: includes/gravity-forms-extensions.php:482
+#: includes/gravity-forms-extensions.php:473
+#: includes/gravity-forms-extensions.php:485
 msgid "Please don't use numbers, punctuation, or special characters in this field"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:14
+msgctxt "taxonomy general name"
+msgid "Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:15
+msgctxt "taxonomy singular name"
+msgid "Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:16
+msgid "Search Magazine Issues"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:17
+msgid "All Magazine Issues"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:18
+msgid "Parent Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:19
+msgid "Parent Magazine Issue:"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:20
+msgid "Edit Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:21
+msgid "Update Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:22
+msgid "Add New Magazine Issue"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:23
+msgid "New Magazine Issue Name"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:24
+msgid "Magazine Issues"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:50
+msgctxt "taxonomy general name"
+msgid "Magazine Sections"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:51
+msgctxt "taxonomy singular name"
+msgid "Magazine Section"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:52
+msgid "Search Magazine Sections"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:53
+msgid "All Magazine Sections"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:54
+msgid "Parent Magazine Section"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:55
+msgid "Parent Magazine Section:"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:56
+msgid "Edit Magazine Section"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:57
+msgid "Update Magazine Section"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:58
+msgid "Add New Magazine Section"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:59
+msgid "New Magazine Section Name"
+msgstr ""
+
+#: includes/magazine-taxonomies.php:60
+msgid "Magazine Sections (Rubriken)"
+msgstr ""
+
+#: includes/page-style-variations.php:17
+msgid "Ocean"
 msgstr ""
 
 #. Template Name of the theme
@@ -596,19 +710,19 @@ msgstr ""
 msgid "Human Resources"
 msgstr ""
 
-#: includes/user-roles.php:53
+#: includes/user-roles.php:44
 msgid "GPCH Events"
 msgstr ""
 
-#: includes/user-roles.php:91
+#: includes/user-roles.php:82
 msgid "GPCH Events & Form Exports"
 msgstr ""
 
-#: includes/user-roles.php:140
+#: includes/user-roles.php:131
 msgid "GPCH Content Feedback"
 msgstr ""
 
-#: includes/user-roles.php:182
+#: includes/user-roles.php:167
 msgid "GPCH Business Card"
 msgstr ""
 
@@ -620,181 +734,442 @@ msgstr ""
 msgid "Finance Initiative - FR"
 msgstr ""
 
+#: admin/js/editor.js:107
+msgid "General settings"
+msgstr ""
+
+#: admin/js/editor.js:110
+msgid "Hide post header image"
+msgstr ""
+
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/components/ConfirmModal.js:9
+msgid "Confirm"
+msgstr ""
+
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/components/ConfirmModal.js:10
+msgid "Are you sure?"
+msgstr ""
+
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/food-quiz/edit.js:192
+#: src/blocks/food-quiz/edit.js:245
+#: src/blocks/year-end-campaign-2026/edit.js:217
+#: src/components/ConfirmModal.js:11
+msgid "Remove"
+msgstr ""
+
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/components/ConfirmModal.js:12
+msgid "Cancel"
+msgstr ""
+
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:123
 msgid "Add at least 2 options for each meal time to make the quiz meaningful."
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:136
 msgid "Meal"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:139
 #: src/blocks/food-quiz/edit.js:214
 msgid "Title"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:144
 #: src/blocks/food-quiz/edit.js:219
 msgid "Grams of CO2 (per serving)"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
 #: src/blocks/food-quiz/edit.js:178
 #: src/blocks/food-quiz/edit.js:231
+#: src/blocks/year-end-campaign-2026/edit.js:203
 msgid "Move up"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/year-end-campaign-2026/index.js:1
 #: src/blocks/food-quiz/edit.js:185
 #: src/blocks/food-quiz/edit.js:238
+#: src/blocks/year-end-campaign-2026/edit.js:210
 msgid "Move down"
 msgstr ""
 
-#: src/blocks/food-quiz/edit.js:192
-#: src/blocks/food-quiz/edit.js:245
-#: src/components/ConfirmModal.js:11
-msgid "Remove"
-msgstr ""
-
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:201
 msgid "Add meal"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/edit.js:207
 #: src/blocks/food-quiz/edit.js:330
 #: src/blocks/food-quiz/save.js:28
-#: src/blocks/food-quiz/view.js:186
+#: src/blocks/food-quiz/view.js:213
 msgid "Drinks"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:211
 msgid "Drink"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:254
 msgid "Add drink"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:258
 msgid "Result Tier Settings"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:262
 msgid "Tier"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:276
 msgid "Upper threshold (show this tier when grams of CO2 ≤)"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:290
 msgid "Upper threshold: Infinite"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:301
 msgid "Confirm removal"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:304
 msgid "Are you sure you want to remove this drink?"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:305
 msgid "Are you sure you want to remove this meal?"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
 #: src/blocks/food-quiz/edit.js:350
 msgid "Result descriptions (edit each tier below)"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:22
 #: src/blocks/food-quiz/view.js:7
 msgid "Breakfast"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:25
 #: src/blocks/food-quiz/view.js:9
 msgid "Lunch"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:26
 #: src/blocks/food-quiz/view.js:11
 msgid "Dinner"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:31
 #: src/blocks/food-quiz/save.js:32
 #: src/blocks/food-quiz/view.js:42
 msgid "Calculate"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:34
 #: src/blocks/food-quiz/save.js:35
 #: src/blocks/food-quiz/view.js:48
 msgid "Reset"
 msgstr ""
 
+#: build/blocks/food-quiz/index.js:1
+#: build/blocks/food-quiz/view.js:1
 #: src/blocks/food-quiz/save.js:39
 #: src/blocks/food-quiz/view.js:54
 msgid "Please select at least one of each meal."
 msgstr ""
 
-#: src/blocks/food-quiz/view.js:200
+#: build/blocks/food-quiz/view.js:1
+#: src/blocks/food-quiz/view.js:223
 msgid "Decrease"
 msgstr ""
 
-#: src/blocks/food-quiz/view.js:202
+#: build/blocks/food-quiz/view.js:1
+#: src/blocks/food-quiz/view.js:224
 msgid "Increase"
 msgstr ""
 
-#: src/components/ConfirmModal.js:9
-msgid "Confirm"
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:14
+#: src/blocks/year-end-campaign-2026/view.js:5
+msgid "Vermisst"
 msgstr ""
 
-#: src/components/ConfirmModal.js:10
-msgid "Are you sure?"
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:15
+#: src/blocks/year-end-campaign-2026/view.js:6
+msgid "Gefährdet"
 msgstr ""
 
-#: src/components/ConfirmModal.js:12
-msgid "Cancel"
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:16
+#: src/blocks/year-end-campaign-2026/view.js:7
+msgid "Unbekannt"
 msgstr ""
 
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:303
+#: src/blocks/year-end-campaign-2026/view.js:113
+msgid "Case no."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:307
+#: src/blocks/year-end-campaign-2026/view.js:115
+msgid "Status"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: build/blocks/year-end-campaign-2026/view.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:186
+#: src/blocks/year-end-campaign-2026/edit.js:313
+#: src/blocks/year-end-campaign-2026/view.js:119
+msgid "Location"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:98
+msgid "Campaign settings"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:100
+msgid "Eyebrow"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:105
+msgid "Headline"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:110
+msgid "Introduction"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:115
+msgid "Dossier label"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:120
+msgid "Empty-state label"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:125
+msgid "CTA text"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:126
+msgid "Use {{name}} for the selected animal name."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:131
+msgid "Donation note"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:136
+msgid "Tamaro form anchor ID"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:137
+msgid "Set this to the HTML anchor ID of the separately inserted Tamaro block, without the #."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:146
+msgid "Deep-sea animals"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:148
+msgid "Add between 4 and 10 animals. Select a card in the preview to view its dossier."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:152
+msgid "Untitled animal"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:163
+msgid "Choose image"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:175
+msgid "Biological family"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:180
+msgid "Conservation status"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:191
+msgid "Case number"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:196
+msgid "Description"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:28
+msgid "New deep-sea animal"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:227
+msgid "Add animal"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:234
+msgid "Remove animal?"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:235
+msgid "This animal and its dossier details will be permanently removed."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/index.js:1
+#: src/blocks/year-end-campaign-2026/edit.js:259
+msgid "Add image"
+msgstr ""
+
+#: build/blocks/food-quiz/block.json
 #: src/blocks/food-quiz/block.json
 msgctxt "block title"
 msgid "Food Quiz"
 msgstr ""
 
+#: build/blocks/food-quiz/block.json
 #: src/blocks/food-quiz/block.json
 msgctxt "block description"
 msgid "CCC Interactive Food Quiz"
 msgstr ""
 
+#: build/blocks/food-quiz/block.json
 #: src/blocks/food-quiz/block.json
 msgctxt "block keyword"
 msgid "food"
 msgstr ""
 
+#: build/blocks/food-quiz/block.json
 #: src/blocks/food-quiz/block.json
 msgctxt "block keyword"
 msgid "quiz"
 msgstr ""
 
+#: build/blocks/food-quiz/block.json
 #: src/blocks/food-quiz/block.json
 msgctxt "block keyword"
 msgid "interactive"
 msgstr ""
 
+#: build/blocks/food-quiz/result-tier/block.json
 #: src/blocks/food-quiz/result-tier/block.json
 msgctxt "block title"
 msgid "Food Quiz Result Tier"
 msgstr ""
 
+#: build/blocks/food-quiz/result-tier/result-tier-title/block.json
 #: src/blocks/food-quiz/result-tier/result-tier-title/block.json
 msgctxt "block title"
 msgid "Food Quiz Result Tier Title"
 msgstr ""
 
+#: build/blocks/food-quiz/tier/block.json
 #: src/blocks/food-quiz/tier/block.json
 msgctxt "block title"
 msgid "Food Quiz Tier"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block title"
+msgid "Year end campaign 2026"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block description"
+msgid "Interactive deep-sea animal case files for the 2026 year-end campaign."
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block keyword"
+msgid "campaign"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block keyword"
+msgid "deep sea"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block keyword"
+msgid "donation"
+msgstr ""
+
+#: build/blocks/year-end-campaign-2026/block.json
+#: src/blocks/year-end-campaign-2026/block.json
+msgctxt "block keyword"
+msgid "Tatort Tiefsee"
 msgstr ""
 
 #: theme.json
