@@ -29,7 +29,6 @@ const createCreature = index => ( {
 	family: '',
 	status: 'unknown',
 	location: '',
-	coordinates: '',
 	caseNumber: '',
 	description: '',
 } );
@@ -189,11 +188,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ value => updateCreature( index, 'location', value ) }
 							/>
 							<TextControl
-								label={ __( 'Coordinates', 'planet4-child-theme-switzerland' ) }
-								value={ creature.coordinates }
-								onChange={ value => updateCreature( index, 'coordinates', value ) }
-							/>
-							<TextControl
 								label={ __( 'Case number', 'planet4-child-theme-switzerland' ) }
 								value={ creature.caseNumber }
 								onChange={ value => updateCreature( index, 'caseNumber', value ) }
@@ -318,10 +312,6 @@ function Dossier( { creature, dossierLabel, ctaTemplate, donationNote, isPreview
 					<div>
 						<dt>{ __( 'Location', 'planet4-child-theme-switzerland' ) }</dt>
 						<dd>{ creature.location }</dd>
-					</div>
-					<div>
-						<dt>{ __( 'Coordinates', 'planet4-child-theme-switzerland' ) }</dt>
-						<dd>{ creature.coordinates }</dd>
 					</div>
 				</dl>
 				<p>{ creature.description }</p>

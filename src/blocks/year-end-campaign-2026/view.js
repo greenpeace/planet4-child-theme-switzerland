@@ -116,8 +116,7 @@ import { __ } from '@wordpress/i18n';
 					statusLabels[ normalizeStatus( creature.status ) ],
 					`year-end-campaign-2026__status year-end-campaign-2026__status--${ normalizeStatus( creature.status ) }`
 				),
-				createDetailItem( __( 'Location', 'planet4-child-theme-switzerland' ), creature.location || '' ),
-				createDetailItem( __( 'Coordinates', 'planet4-child-theme-switzerland' ), creature.coordinates || '' )
+				createDetailItem( __( 'Location', 'planet4-child-theme-switzerland' ), creature.location || '' )
 			);
 			const description = createElement( 'p', '', creature.description || '' );
 			details.append( label, title, family, dataList, description );
