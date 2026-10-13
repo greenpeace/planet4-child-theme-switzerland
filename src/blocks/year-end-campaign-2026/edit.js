@@ -28,7 +28,7 @@ const createCreature = index => ( {
 	name: __( 'New deep-sea animal', 'planet4-child-theme-switzerland' ),
 	family: '',
 	status: 'unknown',
-	depth: '',
+	location: '',
 	coordinates: '',
 	caseNumber: '',
 	description: '',
@@ -184,9 +184,9 @@ export default function Edit( { attributes, setAttributes } ) {
 								options={ Object.entries( statusLabels ).map( ( [ value, label ] ) => ( { value, label } ) ) }
 							/>
 							<TextControl
-								label={ __( 'Habitat depth', 'planet4-child-theme-switzerland' ) }
-								value={ creature.depth }
-								onChange={ value => updateCreature( index, 'depth', value ) }
+								label={ __( 'Location', 'planet4-child-theme-switzerland' ) }
+								value={ creature.location }
+								onChange={ value => updateCreature( index, 'location', value ) }
 							/>
 							<TextControl
 								label={ __( 'Coordinates', 'planet4-child-theme-switzerland' ) }
@@ -272,7 +272,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							<p>
 								<em>{ creature.family }</em>
 							</p>
-							<p>{ creature.depth }</p>
+							<p>{ creature.location }</p>
 						</button>
 					) ) }
 				</div>
@@ -308,8 +308,8 @@ function Dossier( { creature, dossierLabel, ctaTemplate, donationNote, isPreview
 						</dd>
 					</div>
 					<div>
-						<dt>{ __( 'Depth', 'planet4-child-theme-switzerland' ) }</dt>
-						<dd>{ creature.depth }</dd>
+						<dt>{ __( 'Location', 'planet4-child-theme-switzerland' ) }</dt>
+						<dd>{ creature.location }</dd>
 					</div>
 					<div>
 						<dt>{ __( 'Coordinates', 'planet4-child-theme-switzerland' ) }</dt>

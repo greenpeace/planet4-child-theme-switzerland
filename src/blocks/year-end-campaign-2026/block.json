@@ -43,7 +43,7 @@
 					"name": "Glaskalmar",
 					"family": "Cranchia scabra",
 					"status": "missing",
-					"depth": "1.200 m",
+					"location": "Nordpazifik",
 					"coordinates": "15°N 145°W",
 					"caseNumber": "TT-004",
 					"description": "Nahezu vollständig transparent: Über seine Lebensweise ist fast nichts bekannt. Der Tiefseebergbau bedroht seinen Lebensraum, bevor wir ihn überhaupt kennen."
@@ -56,7 +56,7 @@
 					"name": "Vampirtintenfisch",
 					"family": "Vampyroteuthis infernalis",
 					"status": "endangered",
-					"depth": "900 m",
+					"location": "Nordpazifik",
 					"coordinates": "8°S 122°E",
 					"caseNumber": "TT-007",
 					"description": "Mit leuchtenden Organen navigiert er durch absolute Dunkelheit. Ein fossiles Wunder, 300 Millionen Jahre alt und vom Aussterben bedroht."
@@ -69,7 +69,7 @@
 					"name": "Fledermausfisch",
 					"family": "Ogcocephalus darwini",
 					"status": "unknown",
-					"depth": "700 m",
+					"location": "Südostpazifik",
 					"coordinates": "1°S 91°W",
 					"caseNumber": "TT-012",
 					"description": "Mit umgebauten Flossen stapft er über den Meeresgrund. Über seine Populationsgrösse wissen wir fast nichts."
@@ -82,7 +82,7 @@
 					"name": "Meeresengel",
 					"family": "Clione limacina",
 					"status": "missing",
-					"depth": "500 m",
+					"location": "Arktische Tiefen",
 					"coordinates": "72°N 2°W",
 					"caseNumber": "TT-019",
 					"description": "Dieser Meeresengel treibt durch arktische Tiefen. Sein Habitat verschwindet schneller, als wir forschen können."
@@ -95,7 +95,7 @@
 					"name": "Schwarzdrachenfisch",
 					"family": "Idiacanthus atlanticus",
 					"status": "endangered",
-					"depth": "2000 m",
+					"location": "Nordatlantik",
 					"coordinates": "72°N 2°W",
 					"caseNumber": "TT-028",
 					"description": "Tiefschwarz, unsichtbar im Dunkeln – mit einem leuchtenden Kinn-Anhängsel als Köder. Ein Meisterjäger, dessen Welt wir bereit sind zu zerstören."

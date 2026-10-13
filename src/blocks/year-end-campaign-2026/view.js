@@ -116,7 +116,7 @@ import { __ } from '@wordpress/i18n';
 					statusLabels[ normalizeStatus( creature.status ) ],
 					`year-end-campaign-2026__status year-end-campaign-2026__status--${ normalizeStatus( creature.status ) }`
 				),
-				createDetailItem( __( 'Depth', 'planet4-child-theme-switzerland' ), creature.depth || '' ),
+				createDetailItem( __( 'Location', 'planet4-child-theme-switzerland' ), creature.location || '' ),
 				createDetailItem( __( 'Coordinates', 'planet4-child-theme-switzerland' ), creature.coordinates || '' )
 			);
 			const description = createElement( 'p', '', creature.description || '' );
@@ -165,8 +165,8 @@ import { __ } from '@wordpress/i18n';
 				const name = createElement( 'h3', '', creature.name || '' );
 				const family = createElement( 'p' );
 				family.appendChild( createElement( 'em', '', creature.family || '' ) );
-				const depth = createElement( 'p', '', '↓ ' + ( creature.depth || '' ) );
-				card.append( imageWrapper, caseNumber, status, name, family, depth );
+				const location = createElement( 'p', '', creature.location || '' );
+				card.append( imageWrapper, caseNumber, status, name, family, location );
 				card.addEventListener( 'click', () => {
 					selectedId = selectedId === creature.id ? null : creature.id;
 					render();
