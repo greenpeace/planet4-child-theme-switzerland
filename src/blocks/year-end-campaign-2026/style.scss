@@ -9,8 +9,8 @@
 	}
 }
 
-.page-style-ocean .year-end-campaign-2026 {
-	--year-end-campaign-background: transparent;
+.year-end-campaign-2026 {
+	--year-end-campaign-background: #080c0c;
 	--year-end-campaign-panel: #102020;
 	--year-end-campaign-line: #3c6864;
 	--year-end-campaign-text: #f2f7f2;
@@ -34,7 +34,7 @@
 		}
 
 		p:last-child {
-			color: var(--year-end-campaign-muted);
+			color: var(--year-end-campaign-muted) !important;
 			margin: 0;
 		}
 	}
@@ -53,7 +53,7 @@
 
 	p.year-end-campaign-2026__eyebrow,
 	p.year-end-campaign-2026__dossier-label{
-		color: var(--year-end-campaign-accent);
+		color: var(--year-end-campaign-accent) !important;
 		margin: 0 0 0.75rem;
 	}
 
@@ -67,7 +67,7 @@
 
 	&__card {
 		appearance: none;
-		background: var(--year-end-campaign-panel);
+		background: transparent;
 		border: 1px solid var(--year-end-campaign-line);
 		color: inherit;
 		cursor: pointer;
@@ -113,9 +113,6 @@
 
 	&__image {
 		align-items: center;
-		background-color: #050b0c;
-		background-image: linear-gradient(rgba(126, 195, 183, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(126, 195, 183, 0.1) 1px, transparent 1px);
-		background-size: 1.25rem 1.25rem;
 		display: flex;
 		height: 11rem;
 		justify-content: center;
@@ -187,7 +184,7 @@
 	}
 
 	&__dossier {
-		background: var(--year-end-campaign-panel);
+		background: transparent;
 		border: 2px solid var(--year-end-campaign-accent);
 		display: grid;
 		gap: 1.5rem;
@@ -311,4 +308,8 @@
 			animation: none;
 		}
 	}
+}
+
+.page-style-ocean .year-end-campaign-2026 {
+	--year-end-campaign-background: transparent;
 }
