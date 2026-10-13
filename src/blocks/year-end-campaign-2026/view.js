@@ -130,6 +130,9 @@ import { __ } from '@wordpress/i18n';
 			}
 			const cta = createElement( 'button', 'year-end-campaign-2026__cta', ctaTemplate.replace( '{{name}}', creature.name || '' ) );
 			cta.type = 'button';
+			cta.setAttribute( 'data-ga-category', 'Year End Campaign 2026' );
+			cta.setAttribute( 'data-ga-action', 'CTA Button' );
+			cta.setAttribute( 'data-ga-label', creature.name || '' );
 			cta.addEventListener( 'click', () => {
 				if ( tamaroForm ) {
 					tamaroForm.hidden = false;
@@ -149,6 +152,9 @@ import { __ } from '@wordpress/i18n';
 				const card = createElement( 'button', `year-end-campaign-2026__card${ isSelected ? ' is-selected' : '' }` );
 				card.type = 'button';
 				card.setAttribute( 'aria-pressed', String( isSelected ) );
+				card.setAttribute( 'data-ga-category', 'Year End Campaign 2026' );
+				card.setAttribute( 'data-ga-action', 'Animal Selection' );
+				card.setAttribute( 'data-ga-label', creature.name || '' );
 				const imageWrapper = createElement( 'div', 'year-end-campaign-2026__image' );
 				const image = createImage( creature, '' );
 				if ( image ) {
