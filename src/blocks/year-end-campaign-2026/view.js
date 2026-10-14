@@ -70,8 +70,11 @@ import { __ } from '@wordpress/i18n';
 		const donationNote = root.dataset.donationNote || '';
 		const tamaroAnchorId = root.dataset.tamaroAnchorId || '';
 		const tamaroForm = tamaroAnchorId ? document.getElementById( tamaroAnchorId ) : null;
+		// Check for Tamaro return parameters in the URL and only hide the form if they are not present
+		const urlParams = new URLSearchParams( window.location.search );
+		const hasTamaroReturnParam = urlParams.has( 'rnw-view' ) || urlParams.has( 'epms_payment_agreement_uuid' );
 
-		if ( tamaroForm ) {
+		if ( tamaroForm && ! hasTamaroReturnParam ) {
 			tamaroForm.hidden = true;
 		}
 
